@@ -6,7 +6,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="theme-color" content="#C4622D">
-  <title>Villa Fiorelli · Welcome</title>
+  <title>Domus Fiorelli · Welcome</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -200,7 +200,7 @@
 
     /* ─── COVER PAGE ─────────────────────────────────── */
     #page-0 {
-      background: linear-gradient(155deg, #C4622D 0%, #7A3018 55%, #4A1A08 100%);
+      background: var(--white);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -214,51 +214,31 @@
       padding: 40px 32px;
     }
 
-    .cover-ornament {
-      width: 48px;
-      height: 1.5px;
-      background: var(--gold);
+    .cover-logo {
+      width: 220px;
+      max-width: 80vw;
       margin-bottom: 20px;
     }
 
-    .cover-sub {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(253,250,244,0.65);
-      margin-bottom: 14px;
-    }
-
-    .cover-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 44px;
-      font-weight: 400;
-      font-style: italic;
-      color: var(--white);
-      line-height: 1.05;
-      margin-bottom: 8px;
-    }
-
     .cover-location {
-      font-size: 12px;
-      color: rgba(253,250,244,0.55);
+      font-size: 11px;
+      color: var(--gray);
       letter-spacing: 0.08em;
-      margin-bottom: 36px;
+      margin-bottom: 32px;
     }
 
     .cover-quote {
       font-family: 'Playfair Display', serif;
       font-size: 16px;
       font-style: italic;
-      color: rgba(253,250,244,0.78);
+      color: var(--gray);
       line-height: 1.65;
-      margin-bottom: 44px;
+      margin-bottom: 40px;
       max-width: 260px;
     }
 
     .cover-btn {
-      background: var(--gold);
+      background: var(--terracotta);
       color: var(--white);
       border: none;
       padding: 15px 44px;
@@ -269,7 +249,7 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       cursor: pointer;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      box-shadow: 0 4px 20px rgba(196,98,45,0.25);
       transition: transform 0.15s;
     }
     .cover-btn:active { transform: scale(0.97); }
@@ -820,7 +800,7 @@
 <!-- NAVIGATION DRAWER -->
 <nav id="drawer">
   <div id="drawer-header">
-    <h2>Villa Fiorelli</h2>
+    <h2>Domus Fiorelli</h2>
     <p>Piazza di Villa Fiorelli 12, Roma</p>
   </div>
   <div id="drawer-nav">
@@ -901,7 +881,7 @@
       <rect y="13" width="22" height="2" rx="1" fill="#2C2C2C"/>
     </svg>
   </button>
-  <span id="header-title">Villa Fiorelli</span>
+  <span id="header-title">Domus Fiorelli</span>
   <button id="lang-toggle" onclick="toggleLang()">IT</button>
 </header>
 
@@ -913,12 +893,10 @@
   ══════════════════════════════════════════════════ -->
   <div class="page active" id="page-0">
     <div class="cover-inner">
-      <div class="cover-ornament"></div>
-      <p class="cover-sub">Roma · Appio Latino</p>
-      <h1 class="cover-title">Villa<br>Fiorelli</h1>
-      <p class="cover-location">Piazza di Villa Fiorelli 12</p>
-      <p class="cover-quote it">"Roma non finisce mai.<br>Inizia da qui."</p>
-      <p class="cover-quote en" style="display:none">"Rome never ends.<br>It begins right here."</p>
+      <img src="logo.png" alt="Domus Fiorelli" class="cover-logo">
+      <p class="cover-location">Piazza di Villa Fiorelli 12, Roma</p>
+      <p class="cover-quote it">A due passi dal Colosseo,<br>collegato con il mondo.</p>
+      <p class="cover-quote en" style="display:none">Steps from the Colosseum,<br>connected to the world.</p>
       <button class="cover-btn" onclick="goToPage(1)">
         <span class="it">Inizia</span>
         <span class="en" style="display:none">Begin</span>
@@ -934,21 +912,21 @@
       <div class="section-header">
         <p class="section-tag it">01 — Benvenuto</p>
         <p class="section-tag en">01 — Welcome</p>
-        <h2 class="section-title it">Benvenuto a Villa Fiorelli, [Nome].</h2>
-        <h2 class="section-title en">Welcome to Villa Fiorelli, [Name].</h2>
+        <h2 class="section-title it">Benvenuto a Domus Fiorelli, [Nome].</h2>
+        <h2 class="section-title en">Welcome to Domus Fiorelli, [Name].</h2>
         <div class="section-divider"></div>
       </div>
 
       <div class="card">
         <div class="welcome-body it">
           <p>C'è un momento, arrivando a Roma, in cui la città smette di essere uno sfondo e diventa qualcosa di intimo. Noi crediamo che quel momento cominci qui, in questo appartamento.</p>
-          <p><strong>Villa Fiorelli</strong> non è un indirizzo qualsiasi. È uno di quei luoghi che Roma custodisce gelosamente: una piazza d'altri tempi, circondata da palazzi Liberty e alberi centenari, dove la mattina senti solo il canto degli uccelli e il profumo del caffè dai balconi.</p>
+          <p><strong>Domus Fiorelli</strong> non è un indirizzo qualsiasi. È uno di quei luoghi che Roma custodisce gelosamente: una piazza d'altri tempi, circondata da palazzi Liberty e alberi centenari, dove la mattina senti solo il canto degli uccelli e il profumo del caffè dai balconi.</p>
           <p>Questo appartamento è stato pensato per chi viaggia con curiosità e senso estetico. <strong>La tua casa, per il tempo che sei a Roma.</strong></p>
           <p>Siamo qui se hai bisogno di qualsiasi cosa. Buon soggiorno.</p>
         </div>
         <div class="welcome-body en">
           <p>There is a moment, when arriving in Rome, when the city stops being a backdrop and becomes something intimate. We believe that moment begins here — in this apartment.</p>
-          <p><strong>Villa Fiorelli</strong> is not just an address. It is one of those places Rome keeps quietly to herself: a square out of another era, framed by Liberty-style buildings and century-old trees.</p>
+          <p><strong>Domus Fiorelli</strong> is not just an address. It is one of those places Rome keeps quietly to herself: a square out of another era, framed by Liberty-style buildings and century-old trees.</p>
           <p>This apartment was designed for travellers who bring curiosity and a sense of beauty. <strong>Your home, for as long as you are in Rome.</strong></p>
           <p>We are here whenever you need anything. Enjoy every moment.</p>
         </div>
@@ -1333,7 +1311,7 @@
       <div class="card">
         <div class="card-title"><span class="card-title-icon">💊</span><span class="it">Farmacie</span><span class="en">Pharmacies</span></div>
         <div class="card-text">
-          <p><strong>Farmacia Villa Fiorelli</strong> &nbsp;<span style="background:var(--gold-light); color:#8B6E2A; border-radius:4px; padding:2px 7px; font-size:11px; font-weight:700"><span class="it">più vicina</span><span class="en">closest</span></span></p>
+          <p><strong>Farmacia Domus Fiorelli</strong> &nbsp;<span style="background:var(--gold-light); color:#8B6E2A; border-radius:4px; padding:2px 7px; font-size:11px; font-weight:700"><span class="it">più vicina</span><span class="en">closest</span></span></p>
           <p style="color:var(--gray); font-size:13px; margin-top:3px">Via Enna 17/B &nbsp;·&nbsp; <span class="it">Lun–Sab 8:30–13:00 / 15:30–19:30</span><span class="en">Mon–Sat 8:30 am–1:00 pm / 3:30–7:30 pm</span></p>
           <p style="margin-top:12px"><strong>Farmacia Brocchieri</strong> &nbsp;<span style="background:var(--terracotta); color:white; border-radius:4px; padding:2px 7px; font-size:11px; font-weight:700">H24</span></p>
           <p style="color:var(--gray); font-size:13px; margin-top:3px">Via Taranto 162 &nbsp;·&nbsp; <span class="it">Notturna e festiva</span><span class="en">Open nights & holidays</span></p>
@@ -1599,8 +1577,8 @@
           <div>
             <div class="tip-title it">Sicurezza</div>
             <div class="tip-title en">Safety</div>
-            <div class="tip-text it">Villa Fiorelli è tranquilla — qui non devi preoccuparti. Buon senso sui mezzi affollati: borsa davanti. Attenzione ai borseggiatori in Termini, al Colosseo, e sui bus 40/64.</div>
-            <div class="tip-text en">Villa Fiorelli is calm — nothing to worry about here. Common sense on crowded transport: bag in front. Stay alert at Termini, the Colosseum, and buses 40/64.</div>
+            <div class="tip-text it">Domus Fiorelli è tranquilla — qui non devi preoccuparti. Buon senso sui mezzi affollati: borsa davanti. Attenzione ai borseggiatori in Termini, al Colosseo, e sui bus 40/64.</div>
+            <div class="tip-text en">Domus Fiorelli is calm — nothing to worry about here. Common sense on crowded transport: bag in front. Stay alert at Termini, the Colosseum, and buses 40/64.</div>
           </div>
         </div>
         <div class="tip-row" style="border-bottom:none">
