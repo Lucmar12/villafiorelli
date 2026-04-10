@@ -791,6 +791,182 @@
     a { color: inherit; text-decoration: none; }
     .text-link { color: var(--terracotta); text-decoration: underline; }
 
+    /* ─── PERSONAL WELCOME HERO ─────────────────────── */
+    .welcome-hero {
+      background: linear-gradient(145deg, #2C2C2C 0%, #1a1a1a 100%);
+      border-radius: 20px;
+      padding: 28px 22px 24px;
+      margin-bottom: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+    .welcome-hero::before {
+      content: '';
+      position: absolute;
+      top: -30px; right: -30px;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: rgba(184,150,62,0.12);
+    }
+    .welcome-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -20px; left: -20px;
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: rgba(196,98,45,0.1);
+    }
+    .welcome-hero-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .welcome-hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .welcome-hero-text {
+      font-size: 14px;
+      line-height: 1.75;
+      color: rgba(253,250,244,0.78);
+    }
+    .welcome-hero-divider {
+      width: 32px;
+      height: 1.5px;
+      background: var(--gold);
+      margin: 16px 0;
+    }
+    .welcome-hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 16px;
+    }
+    .welcome-pill {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--gold);
+      background: rgba(184,150,62,0.15);
+      border: 1px solid rgba(184,150,62,0.35);
+      border-radius: 20px;
+      padding: 5px 12px;
+    }
+
+    /* ─── COVER VALUE PROP ───────────────────────────── */
+    .cover-value-prop {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(184,150,62,0.1);
+      border: 1px solid rgba(184,150,62,0.3);
+      border-radius: 30px;
+      padding: 8px 16px;
+      margin-bottom: 28px;
+    }
+    .cover-value-prop-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+    .cover-value-prop-text {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+    }
+
+    /* ─── HOSPITALITY SIGNATURE PAGE ────────────────── */
+    .signature-hero {
+      background: var(--anthracite);
+      border-radius: 20px;
+      padding: 30px 22px;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+    .signature-hero-icon {
+      font-size: 36px;
+      margin-bottom: 14px;
+    }
+    .signature-hero-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .signature-hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .signature-hero-text {
+      font-size: 14px;
+      line-height: 1.8;
+      color: rgba(253,250,244,0.75);
+    }
+
+    .journey-step {
+      display: flex;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--light-gray);
+      align-items: flex-start;
+    }
+    .journey-step:last-child { border-bottom: none; }
+    .journey-step-num {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--anthracite);
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .journey-step-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--anthracite);
+      margin-bottom: 4px;
+    }
+    .journey-step-text {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    .concierge-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--light-gray);
+      font-size: 14px;
+      color: var(--anthracite);
+    }
+    .concierge-item:last-child { border-bottom: none; }
+    .concierge-check {
+      color: var(--gold);
+      font-size: 16px;
+      flex-shrink: 0;
+      line-height: 1.4;
+    }
+
     /* ─── SAFE AREA (NOTCH) ──────────────────────────── */
     @supports (padding-bottom: env(safe-area-inset-bottom)) {
       #bottom-nav {
@@ -831,54 +1007,60 @@
     </button>
     <button class="drawer-item" onclick="goToPage(2); closeDrawer()">
       <span class="drawer-item-num">02</span>
+      <span class="drawer-item-icon">🤝</span>
+      <span class="drawer-item-label it">La Nostra Filosofia</span>
+      <span class="drawer-item-label en">Our Philosophy</span>
+    </button>
+    <button class="drawer-item" onclick="goToPage(3); closeDrawer()">
+      <span class="drawer-item-num">03</span>
       <span class="drawer-item-icon">🔑</span>
       <span class="drawer-item-label it">Accesso & Wi-Fi</span>
       <span class="drawer-item-label en">Access & Wi-Fi</span>
     </button>
-    <button class="drawer-item" onclick="goToPage(3); closeDrawer()">
-      <span class="drawer-item-num">03</span>
+    <button class="drawer-item" onclick="goToPage(4); closeDrawer()">
+      <span class="drawer-item-num">04</span>
       <span class="drawer-item-icon">🏠</span>
       <span class="drawer-item-label it">Guida alla Casa</span>
       <span class="drawer-item-label en">Home Guide</span>
     </button>
-    <button class="drawer-item" onclick="goToPage(4); closeDrawer()">
-      <span class="drawer-item-num">04</span>
+    <button class="drawer-item" onclick="goToPage(5); closeDrawer()">
+      <span class="drawer-item-num">05</span>
       <span class="drawer-item-icon">📋</span>
       <span class="drawer-item-label it">Regole Condominiali</span>
       <span class="drawer-item-label en">House Rules</span>
     </button>
-    <button class="drawer-item" onclick="goToPage(5); closeDrawer()">
-      <span class="drawer-item-num">05</span>
+    <button class="drawer-item" onclick="goToPage(6); closeDrawer()">
+      <span class="drawer-item-num">06</span>
       <span class="drawer-item-icon">🚨</span>
       <span class="drawer-item-label it">Emergenze</span>
       <span class="drawer-item-label en">Emergency</span>
     </button>
-    <button class="drawer-item" onclick="goToPage(6); closeDrawer()">
-      <span class="drawer-item-num">06</span>
+    <button class="drawer-item" onclick="goToPage(7); closeDrawer()">
+      <span class="drawer-item-num">07</span>
       <span class="drawer-item-icon">🚇</span>
       <span class="drawer-item-label it">Come Muoversi</span>
       <span class="drawer-item-label en">Getting Around</span>
     </button>
-    <button class="drawer-item" onclick="goToPage(7); closeDrawer()">
-      <span class="drawer-item-num">07</span>
+    <button class="drawer-item" onclick="goToPage(8); closeDrawer()">
+      <span class="drawer-item-num">08</span>
       <span class="drawer-item-icon">🍽️</span>
       <span class="drawer-item-label it">Food Guide</span>
       <span class="drawer-item-label en">Food Guide</span>
     </button>
-    <button class="drawer-item" onclick="goToPage(8); closeDrawer()">
-      <span class="drawer-item-num">08</span>
+    <button class="drawer-item" onclick="goToPage(9); closeDrawer()">
+      <span class="drawer-item-num">09</span>
       <span class="drawer-item-icon">🇮🇹</span>
       <span class="drawer-item-label it">Galateo Italiano</span>
       <span class="drawer-item-label en">Cultural Tips</span>
     </button>
-    <button class="drawer-item" onclick="goToPage(9); closeDrawer()">
-      <span class="drawer-item-num">09</span>
+    <button class="drawer-item" onclick="goToPage(10); closeDrawer()">
+      <span class="drawer-item-num">10</span>
       <span class="drawer-item-icon">🗺️</span>
       <span class="drawer-item-label it">Esperienze</span>
       <span class="drawer-item-label en">Experiences</span>
     </button>
-    <button class="drawer-item" onclick="goToPage(10); closeDrawer()">
-      <span class="drawer-item-num">10</span>
+    <button class="drawer-item" onclick="goToPage(11); closeDrawer()">
+      <span class="drawer-item-num">11</span>
       <span class="drawer-item-icon">👋</span>
       <span class="drawer-item-label it">Arrivederci</span>
       <span class="drawer-item-label en">Farewell</span>
@@ -909,11 +1091,16 @@
     <div class="cover-inner">
       <img src="logo.png" alt="Domus Fiorelli" class="cover-logo">
       <p class="cover-location">Piazza di Villa Fiorelli 12, Roma</p>
+      <div class="cover-value-prop">
+        <div class="cover-value-prop-dot"></div>
+        <span class="cover-value-prop-text it">Boutique stay · Accoglienza personale</span>
+        <span class="cover-value-prop-text en" style="display:none">Boutique stay · Personal host welcome</span>
+      </div>
       <p class="cover-quote it">A due passi dal Colosseo,<br>collegato con il mondo.</p>
       <p class="cover-quote en" style="display:none">Steps from the Colosseum,<br>connected to the world.</p>
       <button class="cover-btn" onclick="goToPage(1)">
-        <span class="it">Inizia</span>
-        <span class="en" style="display:none">Begin</span>
+        <span class="it">Scopri la tua casa</span>
+        <span class="en" style="display:none">Discover your home</span>
       </button>
     </div>
   </div>
@@ -929,6 +1116,24 @@
         <h2 class="section-title it">Benvenuto a Domus Fiorelli.</h2>
         <h2 class="section-title en">Welcome to Domus Fiorelli.</h2>
         <div class="section-divider"></div>
+      </div>
+
+      <div class="welcome-hero">
+        <div class="welcome-hero-eyebrow it">La nostra promessa</div>
+        <div class="welcome-hero-eyebrow en">Our promise</div>
+        <div class="welcome-hero-title it">Un'accoglienza vera,<br>quando possibile di persona.</div>
+        <div class="welcome-hero-title en">A warm welcome,<br>whenever possible in person.</div>
+        <div class="welcome-hero-divider"></div>
+        <div class="welcome-hero-text it">Quando possibile, siamo qui ad accoglierti personalmente. Crediamo che l'ospitalità cominci dalle persone — non dalle istruzioni. Incontrarci di persona ci permette di presentarti la casa, condividere i nostri angoli preferiti di Roma e farti sentire a tuo agio fin dal primo momento.</div>
+        <div class="welcome-hero-text en">Whenever possible, we are here to welcome you in person. We believe hospitality starts with people — not instructions. Meeting you allows us to introduce the home, share our favourite corners of Rome, and make your arrival feel effortless and truly personal.</div>
+        <div class="welcome-hero-pills">
+          <span class="welcome-pill it">✦ Accoglienza personale</span>
+          <span class="welcome-pill en">✦ Personal welcome</span>
+          <span class="welcome-pill it">✦ Consigli su Roma</span>
+          <span class="welcome-pill en">✦ Roman insider tips</span>
+          <span class="welcome-pill it">✦ Sempre raggiungibili</span>
+          <span class="welcome-pill en">✦ Always reachable</span>
+        </div>
       </div>
 
       <div class="card">
@@ -967,9 +1172,112 @@
   </div>
 
   <!-- ══════════════════════════════════════════════════
-       2 · ACCESSO & WI-FI
+       2 · HOSPITALITY — THE ITALIAN WAY
   ══════════════════════════════════════════════════ -->
   <div class="page" id="page-2">
+    <div class="section-page">
+      <div class="section-header">
+        <p class="section-tag it">02 — La Nostra Filosofia</p>
+        <p class="section-tag en">02 — Our Philosophy</p>
+        <h2 class="section-title it">Ospitalità all'italiana.</h2>
+        <h2 class="section-title en">Hospitality, the Italian way.</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="signature-hero">
+        <div class="signature-hero-icon">🤝</div>
+        <div class="signature-hero-eyebrow it">Domus Fiorelli · Signature Experience</div>
+        <div class="signature-hero-eyebrow en">Domus Fiorelli · Signature Experience</div>
+        <div class="signature-hero-title it">Il check-in è il primo<br>capitolo del tuo soggiorno.</div>
+        <div class="signature-hero-title en">Check-in is the first<br>chapter of your stay.</div>
+        <div class="signature-hero-text it">Non consegniamo solo le chiavi. Quando possibile, siamo lì ad aprirti la porta — per presentarti ogni angolo della casa, condividere i segreti del quartiere e farti sentire accolto prima ancora di disfare i bagagli.</div>
+        <div class="signature-hero-text en">We don't just hand over keys. Whenever possible, we are there to open the door — to walk you through every corner of the home, share the neighbourhood's secrets and make you feel at home before you've even unpacked.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span class="card-title-icon">🗓️</span>
+          <span class="it">Il tuo arrivo, passo per passo</span>
+          <span class="en">Your arrival, step by step</span>
+        </div>
+
+        <div class="journey-step">
+          <div class="journey-step-num">1</div>
+          <div>
+            <div class="journey-step-title it">Ci accordiamo prima dell'arrivo</div>
+            <div class="journey-step-title en">We coordinate before you arrive</div>
+            <div class="journey-step-text it">Ti contatteremo per confermare l'orario e organizzare l'accoglienza. Ogni arrivo è unico per noi.</div>
+            <div class="journey-step-text en">We'll reach out to confirm your arrival time and arrange the welcome. Every arrival is unique to us.</div>
+          </div>
+        </div>
+
+        <div class="journey-step">
+          <div class="journey-step-num">2</div>
+          <div>
+            <div class="journey-step-title it">Accoglienza di persona</div>
+            <div class="journey-step-title en">Personal in-person welcome</div>
+            <div class="journey-step-text it">Quando possibile, siamo lì ad accoglierti. Ti presentiamo la casa, rispondiamo a ogni domanda, ti condividiamo i nostri consigli su Roma.</div>
+            <div class="journey-step-text en">Whenever possible, we are there to greet you. We introduce the home, answer every question, and share our personal tips for Rome.</div>
+          </div>
+        </div>
+
+        <div class="journey-step">
+          <div class="journey-step-num">3</div>
+          <div>
+            <div class="journey-step-title it">Smart check-in (quando necessario)</div>
+            <div class="journey-step-title en">Smart check-in (when needed)</div>
+            <div class="journey-step-text it">Se non fosse possibile incontrarci, lo smart lock garantisce un ingresso semplice e autonomo. Sei sempre accompagnato.</div>
+            <div class="journey-step-text en">If we can't meet in person, the smart lock ensures a smooth, independent entry. You are never left alone.</div>
+          </div>
+        </div>
+
+        <div class="journey-step">
+          <div class="journey-step-num">4</div>
+          <div>
+            <div class="journey-step-title it">Sempre raggiungibili</div>
+            <div class="journey-step-title en">Always reachable</div>
+            <div class="journey-step-text it">Durante tutto il soggiorno siamo disponibili su WhatsApp per qualsiasi necessità — dalle prenotazioni ai consigli last minute.</div>
+            <div class="journey-step-text en">Throughout your stay we are available on WhatsApp for anything you need — from restaurant bookings to last-minute suggestions.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span class="card-title-icon">🗝️</span>
+          <span class="it">Il tuo concierge personale</span>
+          <span class="en">Your personal concierge</span>
+        </div>
+        <div class="it">
+          <div class="concierge-item"><span class="concierge-check">✦</span><span>Ristoranti selezionati per i tuoi gusti, con prenotazione se necessario</span></div>
+          <div class="concierge-item"><span class="concierge-check">✦</span><span>Itinerari personalizzati — dalla mattina al tramonto</span></div>
+          <div class="concierge-item"><span class="concierge-check">✦</span><span>Segreti locali che non trovi su nessuna guida</span></div>
+          <div class="concierge-item"><span class="concierge-check">✦</span><span>Consigli su come muoversi, dove fare aperitivo, dove fare colazione come un romano</span></div>
+          <div class="concierge-item"><span class="concierge-check">✦</span><span>Supporto immediato per qualsiasi imprevisto</span></div>
+        </div>
+        <div class="en">
+          <div class="concierge-item"><span class="concierge-check">✦</span><span>Restaurant recommendations tailored to your taste, with reservations if needed</span></div>
+          <div class="concierge-item"><span class="concierge-check">✦</span><span>Personalised itineraries — from morning to sunset</span></div>
+          <div class="concierge-item"><span class="concierge-check">✦</span><span>Local secrets you won't find in any guidebook</span></div>
+          <div class="concierge-item"><span class="concierge-check">✦</span><span>Tips on transport, aperitivo spots, and where to have breakfast like a Roman</span></div>
+          <div class="concierge-item"><span class="concierge-check">✦</span><span>Immediate support for any unexpected need</span></div>
+        </div>
+      </div>
+
+      <div class="highlight it" style="font-style:italic; font-family:'Playfair Display',serif; font-size:15px; line-height:1.7">
+        "Non vogliamo che tu senta mai di essere solo. Roma è grande — ma tu hai noi."
+      </div>
+      <div class="highlight en" style="font-style:italic; font-family:'Playfair Display',serif; font-size:15px; line-height:1.7">
+        "We never want you to feel alone. Rome is vast — but you have us."
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       3 · ACCESSO & WI-FI
+  ══════════════════════════════════════════════════ -->
+  <div class="page" id="page-3">
     <div class="section-page">
       <div class="section-header">
         <p class="section-tag it">02 — Accesso & Wi-Fi</p>
@@ -1797,19 +2105,21 @@
       <div class="farewell-hero">
         <h2 class="it">Arrivederci.</h2>
         <h2 class="en">Goodbye.</h2>
-        <p class="it">Speriamo che questi giorni a Roma ti abbiano dato qualcosa che non sapevi di cercare: una strada, un sapore, una luce al tramonto che non dimenticherai. Questo appartamento ti ha aspettato, e speriamo di averti accolto come si accoglie un amico.</p>
-        <p class="en">We hope these days in Rome gave you something you didn't know you were looking for: a street, a flavour, a light at dusk you won't forget. This apartment waited for you — and we hope we made you feel like a friend.</p>
+        <p class="it">È stato un onore averti ospitato. Speriamo che questi giorni a Roma ti abbiano dato qualcosa che non sapevi di cercare — e che averti accolto di persona abbia reso il tuo arrivo un po' più speciale.</p>
+        <p class="en">It has been an honour to host you. We hope these days in Rome gave you something you didn't know you were looking for — and that welcoming you in person made your arrival a little more special.</p>
         <p class="farewell-quote it">"Roma non finisce mai."</p>
         <p class="farewell-quote en">"Rome never really ends."</p>
       </div>
 
       <div class="card">
-        <div class="card-title"><span class="card-title-icon">⭐</span><span class="it">Lascia una Recensione</span><span class="en">Leave a Review</span></div>
-        <div class="card-text it" style="margin-bottom:14px">Se il soggiorno ti ha lasciato qualcosa di buono, dircelo conta moltissimo — non per noi, ma per i viaggiatori che verranno dopo di te.</div>
-        <div class="card-text en" style="margin-bottom:14px">If your stay left you with something good, sharing it matters more than you might think — not for us, but for the travellers who will come after you.</div>
+        <div class="card-title"><span class="card-title-icon">⭐</span><span class="it">La tua opinione conta</span><span class="en">Your opinion matters</span></div>
+        <div class="card-text it" style="margin-bottom:6px">Se ti sei sentito accolto — dalla casa, dal quartiere, da noi — raccontalo. Una recensione autentica è il modo più bello per ringraziarci e aiutare altri viaggiatori a scegliere bene.</div>
+        <div class="card-text en" style="margin-bottom:6px">If you felt genuinely welcomed — by the home, the neighbourhood, by us — please share it. An honest review is the most meaningful way to say thank you and help other travellers make the right choice.</div>
+        <div class="note-box it" style="margin-bottom:14px; font-style:italic">"Abbiamo adorato accoglierti di persona. Ci fa piacere sapere com'è stato per te."</div>
+        <div class="note-box en" style="margin-bottom:14px; font-style:italic">"We loved welcoming you in person. We would love to hear how your stay felt to you."</div>
         <a class="review-btn" href="https://www.google.com/search?num=10&client=safari&hs=nJgp&hl=it-IT&sca_esv=6e9105e3f9215b89&cs=0&output=search&tbm=lcl&kgmid=/g/11yzb7pzj9&q=Domus+Fiorelli&shndl=30&source=sh/x/kp/local/m1/1&kgs=dd25e82205e6a696&utm_source=sh/x/kp/local/m1/1#" target="_blank" rel="noopener">
-          <span class="it">⭐ Scrivi una recensione</span>
-          <span class="en">⭐ Write a review</span>
+          <span class="it">⭐ Scrivi una recensione su Google</span>
+          <span class="en">⭐ Leave a Google review</span>
         </a>
       </div>
 
@@ -1841,9 +2151,9 @@
 </div>
 
 <script>
-  const TOTAL = 11;
-  const NAMES_IT = ['Home','Benvenuto','Accesso','Casa','Regole','Emergenze','Mobilità','Food','Galateo','Esperienze','Arrivederci'];
-  const NAMES_EN = ['Home','Welcome','Access','Home','Rules','Emergency','Transport','Food','Tips','Experiences','Farewell'];
+  const TOTAL = 12;
+  const NAMES_IT = ['Home','Benvenuto','Filosofia','Accesso','Casa','Regole','Emergenze','Mobilità','Food','Galateo','Esperienze','Arrivederci'];
+  const NAMES_EN = ['Home','Welcome','Philosophy','Access','Home','Rules','Emergency','Transport','Food','Tips','Experiences','Farewell'];
 
   let cur = 0;
   let lang = 'it';
