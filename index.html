@@ -23,7 +23,7 @@
       --gray: #6B6B6B;
       --light-gray: #E8E0D0;
       --header-height: 60px;
-      --bottom-height: 64px;
+      --bottom-height: 70px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -752,7 +752,7 @@
       margin: 18px 0 10px;
     }
 
-    /* ─── BOTTOM NAV ─────────────────────────────────── */
+    /* ─── BOTTOM TAB NAV ─────────────────────────────── */
     #bottom-nav {
       position: fixed;
       bottom: 0; left: 0; right: 0;
@@ -760,55 +760,206 @@
       background: var(--white);
       border-top: 1px solid var(--light-gray);
       display: flex;
-      align-items: center;
-      padding: 0 8px;
-      gap: 4px;
-      box-shadow: 0 -2px 12px rgba(44,44,44,0.06);
+      align-items: stretch;
+      box-shadow: 0 -2px 16px rgba(44,44,44,0.08);
       z-index: 300;
-      isolation: isolate;
     }
 
-    .nav-arrow {
+    .tab-btn {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
       background: none;
       border: none;
       cursor: pointer;
-      padding: 10px 14px;
-      border-radius: 10px;
-      font-size: 18px;
-      color: var(--anthracite);
+      padding: 8px 2px 6px;
+      -webkit-tap-highlight-color: transparent;
       transition: background 0.15s;
-      flex-shrink: 0;
+      position: relative;
     }
-    .nav-arrow:active { background: var(--light-gray); }
-    .nav-arrow:disabled { opacity: 0.25; pointer-events: none; }
+    .tab-btn:active { background: var(--beige); }
+    .tab-icon { font-size: 21px; line-height: 1; }
+    .tab-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--gray);
+      transition: color 0.2s;
+    }
+    .tab-btn.active .tab-icon { filter: none; }
+    .tab-btn.active .tab-label { color: var(--terracotta); font-weight: 700; }
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 20%; right: 20%;
+      height: 2.5px;
+      background: var(--terracotta);
+      border-radius: 0 0 3px 3px;
+    }
+    .tab-btn.tab-quick .tab-label { color: var(--gold); }
+    .tab-btn.tab-quick::after { background: var(--gold); }
 
-    #page-indicator { flex: 1; text-align: center; }
+    /* ─── QUICK HELP OVERLAY ─────────────────────────── */
+    #quick-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(44,44,44,0.55);
+      z-index: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    #quick-overlay.open { opacity: 1; pointer-events: all; }
 
-    #page-dots {
+    #quick-panel {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: var(--beige);
+      border-radius: 24px 24px 0 0;
+      transform: translateY(100%);
+      transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+      max-height: 88vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    #quick-overlay.open #quick-panel { transform: translateY(0); }
+
+    .quick-handle {
+      width: 36px; height: 4px;
+      background: var(--light-gray);
+      border-radius: 2px;
+      margin: 12px auto 0;
+    }
+    .quick-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 18px 12px;
+    }
+    .quick-header-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-style: italic;
+      color: var(--anthracite);
+    }
+    .quick-close {
+      background: var(--light-gray);
+      border: none;
+      border-radius: 50%;
+      width: 32px; height: 32px;
+      font-size: 14px;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      color: var(--anthracite);
     }
-    .dot {
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: var(--light-gray);
-      transition: all 0.28s ease;
-      flex-shrink: 0;
+    .quick-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 4px 14px 32px;
     }
-    .dot.active {
-      background: var(--terracotta);
-      width: 16px;
-      border-radius: 3px;
+    .quick-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 14px 13px;
+      box-shadow: 0 2px 8px rgba(44,44,44,0.06);
     }
-    #page-name {
+    .quick-card.full { grid-column: 1 / -1; }
+    .quick-card.dark { background: var(--anthracite); }
+    .quick-card.terra { background: var(--terracotta); }
+    .quick-card-icon { font-size: 22px; margin-bottom: 7px; display: block; }
+    .quick-card-label {
       font-size: 10px;
-      color: var(--gray);
-      margin-top: 4px;
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 4px;
+    }
+    .quick-card.dark .quick-card-label { color: var(--gold); }
+    .quick-card.terra .quick-card-label { color: rgba(253,250,244,0.7); }
+    .quick-card-value {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--anthracite);
+      word-break: break-all;
+      line-height: 1.2;
+    }
+    .quick-card.dark .quick-card-value { color: var(--white); }
+    .quick-card.terra .quick-card-value { color: var(--white); font-size: 22px; }
+    .quick-card-sub {
+      font-size: 11px;
+      color: var(--gray);
+      margin-top: 3px;
+    }
+    .quick-card.dark .quick-card-sub { color: rgba(253,250,244,0.55); }
+    .quick-card.terra .quick-card-sub { color: rgba(253,250,244,0.7); }
+    a.quick-card { text-decoration: none; color: inherit; transition: transform 0.15s; }
+    a.quick-card:active { transform: scale(0.97); }
+
+    /* ─── WHATSAPP BUTTON ────────────────────────────── */
+    #whatsapp-btn {
+      position: fixed;
+      right: 16px;
+      bottom: calc(var(--bottom-height) + 14px);
+      width: 54px; height: 54px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 18px rgba(37,211,102,0.45);
+      z-index: 299;
+      text-decoration: none;
+      font-size: 28px;
+      transition: transform 0.2s;
+    }
+    #whatsapp-btn:active { transform: scale(0.92); }
+
+    /* ─── FOOD CATEGORY HEADER ───────────────────────── */
+    .food-cat-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 20px 0 10px;
+    }
+    .food-cat-icon { font-size: 20px; }
+    .food-cat-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--anthracite);
+    }
+    .food-cat-line {
+      flex: 1;
+      height: 1px;
+      background: var(--light-gray);
+    }
+    .rest-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .rest-meta-chip {
+      font-size: 11px;
+      color: var(--gray);
+      background: var(--beige);
+      border-radius: 6px;
+      padding: 3px 8px;
+    }
+    .rest-insider {
+      font-size: 12px;
+      font-style: italic;
+      color: var(--terracotta);
+      margin-top: 7px;
+      line-height: 1.5;
     }
 
     /* ─── LANGUAGE TOGGLE ────────────────────────────── */
@@ -1820,78 +1971,13 @@
       <div class="highlight it">I migliori posti non si trovano su TripAdvisor in prima pagina. Si trovano seguendo i romani a pranzo. Li abbiamo trovati per te.</div>
       <div class="highlight en">The best places rarely top TripAdvisor. You find them by following where Romans go for lunch. We've done that for you.</div>
 
-      <p class="section-subtitle it">Ristoranti</p>
-      <p class="section-subtitle en">Restaurants</p>
-
-      <div class="rest-card">
-        <div class="rest-header">
-          <span class="rest-name">Santo Palato</span>
-          <span style="display:flex;gap:6px;align-items:center"><span class="rest-badge it">Prenota in anticipo</span><span class="rest-badge en">Book ahead</span></span>
-        </div>
-        <div class="rest-address">📍 Piazza Tarquinia 4</div>
-        <div class="rest-desc it">Alta cucina romana. Sarah Cicolini eleva coda alla vaccinara, trippa e quinto quarto a filosofia. Il migliore nel suo genere.</div>
-        <div class="rest-desc en">Contemporary Roman cuisine at its finest. Chef Sarah Cicolini elevates oxtail, tripe and offal to something extraordinary.</div>
-        <div class="rest-actions">
-          <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=Santo+Palato+Piazza+Tarquinia+Roma" target="_blank" rel="noopener">📍 Maps</a>
-          <a class="rest-action-btn rest-action-web" href="https://www.santopalato.it" target="_blank" rel="noopener">🌐 <span class="it">Sito web</span><span class="en">Website</span></a>
-        </div>
+      <!-- ── 🌅 COLAZIONE ── -->
+      <div class="food-cat-header">
+        <span class="food-cat-icon">🌅</span>
+        <span class="food-cat-title it">Colazione</span>
+        <span class="food-cat-title en">Breakfast</span>
+        <div class="food-cat-line"></div>
       </div>
-
-      <div class="rest-card">
-        <div class="rest-header">
-          <span class="rest-name">Barred</span>
-        </div>
-        <div class="rest-address">📍 Zona Re di Roma</div>
-        <div class="rest-desc it">Cucina contemporanea, vini naturali. Dove mangiano i romani under 40 che capiscono di cibo.</div>
-        <div class="rest-desc en">Modern cooking, natural wines, cool space. Where food-literate Romans under 40 eat.</div>
-        <div class="rest-actions">
-          <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=Barred+Roma" target="_blank" rel="noopener">📍 Maps</a>
-          <a class="rest-action-btn rest-action-web" href="https://www.instagram.com/barred.roma" target="_blank" rel="noopener">🌐 <span class="it">Instagram</span><span class="en">Instagram</span></a>
-        </div>
-      </div>
-
-      <div class="rest-card">
-        <div class="rest-header">
-          <span class="rest-name">Sbanco</span>
-        </div>
-        <div class="rest-address">📍 Via Statilio Ottato 110 · San Giovanni</div>
-        <div class="rest-desc it">Pizza gourmet in un ex stabilimento industriale. Impasto a lunga lievitazione, ingredienti eccellenti.</div>
-        <div class="rest-desc en">Gourmet pizza in a former industrial space. Long-proved dough, exceptional ingredients.</div>
-        <div class="rest-actions">
-          <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=Sbanco+pizzeria+Roma" target="_blank" rel="noopener">📍 Maps</a>
-          <a class="rest-action-btn rest-action-web" href="https://www.sbanco.it" target="_blank" rel="noopener">🌐 <span class="it">Sito web</span><span class="en">Website</span></a>
-        </div>
-      </div>
-
-      <div class="rest-card">
-        <div class="rest-header">
-          <span class="rest-name">Felice a Testaccio</span>
-          <span style="display:flex;gap:6px;align-items:center"><span class="rest-badge it">Prenota</span><span class="rest-badge en">Book</span></span>
-        </div>
-        <div class="rest-address">📍 Via Mastro Giorgio 29</div>
-        <div class="rest-desc it">La cacio e pepe più famosa di Roma. Istituzione dal 1936. Vale ogni minuto di attesa.</div>
-        <div class="rest-desc en">Rome's most famous cacio e pepe. An institution since 1936. Worth every minute of planning.</div>
-        <div class="rest-actions">
-          <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=Felice+a+Testaccio+Roma" target="_blank" rel="noopener">📍 Maps</a>
-          <a class="rest-action-btn rest-action-web" href="https://www.feliceatestaccio.it" target="_blank" rel="noopener">🌐 <span class="it">Sito web</span><span class="en">Website</span></a>
-        </div>
-      </div>
-
-      <div class="rest-card">
-        <div class="rest-header">
-          <span class="rest-name">Necci dal 1924</span>
-        </div>
-        <div class="rest-address">📍 Via Fanfulla da Lodi 68 · Pigneto</div>
-        <div class="rest-desc it">Bar, ristorante, cinema, giardino. Qui veniva Pasolini. Il Pigneto è il Brooklyn di Roma, Necci ne è il cuore.</div>
-        <div class="rest-desc en">Bar, restaurant, cinema, garden. Pasolini's haunt. Pigneto is Rome's Brooklyn, and Necci is its heart.</div>
-        <div class="rest-actions">
-          <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=Necci+dal+1924+Pigneto+Roma" target="_blank" rel="noopener">📍 Maps</a>
-          <a class="rest-action-btn rest-action-web" href="https://www.neccidal1924.com" target="_blank" rel="noopener">🌐 <span class="it">Sito web</span><span class="en">Website</span></a>
-        </div>
-      </div>
-
-      <p class="section-subtitle it">Colazione</p>
-      <p class="section-subtitle en">Breakfast</p>
 
       <div class="rest-card">
         <div class="rest-header">
@@ -1900,6 +1986,8 @@
         </div>
         <div class="rest-desc it">Cornetto e cappuccino al banco, in piedi, tra i pendolari. L'esperienza più autentica di Roma alle 8 di mattina. Circa €1,50.</div>
         <div class="rest-desc en">Cornetto and cappuccino standing at the bar among commuters. The most authentic Roman experience at 8 am. Around €1.50.</div>
+        <div class="rest-insider it">💡 Ordina al banco — è più economico e più romano.</div>
+        <div class="rest-insider en">💡 Order at the bar — cheaper and more Roman.</div>
         <div class="rest-actions">
           <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=bar+Via+Taranto+Roma" target="_blank" rel="noopener">📍 Maps</a>
         </div>
@@ -1912,19 +2000,90 @@
         <div class="rest-address">📍 Via dello Statuto 60</div>
         <div class="rest-desc it">Dal 1916. Il <em>maritozzo con la panna</em> — il dolce romano per eccellenza: un panino soffice ripieno di panna abbondante.</div>
         <div class="rest-desc en">Since 1916. The <em>maritozzo con la panna</em> — Rome's quintessential pastry: a soft roll overflowing with whipped cream.</div>
+        <div class="rest-insider it">💡 Arriva entro le 10 — esauriscono in fretta.</div>
+        <div class="rest-insider en">💡 Arrive before 10 am — they sell out fast.</div>
         <div class="rest-actions">
           <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=Pasticceria+Regoli+Via+dello+Statuto+Roma" target="_blank" rel="noopener">📍 Maps</a>
           <a class="rest-action-btn rest-action-web" href="https://www.pasticceriaregoli.com" target="_blank" rel="noopener">🌐 <span class="it">Sito web</span><span class="en">Website</span></a>
         </div>
       </div>
 
-      <p class="section-subtitle it">Aperitivo & Cocktail</p>
-      <p class="section-subtitle en">Aperitivo & Cocktails</p>
+      <!-- ── 🍝 CENA ROMANA ── -->
+      <div class="food-cat-header">
+        <span class="food-cat-icon">🍝</span>
+        <span class="food-cat-title it">Cena Romana</span>
+        <span class="food-cat-title en">Roman Dinner</span>
+        <div class="food-cat-line"></div>
+      </div>
+
+      <div class="rest-card">
+        <div class="rest-header">
+          <span class="rest-name">Santo Palato</span>
+          <span style="display:flex;gap:6px;align-items:center"><span class="rest-badge it">Prenota</span><span class="rest-badge en">Book ahead</span></span>
+        </div>
+        <div class="rest-address">📍 Piazza Tarquinia 4</div>
+        <div class="rest-desc it">Alta cucina romana. Sarah Cicolini eleva coda alla vaccinara, trippa e quinto quarto a filosofia. Il migliore nel suo genere.</div>
+        <div class="rest-desc en">Contemporary Roman cuisine at its finest. Chef Sarah Cicolini elevates oxtail, tripe and offal to something extraordinary.</div>
+        <div class="rest-insider it">💡 Ordina il "percorso degustazione" se disponibile.</div>
+        <div class="rest-insider en">💡 Ask for the tasting menu if available.</div>
+        <div class="rest-actions">
+          <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=Santo+Palato+Piazza+Tarquinia+Roma" target="_blank" rel="noopener">📍 Maps</a>
+          <a class="rest-action-btn rest-action-web" href="https://www.santopalato.it" target="_blank" rel="noopener">🌐 <span class="it">Sito web</span><span class="en">Website</span></a>
+        </div>
+      </div>
+
+      <div class="rest-card">
+        <div class="rest-header">
+          <span class="rest-name">Felice a Testaccio</span>
+          <span style="display:flex;gap:6px;align-items:center"><span class="rest-badge it">Prenota</span><span class="rest-badge en">Book</span></span>
+        </div>
+        <div class="rest-address">📍 Via Mastro Giorgio 29</div>
+        <div class="rest-desc it">La cacio e pepe più famosa di Roma. Istituzione dal 1936. Vale ogni minuto di attesa.</div>
+        <div class="rest-desc en">Rome's most famous cacio e pepe. An institution since 1936. Worth every minute of planning.</div>
+        <div class="rest-insider it">💡 Siediti al bancone se vuoi guardare la cucina in azione.</div>
+        <div class="rest-insider en">💡 Ask for a counter seat to watch the kitchen in action.</div>
+        <div class="rest-actions">
+          <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=Felice+a+Testaccio+Roma" target="_blank" rel="noopener">📍 Maps</a>
+          <a class="rest-action-btn rest-action-web" href="https://www.feliceatestaccio.it" target="_blank" rel="noopener">🌐 <span class="it">Sito web</span><span class="en">Website</span></a>
+        </div>
+      </div>
+
+      <!-- ── 🍕 PIZZA ── -->
+      <div class="food-cat-header">
+        <span class="food-cat-icon">🍕</span>
+        <span class="food-cat-title">Pizza</span>
+        <div class="food-cat-line"></div>
+      </div>
+
+      <div class="rest-card">
+        <div class="rest-header">
+          <span class="rest-name">Sbanco</span>
+        </div>
+        <div class="rest-address">📍 Via Statilio Ottato 110 · San Giovanni</div>
+        <div class="rest-desc it">Pizza gourmet in un ex stabilimento industriale. Impasto a lunga lievitazione, ingredienti eccellenti.</div>
+        <div class="rest-desc en">Gourmet pizza in a former industrial space. Long-proved dough, exceptional ingredients.</div>
+        <div class="rest-insider it">💡 Prova la "carbonara" come pizza — è iconico.</div>
+        <div class="rest-insider en">💡 Try the carbonara pizza — it's iconic.</div>
+        <div class="rest-actions">
+          <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=Sbanco+pizzeria+Roma" target="_blank" rel="noopener">📍 Maps</a>
+          <a class="rest-action-btn rest-action-web" href="https://www.sbanco.it" target="_blank" rel="noopener">🌐 <span class="it">Sito web</span><span class="en">Website</span></a>
+        </div>
+      </div>
+
+      <!-- ── 🌆 ROOFTOP & TRAMONTO ── -->
+      <div class="food-cat-header">
+        <span class="food-cat-icon">🌆</span>
+        <span class="food-cat-title it">Rooftop & Tramonto</span>
+        <span class="food-cat-title en">Rooftop & Sunset</span>
+        <div class="food-cat-line"></div>
+      </div>
 
       <div class="rest-card">
         <div class="rest-header"><span class="rest-name">Terrazza Borghese Rooftop</span></div>
         <div class="rest-desc it">Vista panoramica sullo skyline. Dress code smart elegant. Perfetto al tramonto.</div>
         <div class="rest-desc en">Panoramic skyline views. Smart elegant dress code. Perfect at sunset.</div>
+        <div class="rest-insider it">💡 Prenota online — i posti al bancone con vista esauriscono.</div>
+        <div class="rest-insider en">💡 Book online — bar seats with a view go fast.</div>
         <div class="rest-actions">
           <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=Terrazza+Borghese+Roma" target="_blank" rel="noopener">📍 Maps</a>
           <a class="rest-action-btn rest-action-web" href="https://www.terrazze.com/terrazza-borghese" target="_blank" rel="noopener">🌐 <span class="it">Sito web</span><span class="en">Website</span></a>
@@ -1935,20 +2094,71 @@
         <div class="rest-header"><span class="rest-name">Les Etoiles — Hotel Atlante Star</span></div>
         <div class="rest-desc it">Vista diretta sulla Cupola di San Pietro. Uno dei panorami più suggestivi di Roma, senza la folla.</div>
         <div class="rest-desc en">Direct view of St. Peter's Dome. One of Rome's most breathtaking vantage points, without the crowds.</div>
+        <div class="rest-insider it">💡 Ideale per l'aperitivo — arrivi prima del tramonto.</div>
+        <div class="rest-insider en">💡 Perfect for aperitivo — arrive before sunset for the full show.</div>
         <div class="rest-actions">
           <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=Hotel+Atlante+Star+Les+Etoiles+Roma" target="_blank" rel="noopener">📍 Maps</a>
           <a class="rest-action-btn rest-action-web" href="https://www.atlantehotels.com/it/atlante-star" target="_blank" rel="noopener">🌐 <span class="it">Sito web</span><span class="en">Website</span></a>
         </div>
       </div>
 
+      <!-- ── 🍸 COCKTAIL & APERITIVO ── -->
+      <div class="food-cat-header">
+        <span class="food-cat-icon">🍸</span>
+        <span class="food-cat-title it">Cocktail & Aperitivo</span>
+        <span class="food-cat-title en">Cocktails & Aperitivo</span>
+        <div class="food-cat-line"></div>
+      </div>
+
       <div class="rest-card">
         <div class="rest-header"><span class="rest-name">Va.do & Co.So. (Pigneto)</span></div>
         <div class="rest-desc it">Miscelazione d'avanguardia, atmosfera underground. I bartender sono tra i migliori della città. Raggiungibile in 15 minuti.</div>
         <div class="rest-desc en">Avant-garde mixology, underground atmosphere. The city's finest bartenders. 15 minutes away.</div>
+        <div class="rest-insider it">💡 Fidati del bartender — ordina "qualcosa di stagionale".</div>
+        <div class="rest-insider en">💡 Trust the bartender — ask for "something seasonal".</div>
         <div class="rest-actions">
           <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=Vado+Coso+cocktail+bar+Pigneto+Roma" target="_blank" rel="noopener">📍 Maps</a>
         </div>
       </div>
+
+      <!-- ── 💎 HIDDEN GEMS ── -->
+      <div class="food-cat-header">
+        <span class="food-cat-icon">💎</span>
+        <span class="food-cat-title it">Hidden Gems</span>
+        <span class="food-cat-title en">Hidden Gems</span>
+        <div class="food-cat-line"></div>
+      </div>
+
+      <div class="rest-card">
+        <div class="rest-header">
+          <span class="rest-name">Necci dal 1924</span>
+        </div>
+        <div class="rest-address">📍 Via Fanfulla da Lodi 68 · Pigneto</div>
+        <div class="rest-desc it">Bar, ristorante, cinema, giardino. Qui veniva Pasolini. Il Pigneto è il Brooklyn di Roma, Necci ne è il cuore.</div>
+        <div class="rest-desc en">Bar, restaurant, cinema, garden. Pasolini's haunt. Pigneto is Rome's Brooklyn, and Necci is its heart.</div>
+        <div class="rest-insider it">💡 Domenica mattina: brunch nel giardino con i locali.</div>
+        <div class="rest-insider en">💡 Sunday morning: brunch in the garden with the locals.</div>
+        <div class="rest-actions">
+          <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=Necci+dal+1924+Pigneto+Roma" target="_blank" rel="noopener">📍 Maps</a>
+          <a class="rest-action-btn rest-action-web" href="https://www.neccidal1924.com" target="_blank" rel="noopener">🌐 <span class="it">Sito web</span><span class="en">Website</span></a>
+        </div>
+      </div>
+
+      <div class="rest-card">
+        <div class="rest-header">
+          <span class="rest-name">Barred</span>
+        </div>
+        <div class="rest-address">📍 Zona Re di Roma</div>
+        <div class="rest-desc it">Cucina contemporanea, vini naturali. Dove mangiano i romani under 40 che capiscono di cibo.</div>
+        <div class="rest-desc en">Modern cooking, natural wines, cool space. Where food-literate Romans under 40 eat.</div>
+        <div class="rest-insider it">💡 Nessuna insegna all'esterno — cercalo su Instagram per trovarlo.</div>
+        <div class="rest-insider en">💡 No sign outside — check their Instagram to find it.</div>
+        <div class="rest-actions">
+          <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=Barred+Roma" target="_blank" rel="noopener">📍 Maps</a>
+          <a class="rest-action-btn rest-action-web" href="https://www.instagram.com/barred.roma" target="_blank" rel="noopener">🌐 Instagram</a>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -2201,20 +2411,138 @@
 
 </div><!-- /pages -->
 
-<!-- BOTTOM NAVIGATION -->
+<!-- BOTTOM TAB NAV -->
 <div id="bottom-nav">
-  <button class="nav-arrow" id="btn-prev" onclick="prevPage()" aria-label="Prev" disabled>←</button>
-  <div id="page-indicator">
-    <div id="page-dots"></div>
-    <div id="page-name"></div>
+  <button class="tab-btn" id="tab-home" onclick="goToPage(0)">
+    <span class="tab-icon">🏠</span>
+    <span class="tab-label it">Home</span>
+    <span class="tab-label en">Home</span>
+  </button>
+  <button class="tab-btn" id="tab-stay" onclick="goToPage(1)">
+    <span class="tab-icon">🛏</span>
+    <span class="tab-label it">Soggiorno</span>
+    <span class="tab-label en">Stay</span>
+  </button>
+  <button class="tab-btn tab-quick" id="tab-quick" onclick="openQuick()">
+    <span class="tab-icon">⚡</span>
+    <span class="tab-label it">Quick Help</span>
+    <span class="tab-label en">Quick Help</span>
+  </button>
+  <button class="tab-btn" id="tab-food" onclick="goToPage(9)">
+    <span class="tab-icon">🍝</span>
+    <span class="tab-label it">Food</span>
+    <span class="tab-label en">Food</span>
+  </button>
+  <button class="tab-btn" id="tab-roma" onclick="goToPage(11)">
+    <span class="tab-icon">🗺️</span>
+    <span class="tab-label it">Roma</span>
+    <span class="tab-label en">Rome</span>
+  </button>
+</div>
+
+<!-- WHATSAPP BUTTON -->
+<a id="whatsapp-btn" href="https://wa.me/[TUO_NUMERO]" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#25D366"/><path d="M23.472 8.528A10.417 10.417 0 0016 5.583c-5.754 0-10.42 4.666-10.42 10.417 0 1.837.48 3.63 1.394 5.212L5.5 26.417l5.35-1.404a10.394 10.394 0 004.15.864h.004c5.75 0 10.416-4.666 10.416-10.417a10.388 10.388 0 00-1.948-6.932z" fill="#25D366"/><path d="M16 24.39a8.63 8.63 0 01-4.4-1.204l-.316-.188-3.174.833.848-3.094-.207-.318A8.607 8.607 0 017.37 16c0-4.762 3.872-8.633 8.634-8.633 2.305 0 4.473.898 6.103 2.53A8.577 8.577 0 0124.633 16c0 4.762-3.872 8.633-8.633 8.633v-.243zm5.014-6.46c-.275-.137-1.626-.801-1.878-.893-.252-.09-.435-.136-.618.138-.183.274-.707.893-.867 1.076-.16.183-.32.206-.594.069-.275-.138-1.161-.428-2.211-1.364-.817-.728-1.369-1.626-1.529-1.9-.16-.275-.017-.423.12-.56.124-.123.275-.32.413-.48.137-.16.183-.275.274-.458.092-.183.046-.343-.023-.48-.069-.138-.618-1.49-.847-2.04-.224-.536-.45-.463-.618-.472l-.527-.009a1.01 1.01 0 00-.733.344c-.252.274-.963.94-.963 2.293s.986 2.659 1.123 2.842c.137.183 1.94 2.96 4.7 4.153.657.283 1.169.452 1.569.579.659.21 1.26.18 1.733.11.529-.08 1.626-.665 1.855-1.307.23-.641.23-1.19.16-1.307-.068-.115-.251-.183-.526-.32z" fill="white"/></svg>
+</a>
+
+<!-- QUICK HELP OVERLAY -->
+<div id="quick-overlay" onclick="closeQuickOnBg(event)">
+  <div id="quick-panel">
+    <div class="quick-handle"></div>
+    <div class="quick-header">
+      <span class="quick-header-title it">⚡ Quick Help</span>
+      <span class="quick-header-title en">⚡ Quick Help</span>
+      <button class="quick-close" onclick="closeQuick()">✕</button>
+    </div>
+    <div class="quick-grid">
+
+      <div class="quick-card full dark">
+        <span class="quick-card-icon">📶</span>
+        <div class="quick-card-label">Wi-Fi Network</div>
+        <div class="quick-card-value">[NOME_RETE]</div>
+        <div class="quick-card-sub">Password: <strong style="color:var(--gold)">[PASSWORD]</strong></div>
+      </div>
+
+      <a class="quick-card terra" href="https://wa.me/[TUO_NUMERO]" target="_blank" rel="noopener">
+        <span class="quick-card-icon">💬</span>
+        <div class="quick-card-label it">Host WhatsApp</div>
+        <div class="quick-card-label en">Host WhatsApp</div>
+        <div class="quick-card-value">[TUO_NUMERO]</div>
+        <div class="quick-card-sub it">Sempre disponibili</div>
+        <div class="quick-card-sub en">Always available</div>
+      </a>
+
+      <a class="quick-card terra" href="tel:112">
+        <span class="quick-card-icon">🚨</span>
+        <div class="quick-card-label it">Emergenza</div>
+        <div class="quick-card-label en">Emergency</div>
+        <div class="quick-card-value">112</div>
+        <div class="quick-card-sub it">Numero Unico Europeo</div>
+        <div class="quick-card-sub en">European emergency</div>
+      </a>
+
+      <div class="quick-card">
+        <span class="quick-card-icon">🔑</span>
+        <div class="quick-card-label">Check-in</div>
+        <div class="quick-card-value">[ORA]</div>
+        <div class="quick-card-sub">Check-out: [ORA]</div>
+      </div>
+
+      <div class="quick-card">
+        <span class="quick-card-icon">🚇</span>
+        <div class="quick-card-label it">Metro più vicina</div>
+        <div class="quick-card-label en">Nearest metro</div>
+        <div class="quick-card-value">Ponte Lungo</div>
+        <div class="quick-card-sub">Linea A · 15 min</div>
+      </div>
+
+      <div class="quick-card">
+        <span class="quick-card-icon">🚉</span>
+        <div class="quick-card-label it">Stazione treni</div>
+        <div class="quick-card-label en">Train station</div>
+        <div class="quick-card-value">Tuscolana</div>
+        <div class="quick-card-sub it">270m · 2 min a piedi</div>
+        <div class="quick-card-sub en">270m · 2 min walk</div>
+      </div>
+
+      <a class="quick-card" href="https://www.google.com/maps/dir/?api=1&destination=Aeroporto+di+Fiumicino,+Roma&travelmode=transit" target="_blank" rel="noopener">
+        <span class="quick-card-icon">✈️</span>
+        <div class="quick-card-label">Airport · Fiumicino</div>
+        <div class="quick-card-value">41 min</div>
+        <div class="quick-card-sub">FL1 da Tuscolana · ~€8 ↗</div>
+      </a>
+
+      <a class="quick-card" href="https://www.google.com/maps/search/?api=1&query=Farmacia+Villa+Fiorelli+Via+Enna+Roma" target="_blank" rel="noopener">
+        <span class="quick-card-icon">💊</span>
+        <div class="quick-card-label it">Farmacia vicina</div>
+        <div class="quick-card-label en">Nearest pharmacy</div>
+        <div class="quick-card-value" style="font-size:13px">Villa Fiorelli</div>
+        <div class="quick-card-sub">Via Enna 17/B ↗</div>
+      </a>
+
+      <a class="quick-card" href="https://www.google.com/maps/search/?api=1&query=Elite+Supermercato+Via+Appia+Nuova+Roma" target="_blank" rel="noopener">
+        <span class="quick-card-icon">🛒</span>
+        <div class="quick-card-label it">Supermercato</div>
+        <div class="quick-card-label en">Supermarket</div>
+        <div class="quick-card-value" style="font-size:13px">Elite</div>
+        <div class="quick-card-sub it">Via Appia · anche dom. ↗</div>
+        <div class="quick-card-sub en">Via Appia · open Sun ↗</div>
+      </a>
+
+    </div>
   </div>
-  <button class="nav-arrow" id="btn-next" onclick="nextPage()" aria-label="Next">→</button>
 </div>
 
 <script>
   const TOTAL = 12;
   const NAMES_IT = ['Home','Benvenuto','Filosofia','Accesso','Casa','Regole','Emergenze','Mobilità','Food','Galateo','Esperienze','Arrivederci'];
   const NAMES_EN = ['Home','Welcome','Philosophy','Access','Home','Rules','Emergency','Transport','Food','Tips','Experiences','Farewell'];
+
+  // Tab ranges: which pages belong to which tab
+  const TAB_HOME  = [0];
+  const TAB_STAY  = [1,2,3,4,5,6,7];
+  const TAB_FOOD  = [9];
+  const TAB_ROMA  = [10,11];
 
   let cur = 0;
   let lang = 'it';
@@ -2236,19 +2564,15 @@
   function nextPage() { goToPage(cur + 1); }
 
   function updateUI() {
-    document.getElementById('btn-prev').disabled = (cur === 0);
-    document.getElementById('btn-next').disabled = (cur === TOTAL - 1);
-
     const names = lang === 'it' ? NAMES_IT : NAMES_EN;
-    document.getElementById('page-name').textContent = names[cur];
+    document.getElementById('header-title').textContent = names[cur] === 'Home' ? 'Domus Fiorelli' : names[cur];
 
-    const dotsEl = document.getElementById('page-dots');
-    dotsEl.innerHTML = '';
-    for (let i = 0; i < TOTAL; i++) {
-      const d = document.createElement('div');
-      d.className = 'dot' + (i === cur ? ' active' : '');
-      dotsEl.appendChild(d);
-    }
+    // Update tab active states
+    document.getElementById('tab-home').classList.toggle('active', TAB_HOME.includes(cur));
+    document.getElementById('tab-stay').classList.toggle('active', TAB_STAY.includes(cur));
+    document.getElementById('tab-food').classList.toggle('active', TAB_FOOD.includes(cur));
+    document.getElementById('tab-roma').classList.toggle('active', TAB_ROMA.includes(cur));
+    document.getElementById('tab-quick').classList.remove('active');
 
     document.querySelectorAll('.drawer-item').forEach((item, i) => {
       item.classList.toggle('active', i === cur);
@@ -2265,18 +2589,36 @@
     document.getElementById('drawer-overlay').classList.remove('open');
   }
 
+  function openQuick() {
+    document.getElementById('quick-overlay').classList.add('open');
+    document.getElementById('tab-quick').classList.add('active');
+  }
+
+  function closeQuick() {
+    document.getElementById('quick-overlay').classList.remove('open');
+    document.getElementById('tab-quick').classList.remove('active');
+    updateUI();
+  }
+
+  function closeQuickOnBg(e) {
+    if (e.target === document.getElementById('quick-overlay')) closeQuick();
+  }
+
   function toggleLang() {
     lang = lang === 'it' ? 'en' : 'it';
     document.body.classList.toggle('lang-en', lang === 'en');
     document.getElementById('lang-toggle').textContent = lang.toUpperCase();
 
-    // Fix cover page elements with inline display styles
     const coverQuotes = document.querySelectorAll('.cover-quote');
     coverQuotes.forEach(el => {
       el.style.display = el.classList.contains(lang) ? '' : 'none';
     });
     const coverBtnSpans = document.querySelectorAll('.cover-btn .it, .cover-btn .en');
     coverBtnSpans.forEach(el => {
+      el.style.display = el.classList.contains(lang) ? 'inline' : 'none';
+    });
+    const coverValueSpans = document.querySelectorAll('.cover-value-prop-text');
+    coverValueSpans.forEach(el => {
       el.style.display = el.classList.contains(lang) ? 'inline' : 'none';
     });
 
@@ -2327,6 +2669,7 @@
   document.addEventListener('keydown', e => {
     if (e.key === 'ArrowRight') nextPage();
     if (e.key === 'ArrowLeft') prevPage();
+    if (e.key === 'Escape') closeQuick();
   });
 
   // Init
