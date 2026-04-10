@@ -523,8 +523,17 @@
       padding: 13px 0;
       border-bottom: 1px solid var(--light-gray);
       gap: 12px;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.15s;
+      border-radius: 8px;
+      margin: 0 -6px;
+      padding-left: 6px;
+      padding-right: 6px;
     }
     .dest-row:last-child { border-bottom: none; }
+    .dest-row:active { background: var(--light-gray); }
+    .dest-maps-arrow { font-size: 14px; color: var(--gold); flex-shrink: 0; opacity: 0.7; }
     .dest-icon { font-size: 20px; }
     .dest-info { flex: 1; }
     .dest-name { font-size: 14px; font-weight: 700; color: var(--anthracite); }
@@ -1364,7 +1373,7 @@
       <div class="card">
         <div class="card-title"><span class="card-title-icon">🗺️</span><span class="it">Destinazioni Principali</span><span class="en">Key Destinations</span></div>
 
-        <div class="dest-row">
+        <a class="dest-row" href="https://www.google.com/maps/dir/?api=1&origin=Piazza+di+Villa+Fiorelli+12,+Roma&destination=Colosseo,+Roma&travelmode=transit" target="_blank" rel="noopener">
           <span class="dest-icon">🏟️</span>
           <div class="dest-info">
             <div class="dest-name">Colosseo</div>
@@ -1372,9 +1381,10 @@
             <div class="dest-how en">Metro A + B (change at Termini)</div>
           </div>
           <div class="dest-time">15–20 min</div>
-        </div>
+          <span class="dest-maps-arrow">↗</span>
+        </a>
 
-        <div class="dest-row">
+        <a class="dest-row" href="https://www.google.com/maps/dir/?api=1&origin=Piazza+di+Villa+Fiorelli+12,+Roma&destination=Piazza+San+Pietro,+Roma&travelmode=transit" target="_blank" rel="noopener">
           <span class="dest-icon">⛪</span>
           <div class="dest-info">
             <div class="dest-name">Vaticano</div>
@@ -1382,9 +1392,10 @@
             <div class="dest-how en">Metro A direct (Ottaviano)</div>
           </div>
           <div class="dest-time">25–30 min</div>
-        </div>
+          <span class="dest-maps-arrow">↗</span>
+        </a>
 
-        <div class="dest-row">
+        <a class="dest-row" href="https://www.google.com/maps/dir/?api=1&origin=Piazza+di+Villa+Fiorelli+12,+Roma&destination=Stazione+Termini,+Roma&travelmode=transit" target="_blank" rel="noopener">
           <span class="dest-icon">🚉</span>
           <div class="dest-info">
             <div class="dest-name">Termini</div>
@@ -1392,9 +1403,10 @@
             <div class="dest-how en">Metro A · 4 stops</div>
           </div>
           <div class="dest-time">8–12 min</div>
-        </div>
+          <span class="dest-maps-arrow">↗</span>
+        </a>
 
-        <div class="dest-row">
+        <a class="dest-row" href="https://www.google.com/maps/dir/?api=1&origin=Piazza+di+Villa+Fiorelli+12,+Roma&destination=Trastevere,+Roma&travelmode=transit" target="_blank" rel="noopener">
           <span class="dest-icon">🌉</span>
           <div class="dest-info">
             <div class="dest-name">Trastevere</div>
@@ -1402,9 +1414,10 @@
             <div class="dest-how en">Train FL1/FL3 from Tuscolana</div>
           </div>
           <div class="dest-time">20–25 min</div>
-        </div>
+          <span class="dest-maps-arrow">↗</span>
+        </a>
 
-        <div class="dest-row" style="background:rgba(184,150,62,0.08); border-radius:10px; padding:13px 10px; border-bottom:none; margin:4px 0 0">
+        <a class="dest-row" href="https://www.google.com/maps/dir/?api=1&origin=Piazza+di+Villa+Fiorelli+12,+Roma&destination=Aeroporto+di+Fiumicino,+Roma&travelmode=transit" target="_blank" rel="noopener" style="background:rgba(184,150,62,0.08); border-radius:10px; border-bottom:none; margin:4px 0 0">
           <span class="dest-icon">✈️</span>
           <div class="dest-info">
             <div class="dest-name" style="color:var(--gold)">Fiumicino Airport</div>
@@ -1412,7 +1425,8 @@
             <div class="dest-how en">Train FL1 from Tuscolana · ~€8</div>
           </div>
           <div class="dest-time" style="color:var(--gold)">41 min</div>
-        </div>
+          <span class="dest-maps-arrow" style="color:var(--gold)">↗</span>
+        </a>
       </div>
 
       <div class="card">
