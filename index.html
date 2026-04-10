@@ -1,0 +1,1911 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#C4622D">
+  <title>Villa Fiorelli · Welcome</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --beige: #F5ECD7;
+      --beige-mid: #EDD9B4;
+      --terracotta: #C4622D;
+      --terracotta-light: rgba(196, 98, 45, 0.12);
+      --gold: #B8963E;
+      --gold-light: rgba(184, 150, 62, 0.15);
+      --white: #FDFAF4;
+      --anthracite: #2C2C2C;
+      --gray: #6B6B6B;
+      --light-gray: #E8E0D0;
+      --header-height: 60px;
+      --bottom-height: 64px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Lato', sans-serif;
+      background: var(--beige);
+      color: var(--anthracite);
+    }
+
+    /* ─── HEADER ─────────────────────────────────────── */
+    #header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--header-height);
+      background: var(--white);
+      border-bottom: 1px solid var(--light-gray);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(44,44,44,0.06);
+    }
+
+    #header-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--terracotta);
+      letter-spacing: 0.02em;
+    }
+
+    .header-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--anthracite);
+      transition: background 0.2s;
+    }
+    .header-btn:active { background: var(--light-gray); }
+
+    #lang-toggle {
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--terracotta);
+      background: var(--terracotta-light);
+      border: 1.5px solid var(--terracotta);
+      border-radius: 20px;
+      padding: 5px 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    #lang-toggle:active { background: var(--terracotta); color: white; }
+
+    /* ─── DRAWER ─────────────────────────────────────── */
+    #drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(44,44,44,0.45);
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    #drawer-overlay.open { opacity: 1; pointer-events: all; }
+
+    #drawer {
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      width: 280px;
+      background: var(--white);
+      z-index: 201;
+      transform: translateX(-100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 4px 0 24px rgba(44,44,44,0.12);
+    }
+    #drawer.open { transform: translateX(0); }
+
+    #drawer-header {
+      padding: 52px 24px 24px;
+      background: var(--terracotta);
+      color: var(--white);
+    }
+    #drawer-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 600;
+      font-style: italic;
+    }
+    #drawer-header p {
+      font-size: 12px;
+      opacity: 0.75;
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    #drawer-nav {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px 0;
+    }
+
+    .drawer-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 22px;
+      cursor: pointer;
+      transition: background 0.15s;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+    }
+    .drawer-item:active { background: var(--beige); }
+    .drawer-item.active { background: var(--terracotta-light); }
+    .drawer-item.active .drawer-item-num { color: var(--terracotta); }
+    .drawer-item.active .drawer-item-label { color: var(--terracotta); font-weight: 700; }
+
+    .drawer-item-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--gold);
+      width: 20px;
+      flex-shrink: 0;
+      letter-spacing: 0.05em;
+    }
+    .drawer-item-icon { font-size: 17px; flex-shrink: 0; }
+    .drawer-item-label {
+      font-size: 14px;
+      color: var(--anthracite);
+      font-weight: 400;
+    }
+
+    /* ─── PAGES CONTAINER ────────────────────────────── */
+    #pages {
+      position: fixed;
+      top: var(--header-height);
+      left: 0; right: 0;
+      bottom: var(--bottom-height);
+      overflow: hidden;
+    }
+
+    .page {
+      position: absolute;
+      inset: 0;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s ease, transform 0.28s ease;
+      transform: translateX(24px);
+    }
+    .page.active {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateX(0);
+    }
+    .page.slide-out {
+      transform: translateX(-24px);
+    }
+
+    /* ─── COVER PAGE ─────────────────────────────────── */
+    #page-0 {
+      background: linear-gradient(155deg, #C4622D 0%, #7A3018 55%, #4A1A08 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cover-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 40px 32px;
+    }
+
+    .cover-ornament {
+      width: 48px;
+      height: 1.5px;
+      background: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .cover-sub {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(253,250,244,0.65);
+      margin-bottom: 14px;
+    }
+
+    .cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 44px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 8px;
+    }
+
+    .cover-location {
+      font-size: 12px;
+      color: rgba(253,250,244,0.55);
+      letter-spacing: 0.08em;
+      margin-bottom: 36px;
+    }
+
+    .cover-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-style: italic;
+      color: rgba(253,250,244,0.78);
+      line-height: 1.65;
+      margin-bottom: 44px;
+      max-width: 260px;
+    }
+
+    .cover-btn {
+      background: var(--gold);
+      color: var(--white);
+      border: none;
+      padding: 15px 44px;
+      border-radius: 50px;
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      transition: transform 0.15s;
+    }
+    .cover-btn:active { transform: scale(0.97); }
+
+    /* ─── SECTION PAGES ──────────────────────────────── */
+    .section-page {
+      padding: 24px 16px 36px;
+      min-height: 100%;
+      background: var(--beige);
+    }
+
+    .section-header { margin-bottom: 22px; }
+
+    .section-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 27px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--terracotta);
+      line-height: 1.2;
+    }
+
+    .section-divider {
+      width: 36px;
+      height: 2px;
+      background: var(--gold);
+      margin-top: 12px;
+    }
+
+    /* ─── CARDS ──────────────────────────────────────── */
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 10px rgba(44,44,44,0.06);
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--anthracite);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-title-icon { font-size: 19px; }
+
+    .card-text {
+      font-size: 14px;
+      line-height: 1.72;
+      color: var(--gray);
+    }
+    .card-text p { margin-bottom: 8px; }
+    .card-text p:last-child { margin-bottom: 0; }
+    .card-text strong { color: var(--anthracite); font-weight: 700; }
+
+    /* ─── HIGHLIGHT BOX ──────────────────────────────── */
+    .highlight {
+      background: var(--terracotta-light);
+      border-left: 3px solid var(--terracotta);
+      border-radius: 0 12px 12px 0;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--anthracite);
+    }
+
+    .gold-box {
+      background: var(--gold-light);
+      border: 1.5px solid rgba(184,150,62,0.5);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    /* ─── WELCOME TEXT ───────────────────────────────── */
+    .welcome-body {
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--anthracite);
+    }
+    .welcome-body p { margin-bottom: 14px; }
+    .welcome-body p:last-child { margin-bottom: 0; }
+
+    /* ─── WIFI BOX ───────────────────────────────────── */
+    .wifi-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--light-gray);
+    }
+    .wifi-row:last-child { border-bottom: none; }
+    .wifi-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+    .wifi-value {
+      font-family: 'Courier New', monospace;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--terracotta);
+    }
+
+    .copy-btn {
+      background: var(--terracotta);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 6px 13px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      flex-shrink: 0;
+    }
+    .copy-btn:active { opacity: 0.7; }
+
+    /* ─── TIME CARDS ─────────────────────────────────── */
+    .time-row { display: flex; gap: 10px; margin-bottom: 12px; }
+
+    .time-card {
+      flex: 1;
+      background: var(--white);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(44,44,44,0.06);
+    }
+    .time-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 6px;
+    }
+    .time-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 21px;
+      font-weight: 600;
+      color: var(--terracotta);
+    }
+
+    /* ─── TABLES ─────────────────────────────────────── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .data-table th {
+      background: var(--terracotta);
+      color: white;
+      padding: 9px 10px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .data-table th:first-child { border-radius: 8px 0 0 0; }
+    .data-table th:last-child { border-radius: 0 8px 0 0; }
+    .data-table td {
+      padding: 10px;
+      border-bottom: 1px solid var(--light-gray);
+      color: var(--anthracite);
+      vertical-align: middle;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:nth-child(even) td { background: rgba(245,236,215,0.45); }
+    .data-table td strong { color: var(--terracotta); }
+
+    /* ─── RECYCLING ──────────────────────────────────── */
+    .recycle-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 14px;
+      border-radius: 10px;
+      margin-bottom: 7px;
+    }
+    .recycle-dot {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .recycle-color { font-weight: 700; font-size: 13px; color: var(--anthracite); }
+    .recycle-desc { font-size: 12px; color: var(--gray); margin-top: 2px; }
+
+    /* ─── EMERGENCY BUTTONS ──────────────────────────── */
+    .emerg-btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--white);
+      border: none;
+      border-radius: 14px;
+      padding: 15px 16px;
+      width: 100%;
+      margin-bottom: 9px;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 2px 10px rgba(44,44,44,0.07);
+      transition: transform 0.15s;
+    }
+    .emerg-btn:active { transform: scale(0.98); }
+    .emerg-icon { font-size: 22px; }
+    .emerg-info { flex: 1; text-align: left; }
+    .emerg-service { font-size: 12px; color: var(--gray); margin-bottom: 2px; }
+    .emerg-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--terracotta);
+      line-height: 1;
+    }
+    .emerg-arrow { color: var(--gold); font-size: 18px; }
+
+    .emerg-btn.primary { background: var(--terracotta); }
+    .emerg-btn.primary .emerg-service { color: rgba(253,250,244,0.7); }
+    .emerg-btn.primary .emerg-num { color: var(--white); }
+    .emerg-btn.primary .emerg-arrow { color: rgba(253,250,244,0.5); }
+
+    .emerg-btn.host-btn { border: 2px solid var(--gold); background: var(--gold-light); }
+    .emerg-btn.host-btn .emerg-num { color: var(--gold); }
+    .emerg-btn.host-btn .emerg-arrow { color: var(--gold); }
+
+    /* ─── DESTINATIONS ───────────────────────────────── */
+    .dest-row {
+      display: flex;
+      align-items: center;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--light-gray);
+      gap: 12px;
+    }
+    .dest-row:last-child { border-bottom: none; }
+    .dest-icon { font-size: 20px; }
+    .dest-info { flex: 1; }
+    .dest-name { font-size: 14px; font-weight: 700; color: var(--anthracite); }
+    .dest-how { font-size: 12px; color: var(--gray); margin-top: 2px; }
+    .dest-time {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--terracotta);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* ─── RESTAURANT CARDS ───────────────────────────── */
+    .rest-card {
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 10px;
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(44,44,44,0.06);
+    }
+    .rest-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    .rest-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--anthracite);
+    }
+    .rest-badge {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--terracotta);
+      background: var(--terracotta-light);
+      border-radius: 20px;
+      padding: 3px 8px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .rest-address {
+      font-size: 12px;
+      color: var(--gold);
+      margin-bottom: 7px;
+    }
+    .rest-desc { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+    /* ─── TIPS ───────────────────────────────────────── */
+    .tip-row {
+      display: flex;
+      gap: 14px;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--light-gray);
+      align-items: flex-start;
+    }
+    .tip-row:last-child { border-bottom: none; }
+    .tip-icon { font-size: 22px; flex-shrink: 0; }
+    .tip-title { font-size: 14px; font-weight: 700; color: var(--anthracite); margin-bottom: 4px; }
+    .tip-text { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+    /* ─── EXPERIENCES ────────────────────────────────── */
+    .exp-item {
+      display: flex;
+      gap: 12px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--light-gray);
+      align-items: flex-start;
+    }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-icon { font-size: 20px; flex-shrink: 0; padding-top: 2px; }
+    .exp-name { font-size: 14px; font-weight: 700; color: var(--anthracite); }
+    .exp-desc { font-size: 13px; color: var(--gray); line-height: 1.55; margin-top: 3px; }
+    .exp-badge {
+      display: inline-block;
+      font-size: 10px;
+      background: var(--gold-light);
+      color: #8B6E2A;
+      border-radius: 4px;
+      padding: 2px 7px;
+      margin-top: 5px;
+      font-weight: 700;
+    }
+
+    /* ─── FAREWELL ───────────────────────────────────── */
+    .farewell-hero {
+      background: linear-gradient(135deg, var(--terracotta) 0%, #7A3018 100%);
+      border-radius: 20px;
+      padding: 28px 22px;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+    .farewell-hero h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-style: italic;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+    .farewell-hero p {
+      font-size: 14px;
+      color: rgba(253,250,244,0.82);
+      line-height: 1.75;
+    }
+    .farewell-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-style: italic;
+      color: rgba(253,250,244,0.5);
+      margin-top: 16px;
+    }
+
+    .review-btn {
+      display: block;
+      background: var(--gold);
+      color: white;
+      border: none;
+      border-radius: 14px;
+      padding: 17px 24px;
+      width: 100%;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      text-decoration: none;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 16px rgba(184,150,62,0.3);
+      transition: transform 0.15s;
+    }
+    .review-btn:active { transform: scale(0.98); }
+
+    .return-code {
+      text-align: center;
+      font-family: 'Courier New', monospace;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--terracotta);
+      background: var(--terracotta-light);
+      border: 2px dashed rgba(196,98,45,0.4);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    /* ─── STEP LIST ──────────────────────────────────── */
+    .step-list { list-style: none; counter-reset: steps; }
+    .step-list li {
+      counter-increment: steps;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 7px 0;
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+    .step-list li::before {
+      content: counter(steps);
+      background: var(--terracotta);
+      color: white;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .note-box {
+      background: var(--beige-mid);
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.6;
+      margin-top: 10px;
+    }
+
+    .section-subtitle {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin: 18px 0 10px;
+    }
+
+    /* ─── BOTTOM NAV ─────────────────────────────────── */
+    #bottom-nav {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      height: var(--bottom-height);
+      background: var(--white);
+      border-top: 1px solid var(--light-gray);
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      gap: 4px;
+      box-shadow: 0 -2px 12px rgba(44,44,44,0.06);
+      z-index: 100;
+    }
+
+    .nav-arrow {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 18px;
+      color: var(--anthracite);
+      transition: background 0.15s;
+      flex-shrink: 0;
+    }
+    .nav-arrow:active { background: var(--light-gray); }
+    .nav-arrow:disabled { opacity: 0.25; pointer-events: none; }
+
+    #page-indicator { flex: 1; text-align: center; }
+
+    #page-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--light-gray);
+      transition: all 0.28s ease;
+      flex-shrink: 0;
+    }
+    .dot.active {
+      background: var(--terracotta);
+      width: 16px;
+      border-radius: 3px;
+    }
+    #page-name {
+      font-size: 10px;
+      color: var(--gray);
+      margin-top: 4px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ─── LANGUAGE TOGGLE ────────────────────────────── */
+    .en { display: none; }
+    body.lang-en .en { display: block; }
+    body.lang-en .it { display: none; }
+    body.lang-en span.en { display: inline; }
+    body.lang-en span.it { display: none; }
+    body.lang-en .en.flex-item { display: flex; }
+
+    a { color: inherit; text-decoration: none; }
+    .text-link { color: var(--terracotta); text-decoration: underline; }
+
+    /* ─── SAFE AREA (NOTCH) ──────────────────────────── */
+    @supports (padding-bottom: env(safe-area-inset-bottom)) {
+      #bottom-nav {
+        padding-bottom: env(safe-area-inset-bottom);
+        height: calc(var(--bottom-height) + env(safe-area-inset-bottom));
+      }
+      #pages { bottom: calc(var(--bottom-height) + env(safe-area-inset-bottom)); }
+      #header {
+        padding-top: env(safe-area-inset-top);
+        height: calc(var(--header-height) + env(safe-area-inset-top));
+      }
+      #pages { top: calc(var(--header-height) + env(safe-area-inset-top)); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- DRAWER OVERLAY -->
+<div id="drawer-overlay" onclick="closeDrawer()"></div>
+
+<!-- NAVIGATION DRAWER -->
+<nav id="drawer">
+  <div id="drawer-header">
+    <h2>Villa Fiorelli</h2>
+    <p>Piazza di Villa Fiorelli 12, Roma</p>
+  </div>
+  <div id="drawer-nav">
+    <button class="drawer-item active" onclick="goToPage(0); closeDrawer()">
+      <span class="drawer-item-icon">🏡</span>
+      <span class="drawer-item-label it">Home</span>
+      <span class="drawer-item-label en">Home</span>
+    </button>
+    <button class="drawer-item" onclick="goToPage(1); closeDrawer()">
+      <span class="drawer-item-num">01</span>
+      <span class="drawer-item-icon">✉️</span>
+      <span class="drawer-item-label it">Benvenuto</span>
+      <span class="drawer-item-label en">Welcome</span>
+    </button>
+    <button class="drawer-item" onclick="goToPage(2); closeDrawer()">
+      <span class="drawer-item-num">02</span>
+      <span class="drawer-item-icon">🔑</span>
+      <span class="drawer-item-label it">Accesso & Wi-Fi</span>
+      <span class="drawer-item-label en">Access & Wi-Fi</span>
+    </button>
+    <button class="drawer-item" onclick="goToPage(3); closeDrawer()">
+      <span class="drawer-item-num">03</span>
+      <span class="drawer-item-icon">🏠</span>
+      <span class="drawer-item-label it">Guida alla Casa</span>
+      <span class="drawer-item-label en">Home Guide</span>
+    </button>
+    <button class="drawer-item" onclick="goToPage(4); closeDrawer()">
+      <span class="drawer-item-num">04</span>
+      <span class="drawer-item-icon">📋</span>
+      <span class="drawer-item-label it">Regole Condominiali</span>
+      <span class="drawer-item-label en">House Rules</span>
+    </button>
+    <button class="drawer-item" onclick="goToPage(5); closeDrawer()">
+      <span class="drawer-item-num">05</span>
+      <span class="drawer-item-icon">🚨</span>
+      <span class="drawer-item-label it">Emergenze</span>
+      <span class="drawer-item-label en">Emergency</span>
+    </button>
+    <button class="drawer-item" onclick="goToPage(6); closeDrawer()">
+      <span class="drawer-item-num">06</span>
+      <span class="drawer-item-icon">🚇</span>
+      <span class="drawer-item-label it">Come Muoversi</span>
+      <span class="drawer-item-label en">Getting Around</span>
+    </button>
+    <button class="drawer-item" onclick="goToPage(7); closeDrawer()">
+      <span class="drawer-item-num">07</span>
+      <span class="drawer-item-icon">🍽️</span>
+      <span class="drawer-item-label it">Food Guide</span>
+      <span class="drawer-item-label en">Food Guide</span>
+    </button>
+    <button class="drawer-item" onclick="goToPage(8); closeDrawer()">
+      <span class="drawer-item-num">08</span>
+      <span class="drawer-item-icon">🇮🇹</span>
+      <span class="drawer-item-label it">Galateo Italiano</span>
+      <span class="drawer-item-label en">Cultural Tips</span>
+    </button>
+    <button class="drawer-item" onclick="goToPage(9); closeDrawer()">
+      <span class="drawer-item-num">09</span>
+      <span class="drawer-item-icon">🗺️</span>
+      <span class="drawer-item-label it">Esperienze</span>
+      <span class="drawer-item-label en">Experiences</span>
+    </button>
+    <button class="drawer-item" onclick="goToPage(10); closeDrawer()">
+      <span class="drawer-item-num">10</span>
+      <span class="drawer-item-icon">👋</span>
+      <span class="drawer-item-label it">Arrivederci</span>
+      <span class="drawer-item-label en">Farewell</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header id="header">
+  <button class="header-btn" onclick="openDrawer()" aria-label="Menu">
+    <svg width="22" height="15" viewBox="0 0 22 15" fill="none">
+      <rect width="22" height="2" rx="1" fill="#2C2C2C"/>
+      <rect y="6.5" width="15" height="2" rx="1" fill="#2C2C2C"/>
+      <rect y="13" width="22" height="2" rx="1" fill="#2C2C2C"/>
+    </svg>
+  </button>
+  <span id="header-title">Villa Fiorelli</span>
+  <button id="lang-toggle" onclick="toggleLang()">IT</button>
+</header>
+
+<!-- ALL PAGES -->
+<div id="pages">
+
+  <!-- ══════════════════════════════════════════════════
+       COVER
+  ══════════════════════════════════════════════════ -->
+  <div class="page active" id="page-0">
+    <div class="cover-inner">
+      <div class="cover-ornament"></div>
+      <p class="cover-sub">Roma · Appio Latino</p>
+      <h1 class="cover-title">Villa<br>Fiorelli</h1>
+      <p class="cover-location">Piazza di Villa Fiorelli 12</p>
+      <p class="cover-quote it">"Roma non finisce mai.<br>Inizia da qui."</p>
+      <p class="cover-quote en" style="display:none">"Rome never ends.<br>It begins right here."</p>
+      <button class="cover-btn" onclick="goToPage(1)">
+        <span class="it">Inizia</span>
+        <span class="en" style="display:none">Begin</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       1 · BENVENUTO
+  ══════════════════════════════════════════════════ -->
+  <div class="page" id="page-1">
+    <div class="section-page">
+      <div class="section-header">
+        <p class="section-tag it">01 — Benvenuto</p>
+        <p class="section-tag en">01 — Welcome</p>
+        <h2 class="section-title it">Benvenuto a Villa Fiorelli, [Nome].</h2>
+        <h2 class="section-title en">Welcome to Villa Fiorelli, [Name].</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="card">
+        <div class="welcome-body it">
+          <p>C'è un momento, arrivando a Roma, in cui la città smette di essere uno sfondo e diventa qualcosa di intimo. Noi crediamo che quel momento cominci qui, in questo appartamento.</p>
+          <p><strong>Villa Fiorelli</strong> non è un indirizzo qualsiasi. È uno di quei luoghi che Roma custodisce gelosamente: una piazza d'altri tempi, circondata da palazzi Liberty e alberi centenari, dove la mattina senti solo il canto degli uccelli e il profumo del caffè dai balconi.</p>
+          <p>Questo appartamento è stato pensato per chi viaggia con curiosità e senso estetico. <strong>La tua casa, per il tempo che sei a Roma.</strong></p>
+          <p>Siamo qui se hai bisogno di qualsiasi cosa. Buon soggiorno.</p>
+        </div>
+        <div class="welcome-body en">
+          <p>There is a moment, when arriving in Rome, when the city stops being a backdrop and becomes something intimate. We believe that moment begins here — in this apartment.</p>
+          <p><strong>Villa Fiorelli</strong> is not just an address. It is one of those places Rome keeps quietly to herself: a square out of another era, framed by Liberty-style buildings and century-old trees.</p>
+          <p>This apartment was designed for travellers who bring curiosity and a sense of beauty. <strong>Your home, for as long as you are in Rome.</strong></p>
+          <p>We are here whenever you need anything. Enjoy every moment.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span class="card-title-icon">🌿</span>
+          <span class="it">Il Quartiere</span>
+          <span class="en">The Neighbourhood</span>
+        </div>
+        <div class="card-text it">
+          <p><strong>Appio Latino</strong> è dove i romani abitano davvero: mercati rionali, bar senza turisti, palazzi degli anni Venti che raccontano l'altra Roma — borghese, elegante, profondamente umana.</p>
+          <p>A nord, la Basilica di <strong>San Giovanni in Laterano</strong>, la cattedrale del mondo. A sud, le <strong>Terme di Caracalla</strong> e l'Aventino con il suo giardino segreto.</p>
+          <p>La piazza fu progettata nel 1911 dall'ingegner Petrucci: uno dei rarissimi spazi verdi di Roma concepiti come cuore di un quartiere residenziale.</p>
+        </div>
+        <div class="card-text en">
+          <p><strong>Appio Latino</strong> is where Romans actually live: neighbourhood markets, bars with no tourist menus, 1920s buildings that tell a different Roman story — bourgeois, elegant, deeply human.</p>
+          <p>To the north, the <strong>Basilica of San Giovanni in Laterano</strong>. To the south, the <strong>Baths of Caracalla</strong> and the Aventine Hill with its legendary secret garden.</p>
+          <p>The piazza was designed in 1911 by the engineer Petrucci — one of Rome's rarest green spaces, conceived as the heart of a residential neighbourhood.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       2 · ACCESSO & WI-FI
+  ══════════════════════════════════════════════════ -->
+  <div class="page" id="page-2">
+    <div class="section-page">
+      <div class="section-header">
+        <p class="section-tag it">02 — Accesso & Wi-Fi</p>
+        <p class="section-tag en">02 — Access & Wi-Fi</p>
+        <h2 class="section-title it">Entrare in casa.</h2>
+        <h2 class="section-title en">Getting in.</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span class="card-title-icon">🔐</span>
+          <span>Smart Lock</span>
+        </div>
+        <ul class="step-list it">
+          <li>Digita il codice <strong>[CODICE]</strong> sul tastierino</li>
+          <li>Premi il simbolo ✓ o attendi il clic</li>
+          <li>La serratura si apre in 2–3 secondi</li>
+        </ul>
+        <ul class="step-list en">
+          <li>Type the code <strong>[CODE]</strong> on the keypad</li>
+          <li>Press ✓ or wait for the click</li>
+          <li>The lock opens within 2–3 seconds</li>
+        </ul>
+        <div class="note-box it">Per chiudere dall'esterno: premi 🔒 o ruota la maniglia. Aspetta sempre il clic prima di allontanarti.</div>
+        <div class="note-box en">To lock from outside: press 🔒 or turn the handle. Always wait for the click before walking away.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span class="card-title-icon">📶</span>
+          Wi-Fi
+        </div>
+        <div class="wifi-row">
+          <span class="wifi-label it">Rete</span>
+          <span class="wifi-label en">Network</span>
+          <span class="wifi-value">[NOME_RETE]</span>
+        </div>
+        <div class="wifi-row">
+          <span class="wifi-label">Password</span>
+          <div style="display:flex; align-items:center; gap:10px">
+            <span class="wifi-value" id="wifi-pass">[PASSWORD]</span>
+            <button class="copy-btn" onclick="copyWifi()">
+              <span class="it">Copia</span>
+              <span class="en">Copy</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="time-row">
+        <div class="time-card">
+          <div class="time-label it">Check-in</div>
+          <div class="time-label en">Check-in</div>
+          <div class="time-value">[ORA]</div>
+        </div>
+        <div class="time-card">
+          <div class="time-label it">Check-out</div>
+          <div class="time-label en">Check-out</div>
+          <div class="time-value">[ORA]</div>
+        </div>
+      </div>
+
+      <div class="highlight it">
+        <strong>Prima di uscire per l'ultima volta:</strong> finestre chiuse · luci spente · clima off. Lascia la casa come l'hai trovata.
+      </div>
+      <div class="highlight en">
+        <strong>Before leaving for the last time:</strong> windows closed · lights off · A/C off. Leave the apartment as you found it.
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       3 · GUIDA ALLA CASA
+  ══════════════════════════════════════════════════ -->
+  <div class="page" id="page-3">
+    <div class="section-page">
+      <div class="section-header">
+        <p class="section-tag it">03 — Guida alla Casa</p>
+        <p class="section-tag en">03 — Home Guide</p>
+        <h2 class="section-title it">Come funziona tutto.</h2>
+        <h2 class="section-title en">How everything works.</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-title-icon">🔥</span><span class="it">Piano a Induzione</span><span class="en">Induction Hob</span></div>
+        <ul class="step-list it">
+          <li>Posiziona la pentola (usa solo quelle in dotazione)</li>
+          <li>Premi <strong>ON/OFF</strong> per accendere</li>
+          <li>Seleziona la zona con il tasto corrispondente</li>
+          <li>Regola la potenza con <strong>+</strong> e <strong>–</strong> (da 1 a 9)</li>
+          <li>Per spegnere: tieni premuto <strong>ON/OFF</strong> per 2 secondi</li>
+        </ul>
+        <ul class="step-list en">
+          <li>Place the pot on the ring (use only the provided cookware)</li>
+          <li>Press <strong>ON/OFF</strong> to switch on</li>
+          <li>Select the zone with the corresponding button</li>
+          <li>Adjust power with <strong>+</strong> and <strong>–</strong> (levels 1–9)</li>
+          <li>To switch off: hold <strong>ON/OFF</strong> for 2 seconds</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-title-icon">☕</span><span class="it">Macchina del Caffè</span><span class="en">Espresso Machine</span></div>
+        <div class="card-text it">
+          <p>In Italia il caffè è un rito, non una bevanda. La macchina è <strong>[modello]</strong>.</p>
+          <p><strong>Nespresso / capsula:</strong> inserisci la capsula → chiudi → premi espresso → attendi 30 secondi. Le capsule di scorta sono in dispensa.</p>
+          <p><strong>Macchina a leva:</strong> scalda 10 min (icona verde) → inserisci portafiltro → premi singolo o doppio espresso → goditi i 25–30 secondi di estrazione.</p>
+        </div>
+        <div class="card-text en">
+          <p>In Italy, coffee is a ritual, not a drink. The machine is a <strong>[model]</strong>.</p>
+          <p><strong>Nespresso / capsule:</strong> insert capsule → close → press espresso → wait 30 seconds. Spare capsules are in the pantry.</p>
+          <p><strong>Lever machine:</strong> warm up 10 min (green icon) → insert portafilter → press single or double espresso → enjoy the 25–30 second extraction.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-title-icon">🫧</span><span class="it">Lavatrice</span><span class="en">Washing Machine</span></div>
+        <table class="data-table" style="margin-bottom:10px">
+          <thead>
+            <tr>
+              <th><span class="it">Programma</span><span class="en">Programme</span></th>
+              <th><span class="it">Durata</span><span class="en">Time</span></th>
+              <th><span class="it">Uso</span><span class="en">Use</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="it">Rapido 30°</span><span class="en">Quick 30°</span></td>
+              <td><strong>30 min</strong></td>
+              <td><span class="it">Capi usati poco</span><span class="en">Lightly worn</span></td>
+            </tr>
+            <tr>
+              <td><span class="it">Cotone 40°</span><span class="en">Cotton 40°</span></td>
+              <td><strong>1h 45min</strong></td>
+              <td><span class="it">Uso quotidiano</span><span class="en">Everyday</span></td>
+            </tr>
+            <tr>
+              <td><span class="it">Sintetici 40°</span><span class="en">Synthetics 40°</span></td>
+              <td><strong>1h 15min</strong></td>
+              <td><span class="it">Sportivi</span><span class="en">Sportswear</span></td>
+            </tr>
+            <tr>
+              <td><span class="it">Delicati 30°</span><span class="en">Delicates 30°</span></td>
+              <td><strong>55 min</strong></td>
+              <td><span class="it">Seta, lana</span><span class="en">Silk, wool</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note-box it">Detersivo sotto il lavello. Versalo nella vaschetta centrale. Non superare il livello MAX.</div>
+        <div class="note-box en">Detergent is under the sink. Pour into the central compartment. Do not exceed MAX.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-title-icon">❄️</span><span class="it">Clima & Riscaldamento</span><span class="en">A/C & Heating</span></div>
+        <div class="card-text">
+          <p><strong>❄ COOL</strong> — <span class="it">Raffreddamento · consigliato 24–26°C</span><span class="en">Cooling · recommended 24–26°C (75–79°F)</span></p>
+          <p><strong>☀ HEAT</strong> — <span class="it">Riscaldamento · consigliato 20–22°C</span><span class="en">Heating · recommended 20–22°C (68–72°F)</span></p>
+          <p><strong>FAN</strong> — <span class="it">Solo ventilazione</span><span class="en">Ventilation only</span></p>
+          <p><strong>AUTO</strong> — <span class="it">Regolazione automatica</span><span class="en">Automatic</span></p>
+        </div>
+        <div class="note-box it">Il riscaldamento centralizzato è attivo solo tra il 15 ottobre e il 15 aprile (normativa comunale). Lo split è disponibile tutto l'anno.</div>
+        <div class="note-box en">Central heating is active only between 15 October and 15 April (municipal regulation). The split unit is available year-round.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-title-icon">🚿</span><span class="it">Il Bidet — Nota Culturale</span><span class="en">The Bidet — Cultural Note</span></div>
+        <div class="card-text it">
+          <p>Se è la tua prima volta, benvenuto in Europa. Il <strong>bidet</strong> è la vaschetta accanto alla toilette, usata per l'igiene personale. Siediti verso il rubinetto, regola la temperatura, procedi. Asciugati con l'asciugamano piccolo sul lato sinistro. I romani lo usano ogni giorno.</p>
+        </div>
+        <div class="card-text en">
+          <p>If this is your first encounter, welcome to Europe. The <strong>bidet</strong> is the low basin next to the toilet, used for personal hygiene. Sit facing the tap, adjust the temperature, wash as needed. Dry with the small towel on the left. Romans use it every single day.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       4 · REGOLE CONDOMINIALI
+  ══════════════════════════════════════════════════ -->
+  <div class="page" id="page-4">
+    <div class="section-page">
+      <div class="section-header">
+        <p class="section-tag it">04 — Regole Condominiali</p>
+        <p class="section-tag en">04 — House Rules</p>
+        <h2 class="section-title it">Vivere bene insieme.</h2>
+        <h2 class="section-title en">Living well together.</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="highlight it">Questo appartamento fa parte di un condominio residenziale autentico: famiglie, anziani, bambini. Rispettarli è il modo migliore per vivere Roma come un romano.</div>
+      <div class="highlight en">This apartment is part of a real residential building — families, elderly residents, children all live here. Respecting them is the best way to experience Rome as a local.</div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-title-icon">🌙</span><span class="it">Orari di Silenzio</span><span class="en">Quiet Hours</span></div>
+        <div class="time-row">
+          <div class="time-card">
+            <div class="time-label it">Riposo pomeridiano</div>
+            <div class="time-label en">Afternoon rest</div>
+            <div class="time-value" style="font-size:17px">14:00–16:00</div>
+          </div>
+          <div class="time-card">
+            <div class="time-label it">Silenzio notturno</div>
+            <div class="time-label en">Night quiet</div>
+            <div class="time-value" style="font-size:17px">22:00–08:00</div>
+          </div>
+        </div>
+        <div class="card-text it">Voce bassa nelle aree comuni, musica moderata, movimenti leggeri. Non perché sia una regola — ma perché è quello che fa chi abita davvero un posto.</div>
+        <div class="card-text en">Low voices in common areas, moderate music, gentle movement. Not because it's a rule — but because it's what people do when they actually live somewhere.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-title-icon">♻️</span><span class="it">Raccolta Differenziata</span><span class="en">Recycling</span></div>
+
+        <div class="recycle-row" style="background:rgba(101,67,33,0.08)">
+          <div class="recycle-dot" style="background:#7B4A1E"></div>
+          <div>
+            <div class="recycle-color it">Marrone — Organico</div>
+            <div class="recycle-color en">Brown — Organic</div>
+            <div class="recycle-desc it">Scarti alimentari, fondi caffè, gusci d'uovo</div>
+            <div class="recycle-desc en">Food scraps, coffee grounds, eggshells</div>
+          </div>
+        </div>
+
+        <div class="recycle-row" style="background:rgba(220,180,0,0.09)">
+          <div class="recycle-dot" style="background:#C9A800"></div>
+          <div>
+            <div class="recycle-color it">Giallo — Plastica & Metallo</div>
+            <div class="recycle-color en">Yellow — Plastic & Metal</div>
+            <div class="recycle-desc it">Bottiglie, lattine, tetrapak</div>
+            <div class="recycle-desc en">Bottles, cans, tetra pak</div>
+          </div>
+        </div>
+
+        <div class="recycle-row" style="background:rgba(180,180,180,0.12)">
+          <div class="recycle-dot" style="background:#AAAAAA"></div>
+          <div>
+            <div class="recycle-color it">Bianco — Carta & Cartone</div>
+            <div class="recycle-color en">White — Paper & Cardboard</div>
+            <div class="recycle-desc it">Giornali, scatole, imballaggi</div>
+            <div class="recycle-desc en">Newspapers, boxes, packaging</div>
+          </div>
+        </div>
+
+        <div class="recycle-row" style="background:rgba(0,130,0,0.07)">
+          <div class="recycle-dot" style="background:#2E7D32"></div>
+          <div>
+            <div class="recycle-color it">Verde — Vetro</div>
+            <div class="recycle-color en">Green — Glass</div>
+            <div class="recycle-desc it">Bottiglie, barattoli (rimuovi i tappi)</div>
+            <div class="recycle-desc en">Bottles, jars (remove lids first)</div>
+          </div>
+        </div>
+
+        <div class="recycle-row" style="background:rgba(44,44,44,0.05)">
+          <div class="recycle-dot" style="background:#333"></div>
+          <div>
+            <div class="recycle-color it">Nero — Indifferenziato</div>
+            <div class="recycle-color en">Black — General Waste</div>
+            <div class="recycle-desc it">Tutto il resto. In dubbio? Usa il nero.</div>
+            <div class="recycle-desc en">Everything else. When in doubt? Use black.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-title-icon">🚭</span><span class="it">Fumo & Feste</span><span class="en">Smoking & Gatherings</span></div>
+        <div class="card-text it">
+          <p>L'appartamento è <strong>non fumatori</strong>: gli odori perdurano e chi viene dopo di te merita la stessa freschezza. Sul balcone, con le porte chiuse, sei libero.</p>
+          <p>Le feste non sono previste. Per serate in compagnia, saremo felici di consigliarti i posti migliori dove festeggiare in stile.</p>
+        </div>
+        <div class="card-text en">
+          <p>The apartment is <strong>non-smoking</strong>: smells linger, and the next guests deserve the same freshness you found. On the balcony, with doors closed, you are welcome.</p>
+          <p>Large gatherings are not possible. For evenings with friends, we would love to point you to the best local spots to celebrate in style.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       5 · EMERGENZE
+  ══════════════════════════════════════════════════ -->
+  <div class="page" id="page-5">
+    <div class="section-page">
+      <div class="section-header">
+        <p class="section-tag it">05 — Emergenze & Numeri Utili</p>
+        <p class="section-tag en">05 — Emergency Contacts</p>
+        <h2 class="section-title it">In caso di necessità.</h2>
+        <h2 class="section-title en">In case of need.</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <a class="emerg-btn primary" href="tel:112">
+        <span class="emerg-icon">🚨</span>
+        <div class="emerg-info">
+          <div class="emerg-service it">Numero Unico Europeo</div>
+          <div class="emerg-service en">European Emergency Number</div>
+          <div class="emerg-num">112</div>
+        </div>
+        <span class="emerg-arrow">→</span>
+      </a>
+
+      <a class="emerg-btn" href="tel:118">
+        <span class="emerg-icon">🚑</span>
+        <div class="emerg-info">
+          <div class="emerg-service it">Soccorso Sanitario</div>
+          <div class="emerg-service en">Medical Emergency</div>
+          <div class="emerg-num">118</div>
+        </div>
+        <span class="emerg-arrow">→</span>
+      </a>
+
+      <a class="emerg-btn" href="tel:115">
+        <span class="emerg-icon">🔥</span>
+        <div class="emerg-info">
+          <div class="emerg-service it">Vigili del Fuoco</div>
+          <div class="emerg-service en">Fire Brigade</div>
+          <div class="emerg-num">115</div>
+        </div>
+        <span class="emerg-arrow">→</span>
+      </a>
+
+      <a class="emerg-btn" href="tel:113">
+        <span class="emerg-icon">👮</span>
+        <div class="emerg-info">
+          <div class="emerg-service it">Polizia di Stato</div>
+          <div class="emerg-service en">Police</div>
+          <div class="emerg-num">113</div>
+        </div>
+        <span class="emerg-arrow">→</span>
+      </a>
+
+      <a class="emerg-btn host-btn" href="tel:[TUO_NUMERO]">
+        <span class="emerg-icon">🏠</span>
+        <div class="emerg-info">
+          <div class="emerg-service it">Host — Contatto diretto</div>
+          <div class="emerg-service en">Host — Direct contact</div>
+          <div class="emerg-num">[TUO_NUMERO]</div>
+        </div>
+        <span class="emerg-arrow">→</span>
+      </a>
+
+      <div class="card">
+        <div class="card-title"><span class="card-title-icon">🏥</span><span class="it">Pronto Soccorso</span><span class="en">Emergency Room</span></div>
+        <div class="card-text">
+          <p><strong>Policlinico Umberto I</strong></p>
+          <p style="color:var(--gray); font-size:13px; margin-top:4px">Viale del Policlinico, 155</p>
+          <p style="color:var(--gray); font-size:13px"><span class="it">15 min in taxi o Metro A (fermata Policlinico) · Aperto 24/7</span><span class="en">15 min by taxi or Metro A (Policlinico stop) · Open 24/7</span></p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-title-icon">💊</span><span class="it">Farmacie</span><span class="en">Pharmacies</span></div>
+        <div class="card-text">
+          <p><strong>Farmacia Villa Fiorelli</strong> &nbsp;<span style="background:var(--gold-light); color:#8B6E2A; border-radius:4px; padding:2px 7px; font-size:11px; font-weight:700"><span class="it">più vicina</span><span class="en">closest</span></span></p>
+          <p style="color:var(--gray); font-size:13px; margin-top:3px">Via Enna 17/B &nbsp;·&nbsp; <span class="it">Lun–Sab 8:30–13:00 / 15:30–19:30</span><span class="en">Mon–Sat 8:30 am–1:00 pm / 3:30–7:30 pm</span></p>
+          <p style="margin-top:12px"><strong>Farmacia Brocchieri</strong> &nbsp;<span style="background:var(--terracotta); color:white; border-radius:4px; padding:2px 7px; font-size:11px; font-weight:700">H24</span></p>
+          <p style="color:var(--gray); font-size:13px; margin-top:3px">Via Taranto 162 &nbsp;·&nbsp; <span class="it">Notturna e festiva</span><span class="en">Open nights & holidays</span></p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-title-icon">🛒</span><span class="it">Supermercati</span><span class="en">Supermarkets</span></div>
+        <div class="card-text">
+          <p><strong>Elite Supermercato</strong> &nbsp;—&nbsp; Via Appia Nuova</p>
+          <p style="color:var(--gray); font-size:13px; margin-top:3px"><span class="it">Aperto anche la domenica fino alle 20:30 — raro a Roma.</span><span class="en">Open on Sundays until 8:30 pm — a rare thing in Rome.</span></p>
+          <p style="margin-top:12px"><strong>NaturaSì</strong> &nbsp;—&nbsp; Via Tuscolana 1241</p>
+          <p style="color:var(--gray); font-size:13px; margin-top:3px"><span class="it">Biologico, vegano, prodotti naturali.</span><span class="en">Organic, vegan, natural products.</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       6 · COME MUOVERSI
+  ══════════════════════════════════════════════════ -->
+  <div class="page" id="page-6">
+    <div class="section-page">
+      <div class="section-header">
+        <p class="section-tag it">06 — Come Muoversi</p>
+        <p class="section-tag en">06 — Getting Around</p>
+        <h2 class="section-title it">La tua posizione è un privilegio.</h2>
+        <h2 class="section-title en">Your location is an advantage.</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="gold-box">
+        <span class="it">🚶 <strong>Stazione Tuscolana</strong> a 270 metri — 2 minuti a piedi. Treni, metro e autobus a portata di mano.</span>
+        <span class="en">🚶 <strong>Tuscolana Station</strong> is 270 metres away — a 2-minute walk. Trains, metro and buses right there.</span>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-title-icon">🗺️</span><span class="it">Destinazioni Principali</span><span class="en">Key Destinations</span></div>
+
+        <div class="dest-row">
+          <span class="dest-icon">🏟️</span>
+          <div class="dest-info">
+            <div class="dest-name">Colosseo</div>
+            <div class="dest-how it">Metro A + B (cambio Termini)</div>
+            <div class="dest-how en">Metro A + B (change at Termini)</div>
+          </div>
+          <div class="dest-time">15–20 min</div>
+        </div>
+
+        <div class="dest-row">
+          <span class="dest-icon">⛪</span>
+          <div class="dest-info">
+            <div class="dest-name">Vaticano</div>
+            <div class="dest-how it">Metro A diretto (Ottaviano)</div>
+            <div class="dest-how en">Metro A direct (Ottaviano)</div>
+          </div>
+          <div class="dest-time">25–30 min</div>
+        </div>
+
+        <div class="dest-row">
+          <span class="dest-icon">🚉</span>
+          <div class="dest-info">
+            <div class="dest-name">Termini</div>
+            <div class="dest-how it">Metro A · 4 fermate</div>
+            <div class="dest-how en">Metro A · 4 stops</div>
+          </div>
+          <div class="dest-time">8–12 min</div>
+        </div>
+
+        <div class="dest-row">
+          <span class="dest-icon">🌉</span>
+          <div class="dest-info">
+            <div class="dest-name">Trastevere</div>
+            <div class="dest-how it">Treno FL1/FL3 da Tuscolana</div>
+            <div class="dest-how en">Train FL1/FL3 from Tuscolana</div>
+          </div>
+          <div class="dest-time">20–25 min</div>
+        </div>
+
+        <div class="dest-row" style="background:rgba(184,150,62,0.08); border-radius:10px; padding:13px 10px; border-bottom:none; margin:4px 0 0">
+          <span class="dest-icon">✈️</span>
+          <div class="dest-info">
+            <div class="dest-name" style="color:var(--gold)">Fiumicino Airport</div>
+            <div class="dest-how it">Treno FL1 da Tuscolana · ~€8</div>
+            <div class="dest-how en">Train FL1 from Tuscolana · ~€8</div>
+          </div>
+          <div class="dest-time" style="color:var(--gold)">41 min</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-title-icon">🎫</span><span class="it">Biglietti & App</span><span class="en">Tickets & Apps</span></div>
+        <table class="data-table">
+          <tbody>
+            <tr>
+              <td><span class="it">Biglietto singolo</span><span class="en">Single ticket</span></td>
+              <td><strong>€1,50</strong><br><span style="font-size:11px; color:var(--gray)">100 min</span></td>
+            </tr>
+            <tr>
+              <td><span class="it">Pass 24 ore</span><span class="en">24h pass</span></td>
+              <td><strong>€7</strong></td>
+            </tr>
+            <tr>
+              <td><span class="it">Pass 48 ore</span><span class="en">48h pass</span></td>
+              <td><strong>€12,50</strong></td>
+            </tr>
+            <tr>
+              <td><span class="it">Pass 72 ore</span><span class="en">72h pass</span></td>
+              <td><strong>€18</strong></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note-box it">App consigliate: <strong>Moovit</strong> (percorsi real-time) · <strong>Trenitalia</strong> (treni) · <strong>itTaxi</strong> / <strong>FREE NOW</strong> (taxi)</div>
+        <div class="note-box en">Recommended apps: <strong>Moovit</strong> (real-time routes) · <strong>Trenitalia</strong> (trains) · <strong>itTaxi</strong> / <strong>FREE NOW</strong> (taxis)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       7 · FOOD GUIDE
+  ══════════════════════════════════════════════════ -->
+  <div class="page" id="page-7">
+    <div class="section-page">
+      <div class="section-header">
+        <p class="section-tag it">07 — Food Guide Locale</p>
+        <p class="section-tag en">07 — Local Food Guide</p>
+        <h2 class="section-title it">Mangiare come un romano.</h2>
+        <h2 class="section-title en">Eating like a Roman.</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="highlight it">I migliori posti non si trovano su TripAdvisor in prima pagina. Si trovano seguendo i romani a pranzo. Li abbiamo trovati per te.</div>
+      <div class="highlight en">The best places rarely top TripAdvisor. You find them by following where Romans go for lunch. We've done that for you.</div>
+
+      <p class="section-subtitle it">Ristoranti</p>
+      <p class="section-subtitle en">Restaurants</p>
+
+      <div class="rest-card">
+        <div class="rest-header">
+          <span class="rest-name">Santo Palato</span>
+          <span class="rest-badge it">Prenota in anticipo</span>
+          <span class="rest-badge en">Book ahead</span>
+        </div>
+        <div class="rest-address">📍 Piazza Tarquinia 4</div>
+        <div class="rest-desc it">Alta cucina romana. Sarah Cicolini eleva coda alla vaccinara, trippa e quinto quarto a filosofia. Il migliore nel suo genere.</div>
+        <div class="rest-desc en">Contemporary Roman cuisine at its finest. Chef Sarah Cicolini elevates oxtail, tripe and offal to something extraordinary.</div>
+      </div>
+
+      <div class="rest-card">
+        <div class="rest-header">
+          <span class="rest-name">Barred</span>
+        </div>
+        <div class="rest-address">📍 Zona Re di Roma</div>
+        <div class="rest-desc it">Cucina contemporanea, vini naturali. Dove mangiano i romani under 40 che capiscono di cibo.</div>
+        <div class="rest-desc en">Modern cooking, natural wines, cool space. Where food-literate Romans under 40 eat.</div>
+      </div>
+
+      <div class="rest-card">
+        <div class="rest-header">
+          <span class="rest-name">Sbanco</span>
+        </div>
+        <div class="rest-address">📍 Via Statilio Ottato 110 · San Giovanni</div>
+        <div class="rest-desc it">Pizza gourmet in un ex stabilimento industriale. Impasto a lunga lievitazione, ingredienti eccellenti.</div>
+        <div class="rest-desc en">Gourmet pizza in a former industrial space. Long-proved dough, exceptional ingredients.</div>
+      </div>
+
+      <div class="rest-card">
+        <div class="rest-header">
+          <span class="rest-name">Felice a Testaccio</span>
+          <span class="rest-badge it">Prenota</span>
+          <span class="rest-badge en">Book</span>
+        </div>
+        <div class="rest-address">📍 Via Mastro Giorgio 29</div>
+        <div class="rest-desc it">La cacio e pepe più famosa di Roma. Istituzione dal 1936. Vale ogni minuto di attesa.</div>
+        <div class="rest-desc en">Rome's most famous cacio e pepe. An institution since 1936. Worth every minute of planning.</div>
+      </div>
+
+      <div class="rest-card">
+        <div class="rest-header">
+          <span class="rest-name">Necci dal 1924</span>
+        </div>
+        <div class="rest-address">📍 Via Fanfulla da Lodi 68 · Pigneto</div>
+        <div class="rest-desc it">Bar, ristorante, cinema, giardino. Qui veniva Pasolini. Il Pigneto è il Brooklyn di Roma, Necci ne è il cuore.</div>
+        <div class="rest-desc en">Bar, restaurant, cinema, garden. Pasolini's haunt. Pigneto is Rome's Brooklyn, and Necci is its heart.</div>
+      </div>
+
+      <p class="section-subtitle it">Colazione</p>
+      <p class="section-subtitle en">Breakfast</p>
+
+      <div class="card">
+        <div class="card-text">
+          <p><strong><span class="it">Bar di quartiere · Via Taranto</span><span class="en">Local bar · Via Taranto</span></strong></p>
+          <p style="color:var(--gray); font-size:13px; margin-top:5px"><span class="it">Cornetto e cappuccino al banco, in piedi, tra i pendolari. L'esperienza più autentica di Roma alle 8 di mattina. Circa €1,50.</span><span class="en">A cornetto and cappuccino standing at the bar among commuters. The most authentic Roman experience at 8 am. Around €1.50.</span></p>
+          <p style="margin-top:13px"><strong>Pasticceria Regoli</strong> · Via dello Statuto 60</p>
+          <p style="color:var(--gray); font-size:13px; margin-top:5px"><span class="it">Dal 1916. Il <em>maritozzo con la panna</em> è il dolce romano per eccellenza: un panino soffice ripieno di panna montata abbondante.</span><span class="en">Since 1916. The <em>maritozzo con la panna</em> is Rome's quintessential pastry: a soft roll overflowing with whipped cream.</span></p>
+        </div>
+      </div>
+
+      <p class="section-subtitle it">Aperitivo & Cocktail</p>
+      <p class="section-subtitle en">Aperitivo & Cocktails</p>
+
+      <div class="card">
+        <div class="card-text">
+          <p><strong>Terrazza Borghese Rooftop</strong></p>
+          <p style="color:var(--gray); font-size:13px; margin-top:4px"><span class="it">Vista panoramica sullo skyline. Dress code smart elegant. Perfetto al tramonto.</span><span class="en">Panoramic views over the skyline. Smart elegant dress code. Perfect at sunset.</span></p>
+          <p style="margin-top:12px"><strong>Les Etoiles — Hotel Atlante Star</strong></p>
+          <p style="color:var(--gray); font-size:13px; margin-top:4px"><span class="it">Vista diretta sulla Cupola di San Pietro. Uno dei panorami più suggestivi di Roma, senza la folla.</span><span class="en">Direct view of St. Peter's Dome. One of Rome's most breathtaking vantage points, without the crowds.</span></p>
+          <p style="margin-top:12px"><strong>Va.do & Co.So. (Pigneto)</strong></p>
+          <p style="color:var(--gray); font-size:13px; margin-top:4px"><span class="it">Miscelazione d'avanguardia, atmosfera underground. I bartender sono tra i migliori della città. Raggiungibile in 15 minuti.</span><span class="en">Avant-garde mixology, underground atmosphere. The bartenders rank among the city's finest. 15 minutes away.</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       8 · GALATEO CULTURALE
+  ══════════════════════════════════════════════════ -->
+  <div class="page" id="page-8">
+    <div class="section-page">
+      <div class="section-header">
+        <p class="section-tag it">08 — Piccolo Galateo Italiano</p>
+        <p class="section-tag en">08 — Cultural Tips</p>
+        <h2 class="section-title it">Piccole cose che fanno la differenza.</h2>
+        <h2 class="section-title en">Small things that matter.</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="card">
+        <div class="tip-row">
+          <span class="tip-icon">🪙</span>
+          <div>
+            <div class="tip-title it">La mancia</div>
+            <div class="tip-title en">Tipping</div>
+            <div class="tip-text it">In Italia non esiste la mancia obbligatoria — il servizio è già incluso nel prezzo. Lasciare il 5–10% è un gesto apprezzatissimo per un servizio davvero eccellente. Al bar, arrotondare all'euro è già generoso.</div>
+            <div class="tip-text en">Tipping is not expected in Italy — service is already included. Leaving 5–10% is a lovely gesture for genuinely outstanding service, not an obligation. At the bar, rounding up to the nearest euro is already generous.</div>
+          </div>
+        </div>
+        <div class="tip-row">
+          <span class="tip-icon">🕐</span>
+          <div>
+            <div class="tip-title it">Gli orari dei pasti</div>
+            <div class="tip-title en">Meal Times</div>
+            <div class="tip-text it">Pranzo tra le 12:30 e le 15:00. Cena raramente prima delle 19:30, spesso dalle 20:00 in su. Arrivare al ristorante alle 18:00 è disorientante per la cucina.</div>
+            <div class="tip-text en">Lunch between 12:30 and 3:00 pm. Dinner rarely before 7:30 pm, more often from 8:00 pm onwards. Arriving at a restaurant at 6:00 pm is culturally confusing for the kitchen.</div>
+          </div>
+        </div>
+        <div class="tip-row">
+          <span class="tip-icon">💧</span>
+          <div>
+            <div class="tip-title it">L'acqua del rubinetto</div>
+            <div class="tip-title en">Tap Water</div>
+            <div class="tip-text it">L'acqua di Roma è eccellente. Bevila dal rubinetto senza preoccupazioni. Cerca i <strong>Nasoni</strong>: le fontanelle pubbliche in ghisa sparse per la città. Acqua fresca, gratuita, potabilissima.</div>
+            <div class="tip-text en">Rome's tap water is excellent. Drink it straight from the tap with confidence. Look for the <strong>Nasoni</strong> — Rome's iconic cast-iron public fountains. Cool, free, and perfectly safe.</div>
+          </div>
+        </div>
+        <div class="tip-row">
+          <span class="tip-icon">🎒</span>
+          <div>
+            <div class="tip-title it">Sicurezza</div>
+            <div class="tip-title en">Safety</div>
+            <div class="tip-text it">Villa Fiorelli è tranquilla — qui non devi preoccuparti. Buon senso sui mezzi affollati: borsa davanti. Attenzione ai borseggiatori in Termini, al Colosseo, e sui bus 40/64.</div>
+            <div class="tip-text en">Villa Fiorelli is calm — nothing to worry about here. Common sense on crowded transport: bag in front. Stay alert at Termini, the Colosseum, and buses 40/64.</div>
+          </div>
+        </div>
+        <div class="tip-row" style="border-bottom:none">
+          <span class="tip-icon">👗</span>
+          <div>
+            <div class="tip-title it">Luoghi di culto</div>
+            <div class="tip-title en">Places of Worship</div>
+            <div class="tip-text it">Entrando in chiese e basiliche, spalle e ginocchia devono essere coperti. Un foulard in borsa è la soluzione più elegante.</div>
+            <div class="tip-text en">When entering churches and basilicas, shoulders and knees must be covered. A scarf in your bag is the most elegant solution.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       9 · ESPERIENZE
+  ══════════════════════════════════════════════════ -->
+  <div class="page" id="page-9">
+    <div class="section-page">
+      <div class="section-header">
+        <p class="section-tag it">09 — Esperienze Consigliate</p>
+        <p class="section-tag en">09 — Recommended Experiences</p>
+        <h2 class="section-title it">La Roma che non ti aspetti.</h2>
+        <h2 class="section-title en">The Rome you don't expect.</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-title-icon">🚶</span><span class="it">Passeggiate & Musei</span><span class="en">Walks & Museums</span></div>
+
+        <div class="exp-item">
+          <span class="exp-icon">🏛️</span>
+          <div>
+            <div class="exp-name it">Mura Aureliane — Porta S. Giovanni → Porta Maggiore</div>
+            <div class="exp-name en">Aurelian Walls — Porta S. Giovanni → Porta Maggiore</div>
+            <div class="exp-desc it">Le mura più integre dell'antichità romana, a 5 minuti da qui. Lontana dal turismo di massa.</div>
+            <div class="exp-desc en">The most intact ancient walls in Rome, 5 minutes away. Far from mass tourism.</div>
+            <span class="exp-badge">📍 <span class="it">a piedi da qui</span><span class="en">walking distance</span></span>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <span class="exp-icon">🎨</span>
+          <div>
+            <div class="exp-name">Via Merulana</div>
+            <div class="exp-desc it">Il viale alberato che collega San Giovanni a Santa Maria Maggiore: gallerie d'arte, antiquari, Palazzo Massimo.</div>
+            <div class="exp-desc en">The tree-lined boulevard linking San Giovanni to Santa Maria Maggiore: art galleries, antique shops, Palazzo Massimo.</div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <span class="exp-icon">⚡</span>
+          <div>
+            <div class="exp-name">Centrale Montemartini</div>
+            <div class="exp-desc it">Sculture greche e romane tra i macchinari di una centrale elettrica dismessa. Quasi mai affollato.</div>
+            <div class="exp-desc en">Greek and Roman sculptures among decommissioned power station machinery. Almost never crowded.</div>
+            <span class="exp-badge">🍂 <span class="it">Autunno/Inverno</span><span class="en">Autumn/Winter</span></span>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <span class="exp-icon">🌹</span>
+          <div>
+            <div class="exp-name it">Roseto Comunale — Aventino</div>
+            <div class="exp-name en">Rose Garden — Aventine Hill</div>
+            <div class="exp-desc it">Giardino a forma di Menorah con centinaia di rose. Vista sul Circo Massimo. Ingresso gratuito.</div>
+            <div class="exp-desc en">Menorah-shaped garden with hundreds of rose varieties. Views over the Circus Maximus. Free entry.</div>
+            <span class="exp-badge">🌸 <span class="it">Aprile/Maggio</span><span class="en">April/May</span></span>
+          </div>
+        </div>
+
+        <div class="exp-item" style="border-bottom:none">
+          <span class="exp-icon">🎵</span>
+          <div>
+            <div class="exp-name">Casa del Jazz</div>
+            <div class="exp-desc it">Villa storica sull'Appia Antica, concerti jazz all'aperto d'estate. Uno dei luoghi più belli di Roma.</div>
+            <div class="exp-desc en">Historic villa on the Appian Way with open-air jazz concerts in summer. One of Rome's most beautiful venues.</div>
+            <span class="exp-badge">☀️ <span class="it">Estate</span><span class="en">Summer</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-title-icon">🛒</span><span class="it">Mercati</span><span class="en">Markets</span></div>
+
+        <div class="exp-item">
+          <span class="exp-icon">🧀</span>
+          <div>
+            <div class="exp-name it">Mercato di Testaccio</div>
+            <div class="exp-name en">Testaccio Market</div>
+            <div class="exp-desc it">Il mercato coperto più gastronomico di Roma. Formaggi, salumi, fritture romane. Dove i cuochi seri fanno la spesa. Lun–Sab, mattina.</div>
+            <div class="exp-desc en">Rome's most gastronomic covered market. Cheeses, cured meats, Roman street food. Where serious cooks shop. Mon–Sat, mornings.</div>
+          </div>
+        </div>
+
+        <div class="exp-item" style="border-bottom:none">
+          <span class="exp-icon">👕</span>
+          <div>
+            <div class="exp-name it">Mercato di Via Sannio</div>
+            <div class="exp-name en">Via Sannio Market</div>
+            <div class="exp-desc it">Vintage, militare, usato. Dietro la metro San Giovanni. Capi anni '70 a prezzi onesti, con le Mura Aureliane sullo sfondo.</div>
+            <div class="exp-desc en">Vintage, military surplus, second-hand. Behind San Giovanni metro. 1970s pieces at honest prices, Aurelian Walls as backdrop.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-title-icon">👨‍👩‍👧</span><span class="it">Per Famiglie</span><span class="en">Family-Friendly</span></div>
+
+        <div class="exp-item">
+          <span class="exp-icon">🔬</span>
+          <div>
+            <div class="exp-name">Explora — <span class="it">Museo dei Bambini · Flaminio</span><span class="en">Children's Museum · Flaminio</span></div>
+            <div class="exp-desc it">Il museo interattivo per eccellenza. 0–11 anni. Prenotare online.</div>
+            <div class="exp-desc en">Rome's premier interactive museum. Ages 0–11. Book online in advance.</div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <span class="exp-icon">🦉</span>
+          <div>
+            <div class="exp-name">Casina delle Civette — Villa Torlonia</div>
+            <div class="exp-desc it">Una villa Liberty piena di gufi e vetrate colorate. I bambini restano a bocca aperta. Anche i grandi.</div>
+            <div class="exp-desc en">A Liberty-style villa filled with owls and stained glass. Children are mesmerised. Adults too.</div>
+          </div>
+        </div>
+
+        <div class="exp-item" style="border-bottom:none">
+          <span class="exp-icon">🦁</span>
+          <div>
+            <div class="exp-name">Bioparco di Roma — Villa Borghese</div>
+            <div class="exp-desc it">Lo zoo storico di Roma, all'interno del parco più bello della città.</div>
+            <div class="exp-desc en">Rome's historic zoo, inside the city's most beautiful park.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       10 · ARRIVEDERCI
+  ══════════════════════════════════════════════════ -->
+  <div class="page" id="page-10">
+    <div class="section-page">
+      <div class="section-header">
+        <p class="section-tag it">10 — Arrivederci</p>
+        <p class="section-tag en">10 — Farewell</p>
+        <h2 class="section-title it">A presto, [Nome].</h2>
+        <h2 class="section-title en">Until next time, [Name].</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="farewell-hero">
+        <h2 class="it">Arrivederci.</h2>
+        <h2 class="en">Goodbye.</h2>
+        <p class="it">Speriamo che questi giorni a Roma ti abbiano dato qualcosa che non sapevi di cercare: una strada, un sapore, una luce al tramonto che non dimenticherai. Questo appartamento ti ha aspettato, e speriamo di averti accolto come si accoglie un amico.</p>
+        <p class="en">We hope these days in Rome gave you something you didn't know you were looking for: a street, a flavour, a light at dusk you won't forget. This apartment waited for you — and we hope we made you feel like a friend.</p>
+        <p class="farewell-quote it">"Roma non finisce mai."</p>
+        <p class="farewell-quote en">"Rome never really ends."</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-title-icon">⭐</span><span class="it">Lascia una Recensione</span><span class="en">Leave a Review</span></div>
+        <div class="card-text it" style="margin-bottom:14px">Se il soggiorno ti ha lasciato qualcosa di buono, dircelo conta moltissimo — non per noi, ma per i viaggiatori che verranno dopo di te.</div>
+        <div class="card-text en" style="margin-bottom:14px">If your stay left you with something good, sharing it matters more than you might think — not for us, but for the travellers who will come after you.</div>
+        <a class="review-btn" href="[LINK_RECENSIONE]">
+          <span class="it">⭐ Scrivi una recensione</span>
+          <span class="en">⭐ Write a review</span>
+        </a>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-title-icon">🎁</span><span class="it">Tornerai?</span><span class="en">Coming Back?</span></div>
+        <div class="card-text it" style="margin-bottom:14px">Prenota direttamente — scrivendoci senza passare da piattaforme — e ottieni uno sconto esclusivo.</div>
+        <div class="card-text en" style="margin-bottom:14px">Book directly — write to us rather than going through a platform — and receive an exclusive returning guest discount.</div>
+        <div class="return-code">VILLARETURN</div>
+        <div class="note-box" style="margin-top:10px; text-align:center">
+          <span class="it">Sconto [X]% sul prossimo soggiorno</span>
+          <span class="en">[X]% off your next stay</span>
+          <br>
+          <a href="mailto:[TUO_EMAIL]" class="text-link">[TUO_EMAIL]</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /pages -->
+
+<!-- BOTTOM NAVIGATION -->
+<div id="bottom-nav">
+  <button class="nav-arrow" id="btn-prev" onclick="prevPage()" aria-label="Prev" disabled>←</button>
+  <div id="page-indicator">
+    <div id="page-dots"></div>
+    <div id="page-name"></div>
+  </div>
+  <button class="nav-arrow" id="btn-next" onclick="nextPage()" aria-label="Next">→</button>
+</div>
+
+<script>
+  const TOTAL = 11;
+  const NAMES_IT = ['Home','Benvenuto','Accesso','Casa','Regole','Emergenze','Mobilità','Food','Galateo','Esperienze','Arrivederci'];
+  const NAMES_EN = ['Home','Welcome','Access','Home','Rules','Emergency','Transport','Food','Tips','Experiences','Farewell'];
+
+  let cur = 0;
+  let lang = 'it';
+  let touchX = 0;
+  let touchY = 0;
+
+  const pages = document.querySelectorAll('.page');
+
+  function goToPage(n) {
+    if (n < 0 || n >= TOTAL) return;
+    pages[cur].classList.remove('active');
+    cur = n;
+    pages[cur].classList.add('active');
+    pages[cur].scrollTop = 0;
+    updateUI();
+  }
+
+  function prevPage() { goToPage(cur - 1); }
+  function nextPage() { goToPage(cur + 1); }
+
+  function updateUI() {
+    document.getElementById('btn-prev').disabled = (cur === 0);
+    document.getElementById('btn-next').disabled = (cur === TOTAL - 1);
+
+    const names = lang === 'it' ? NAMES_IT : NAMES_EN;
+    document.getElementById('page-name').textContent = names[cur];
+
+    const dotsEl = document.getElementById('page-dots');
+    dotsEl.innerHTML = '';
+    for (let i = 0; i < TOTAL; i++) {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i === cur ? ' active' : '');
+      dotsEl.appendChild(d);
+    }
+
+    document.querySelectorAll('.drawer-item').forEach((item, i) => {
+      item.classList.toggle('active', i === cur);
+    });
+  }
+
+  function openDrawer() {
+    document.getElementById('drawer').classList.add('open');
+    document.getElementById('drawer-overlay').classList.add('open');
+  }
+
+  function closeDrawer() {
+    document.getElementById('drawer').classList.remove('open');
+    document.getElementById('drawer-overlay').classList.remove('open');
+  }
+
+  function toggleLang() {
+    lang = lang === 'it' ? 'en' : 'it';
+    document.body.classList.toggle('lang-en', lang === 'en');
+    document.getElementById('lang-toggle').textContent = lang.toUpperCase();
+
+    // Fix cover page elements with inline display styles
+    const coverQuotes = document.querySelectorAll('.cover-quote');
+    coverQuotes.forEach(el => {
+      el.style.display = el.classList.contains(lang) ? '' : 'none';
+    });
+    const coverBtnSpans = document.querySelectorAll('.cover-btn .it, .cover-btn .en');
+    coverBtnSpans.forEach(el => {
+      el.style.display = el.classList.contains(lang) ? 'inline' : 'none';
+    });
+
+    updateUI();
+  }
+
+  function copyWifi() {
+    const pass = document.getElementById('wifi-pass').textContent;
+    const btn = document.querySelector('.copy-btn');
+    const doIt = () => {
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<span>✓</span>';
+      btn.style.background = '#2E7D32';
+      setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; }, 1800);
+    };
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(pass).then(doIt).catch(doIt);
+    } else {
+      const el = document.createElement('textarea');
+      el.value = pass;
+      el.style.position = 'fixed';
+      el.style.opacity = '0';
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      doIt();
+    }
+  }
+
+  // Swipe navigation
+  const pagesEl = document.getElementById('pages');
+  pagesEl.addEventListener('touchstart', e => {
+    touchX = e.touches[0].clientX;
+    touchY = e.touches[0].clientY;
+  }, { passive: true });
+
+  pagesEl.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchX;
+    const dy = e.changedTouches[0].clientY - touchY;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 55) {
+      if (dx < 0) nextPage();
+      else prevPage();
+    }
+  }, { passive: true });
+
+  // Keyboard navigation (desktop)
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') nextPage();
+    if (e.key === 'ArrowLeft') prevPage();
+  });
+
+  // Init
+  updateUI();
+</script>
+</body>
+</html>
