@@ -540,6 +540,37 @@
       transition: transform 0.15s;
     }
     a.rest-card:active { transform: scale(0.98); }
+
+    .rest-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .rest-action-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 9px 10px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: opacity 0.15s;
+      letter-spacing: 0.03em;
+    }
+    .rest-action-btn:active { opacity: 0.7; }
+    .rest-action-maps {
+      background: var(--terracotta-light);
+      color: var(--terracotta);
+      border: 1.5px solid rgba(196,98,45,0.25);
+    }
+    .rest-action-web {
+      background: var(--gold-light);
+      color: #8B6E2A;
+      border: 1.5px solid rgba(184,150,62,0.3);
+    }
     .rest-header {
       display: flex;
       justify-content: space-between;
@@ -1792,101 +1823,131 @@
       <p class="section-subtitle it">Ristoranti</p>
       <p class="section-subtitle en">Restaurants</p>
 
-      <a class="rest-card" href="https://www.google.com/maps/search/?api=1&query=Santo+Palato+Piazza+Tarquinia+Roma" target="_blank" rel="noopener">
+      <div class="rest-card">
         <div class="rest-header">
           <span class="rest-name">Santo Palato</span>
-          <span style="display:flex;gap:6px;align-items:center"><span class="rest-badge it">Prenota in anticipo</span><span class="rest-badge en">Book ahead</span><span style="color:var(--gold);font-size:14px">↗</span></span>
+          <span style="display:flex;gap:6px;align-items:center"><span class="rest-badge it">Prenota in anticipo</span><span class="rest-badge en">Book ahead</span></span>
         </div>
         <div class="rest-address">📍 Piazza Tarquinia 4</div>
         <div class="rest-desc it">Alta cucina romana. Sarah Cicolini eleva coda alla vaccinara, trippa e quinto quarto a filosofia. Il migliore nel suo genere.</div>
         <div class="rest-desc en">Contemporary Roman cuisine at its finest. Chef Sarah Cicolini elevates oxtail, tripe and offal to something extraordinary.</div>
-      </a>
+        <div class="rest-actions">
+          <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=Santo+Palato+Piazza+Tarquinia+Roma" target="_blank" rel="noopener">📍 Maps</a>
+          <a class="rest-action-btn rest-action-web" href="https://www.santopalato.it" target="_blank" rel="noopener">🌐 <span class="it">Sito web</span><span class="en">Website</span></a>
+        </div>
+      </div>
 
-      <a class="rest-card" href="https://www.google.com/maps/search/?api=1&query=Barred+Roma" target="_blank" rel="noopener">
+      <div class="rest-card">
         <div class="rest-header">
           <span class="rest-name">Barred</span>
-          <span style="color:var(--gold);font-size:14px">↗</span>
         </div>
         <div class="rest-address">📍 Zona Re di Roma</div>
         <div class="rest-desc it">Cucina contemporanea, vini naturali. Dove mangiano i romani under 40 che capiscono di cibo.</div>
         <div class="rest-desc en">Modern cooking, natural wines, cool space. Where food-literate Romans under 40 eat.</div>
-      </a>
+        <div class="rest-actions">
+          <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=Barred+Roma" target="_blank" rel="noopener">📍 Maps</a>
+          <a class="rest-action-btn rest-action-web" href="https://www.instagram.com/barred.roma" target="_blank" rel="noopener">🌐 <span class="it">Instagram</span><span class="en">Instagram</span></a>
+        </div>
+      </div>
 
-      <a class="rest-card" href="https://www.google.com/maps/search/?api=1&query=Sbanco+pizzeria+Roma" target="_blank" rel="noopener">
+      <div class="rest-card">
         <div class="rest-header">
           <span class="rest-name">Sbanco</span>
-          <span style="color:var(--gold);font-size:14px">↗</span>
         </div>
         <div class="rest-address">📍 Via Statilio Ottato 110 · San Giovanni</div>
         <div class="rest-desc it">Pizza gourmet in un ex stabilimento industriale. Impasto a lunga lievitazione, ingredienti eccellenti.</div>
         <div class="rest-desc en">Gourmet pizza in a former industrial space. Long-proved dough, exceptional ingredients.</div>
-      </a>
+        <div class="rest-actions">
+          <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=Sbanco+pizzeria+Roma" target="_blank" rel="noopener">📍 Maps</a>
+          <a class="rest-action-btn rest-action-web" href="https://www.sbanco.it" target="_blank" rel="noopener">🌐 <span class="it">Sito web</span><span class="en">Website</span></a>
+        </div>
+      </div>
 
-      <a class="rest-card" href="https://www.google.com/maps/search/?api=1&query=Felice+a+Testaccio+Roma" target="_blank" rel="noopener">
+      <div class="rest-card">
         <div class="rest-header">
           <span class="rest-name">Felice a Testaccio</span>
-          <span style="display:flex;gap:6px;align-items:center"><span class="rest-badge it">Prenota</span><span class="rest-badge en">Book</span><span style="color:var(--gold);font-size:14px">↗</span></span>
+          <span style="display:flex;gap:6px;align-items:center"><span class="rest-badge it">Prenota</span><span class="rest-badge en">Book</span></span>
         </div>
         <div class="rest-address">📍 Via Mastro Giorgio 29</div>
         <div class="rest-desc it">La cacio e pepe più famosa di Roma. Istituzione dal 1936. Vale ogni minuto di attesa.</div>
         <div class="rest-desc en">Rome's most famous cacio e pepe. An institution since 1936. Worth every minute of planning.</div>
-      </a>
+        <div class="rest-actions">
+          <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=Felice+a+Testaccio+Roma" target="_blank" rel="noopener">📍 Maps</a>
+          <a class="rest-action-btn rest-action-web" href="https://www.feliceatestaccio.it" target="_blank" rel="noopener">🌐 <span class="it">Sito web</span><span class="en">Website</span></a>
+        </div>
+      </div>
 
-      <a class="rest-card" href="https://www.google.com/maps/search/?api=1&query=Necci+dal+1924+Pigneto+Roma" target="_blank" rel="noopener">
+      <div class="rest-card">
         <div class="rest-header">
           <span class="rest-name">Necci dal 1924</span>
-          <span style="color:var(--gold);font-size:14px">↗</span>
         </div>
         <div class="rest-address">📍 Via Fanfulla da Lodi 68 · Pigneto</div>
         <div class="rest-desc it">Bar, ristorante, cinema, giardino. Qui veniva Pasolini. Il Pigneto è il Brooklyn di Roma, Necci ne è il cuore.</div>
         <div class="rest-desc en">Bar, restaurant, cinema, garden. Pasolini's haunt. Pigneto is Rome's Brooklyn, and Necci is its heart.</div>
-      </a>
+        <div class="rest-actions">
+          <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=Necci+dal+1924+Pigneto+Roma" target="_blank" rel="noopener">📍 Maps</a>
+          <a class="rest-action-btn rest-action-web" href="https://www.neccidal1924.com" target="_blank" rel="noopener">🌐 <span class="it">Sito web</span><span class="en">Website</span></a>
+        </div>
+      </div>
 
       <p class="section-subtitle it">Colazione</p>
       <p class="section-subtitle en">Breakfast</p>
 
-      <div class="card">
-        <a href="https://www.google.com/maps/search/?api=1&query=bar+Via+Taranto+Roma" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit;padding:10px 0;border-bottom:1px solid var(--light-gray)">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <strong><span class="it">Bar di quartiere · Via Taranto</span><span class="en">Local bar · Via Taranto</span></strong>
-            <span style="color:var(--gold);font-size:14px">↗</span>
-          </div>
-          <p style="color:var(--gray);font-size:13px;margin-top:4px"><span class="it">Cornetto e cappuccino al banco, in piedi, tra i pendolari. Circa €1,50.</span><span class="en">Cornetto and cappuccino at the bar among commuters. Around €1.50.</span></p>
-        </a>
-        <a href="https://www.google.com/maps/search/?api=1&query=Pasticceria+Regoli+Via+dello+Statuto+Roma" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit;padding:10px 0">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <strong>Pasticceria Regoli · Via dello Statuto 60</strong>
-            <span style="color:var(--gold);font-size:14px">↗</span>
-          </div>
-          <p style="color:var(--gray);font-size:13px;margin-top:4px"><span class="it">Dal 1916. Il <em>maritozzo con la panna</em> — il dolce romano per eccellenza.</span><span class="en">Since 1916. The <em>maritozzo con la panna</em> — Rome's quintessential pastry.</span></p>
-        </a>
+      <div class="rest-card">
+        <div class="rest-header">
+          <span class="rest-name it">Bar di quartiere · Via Taranto</span>
+          <span class="rest-name en">Local bar · Via Taranto</span>
+        </div>
+        <div class="rest-desc it">Cornetto e cappuccino al banco, in piedi, tra i pendolari. L'esperienza più autentica di Roma alle 8 di mattina. Circa €1,50.</div>
+        <div class="rest-desc en">Cornetto and cappuccino standing at the bar among commuters. The most authentic Roman experience at 8 am. Around €1.50.</div>
+        <div class="rest-actions">
+          <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=bar+Via+Taranto+Roma" target="_blank" rel="noopener">📍 Maps</a>
+        </div>
+      </div>
+
+      <div class="rest-card">
+        <div class="rest-header">
+          <span class="rest-name">Pasticceria Regoli</span>
+        </div>
+        <div class="rest-address">📍 Via dello Statuto 60</div>
+        <div class="rest-desc it">Dal 1916. Il <em>maritozzo con la panna</em> — il dolce romano per eccellenza: un panino soffice ripieno di panna abbondante.</div>
+        <div class="rest-desc en">Since 1916. The <em>maritozzo con la panna</em> — Rome's quintessential pastry: a soft roll overflowing with whipped cream.</div>
+        <div class="rest-actions">
+          <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=Pasticceria+Regoli+Via+dello+Statuto+Roma" target="_blank" rel="noopener">📍 Maps</a>
+          <a class="rest-action-btn rest-action-web" href="https://www.pasticceriaregoli.com" target="_blank" rel="noopener">🌐 <span class="it">Sito web</span><span class="en">Website</span></a>
+        </div>
       </div>
 
       <p class="section-subtitle it">Aperitivo & Cocktail</p>
       <p class="section-subtitle en">Aperitivo & Cocktails</p>
 
-      <div class="card">
-        <a href="https://www.google.com/maps/search/?api=1&query=Terrazza+Borghese+Roma" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit;padding:10px 0;border-bottom:1px solid var(--light-gray)">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <strong>Terrazza Borghese Rooftop</strong>
-            <span style="color:var(--gold);font-size:14px">↗</span>
-          </div>
-          <p style="color:var(--gray);font-size:13px;margin-top:4px"><span class="it">Vista panoramica sullo skyline. Dress code smart elegant. Perfetto al tramonto.</span><span class="en">Panoramic skyline views. Smart elegant dress code. Perfect at sunset.</span></p>
-        </a>
-        <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Atlante+Star+Les+Etoiles+Roma" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit;padding:10px 0;border-bottom:1px solid var(--light-gray)">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <strong>Les Etoiles — Hotel Atlante Star</strong>
-            <span style="color:var(--gold);font-size:14px">↗</span>
-          </div>
-          <p style="color:var(--gray);font-size:13px;margin-top:4px"><span class="it">Vista diretta sulla Cupola di San Pietro. Uno dei panorami più suggestivi di Roma.</span><span class="en">Direct view of St. Peter's Dome. One of Rome's most breathtaking vantage points.</span></p>
-        </a>
-        <a href="https://www.google.com/maps/search/?api=1&query=Vado+Coso+cocktail+bar+Pigneto+Roma" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit;padding:10px 0">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <strong>Va.do & Co.So. (Pigneto)</strong>
-            <span style="color:var(--gold);font-size:14px">↗</span>
-          </div>
-          <p style="color:var(--gray);font-size:13px;margin-top:4px"><span class="it">Miscelazione d'avanguardia, atmosfera underground. I bartender sono tra i migliori della città.</span><span class="en">Avant-garde mixology, underground atmosphere. The city's finest bartenders.</span></p>
-        </a>
+      <div class="rest-card">
+        <div class="rest-header"><span class="rest-name">Terrazza Borghese Rooftop</span></div>
+        <div class="rest-desc it">Vista panoramica sullo skyline. Dress code smart elegant. Perfetto al tramonto.</div>
+        <div class="rest-desc en">Panoramic skyline views. Smart elegant dress code. Perfect at sunset.</div>
+        <div class="rest-actions">
+          <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=Terrazza+Borghese+Roma" target="_blank" rel="noopener">📍 Maps</a>
+          <a class="rest-action-btn rest-action-web" href="https://www.terrazze.com/terrazza-borghese" target="_blank" rel="noopener">🌐 <span class="it">Sito web</span><span class="en">Website</span></a>
+        </div>
+      </div>
+
+      <div class="rest-card">
+        <div class="rest-header"><span class="rest-name">Les Etoiles — Hotel Atlante Star</span></div>
+        <div class="rest-desc it">Vista diretta sulla Cupola di San Pietro. Uno dei panorami più suggestivi di Roma, senza la folla.</div>
+        <div class="rest-desc en">Direct view of St. Peter's Dome. One of Rome's most breathtaking vantage points, without the crowds.</div>
+        <div class="rest-actions">
+          <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=Hotel+Atlante+Star+Les+Etoiles+Roma" target="_blank" rel="noopener">📍 Maps</a>
+          <a class="rest-action-btn rest-action-web" href="https://www.atlantehotels.com/it/atlante-star" target="_blank" rel="noopener">🌐 <span class="it">Sito web</span><span class="en">Website</span></a>
+        </div>
+      </div>
+
+      <div class="rest-card">
+        <div class="rest-header"><span class="rest-name">Va.do & Co.So. (Pigneto)</span></div>
+        <div class="rest-desc it">Miscelazione d'avanguardia, atmosfera underground. I bartender sono tra i migliori della città. Raggiungibile in 15 minuti.</div>
+        <div class="rest-desc en">Avant-garde mixology, underground atmosphere. The city's finest bartenders. 15 minutes away.</div>
+        <div class="rest-actions">
+          <a class="rest-action-btn rest-action-maps" href="https://www.google.com/maps/search/?api=1&query=Vado+Coso+cocktail+bar+Pigneto+Roma" target="_blank" rel="noopener">📍 Maps</a>
+        </div>
       </div>
     </div>
   </div>
