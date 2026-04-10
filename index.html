@@ -534,7 +534,12 @@
       margin-bottom: 10px;
       background: var(--white);
       box-shadow: 0 2px 10px rgba(44,44,44,0.06);
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.15s;
     }
+    a.rest-card:active { transform: scale(0.98); }
     .rest-header {
       display: flex;
       justify-content: space-between;
@@ -585,8 +590,16 @@
       padding: 13px 0;
       border-bottom: 1px solid var(--light-gray);
       align-items: flex-start;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.15s;
+      border-radius: 8px;
+      margin: 0 -6px;
+      padding-left: 6px;
+      padding-right: 6px;
     }
     .exp-item:last-child { border-bottom: none; }
+    a.exp-item:active { background: var(--light-gray); }
     .exp-icon { font-size: 20px; flex-shrink: 0; padding-top: 2px; }
     .exp-name { font-size: 14px; font-weight: 700; color: var(--anthracite); }
     .exp-desc { font-size: 13px; color: var(--gray); line-height: 1.55; margin-top: 3px; }
@@ -1299,33 +1312,49 @@
         <span class="emerg-arrow">→</span>
       </a>
 
-      <div class="card">
-        <div class="card-title"><span class="card-title-icon">🏥</span><span class="it">Pronto Soccorso</span><span class="en">Emergency Room</span></div>
+      <a class="card" href="https://www.google.com/maps/search/?api=1&query=Policlinico+Umberto+I+Roma" target="_blank" rel="noopener" style="display:block; text-decoration:none; color:inherit; transition:transform 0.15s">
+        <div class="card-title"><span class="card-title-icon">🏥</span><span class="it">Pronto Soccorso</span><span class="en">Emergency Room</span> <span style="margin-left:auto; color:var(--gold); font-size:14px">↗</span></div>
         <div class="card-text">
           <p><strong>Policlinico Umberto I</strong></p>
           <p style="color:var(--gray); font-size:13px; margin-top:4px">Viale del Policlinico, 155</p>
           <p style="color:var(--gray); font-size:13px"><span class="it">15 min in taxi o Metro A (fermata Policlinico) · Aperto 24/7</span><span class="en">15 min by taxi or Metro A (Policlinico stop) · Open 24/7</span></p>
         </div>
-      </div>
+      </a>
 
       <div class="card">
         <div class="card-title"><span class="card-title-icon">💊</span><span class="it">Farmacie</span><span class="en">Pharmacies</span></div>
-        <div class="card-text">
-          <p><strong>Farmacia Villa Fiorelli</strong> &nbsp;<span style="background:var(--gold-light); color:#8B6E2A; border-radius:4px; padding:2px 7px; font-size:11px; font-weight:700"><span class="it">più vicina</span><span class="en">closest</span></span></p>
+        <a href="https://www.google.com/maps/search/?api=1&query=Farmacia+Villa+Fiorelli+Via+Enna+Roma" target="_blank" rel="noopener" style="display:block; text-decoration:none; color:inherit; padding:10px 0; border-bottom:1px solid var(--light-gray)">
+          <div style="display:flex; justify-content:space-between; align-items:center">
+            <strong>Farmacia Villa Fiorelli</strong>
+            <span style="display:flex; align-items:center; gap:6px"><span style="background:var(--gold-light); color:#8B6E2A; border-radius:4px; padding:2px 7px; font-size:11px; font-weight:700"><span class="it">più vicina</span><span class="en">closest</span></span><span style="color:var(--gold); font-size:14px">↗</span></span>
+          </div>
           <p style="color:var(--gray); font-size:13px; margin-top:3px">Via Enna 17/B &nbsp;·&nbsp; <span class="it">Lun–Sab 8:30–13:00 / 15:30–19:30</span><span class="en">Mon–Sat 8:30 am–1:00 pm / 3:30–7:30 pm</span></p>
-          <p style="margin-top:12px"><strong>Farmacia Brocchieri</strong> &nbsp;<span style="background:var(--terracotta); color:white; border-radius:4px; padding:2px 7px; font-size:11px; font-weight:700">H24</span></p>
+        </a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Farmacia+Brocchieri+Via+Taranto+Roma" target="_blank" rel="noopener" style="display:block; text-decoration:none; color:inherit; padding:10px 0">
+          <div style="display:flex; justify-content:space-between; align-items:center">
+            <strong>Farmacia Brocchieri</strong>
+            <span style="display:flex; align-items:center; gap:6px"><span style="background:var(--terracotta); color:white; border-radius:4px; padding:2px 7px; font-size:11px; font-weight:700">H24</span><span style="color:var(--gold); font-size:14px">↗</span></span>
+          </div>
           <p style="color:var(--gray); font-size:13px; margin-top:3px">Via Taranto 162 &nbsp;·&nbsp; <span class="it">Notturna e festiva</span><span class="en">Open nights & holidays</span></p>
-        </div>
+        </a>
       </div>
 
       <div class="card">
         <div class="card-title"><span class="card-title-icon">🛒</span><span class="it">Supermercati</span><span class="en">Supermarkets</span></div>
-        <div class="card-text">
-          <p><strong>Elite Supermercato</strong> &nbsp;—&nbsp; Via Appia Nuova</p>
-          <p style="color:var(--gray); font-size:13px; margin-top:3px"><span class="it">Aperto anche la domenica fino alle 20:30 — raro a Roma.</span><span class="en">Open on Sundays until 8:30 pm — a rare thing in Rome.</span></p>
-          <p style="margin-top:12px"><strong>NaturaSì</strong> &nbsp;—&nbsp; Via Tuscolana 1241</p>
-          <p style="color:var(--gray); font-size:13px; margin-top:3px"><span class="it">Biologico, vegano, prodotti naturali.</span><span class="en">Organic, vegan, natural products.</span></p>
-        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=Elite+Supermercato+Via+Appia+Nuova+Roma" target="_blank" rel="noopener" style="display:block; text-decoration:none; color:inherit; padding:10px 0; border-bottom:1px solid var(--light-gray)">
+          <div style="display:flex; justify-content:space-between; align-items:center">
+            <strong>Elite Supermercato</strong>
+            <span style="color:var(--gold); font-size:14px">↗</span>
+          </div>
+          <p style="color:var(--gray); font-size:13px; margin-top:3px">Via Appia Nuova &nbsp;·&nbsp; <span class="it">Aperto domenica fino alle 20:30</span><span class="en">Open Sundays until 8:30 pm</span></p>
+        </a>
+        <a href="https://www.google.com/maps/search/?api=1&query=NaturaSi+Via+Tuscolana+1241+Roma" target="_blank" rel="noopener" style="display:block; text-decoration:none; color:inherit; padding:10px 0">
+          <div style="display:flex; justify-content:space-between; align-items:center">
+            <strong>NaturaSì</strong>
+            <span style="color:var(--gold); font-size:14px">↗</span>
+          </div>
+          <p style="color:var(--gray); font-size:13px; margin-top:3px">Via Tuscolana 1241 &nbsp;·&nbsp; <span class="it">Biologico, vegano, naturale</span><span class="en">Organic, vegan, natural</span></p>
+        </a>
       </div>
     </div>
   </div>
@@ -1454,79 +1483,101 @@
       <p class="section-subtitle it">Ristoranti</p>
       <p class="section-subtitle en">Restaurants</p>
 
-      <div class="rest-card">
+      <a class="rest-card" href="https://www.google.com/maps/search/?api=1&query=Santo+Palato+Piazza+Tarquinia+Roma" target="_blank" rel="noopener">
         <div class="rest-header">
           <span class="rest-name">Santo Palato</span>
-          <span class="rest-badge it">Prenota in anticipo</span>
-          <span class="rest-badge en">Book ahead</span>
+          <span style="display:flex;gap:6px;align-items:center"><span class="rest-badge it">Prenota in anticipo</span><span class="rest-badge en">Book ahead</span><span style="color:var(--gold);font-size:14px">↗</span></span>
         </div>
         <div class="rest-address">📍 Piazza Tarquinia 4</div>
         <div class="rest-desc it">Alta cucina romana. Sarah Cicolini eleva coda alla vaccinara, trippa e quinto quarto a filosofia. Il migliore nel suo genere.</div>
         <div class="rest-desc en">Contemporary Roman cuisine at its finest. Chef Sarah Cicolini elevates oxtail, tripe and offal to something extraordinary.</div>
-      </div>
+      </a>
 
-      <div class="rest-card">
+      <a class="rest-card" href="https://www.google.com/maps/search/?api=1&query=Barred+Roma" target="_blank" rel="noopener">
         <div class="rest-header">
           <span class="rest-name">Barred</span>
+          <span style="color:var(--gold);font-size:14px">↗</span>
         </div>
         <div class="rest-address">📍 Zona Re di Roma</div>
         <div class="rest-desc it">Cucina contemporanea, vini naturali. Dove mangiano i romani under 40 che capiscono di cibo.</div>
         <div class="rest-desc en">Modern cooking, natural wines, cool space. Where food-literate Romans under 40 eat.</div>
-      </div>
+      </a>
 
-      <div class="rest-card">
+      <a class="rest-card" href="https://www.google.com/maps/search/?api=1&query=Sbanco+pizzeria+Roma" target="_blank" rel="noopener">
         <div class="rest-header">
           <span class="rest-name">Sbanco</span>
+          <span style="color:var(--gold);font-size:14px">↗</span>
         </div>
         <div class="rest-address">📍 Via Statilio Ottato 110 · San Giovanni</div>
         <div class="rest-desc it">Pizza gourmet in un ex stabilimento industriale. Impasto a lunga lievitazione, ingredienti eccellenti.</div>
         <div class="rest-desc en">Gourmet pizza in a former industrial space. Long-proved dough, exceptional ingredients.</div>
-      </div>
+      </a>
 
-      <div class="rest-card">
+      <a class="rest-card" href="https://www.google.com/maps/search/?api=1&query=Felice+a+Testaccio+Roma" target="_blank" rel="noopener">
         <div class="rest-header">
           <span class="rest-name">Felice a Testaccio</span>
-          <span class="rest-badge it">Prenota</span>
-          <span class="rest-badge en">Book</span>
+          <span style="display:flex;gap:6px;align-items:center"><span class="rest-badge it">Prenota</span><span class="rest-badge en">Book</span><span style="color:var(--gold);font-size:14px">↗</span></span>
         </div>
         <div class="rest-address">📍 Via Mastro Giorgio 29</div>
         <div class="rest-desc it">La cacio e pepe più famosa di Roma. Istituzione dal 1936. Vale ogni minuto di attesa.</div>
         <div class="rest-desc en">Rome's most famous cacio e pepe. An institution since 1936. Worth every minute of planning.</div>
-      </div>
+      </a>
 
-      <div class="rest-card">
+      <a class="rest-card" href="https://www.google.com/maps/search/?api=1&query=Necci+dal+1924+Pigneto+Roma" target="_blank" rel="noopener">
         <div class="rest-header">
           <span class="rest-name">Necci dal 1924</span>
+          <span style="color:var(--gold);font-size:14px">↗</span>
         </div>
         <div class="rest-address">📍 Via Fanfulla da Lodi 68 · Pigneto</div>
         <div class="rest-desc it">Bar, ristorante, cinema, giardino. Qui veniva Pasolini. Il Pigneto è il Brooklyn di Roma, Necci ne è il cuore.</div>
         <div class="rest-desc en">Bar, restaurant, cinema, garden. Pasolini's haunt. Pigneto is Rome's Brooklyn, and Necci is its heart.</div>
-      </div>
+      </a>
 
       <p class="section-subtitle it">Colazione</p>
       <p class="section-subtitle en">Breakfast</p>
 
       <div class="card">
-        <div class="card-text">
-          <p><strong><span class="it">Bar di quartiere · Via Taranto</span><span class="en">Local bar · Via Taranto</span></strong></p>
-          <p style="color:var(--gray); font-size:13px; margin-top:5px"><span class="it">Cornetto e cappuccino al banco, in piedi, tra i pendolari. L'esperienza più autentica di Roma alle 8 di mattina. Circa €1,50.</span><span class="en">A cornetto and cappuccino standing at the bar among commuters. The most authentic Roman experience at 8 am. Around €1.50.</span></p>
-          <p style="margin-top:13px"><strong>Pasticceria Regoli</strong> · Via dello Statuto 60</p>
-          <p style="color:var(--gray); font-size:13px; margin-top:5px"><span class="it">Dal 1916. Il <em>maritozzo con la panna</em> è il dolce romano per eccellenza: un panino soffice ripieno di panna montata abbondante.</span><span class="en">Since 1916. The <em>maritozzo con la panna</em> is Rome's quintessential pastry: a soft roll overflowing with whipped cream.</span></p>
-        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=bar+Via+Taranto+Roma" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit;padding:10px 0;border-bottom:1px solid var(--light-gray)">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <strong><span class="it">Bar di quartiere · Via Taranto</span><span class="en">Local bar · Via Taranto</span></strong>
+            <span style="color:var(--gold);font-size:14px">↗</span>
+          </div>
+          <p style="color:var(--gray);font-size:13px;margin-top:4px"><span class="it">Cornetto e cappuccino al banco, in piedi, tra i pendolari. Circa €1,50.</span><span class="en">Cornetto and cappuccino at the bar among commuters. Around €1.50.</span></p>
+        </a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Pasticceria+Regoli+Via+dello+Statuto+Roma" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit;padding:10px 0">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <strong>Pasticceria Regoli · Via dello Statuto 60</strong>
+            <span style="color:var(--gold);font-size:14px">↗</span>
+          </div>
+          <p style="color:var(--gray);font-size:13px;margin-top:4px"><span class="it">Dal 1916. Il <em>maritozzo con la panna</em> — il dolce romano per eccellenza.</span><span class="en">Since 1916. The <em>maritozzo con la panna</em> — Rome's quintessential pastry.</span></p>
+        </a>
       </div>
 
       <p class="section-subtitle it">Aperitivo & Cocktail</p>
       <p class="section-subtitle en">Aperitivo & Cocktails</p>
 
       <div class="card">
-        <div class="card-text">
-          <p><strong>Terrazza Borghese Rooftop</strong></p>
-          <p style="color:var(--gray); font-size:13px; margin-top:4px"><span class="it">Vista panoramica sullo skyline. Dress code smart elegant. Perfetto al tramonto.</span><span class="en">Panoramic views over the skyline. Smart elegant dress code. Perfect at sunset.</span></p>
-          <p style="margin-top:12px"><strong>Les Etoiles — Hotel Atlante Star</strong></p>
-          <p style="color:var(--gray); font-size:13px; margin-top:4px"><span class="it">Vista diretta sulla Cupola di San Pietro. Uno dei panorami più suggestivi di Roma, senza la folla.</span><span class="en">Direct view of St. Peter's Dome. One of Rome's most breathtaking vantage points, without the crowds.</span></p>
-          <p style="margin-top:12px"><strong>Va.do & Co.So. (Pigneto)</strong></p>
-          <p style="color:var(--gray); font-size:13px; margin-top:4px"><span class="it">Miscelazione d'avanguardia, atmosfera underground. I bartender sono tra i migliori della città. Raggiungibile in 15 minuti.</span><span class="en">Avant-garde mixology, underground atmosphere. The bartenders rank among the city's finest. 15 minutes away.</span></p>
-        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=Terrazza+Borghese+Roma" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit;padding:10px 0;border-bottom:1px solid var(--light-gray)">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <strong>Terrazza Borghese Rooftop</strong>
+            <span style="color:var(--gold);font-size:14px">↗</span>
+          </div>
+          <p style="color:var(--gray);font-size:13px;margin-top:4px"><span class="it">Vista panoramica sullo skyline. Dress code smart elegant. Perfetto al tramonto.</span><span class="en">Panoramic skyline views. Smart elegant dress code. Perfect at sunset.</span></p>
+        </a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Atlante+Star+Les+Etoiles+Roma" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit;padding:10px 0;border-bottom:1px solid var(--light-gray)">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <strong>Les Etoiles — Hotel Atlante Star</strong>
+            <span style="color:var(--gold);font-size:14px">↗</span>
+          </div>
+          <p style="color:var(--gray);font-size:13px;margin-top:4px"><span class="it">Vista diretta sulla Cupola di San Pietro. Uno dei panorami più suggestivi di Roma.</span><span class="en">Direct view of St. Peter's Dome. One of Rome's most breathtaking vantage points.</span></p>
+        </a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Vado+Coso+cocktail+bar+Pigneto+Roma" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit;padding:10px 0">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <strong>Va.do & Co.So. (Pigneto)</strong>
+            <span style="color:var(--gold);font-size:14px">↗</span>
+          </div>
+          <p style="color:var(--gray);font-size:13px;margin-top:4px"><span class="it">Miscelazione d'avanguardia, atmosfera underground. I bartender sono tra i migliori della città.</span><span class="en">Avant-garde mixology, underground atmosphere. The city's finest bartenders.</span></p>
+        </a>
       </div>
     </div>
   </div>
@@ -1610,7 +1661,7 @@
       <div class="card">
         <div class="card-title"><span class="card-title-icon">🚶</span><span class="it">Passeggiate & Musei</span><span class="en">Walks & Museums</span></div>
 
-        <div class="exp-item">
+        <a class="exp-item" href="https://www.google.com/maps/search/?api=1&query=Mura+Aureliane+Porta+San+Giovanni+Roma" target="_blank" rel="noopener">
           <span class="exp-icon">🏛️</span>
           <div>
             <div class="exp-name it">Mura Aureliane — Porta S. Giovanni → Porta Maggiore</div>
@@ -1619,18 +1670,20 @@
             <div class="exp-desc en">The most intact ancient walls in Rome, 5 minutes away. Far from mass tourism.</div>
             <span class="exp-badge">📍 <span class="it">a piedi da qui</span><span class="en">walking distance</span></span>
           </div>
-        </div>
+          <span class="dest-maps-arrow">↗</span>
+        </a>
 
-        <div class="exp-item">
+        <a class="exp-item" href="https://www.google.com/maps/search/?api=1&query=Via+Merulana+Roma" target="_blank" rel="noopener">
           <span class="exp-icon">🎨</span>
           <div>
             <div class="exp-name">Via Merulana</div>
             <div class="exp-desc it">Il viale alberato che collega San Giovanni a Santa Maria Maggiore: gallerie d'arte, antiquari, Palazzo Massimo.</div>
             <div class="exp-desc en">The tree-lined boulevard linking San Giovanni to Santa Maria Maggiore: art galleries, antique shops, Palazzo Massimo.</div>
           </div>
-        </div>
+          <span class="dest-maps-arrow">↗</span>
+        </a>
 
-        <div class="exp-item">
+        <a class="exp-item" href="https://www.google.com/maps/search/?api=1&query=Centrale+Montemartini+Roma" target="_blank" rel="noopener">
           <span class="exp-icon">⚡</span>
           <div>
             <div class="exp-name">Centrale Montemartini</div>
@@ -1638,9 +1691,10 @@
             <div class="exp-desc en">Greek and Roman sculptures among decommissioned power station machinery. Almost never crowded.</div>
             <span class="exp-badge">🍂 <span class="it">Autunno/Inverno</span><span class="en">Autumn/Winter</span></span>
           </div>
-        </div>
+          <span class="dest-maps-arrow">↗</span>
+        </a>
 
-        <div class="exp-item">
+        <a class="exp-item" href="https://www.google.com/maps/search/?api=1&query=Roseto+Comunale+Aventino+Roma" target="_blank" rel="noopener">
           <span class="exp-icon">🌹</span>
           <div>
             <div class="exp-name it">Roseto Comunale — Aventino</div>
@@ -1649,9 +1703,10 @@
             <div class="exp-desc en">Menorah-shaped garden with hundreds of rose varieties. Views over the Circus Maximus. Free entry.</div>
             <span class="exp-badge">🌸 <span class="it">Aprile/Maggio</span><span class="en">April/May</span></span>
           </div>
-        </div>
+          <span class="dest-maps-arrow">↗</span>
+        </a>
 
-        <div class="exp-item" style="border-bottom:none">
+        <a class="exp-item" style="border-bottom:none" href="https://www.google.com/maps/search/?api=1&query=Casa+del+Jazz+Roma" target="_blank" rel="noopener">
           <span class="exp-icon">🎵</span>
           <div>
             <div class="exp-name">Casa del Jazz</div>
@@ -1659,13 +1714,14 @@
             <div class="exp-desc en">Historic villa on the Appian Way with open-air jazz concerts in summer. One of Rome's most beautiful venues.</div>
             <span class="exp-badge">☀️ <span class="it">Estate</span><span class="en">Summer</span></span>
           </div>
-        </div>
+          <span class="dest-maps-arrow">↗</span>
+        </a>
       </div>
 
       <div class="card">
         <div class="card-title"><span class="card-title-icon">🛒</span><span class="it">Mercati</span><span class="en">Markets</span></div>
 
-        <div class="exp-item">
+        <a class="exp-item" href="https://www.google.com/maps/search/?api=1&query=Mercato+di+Testaccio+Roma" target="_blank" rel="noopener">
           <span class="exp-icon">🧀</span>
           <div>
             <div class="exp-name it">Mercato di Testaccio</div>
@@ -1673,9 +1729,10 @@
             <div class="exp-desc it">Il mercato coperto più gastronomico di Roma. Formaggi, salumi, fritture romane. Dove i cuochi seri fanno la spesa. Lun–Sab, mattina.</div>
             <div class="exp-desc en">Rome's most gastronomic covered market. Cheeses, cured meats, Roman street food. Where serious cooks shop. Mon–Sat, mornings.</div>
           </div>
-        </div>
+          <span class="dest-maps-arrow">↗</span>
+        </a>
 
-        <div class="exp-item" style="border-bottom:none">
+        <a class="exp-item" style="border-bottom:none" href="https://www.google.com/maps/search/?api=1&query=Mercato+Via+Sannio+Roma" target="_blank" rel="noopener">
           <span class="exp-icon">👕</span>
           <div>
             <div class="exp-name it">Mercato di Via Sannio</div>
@@ -1683,38 +1740,42 @@
             <div class="exp-desc it">Vintage, militare, usato. Dietro la metro San Giovanni. Capi anni '70 a prezzi onesti, con le Mura Aureliane sullo sfondo.</div>
             <div class="exp-desc en">Vintage, military surplus, second-hand. Behind San Giovanni metro. 1970s pieces at honest prices, Aurelian Walls as backdrop.</div>
           </div>
-        </div>
+          <span class="dest-maps-arrow">↗</span>
+        </a>
       </div>
 
       <div class="card">
         <div class="card-title"><span class="card-title-icon">👨‍👩‍👧</span><span class="it">Per Famiglie</span><span class="en">Family-Friendly</span></div>
 
-        <div class="exp-item">
+        <a class="exp-item" href="https://www.google.com/maps/search/?api=1&query=Explora+Museo+dei+Bambini+Roma" target="_blank" rel="noopener">
           <span class="exp-icon">🔬</span>
           <div>
             <div class="exp-name">Explora — <span class="it">Museo dei Bambini · Flaminio</span><span class="en">Children's Museum · Flaminio</span></div>
             <div class="exp-desc it">Il museo interattivo per eccellenza. 0–11 anni. Prenotare online.</div>
             <div class="exp-desc en">Rome's premier interactive museum. Ages 0–11. Book online in advance.</div>
           </div>
-        </div>
+          <span class="dest-maps-arrow">↗</span>
+        </a>
 
-        <div class="exp-item">
+        <a class="exp-item" href="https://www.google.com/maps/search/?api=1&query=Casina+delle+Civette+Villa+Torlonia+Roma" target="_blank" rel="noopener">
           <span class="exp-icon">🦉</span>
           <div>
             <div class="exp-name">Casina delle Civette — Villa Torlonia</div>
             <div class="exp-desc it">Una villa Liberty piena di gufi e vetrate colorate. I bambini restano a bocca aperta. Anche i grandi.</div>
             <div class="exp-desc en">A Liberty-style villa filled with owls and stained glass. Children are mesmerised. Adults too.</div>
           </div>
-        </div>
+          <span class="dest-maps-arrow">↗</span>
+        </a>
 
-        <div class="exp-item" style="border-bottom:none">
+        <a class="exp-item" style="border-bottom:none" href="https://www.google.com/maps/search/?api=1&query=Bioparco+di+Roma+Villa+Borghese" target="_blank" rel="noopener">
           <span class="exp-icon">🦁</span>
           <div>
             <div class="exp-name">Bioparco di Roma — Villa Borghese</div>
             <div class="exp-desc it">Lo zoo storico di Roma, all'interno del parco più bello della città.</div>
             <div class="exp-desc en">Rome's historic zoo, inside the city's most beautiful park.</div>
           </div>
-        </div>
+          <span class="dest-maps-arrow">↗</span>
+        </a>
       </div>
     </div>
   </div>
