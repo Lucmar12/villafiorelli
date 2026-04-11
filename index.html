@@ -962,13 +962,258 @@
       line-height: 1.5;
     }
 
-    /* ─── LANGUAGE TOGGLE ────────────────────────────── */
-    .en { display: none; }
-    body.lang-en .en { display: block; }
-    body.lang-en .it { display: none; }
+    /* ─── LANGUAGE SYSTEM (8 LANGUAGES) ─────────────── */
+    /* Default: show IT, hide all others */
+    .en,.es,.fr,.ru,.ar,.ja,.de { display: none; }
+    span.en,span.es,span.fr,span.ru,span.ar,span.ja,span.de { display: none; }
+
+    /* Full languages: IT / EN / ES / FR */
+    body.lang-en .en  { display: block; }
+    body.lang-en .it  { display: none; }
     body.lang-en span.en { display: inline; }
     body.lang-en span.it { display: none; }
     body.lang-en .en.flex-item { display: flex; }
+
+    body.lang-es .es  { display: block; }
+    body.lang-es .it  { display: none; }
+    body.lang-es span.es { display: inline; }
+    body.lang-es span.it { display: none; }
+    body.lang-es .es.flex-item { display: flex; }
+
+    body.lang-fr .fr  { display: block; }
+    body.lang-fr .it  { display: none; }
+    body.lang-fr span.fr { display: inline; }
+    body.lang-fr span.it { display: none; }
+    body.lang-fr .fr.flex-item { display: flex; }
+
+    /* Quick-Help-only languages: fall back to EN for full content,
+       but show native labels inside #quick-panel */
+    body.lang-ru .en  { display: block; }
+    body.lang-ru .it  { display: none; }
+    body.lang-ru span.en { display: inline; }
+    body.lang-ru span.it { display: none; }
+    body.lang-ru #quick-panel .en  { display: none; }
+    body.lang-ru #quick-panel span.en { display: none; }
+    body.lang-ru #quick-panel .ru  { display: block; }
+    body.lang-ru #quick-panel span.ru { display: inline; }
+
+    body.lang-ar .en  { display: block; }
+    body.lang-ar .it  { display: none; }
+    body.lang-ar span.en { display: inline; }
+    body.lang-ar span.it { display: none; }
+    body.lang-ar #quick-panel .en  { display: none; }
+    body.lang-ar #quick-panel span.en { display: none; }
+    body.lang-ar #quick-panel .ar  { display: block; }
+    body.lang-ar #quick-panel span.ar { display: inline; }
+    body.lang-ar { direction: rtl; }
+    body.lang-ar #quick-panel .quick-card { direction: rtl; }
+
+    body.lang-ja .en  { display: block; }
+    body.lang-ja .it  { display: none; }
+    body.lang-ja span.en { display: inline; }
+    body.lang-ja span.it { display: none; }
+    body.lang-ja #quick-panel .en  { display: none; }
+    body.lang-ja #quick-panel span.en { display: none; }
+    body.lang-ja #quick-panel .ja  { display: block; }
+    body.lang-ja #quick-panel span.ja { display: inline; }
+
+    body.lang-de .en  { display: block; }
+    body.lang-de .it  { display: none; }
+    body.lang-de span.en { display: inline; }
+    body.lang-de span.it { display: none; }
+    body.lang-de #quick-panel .en  { display: none; }
+    body.lang-de #quick-panel span.en { display: none; }
+    body.lang-de #quick-panel .de  { display: block; }
+    body.lang-de #quick-panel span.de { display: inline; }
+
+    /* ─── LANGUAGE PICKER ────────────────────────────── */
+    #lang-picker-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      background: rgba(44,44,44,0.35);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    #lang-picker-overlay.open { opacity: 1; pointer-events: all; }
+
+    #lang-picker {
+      position: absolute;
+      top: calc(var(--header-height) + 6px);
+      right: 12px;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: 0 8px 40px rgba(44,44,44,0.2);
+      padding: 8px 0;
+      min-width: 180px;
+      overflow: hidden;
+      transform: translateY(-8px) scale(0.97);
+      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s;
+      opacity: 0;
+    }
+    #lang-picker-overlay.open #lang-picker {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    .lang-opt {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 11px 18px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: var(--anthracite);
+      text-align: left;
+      transition: background 0.15s;
+    }
+    .lang-opt:active, .lang-opt:hover { background: var(--beige); }
+    .lang-opt.active { color: var(--terracotta); font-weight: 700; }
+    .lang-opt .lang-flag { font-size: 18px; }
+    .lang-picker-divider {
+      height: 1px;
+      background: var(--light-gray);
+      margin: 6px 0;
+    }
+    .lang-picker-sub {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      padding: 6px 18px 4px;
+    }
+
+    /* ─── JULIA CONCIERGE CARD ───────────────────────── */
+    .julia-card {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      border-radius: 18px;
+      padding: 20px 18px;
+      margin-bottom: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    .julia-card::before {
+      content: '';
+      position: absolute;
+      top: -30px; right: -20px;
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: rgba(184,150,62,0.1);
+    }
+    .julia-card-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .julia-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-style: italic;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .julia-card-sub {
+      font-size: 13px;
+      color: rgba(253,250,244,0.65);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+    .julia-uses {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .julia-use-chip {
+      font-size: 11px;
+      color: var(--gold);
+      background: rgba(184,150,62,0.15);
+      border: 1px solid rgba(184,150,62,0.3);
+      border-radius: 20px;
+      padding: 4px 10px;
+    }
+    .julia-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--gold);
+      color: #1a1a2e;
+      border: none;
+      border-radius: 50px;
+      padding: 11px 20px;
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      transition: transform 0.15s, opacity 0.15s;
+      width: 100%;
+    }
+    .julia-btn:active { transform: scale(0.97); opacity: 0.9; }
+
+    /* ─── DUAL CONCIERGE SECTION ─────────────────────── */
+    .dual-concierge {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .concierge-panel {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 14px 12px;
+      box-shadow: 0 2px 10px rgba(44,44,44,0.06);
+    }
+    .concierge-panel.dark { background: var(--anthracite); }
+    .concierge-panel-icon { font-size: 22px; margin-bottom: 8px; }
+    .concierge-panel-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .concierge-panel-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--anthracite);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .concierge-panel.dark .concierge-panel-title { color: var(--white); }
+    .concierge-panel-items { list-style: none; }
+    .concierge-panel-items li {
+      font-size: 11px;
+      color: var(--gray);
+      padding: 2px 0;
+      line-height: 1.5;
+    }
+    .concierge-panel.dark .concierge-panel-items li { color: rgba(253,250,244,0.6); }
+    .concierge-panel-items li::before { content: '· '; }
+
+    /* ─── MICRO ANIMATIONS ───────────────────────────── */
+    .card, .rest-card, .emerg-btn, .julia-card {
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    @media (hover: hover) {
+      .card:hover { box-shadow: 0 6px 24px rgba(44,44,44,0.1); transform: translateY(-1px); }
+      .rest-card:hover { box-shadow: 0 6px 24px rgba(44,44,44,0.1); transform: translateY(-1px); }
+    }
+    .section-page { animation: fadeUp 0.32s ease both; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
     a { color: inherit; text-decoration: none; }
     .text-link { color: var(--terracotta); text-decoration: underline; }
@@ -1180,72 +1425,96 @@
       <span class="drawer-item-icon">🏡</span>
       <span class="drawer-item-label it">Home</span>
       <span class="drawer-item-label en">Home</span>
+      <span class="drawer-item-label es">Home</span>
+      <span class="drawer-item-label fr">Home</span>
     </button>
     <button class="drawer-item" onclick="goToPage(1); closeDrawer()">
       <span class="drawer-item-num">01</span>
       <span class="drawer-item-icon">✉️</span>
       <span class="drawer-item-label it">Benvenuto</span>
       <span class="drawer-item-label en">Welcome</span>
+      <span class="drawer-item-label es">Bienvenida</span>
+      <span class="drawer-item-label fr">Bienvenue</span>
     </button>
     <button class="drawer-item" onclick="goToPage(2); closeDrawer()">
       <span class="drawer-item-num">02</span>
       <span class="drawer-item-icon">🤝</span>
       <span class="drawer-item-label it">La Nostra Filosofia</span>
       <span class="drawer-item-label en">Our Philosophy</span>
+      <span class="drawer-item-label es">Nuestra Filosofía</span>
+      <span class="drawer-item-label fr">Notre Philosophie</span>
     </button>
     <button class="drawer-item" onclick="goToPage(3); closeDrawer()">
       <span class="drawer-item-num">03</span>
       <span class="drawer-item-icon">🔑</span>
       <span class="drawer-item-label it">Accesso & Wi-Fi</span>
       <span class="drawer-item-label en">Access & Wi-Fi</span>
+      <span class="drawer-item-label es">Acceso & Wi-Fi</span>
+      <span class="drawer-item-label fr">Accès & Wi-Fi</span>
     </button>
     <button class="drawer-item" onclick="goToPage(4); closeDrawer()">
       <span class="drawer-item-num">04</span>
       <span class="drawer-item-icon">🏠</span>
       <span class="drawer-item-label it">Guida alla Casa</span>
       <span class="drawer-item-label en">Home Guide</span>
+      <span class="drawer-item-label es">Guía del Apartamento</span>
+      <span class="drawer-item-label fr">Guide du Logement</span>
     </button>
     <button class="drawer-item" onclick="goToPage(5); closeDrawer()">
       <span class="drawer-item-num">05</span>
       <span class="drawer-item-icon">📋</span>
       <span class="drawer-item-label it">Regole Condominiali</span>
       <span class="drawer-item-label en">House Rules</span>
+      <span class="drawer-item-label es">Normas del Edificio</span>
+      <span class="drawer-item-label fr">Règlement Intérieur</span>
     </button>
     <button class="drawer-item" onclick="goToPage(6); closeDrawer()">
       <span class="drawer-item-num">06</span>
       <span class="drawer-item-icon">🚨</span>
       <span class="drawer-item-label it">Emergenze</span>
       <span class="drawer-item-label en">Emergency</span>
+      <span class="drawer-item-label es">Emergencias</span>
+      <span class="drawer-item-label fr">Urgences</span>
     </button>
     <button class="drawer-item" onclick="goToPage(7); closeDrawer()">
       <span class="drawer-item-num">07</span>
       <span class="drawer-item-icon">🚇</span>
       <span class="drawer-item-label it">Come Muoversi</span>
       <span class="drawer-item-label en">Getting Around</span>
+      <span class="drawer-item-label es">Cómo Moverse</span>
+      <span class="drawer-item-label fr">Se Déplacer</span>
     </button>
     <button class="drawer-item" onclick="goToPage(8); closeDrawer()">
       <span class="drawer-item-num">08</span>
       <span class="drawer-item-icon">🍽️</span>
       <span class="drawer-item-label it">Food Guide</span>
       <span class="drawer-item-label en">Food Guide</span>
+      <span class="drawer-item-label es">Guía Gastronómica</span>
+      <span class="drawer-item-label fr">Guide Gastronomique</span>
     </button>
     <button class="drawer-item" onclick="goToPage(9); closeDrawer()">
       <span class="drawer-item-num">09</span>
       <span class="drawer-item-icon">🇮🇹</span>
       <span class="drawer-item-label it">Galateo Italiano</span>
       <span class="drawer-item-label en">Cultural Tips</span>
+      <span class="drawer-item-label es">Consejos Culturales</span>
+      <span class="drawer-item-label fr">Conseils Culturels</span>
     </button>
     <button class="drawer-item" onclick="goToPage(10); closeDrawer()">
       <span class="drawer-item-num">10</span>
       <span class="drawer-item-icon">🗺️</span>
       <span class="drawer-item-label it">Esperienze</span>
       <span class="drawer-item-label en">Experiences</span>
+      <span class="drawer-item-label es">Experiencias</span>
+      <span class="drawer-item-label fr">Expériences</span>
     </button>
     <button class="drawer-item" onclick="goToPage(11); closeDrawer()">
       <span class="drawer-item-num">11</span>
       <span class="drawer-item-icon">👋</span>
       <span class="drawer-item-label it">Arrivederci</span>
       <span class="drawer-item-label en">Farewell</span>
+      <span class="drawer-item-label es">Hasta pronto</span>
+      <span class="drawer-item-label fr">Au revoir</span>
     </button>
   </div>
 </nav>
@@ -1260,7 +1529,7 @@
     </svg>
   </button>
   <span id="header-title">Domus Fiorelli</span>
-  <button id="lang-toggle" onclick="toggleLang()">IT</button>
+  <button id="lang-toggle" onclick="openLangPicker()">🌐 <span id="lang-code">IT</span></button>
 </header>
 
 <!-- ALL PAGES -->
@@ -1276,13 +1545,19 @@
       <div class="cover-value-prop">
         <div class="cover-value-prop-dot"></div>
         <span class="cover-value-prop-text it">Boutique stay · Accoglienza personale</span>
-        <span class="cover-value-prop-text en" style="display:none">Boutique stay · Personal host welcome</span>
+        <span class="cover-value-prop-text en">Boutique stay · Personal host welcome</span>
+        <span class="cover-value-prop-text es">Estancia boutique · Bienvenida personal</span>
+        <span class="cover-value-prop-text fr">Séjour boutique · Accueil personnalisé</span>
       </div>
       <p class="cover-quote it">A due passi dal Colosseo,<br>collegato con il mondo.</p>
-      <p class="cover-quote en" style="display:none">Steps from the Colosseum,<br>connected to the world.</p>
+      <p class="cover-quote en">Steps from the Colosseum,<br>connected to the world.</p>
+      <p class="cover-quote es">A pasos del Coliseo,<br>conectado con el mundo.</p>
+      <p class="cover-quote fr">À deux pas du Colisée,<br>connecté au monde entier.</p>
       <button class="cover-btn" onclick="goToPage(1)">
         <span class="it">Scopri la tua casa</span>
-        <span class="en" style="display:none">Discover your home</span>
+        <span class="en">Discover your home</span>
+        <span class="es">Descubre tu hogar</span>
+        <span class="fr">Découvrez votre maison</span>
       </button>
     </div>
   </div>
@@ -1295,33 +1570,49 @@
       <div class="section-header">
         <p class="section-tag it">01 — Benvenuto</p>
         <p class="section-tag en">01 — Welcome</p>
+        <p class="section-tag es">01 — Bienvenida</p>
+        <p class="section-tag fr">01 — Bienvenue</p>
         <h2 class="section-title it">Benvenuto a Domus Fiorelli.</h2>
         <h2 class="section-title en">Welcome to Domus Fiorelli.</h2>
+        <h2 class="section-title es">Bienvenido a Domus Fiorelli.</h2>
+        <h2 class="section-title fr">Bienvenue à Domus Fiorelli.</h2>
         <div class="section-divider"></div>
       </div>
 
       <div class="welcome-hero">
         <div class="welcome-hero-eyebrow it">La nostra promessa</div>
         <div class="welcome-hero-eyebrow en">Our promise</div>
+        <div class="welcome-hero-eyebrow es">Nuestra promesa</div>
+        <div class="welcome-hero-eyebrow fr">Notre promesse</div>
         <div class="welcome-hero-title it">Un'accoglienza vera,<br>quando possibile di persona.</div>
         <div class="welcome-hero-title en">A warm welcome,<br>whenever possible in person.</div>
+        <div class="welcome-hero-title es">Una bienvenida de verdad,<br>siempre que sea posible en persona.</div>
+        <div class="welcome-hero-title fr">Un accueil sincère,<br>chaque fois que possible en personne.</div>
         <div class="welcome-hero-divider"></div>
         <div class="welcome-hero-text it">Quando possibile, siamo qui ad accoglierti personalmente. Crediamo che l'ospitalità cominci dalle persone — non dalle istruzioni. Incontrarci di persona ci permette di presentarti la casa, condividere i nostri angoli preferiti di Roma e farti sentire a tuo agio fin dal primo momento.</div>
         <div class="welcome-hero-text en">Whenever possible, we are here to welcome you in person. We believe hospitality starts with people — not instructions. Meeting you allows us to introduce the home, share our favourite corners of Rome, and make your arrival feel effortless and truly personal.</div>
+        <div class="welcome-hero-text es">Siempre que sea posible, estamos aquí para recibirte en persona. Creemos que la hospitalidad empieza por las personas — no por las instrucciones. Conocerte en persona nos permite presentarte el apartamento, compartir nuestros rincones favoritos de Roma y hacerte sentir como en casa desde el primer momento.</div>
+        <div class="welcome-hero-text fr">Chaque fois que cela est possible, nous sommes là pour vous accueillir en personne. Nous croyons que l'hospitalité commence par les gens — pas par les instructions. Vous rencontrer nous permet de vous présenter l'appartement, de partager nos coins préférés de Rome et de vous faire vous sentir chez vous dès la première minute.</div>
         <div class="welcome-hero-pills">
           <span class="welcome-pill it">✦ Accoglienza personale</span>
           <span class="welcome-pill en">✦ Personal welcome</span>
+          <span class="welcome-pill es">✦ Bienvenida personal</span>
+          <span class="welcome-pill fr">✦ Accueil personnel</span>
           <span class="welcome-pill it">✦ Consigli su Roma</span>
           <span class="welcome-pill en">✦ Roman insider tips</span>
+          <span class="welcome-pill es">✦ Consejos de Roma</span>
+          <span class="welcome-pill fr">✦ Conseils sur Rome</span>
           <span class="welcome-pill it">✦ Sempre raggiungibili</span>
           <span class="welcome-pill en">✦ Always reachable</span>
+          <span class="welcome-pill es">✦ Siempre disponibles</span>
+          <span class="welcome-pill fr">✦ Toujours disponibles</span>
         </div>
       </div>
 
       <div class="card">
         <div class="welcome-body it">
           <p>C'è un momento, arrivando a Roma, in cui la città smette di essere uno sfondo e diventa qualcosa di intimo. Noi crediamo che quel momento cominci qui, in questo appartamento.</p>
-          <p><strong>Domus Fiorelli</strong> non è un indirizzo qualsiasi. È uno di quei luoghi che Roma custodisce gelosamente: una piazza d'altri tempi, circondata da palazzi Liberty e alberi centenari, dove la mattina senti solo il canto degli uccelli e il profumo del caffè dai balconi.</p>
+          <p><strong>Domus Fiorelli</strong> non è un indirizzo qualsiasi. È uno di quei luoghi che Roma custodisce gelosamente: una piazza d'altri tempi, circondata da palazzi Liberty e alberi centenari.</p>
           <p>Questo appartamento è stato pensato per chi viaggia con curiosità e senso estetico. <strong>La tua casa, per il tempo che sei a Roma.</strong></p>
           <p>Siamo qui se hai bisogno di qualsiasi cosa. Buon soggiorno.</p>
         </div>
@@ -1331,6 +1622,18 @@
           <p>This apartment was designed for travellers who bring curiosity and a sense of beauty. <strong>Your home, for as long as you are in Rome.</strong></p>
           <p>We are here whenever you need anything. Enjoy every moment.</p>
         </div>
+        <div class="welcome-body es">
+          <p>Hay un momento, al llegar a Roma, en que la ciudad deja de ser un telón de fondo y se convierte en algo íntimo. Creemos que ese momento comienza aquí — en este apartamento.</p>
+          <p><strong>Domus Fiorelli</strong> no es una dirección cualquiera. Es uno de esos lugares que Roma guarda con celo: una plaza de otra época, enmarcada por edificios Liberty y árboles centenarios.</p>
+          <p>Este apartamento fue pensado para viajeros que traen curiosidad y sentido estético. <strong>Tu hogar, por el tiempo que estés en Roma.</strong></p>
+          <p>Estamos aquí siempre que necesites algo. Que disfrutes cada momento.</p>
+        </div>
+        <div class="welcome-body fr">
+          <p>Il y a un moment, en arrivant à Rome, où la ville cesse d'être un décor et devient quelque chose d'intime. Nous croyons que ce moment commence ici — dans cet appartement.</p>
+          <p><strong>Domus Fiorelli</strong> n'est pas une adresse ordinaire. C'est l'un de ces endroits que Rome garde jalousement pour elle : une place d'une autre époque, encadrée de bâtiments Liberty et d'arbres centenaires.</p>
+          <p>Cet appartement a été pensé pour les voyageurs qui voyagent avec curiosité et sens esthétique. <strong>Votre maison, le temps de votre séjour à Rome.</strong></p>
+          <p>Nous sommes là chaque fois que vous avez besoin de quoi que ce soit. Profitez de chaque instant.</p>
+        </div>
       </div>
 
       <div class="card">
@@ -1338,16 +1641,24 @@
           <span class="card-title-icon">🌿</span>
           <span class="it">Il Quartiere</span>
           <span class="en">The Neighbourhood</span>
+          <span class="es">El Barrio</span>
+          <span class="fr">Le Quartier</span>
         </div>
         <div class="card-text it">
           <p><strong>Appio Latino</strong> è dove i romani abitano davvero: mercati rionali, bar senza turisti, palazzi degli anni Venti che raccontano l'altra Roma — borghese, elegante, profondamente umana.</p>
           <p>A nord, la Basilica di <strong>San Giovanni in Laterano</strong>, la cattedrale del mondo. A sud, le <strong>Terme di Caracalla</strong> e l'Aventino con il suo giardino segreto.</p>
-          <p>La piazza fu progettata nel 1911 dall'ingegner Petrucci: uno dei rarissimi spazi verdi di Roma concepiti come cuore di un quartiere residenziale.</p>
         </div>
         <div class="card-text en">
           <p><strong>Appio Latino</strong> is where Romans actually live: neighbourhood markets, bars with no tourist menus, 1920s buildings that tell a different Roman story — bourgeois, elegant, deeply human.</p>
           <p>To the north, the <strong>Basilica of San Giovanni in Laterano</strong>. To the south, the <strong>Baths of Caracalla</strong> and the Aventine Hill with its legendary secret garden.</p>
-          <p>The piazza was designed in 1911 by the engineer Petrucci — one of Rome's rarest green spaces, conceived as the heart of a residential neighbourhood.</p>
+        </div>
+        <div class="card-text es">
+          <p><strong>Appio Latino</strong> es donde viven de verdad los romanos: mercados de barrio, bares sin menú turístico, edificios de los años veinte que cuentan una Roma diferente — burguesa, elegante, profundamente humana.</p>
+          <p>Al norte, la Basílica de <strong>San Juan de Letrán</strong>. Al sur, las <strong>Termas de Caracalla</strong> y el Aventino con su legendario jardín secreto.</p>
+        </div>
+        <div class="card-text fr">
+          <p><strong>Appio Latino</strong> est le quartier où vivent vraiment les Romains : marchés de quartier, bars sans menu touristique, immeubles des années 1920 qui racontent une autre Rome — bourgeoise, élégante, profondément humaine.</p>
+          <p>Au nord, la Basilique de <strong>Saint-Jean-de-Latran</strong>. Au sud, les <strong>Thermes de Caracalla</strong> et l'Aventin avec son légendaire jardin secret.</p>
         </div>
       </div>
     </div>
@@ -1361,8 +1672,12 @@
       <div class="section-header">
         <p class="section-tag it">02 — La Nostra Filosofia</p>
         <p class="section-tag en">02 — Our Philosophy</p>
+        <p class="section-tag es">02 — Nuestra Filosofía</p>
+        <p class="section-tag fr">02 — Notre Philosophie</p>
         <h2 class="section-title it">Ospitalità all'italiana.</h2>
         <h2 class="section-title en">Hospitality, the Italian way.</h2>
+        <h2 class="section-title es">Hospitalidad a la italiana.</h2>
+        <h2 class="section-title fr">L'hospitalité à l'italienne.</h2>
         <div class="section-divider"></div>
       </div>
 
@@ -1462,10 +1777,14 @@
   <div class="page" id="page-3">
     <div class="section-page">
       <div class="section-header">
-        <p class="section-tag it">02 — Accesso & Wi-Fi</p>
-        <p class="section-tag en">02 — Access & Wi-Fi</p>
+        <p class="section-tag it">03 — Accesso & Wi-Fi</p>
+        <p class="section-tag en">03 — Access & Wi-Fi</p>
+        <p class="section-tag es">03 — Acceso & Wi-Fi</p>
+        <p class="section-tag fr">03 — Accès & Wi-Fi</p>
         <h2 class="section-title it">Entrare in casa.</h2>
         <h2 class="section-title en">Getting in.</h2>
+        <h2 class="section-title es">Cómo entrar.</h2>
+        <h2 class="section-title fr">Comment entrer.</h2>
         <div class="section-divider"></div>
       </div>
 
@@ -1748,8 +2067,12 @@
       <div class="section-header">
         <p class="section-tag it">05 — Emergenze & Numeri Utili</p>
         <p class="section-tag en">05 — Emergency Contacts</p>
+        <p class="section-tag es">05 — Contactos de Emergencia</p>
+        <p class="section-tag fr">05 — Contacts d'Urgence</p>
         <h2 class="section-title it">In caso di necessità.</h2>
         <h2 class="section-title en">In case of need.</h2>
+        <h2 class="section-title es">En caso de necesidad.</h2>
+        <h2 class="section-title fr">En cas de besoin.</h2>
         <div class="section-divider"></div>
       </div>
 
@@ -1858,14 +2181,20 @@
       <div class="section-header">
         <p class="section-tag it">06 — Come Muoversi</p>
         <p class="section-tag en">06 — Getting Around</p>
+        <p class="section-tag es">06 — Cómo Moverse</p>
+        <p class="section-tag fr">06 — Se Déplacer</p>
         <h2 class="section-title it">La tua posizione è un privilegio.</h2>
         <h2 class="section-title en">Your location is an advantage.</h2>
+        <h2 class="section-title es">Tu ubicación es una ventaja.</h2>
+        <h2 class="section-title fr">Votre emplacement est un privilège.</h2>
         <div class="section-divider"></div>
       </div>
 
       <div class="gold-box">
         <span class="it">🚶 <strong>Stazione Tuscolana</strong> a 270 metri — 2 minuti a piedi. Treni, metro e autobus a portata di mano.</span>
         <span class="en">🚶 <strong>Tuscolana Station</strong> is 270 metres away — a 2-minute walk. Trains, metro and buses right there.</span>
+        <span class="es">🚶 <strong>Estación Tuscolana</strong> a 270 metros — 2 minutos a pie. Trenes, metro y autobuses al alcance de la mano.</span>
+        <span class="fr">🚶 <strong>Gare Tuscolana</strong> à 270 mètres — 2 minutes à pied. Trains, métro et bus à portée de main.</span>
       </div>
 
       <div class="card">
@@ -1963,13 +2292,19 @@
       <div class="section-header">
         <p class="section-tag it">07 — Food Guide Locale</p>
         <p class="section-tag en">07 — Local Food Guide</p>
+        <p class="section-tag es">07 — Guía Gastronómica</p>
+        <p class="section-tag fr">07 — Guide Gastronomique</p>
         <h2 class="section-title it">Mangiare come un romano.</h2>
         <h2 class="section-title en">Eating like a Roman.</h2>
+        <h2 class="section-title es">Comer como un romano.</h2>
+        <h2 class="section-title fr">Manger comme un Romain.</h2>
         <div class="section-divider"></div>
       </div>
 
       <div class="highlight it">I migliori posti non si trovano su TripAdvisor in prima pagina. Si trovano seguendo i romani a pranzo. Li abbiamo trovati per te.</div>
       <div class="highlight en">The best places rarely top TripAdvisor. You find them by following where Romans go for lunch. We've done that for you.</div>
+      <div class="highlight es">Los mejores sitios rara vez aparecen en la primera página de TripAdvisor. Se encuentran siguiendo a los romanos al almuerzo. Lo hemos hecho por ti.</div>
+      <div class="highlight fr">Les meilleures adresses figurent rarement en tête de TripAdvisor. On les trouve en suivant les Romains au déjeuner. Nous l'avons fait pour vous.</div>
 
       <!-- ── 🌅 COLAZIONE ── -->
       <div class="food-cat-header">
@@ -2170,8 +2505,12 @@
       <div class="section-header">
         <p class="section-tag it">08 — Piccolo Galateo Italiano</p>
         <p class="section-tag en">08 — Cultural Tips</p>
+        <p class="section-tag es">08 — Consejos Culturales</p>
+        <p class="section-tag fr">08 — Conseils Culturels</p>
         <h2 class="section-title it">Piccole cose che fanno la differenza.</h2>
         <h2 class="section-title en">Small things that matter.</h2>
+        <h2 class="section-title es">Pequeñas cosas que marcan la diferencia.</h2>
+        <h2 class="section-title fr">Les petites choses qui font la différence.</h2>
         <div class="section-divider"></div>
       </div>
 
@@ -2233,8 +2572,12 @@
       <div class="section-header">
         <p class="section-tag it">09 — Esperienze Consigliate</p>
         <p class="section-tag en">09 — Recommended Experiences</p>
+        <p class="section-tag es">09 — Experiencias Recomendadas</p>
+        <p class="section-tag fr">09 — Expériences Recommandées</p>
         <h2 class="section-title it">La Roma che non ti aspetti.</h2>
         <h2 class="section-title en">The Rome you don't expect.</h2>
+        <h2 class="section-title es">La Roma que no esperas.</h2>
+        <h2 class="section-title fr">La Rome que vous n'attendez pas.</h2>
         <div class="section-divider"></div>
       </div>
 
@@ -2368,29 +2711,49 @@
       <div class="section-header">
         <p class="section-tag it">10 — Arrivederci</p>
         <p class="section-tag en">10 — Farewell</p>
+        <p class="section-tag es">10 — Hasta pronto</p>
+        <p class="section-tag fr">10 — Au revoir</p>
         <h2 class="section-title it">A presto.</h2>
         <h2 class="section-title en">Until next time.</h2>
+        <h2 class="section-title es">Hasta pronto.</h2>
+        <h2 class="section-title fr">À bientôt.</h2>
         <div class="section-divider"></div>
       </div>
 
       <div class="farewell-hero">
         <h2 class="it">Arrivederci.</h2>
         <h2 class="en">Goodbye.</h2>
+        <h2 class="es">Hasta pronto.</h2>
+        <h2 class="fr">Au revoir.</h2>
         <p class="it">È stato un onore averti ospitato. Speriamo che questi giorni a Roma ti abbiano dato qualcosa che non sapevi di cercare — e che averti accolto di persona abbia reso il tuo arrivo un po' più speciale.</p>
         <p class="en">It has been an honour to host you. We hope these days in Rome gave you something you didn't know you were looking for — and that welcoming you in person made your arrival a little more special.</p>
+        <p class="es">Ha sido un honor tenerte como huésped. Esperamos que estos días en Roma te hayan dado algo que no sabías que buscabas — y que haberte recibido en persona haya hecho tu llegada un poco más especial.</p>
+        <p class="fr">Ce fut un honneur de vous accueillir. Nous espérons que ces jours à Rome vous ont apporté quelque chose que vous ne saviez pas chercher — et que vous avoir accueilli en personne a rendu votre arrivée un peu plus spéciale.</p>
         <p class="farewell-quote it">"Roma non finisce mai."</p>
         <p class="farewell-quote en">"Rome never really ends."</p>
+        <p class="farewell-quote es">"Roma nunca termina del todo."</p>
+        <p class="farewell-quote fr">« Rome ne finit jamais vraiment. »</p>
       </div>
 
       <div class="card">
-        <div class="card-title"><span class="card-title-icon">⭐</span><span class="it">La tua opinione conta</span><span class="en">Your opinion matters</span></div>
+        <div class="card-title"><span class="card-title-icon">⭐</span><span class="it">La tua opinione conta</span><span class="en">Your opinion matters</span><span class="es">Tu opinión importa</span><span class="fr">Votre avis compte</span></div>
         <div class="card-text it" style="margin-bottom:6px">Se ti sei sentito accolto — dalla casa, dal quartiere, da noi — raccontalo. Una recensione autentica è il modo più bello per ringraziarci e aiutare altri viaggiatori a scegliere bene.</div>
         <div class="card-text en" style="margin-bottom:6px">If you felt genuinely welcomed — by the home, the neighbourhood, by us — please share it. An honest review is the most meaningful way to say thank you and help other travellers make the right choice.</div>
+        <div class="card-text es" style="margin-bottom:6px">Si te sentiste bienvenido — por el apartamento, el barrio, por nosotros — cuéntalo. Una reseña honesta es la forma más bonita de agradecernos y ayudar a otros viajeros a elegir bien.</div>
+        <div class="card-text fr" style="margin-bottom:6px">Si vous vous êtes senti vraiment bienvenu — par l'appartement, le quartier, par nous — partagez-le. Un avis sincère est la plus belle façon de nous remercier et d'aider d'autres voyageurs à bien choisir.</div>
         <div class="note-box it" style="margin-bottom:14px; font-style:italic">"Abbiamo adorato accoglierti di persona. Ci fa piacere sapere com'è stato per te."</div>
         <div class="note-box en" style="margin-bottom:14px; font-style:italic">"We loved welcoming you in person. We would love to hear how your stay felt to you."</div>
+        <div class="note-box es" style="margin-bottom:14px; font-style:italic">"Nos encantó darte la bienvenida en persona. Nos alegra saber cómo fue tu estancia."</div>
+        <div class="note-box fr" style="margin-bottom:14px; font-style:italic">« Nous avons adoré vous accueillir en personne. Nous serions ravis de savoir comment s'est passé votre séjour. »</div>
         <a class="review-btn" href="https://www.google.com/search?num=10&client=safari&hs=nJgp&hl=it-IT&sca_esv=6e9105e3f9215b89&cs=0&output=search&tbm=lcl&kgmid=/g/11yzb7pzj9&q=Domus+Fiorelli&shndl=30&source=sh/x/kp/local/m1/1&kgs=dd25e82205e6a696&utm_source=sh/x/kp/local/m1/1#" target="_blank" rel="noopener">
           <span class="it">⭐ Scrivi una recensione su Google</span>
           <span class="en">⭐ Leave a Google review</span>
+          <span class="es">⭐ Dejar una reseña en Google</span>
+          <span class="fr">⭐ Laisser un avis sur Google</span>
+          <span class="ru">⭐ Оставить отзыв в Google</span>
+          <span class="ar">⭐ اترك تقييماً على Google</span>
+          <span class="ja">⭐ Googleでレビューを書く</span>
+          <span class="de">⭐ Google-Bewertung schreiben</span>
         </a>
       </div>
 
@@ -2417,26 +2780,36 @@
     <span class="tab-icon">🏠</span>
     <span class="tab-label it">Home</span>
     <span class="tab-label en">Home</span>
+    <span class="tab-label es">Home</span>
+    <span class="tab-label fr">Home</span>
   </button>
   <button class="tab-btn" id="tab-stay" onclick="goToPage(1)">
     <span class="tab-icon">🛏</span>
     <span class="tab-label it">Soggiorno</span>
     <span class="tab-label en">Stay</span>
+    <span class="tab-label es">Estancia</span>
+    <span class="tab-label fr">Séjour</span>
   </button>
   <button class="tab-btn tab-quick" id="tab-quick" onclick="openQuick()">
     <span class="tab-icon">⚡</span>
     <span class="tab-label it">Quick Help</span>
     <span class="tab-label en">Quick Help</span>
+    <span class="tab-label es">Ayuda</span>
+    <span class="tab-label fr">Aide</span>
   </button>
   <button class="tab-btn" id="tab-food" onclick="goToPage(8)">
     <span class="tab-icon">🍝</span>
     <span class="tab-label it">Food</span>
     <span class="tab-label en">Food</span>
+    <span class="tab-label es">Food</span>
+    <span class="tab-label fr">Food</span>
   </button>
   <button class="tab-btn" id="tab-roma" onclick="goToPage(10)">
     <span class="tab-icon">🗺️</span>
     <span class="tab-label it">Roma</span>
     <span class="tab-label en">Rome</span>
+    <span class="tab-label es">Roma</span>
+    <span class="tab-label fr">Rome</span>
   </button>
 </div>
 
@@ -2444,6 +2817,23 @@
 <a id="whatsapp-btn" href="https://wa.me/393755991515" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#25D366"/><path d="M23.472 8.528A10.417 10.417 0 0016 5.583c-5.754 0-10.42 4.666-10.42 10.417 0 1.837.48 3.63 1.394 5.212L5.5 26.417l5.35-1.404a10.394 10.394 0 004.15.864h.004c5.75 0 10.416-4.666 10.416-10.417a10.388 10.388 0 00-1.948-6.932z" fill="#25D366"/><path d="M16 24.39a8.63 8.63 0 01-4.4-1.204l-.316-.188-3.174.833.848-3.094-.207-.318A8.607 8.607 0 017.37 16c0-4.762 3.872-8.633 8.634-8.633 2.305 0 4.473.898 6.103 2.53A8.577 8.577 0 0124.633 16c0 4.762-3.872 8.633-8.633 8.633v-.243zm5.014-6.46c-.275-.137-1.626-.801-1.878-.893-.252-.09-.435-.136-.618.138-.183.274-.707.893-.867 1.076-.16.183-.32.206-.594.069-.275-.138-1.161-.428-2.211-1.364-.817-.728-1.369-1.626-1.529-1.9-.16-.275-.017-.423.12-.56.124-.123.275-.32.413-.48.137-.16.183-.275.274-.458.092-.183.046-.343-.023-.48-.069-.138-.618-1.49-.847-2.04-.224-.536-.45-.463-.618-.472l-.527-.009a1.01 1.01 0 00-.733.344c-.252.274-.963.94-.963 2.293s.986 2.659 1.123 2.842c.137.183 1.94 2.96 4.7 4.153.657.283 1.169.452 1.569.579.659.21 1.26.18 1.733.11.529-.08 1.626-.665 1.855-1.307.23-.641.23-1.19.16-1.307-.068-.115-.251-.183-.526-.32z" fill="white"/></svg>
 </a>
+
+<!-- LANGUAGE PICKER -->
+<div id="lang-picker-overlay" onclick="closeLangPicker(event)">
+  <div id="lang-picker">
+    <div class="lang-picker-sub">Full guide</div>
+    <button class="lang-opt active" data-lang="it" onclick="setLang('it')"><span class="lang-flag">🇮🇹</span> Italiano</button>
+    <button class="lang-opt" data-lang="en" onclick="setLang('en')"><span class="lang-flag">🇬🇧</span> English</button>
+    <button class="lang-opt" data-lang="es" onclick="setLang('es')"><span class="lang-flag">🇪🇸</span> Español</button>
+    <button class="lang-opt" data-lang="fr" onclick="setLang('fr')"><span class="lang-flag">🇫🇷</span> Français</button>
+    <div class="lang-picker-divider"></div>
+    <div class="lang-picker-sub">Quick Help only</div>
+    <button class="lang-opt" data-lang="ru" onclick="setLang('ru')"><span class="lang-flag">🇷🇺</span> Русский</button>
+    <button class="lang-opt" data-lang="ar" onclick="setLang('ar')"><span class="lang-flag">🇸🇦</span> العربية</button>
+    <button class="lang-opt" data-lang="ja" onclick="setLang('ja')"><span class="lang-flag">🇯🇵</span> 日本語</button>
+    <button class="lang-opt" data-lang="de" onclick="setLang('de')"><span class="lang-flag">🇩🇪</span> Deutsch</button>
+  </div>
+</div>
 
 <!-- QUICK HELP OVERLAY -->
 <div id="quick-overlay" onclick="closeQuickOnBg(event)">
@@ -2458,40 +2848,77 @@
 
       <div class="quick-card full dark">
         <span class="quick-card-icon">📶</span>
-        <div class="quick-card-label">Wi-Fi Network</div>
+        <div class="quick-card-label">Wi-Fi</div>
         <div class="quick-card-value">[NOME_RETE]</div>
         <div class="quick-card-sub">Password: <strong style="color:var(--gold)">[PASSWORD]</strong></div>
       </div>
 
       <a class="quick-card terra" href="https://wa.me/393755991515" target="_blank" rel="noopener">
         <span class="quick-card-icon">💬</span>
-        <div class="quick-card-label it">Alessandro — WhatsApp</div>
-        <div class="quick-card-label en">Alessandro — WhatsApp</div>
+        <div class="quick-card-label it">Alessandro · WhatsApp</div>
+        <div class="quick-card-label en">Alessandro · WhatsApp</div>
+        <div class="quick-card-label es">Alessandro · WhatsApp</div>
+        <div class="quick-card-label fr">Alessandro · WhatsApp</div>
+        <div class="quick-card-label ru">Алессандро · WhatsApp</div>
+        <div class="quick-card-label ar">أليساندرو · واتساب</div>
+        <div class="quick-card-label ja">アレッサンドロ · WhatsApp</div>
+        <div class="quick-card-label de">Alessandro · WhatsApp</div>
         <div class="quick-card-value">+39 375 599 1515</div>
-        <div class="quick-card-sub it">Sempre disponibile</div>
-        <div class="quick-card-sub en">Always available</div>
+        <div class="quick-card-sub it">Sempre disponibile ↗</div>
+        <div class="quick-card-sub en">Always available ↗</div>
+        <div class="quick-card-sub es">Siempre disponible ↗</div>
+        <div class="quick-card-sub fr">Toujours disponible ↗</div>
+        <div class="quick-card-sub ru">Всегда доступен ↗</div>
+        <div class="quick-card-sub ar">متاح دائماً ↗</div>
+        <div class="quick-card-sub ja">いつでも対応可能 ↗</div>
+        <div class="quick-card-sub de">Immer erreichbar ↗</div>
       </a>
 
       <a class="quick-card terra" href="tel:112">
         <span class="quick-card-icon">🚨</span>
         <div class="quick-card-label it">Emergenza</div>
         <div class="quick-card-label en">Emergency</div>
+        <div class="quick-card-label es">Emergencia</div>
+        <div class="quick-card-label fr">Urgence</div>
+        <div class="quick-card-label ru">Экстренная помощь</div>
+        <div class="quick-card-label ar">طوارئ</div>
+        <div class="quick-card-label ja">緊急</div>
+        <div class="quick-card-label de">Notruf</div>
         <div class="quick-card-value">112</div>
         <div class="quick-card-sub it">Numero Unico Europeo</div>
         <div class="quick-card-sub en">European emergency</div>
+        <div class="quick-card-sub es">Número europeo único</div>
+        <div class="quick-card-sub fr">Numéro unique européen</div>
+        <div class="quick-card-sub ru">Единый номер Европы</div>
+        <div class="quick-card-sub ar">الرقم الأوروبي الموحد</div>
+        <div class="quick-card-sub ja">欧州共通緊急番号</div>
+        <div class="quick-card-sub de">Europäische Notrufnummer</div>
       </a>
 
       <div class="quick-card">
         <span class="quick-card-icon">🔑</span>
-        <div class="quick-card-label">Check-in</div>
+        <div class="quick-card-label it">Check-in / out</div>
+        <div class="quick-card-label en">Check-in / out</div>
+        <div class="quick-card-label es">Check-in / out</div>
+        <div class="quick-card-label fr">Arrivée / départ</div>
+        <div class="quick-card-label ru">Заезд / выезд</div>
+        <div class="quick-card-label ar">وصول / مغادرة</div>
+        <div class="quick-card-label ja">チェックイン / アウト</div>
+        <div class="quick-card-label de">An- / Abreise</div>
         <div class="quick-card-value">[ORA]</div>
-        <div class="quick-card-sub">Check-out: [ORA]</div>
+        <div class="quick-card-sub">Out: [ORA]</div>
       </div>
 
       <div class="quick-card">
         <span class="quick-card-icon">🚇</span>
         <div class="quick-card-label it">Metro più vicina</div>
         <div class="quick-card-label en">Nearest metro</div>
+        <div class="quick-card-label es">Metro más cercano</div>
+        <div class="quick-card-label fr">Métro le plus proche</div>
+        <div class="quick-card-label ru">Ближайшее метро</div>
+        <div class="quick-card-label ar">أقرب مترو</div>
+        <div class="quick-card-label ja">最寄りの地下鉄</div>
+        <div class="quick-card-label de">Nächste U-Bahn</div>
         <div class="quick-card-value">Ponte Lungo</div>
         <div class="quick-card-sub">Linea A · 15 min</div>
       </div>
@@ -2500,22 +2927,47 @@
         <span class="quick-card-icon">🚉</span>
         <div class="quick-card-label it">Stazione treni</div>
         <div class="quick-card-label en">Train station</div>
+        <div class="quick-card-label es">Estación de tren</div>
+        <div class="quick-card-label fr">Gare ferroviaire</div>
+        <div class="quick-card-label ru">Ж/д станция</div>
+        <div class="quick-card-label ar">محطة القطار</div>
+        <div class="quick-card-label ja">最寄り駅</div>
+        <div class="quick-card-label de">Bahnhof</div>
         <div class="quick-card-value">Tuscolana</div>
         <div class="quick-card-sub it">270m · 2 min a piedi</div>
         <div class="quick-card-sub en">270m · 2 min walk</div>
+        <div class="quick-card-sub es">270m · 2 min a pie</div>
+        <div class="quick-card-sub fr">270m · 2 min à pied</div>
+        <div class="quick-card-sub ru">270м · 2 мин пешком</div>
+        <div class="quick-card-sub ar">270م · دقيقتان سيراً</div>
+        <div class="quick-card-sub ja">270m · 徒歩2分</div>
+        <div class="quick-card-sub de">270m · 2 Min. zu Fuß</div>
       </div>
 
       <a class="quick-card" href="https://www.google.com/maps/dir/?api=1&destination=Aeroporto+di+Fiumicino,+Roma&travelmode=transit" target="_blank" rel="noopener">
         <span class="quick-card-icon">✈️</span>
-        <div class="quick-card-label">Airport · Fiumicino</div>
+        <div class="quick-card-label it">Aeroporto · Fiumicino</div>
+        <div class="quick-card-label en">Airport · Fiumicino</div>
+        <div class="quick-card-label es">Aeropuerto · Fiumicino</div>
+        <div class="quick-card-label fr">Aéroport · Fiumicino</div>
+        <div class="quick-card-label ru">Аэропорт · Фьюмичино</div>
+        <div class="quick-card-label ar">مطار فيوميتشينو</div>
+        <div class="quick-card-label ja">空港 · フィウミチーノ</div>
+        <div class="quick-card-label de">Flughafen · Fiumicino</div>
         <div class="quick-card-value">41 min</div>
-        <div class="quick-card-sub">FL1 da Tuscolana · ~€8 ↗</div>
+        <div class="quick-card-sub">FL1 · ~€8 ↗</div>
       </a>
 
       <a class="quick-card" href="https://www.google.com/maps/search/?api=1&query=Farmacia+Villa+Fiorelli+Via+Enna+Roma" target="_blank" rel="noopener">
         <span class="quick-card-icon">💊</span>
         <div class="quick-card-label it">Farmacia vicina</div>
         <div class="quick-card-label en">Nearest pharmacy</div>
+        <div class="quick-card-label es">Farmacia cercana</div>
+        <div class="quick-card-label fr">Pharmacie proche</div>
+        <div class="quick-card-label ru">Ближайшая аптека</div>
+        <div class="quick-card-label ar">أقرب صيدلية</div>
+        <div class="quick-card-label ja">最寄り薬局</div>
+        <div class="quick-card-label de">Nächste Apotheke</div>
         <div class="quick-card-value" style="font-size:13px">Villa Fiorelli</div>
         <div class="quick-card-sub">Via Enna 17/B ↗</div>
       </a>
@@ -2524,12 +2976,70 @@
         <span class="quick-card-icon">🛒</span>
         <div class="quick-card-label it">Supermercato</div>
         <div class="quick-card-label en">Supermarket</div>
+        <div class="quick-card-label es">Supermercado</div>
+        <div class="quick-card-label fr">Supermarché</div>
+        <div class="quick-card-label ru">Супермаркет</div>
+        <div class="quick-card-label ar">سوبرماركت</div>
+        <div class="quick-card-label ja">スーパー</div>
+        <div class="quick-card-label de">Supermarkt</div>
         <div class="quick-card-value" style="font-size:13px">Elite</div>
         <div class="quick-card-sub it">Via Appia · anche dom. ↗</div>
         <div class="quick-card-sub en">Via Appia · open Sun ↗</div>
+        <div class="quick-card-sub es">Via Appia · abre dom. ↗</div>
+        <div class="quick-card-sub fr">Via Appia · ouvert dim. ↗</div>
+        <div class="quick-card-sub ru">Via Appia · откр. вс ↗</div>
+        <div class="quick-card-sub ar">Via Appia · مفتوح الأحد ↗</div>
+        <div class="quick-card-sub ja">Via Appia · 日曜営業 ↗</div>
+        <div class="quick-card-sub de">Via Appia · So. geöffnet ↗</div>
       </a>
 
     </div>
+
+    <!-- Julia AI Concierge -->
+    <div style="padding: 0 14px 32px;">
+      <div class="julia-card">
+        <div class="julia-card-eyebrow">Roma AI Concierge</div>
+        <div class="julia-card-title">Julia</div>
+        <div class="julia-card-sub it">L'assistente AI ufficiale del Comune di Roma. Per esplorare la città in tempo reale — consigli, itinerari, trasporti, eventi.</div>
+        <div class="julia-card-sub en">Rome's official AI assistant. Explore the city in real time — recommendations, itineraries, transport, events.</div>
+        <div class="julia-card-sub es">El asistente IA oficial de Roma. Explora la ciudad en tiempo real — recomendaciones, itinerarios, transporte, eventos.</div>
+        <div class="julia-card-sub fr">L'assistant IA officiel de Rome. Explorez la ville en temps réel — recommandations, itinéraires, transports, événements.</div>
+        <div class="julia-uses">
+          <span class="julia-use-chip it">🍽 Ristoranti vicini</span>
+          <span class="julia-use-chip en">🍽 Restaurants nearby</span>
+          <span class="julia-use-chip es">🍽 Restaurantes cercanos</span>
+          <span class="julia-use-chip fr">🍽 Restaurants proches</span>
+          <span class="julia-use-chip it">🚇 Trasporti</span>
+          <span class="julia-use-chip en">🚇 Transport</span>
+          <span class="julia-use-chip es">🚇 Transporte</span>
+          <span class="julia-use-chip fr">🚇 Transports</span>
+          <span class="julia-use-chip it">🎭 Eventi</span>
+          <span class="julia-use-chip en">🎭 Events</span>
+          <span class="julia-use-chip es">🎭 Eventos</span>
+          <span class="julia-use-chip fr">🎭 Événements</span>
+          <span class="julia-use-chip it">👨‍👩‍👧 Famiglie</span>
+          <span class="julia-use-chip en">👨‍👩‍👧 Families</span>
+          <span class="julia-use-chip es">👨‍👩‍👧 Familias</span>
+          <span class="julia-use-chip fr">👨‍👩‍👧 Familles</span>
+          <span class="julia-use-chip it">🗺 Itinerari</span>
+          <span class="julia-use-chip en">🗺 Itineraries</span>
+          <span class="julia-use-chip es">🗺 Itinerarios</span>
+          <span class="julia-use-chip fr">🗺 Itinéraires</span>
+        </div>
+        <a class="julia-btn" href="https://julia.comune.roma.it" target="_blank" rel="noopener">
+          <span>✨</span>
+          <span class="it">Parla con Julia</span>
+          <span class="en">Chat with Julia</span>
+          <span class="es">Hablar con Julia</span>
+          <span class="fr">Parler à Julia</span>
+          <span class="ru">Говорить с Джулией</span>
+          <span class="ar">تحدث مع جوليا</span>
+          <span class="ja">Juliaと話す</span>
+          <span class="de">Mit Julia sprechen</span>
+        </a>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -2537,6 +3047,8 @@
   const TOTAL = 12;
   const NAMES_IT = ['Home','Benvenuto','Filosofia','Accesso','Casa','Regole','Emergenze','Mobilità','Food','Galateo','Esperienze','Arrivederci'];
   const NAMES_EN = ['Home','Welcome','Philosophy','Access','Home','Rules','Emergency','Transport','Food','Tips','Experiences','Farewell'];
+  const NAMES_ES = ['Home','Bienvenida','Filosofía','Acceso','Casa','Normas','Emergencias','Moverse','Food','Etiqueta','Experiencias','Hasta pronto'];
+  const NAMES_FR = ['Home','Bienvenue','Philosophie','Accès','Logement','Règles','Urgences','Transport','Food','Étiquette','Expériences','Au revoir'];
 
   // Tab ranges: which pages belong to which tab
   const TAB_HOME  = [0];
@@ -2545,7 +3057,7 @@
   const TAB_ROMA  = [10,11];
 
   let cur = 0;
-  let lang = 'it';
+  let lang = 'it'; // will be overridden by setLang(detectLang()) on init
   let touchX = 0;
   let touchY = 0;
 
@@ -2564,7 +3076,7 @@
   function nextPage() { goToPage(cur + 1); }
 
   function updateUI() {
-    const names = lang === 'it' ? NAMES_IT : NAMES_EN;
+    const names = lang==='it' ? NAMES_IT : lang==='es' ? NAMES_ES : lang==='fr' ? NAMES_FR : NAMES_EN;
     document.getElementById('header-title').textContent = names[cur] === 'Home' ? 'Domus Fiorelli' : names[cur];
 
     // Update tab active states
@@ -2604,26 +3116,48 @@
     if (e.target === document.getElementById('quick-overlay')) closeQuick();
   }
 
-  function toggleLang() {
-    lang = lang === 'it' ? 'en' : 'it';
-    document.body.classList.toggle('lang-en', lang === 'en');
-    document.getElementById('lang-toggle').textContent = lang.toUpperCase();
+  const LANGS_FULL  = ['it','en','es','fr'];
+  const LANGS_CODES = { it:'IT', en:'EN', es:'ES', fr:'FR', ru:'RU', ar:'AR', ja:'JP', de:'DE' };
 
-    const coverQuotes = document.querySelectorAll('.cover-quote');
-    coverQuotes.forEach(el => {
-      el.style.display = el.classList.contains(lang) ? '' : 'none';
-    });
-    const coverBtnSpans = document.querySelectorAll('.cover-btn .it, .cover-btn .en');
-    coverBtnSpans.forEach(el => {
-      el.style.display = el.classList.contains(lang) ? 'inline' : 'none';
-    });
-    const coverValueSpans = document.querySelectorAll('.cover-value-prop-text');
-    coverValueSpans.forEach(el => {
-      el.style.display = el.classList.contains(lang) ? 'inline' : 'none';
+  function setLang(l) {
+    // Remove all lang classes
+    document.body.classList.remove('lang-it','lang-en','lang-es','lang-fr','lang-ru','lang-ar','lang-ja','lang-de');
+    document.body.classList.add('lang-' + l);
+    lang = l;
+    document.getElementById('lang-code').textContent = LANGS_CODES[l];
+
+    // Cover page inline-style overrides (legacy compatibility)
+    const allCover = document.querySelectorAll('.cover-quote, .cover-value-prop-text, .cover-btn .it, .cover-btn .en, .cover-btn .es, .cover-btn .fr, .cover-btn .ru, .cover-btn .ar, .cover-btn .ja, .cover-btn .de');
+    allCover.forEach(el => { el.style.display = ''; });
+
+    // Highlight active lang in picker
+    document.querySelectorAll('.lang-opt').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === l);
     });
 
+    closeLangPicker();
     updateUI();
   }
+
+  // Language picker open/close
+  function openLangPicker() {
+    document.getElementById('lang-picker-overlay').classList.add('open');
+  }
+  function closeLangPicker(e) {
+    if (!e || e.target === document.getElementById('lang-picker-overlay')) {
+      document.getElementById('lang-picker-overlay').classList.remove('open');
+    }
+  }
+
+  // Browser language detection
+  function detectLang() {
+    const bl = (navigator.language || navigator.userLanguage || 'it').toLowerCase().split('-')[0];
+    const map = { it:'it', en:'en', es:'es', fr:'fr', ru:'ru', ar:'ar', ja:'ja', de:'de' };
+    return map[bl] || 'en';
+  }
+
+  // Keep backward-compat alias
+  function toggleLang() { openLangPicker(); }
 
   function copyWifi() {
     const pass = document.getElementById('wifi-pass').textContent;
@@ -2669,10 +3203,20 @@
   document.addEventListener('keydown', e => {
     if (e.key === 'ArrowRight') nextPage();
     if (e.key === 'ArrowLeft') prevPage();
-    if (e.key === 'Escape') closeQuick();
+    if (e.key === 'Escape') { closeQuick(); closeLangPicker(); }
   });
 
+  // Hash routing: #farewell → go to page 11 (Arrivederci)
+  function handleHash() {
+    if (window.location.hash === '#farewell') {
+      goToPage(11);
+    }
+  }
+  window.addEventListener('hashchange', handleHash);
+
   // Init
+  handleHash();
+  setLang(detectLang());
   updateUI();
 </script>
 </body>
