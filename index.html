@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="theme-color" content="#C4622D">
@@ -31,9 +33,11 @@
     html, body {
       height: 100%;
       overflow: hidden;
+      overflow-x: hidden;
       font-family: 'Lato', sans-serif;
       background: var(--beige);
       color: var(--anthracite);
+      max-width: 100vw;
     }
 
     /* ─── HEADER ─────────────────────────────────────── */
@@ -415,8 +419,10 @@
     /* ─── TABLES ─────────────────────────────────────── */
     .data-table {
       width: 100%;
+      max-width: 100%;
       border-collapse: collapse;
       font-size: 13px;
+      table-layout: fixed;
     }
     .data-table th {
       background: var(--terracotta);
@@ -1393,6 +1399,257 @@
       flex-shrink: 0;
       line-height: 1.4;
     }
+
+    /* ─── PIN GATE MODAL ────────────────────────────── */
+    #pin-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,8,6,0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 600;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    #pin-overlay.open { opacity: 1; pointer-events: all; }
+
+    /* ── Luxury Vault Panel ── */
+    #pin-panel {
+      background: #1C1814;
+      border-radius: 28px 28px 0 0;
+      padding: 10px 24px 44px;
+      width: 100%;
+      max-width: 480px;
+      transform: translateY(100%);
+      transition: transform 0.36s cubic-bezier(0.34,1.2,0.64,1);
+      box-shadow: 0 -4px 40px rgba(0,0,0,0.6);
+    }
+    #pin-overlay.open #pin-panel { transform: translateY(0); }
+
+    .pin-handle {
+      width: 36px; height: 4px;
+      background: rgba(184,150,62,0.35);
+      border-radius: 2px;
+      margin: 10px auto 22px;
+    }
+    .pin-icon { font-size: 36px; text-align: center; margin-bottom: 8px; filter: drop-shadow(0 0 8px rgba(184,150,62,0.4)); }
+    .pin-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .pin-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-style: italic;
+      color: #F5ECD7;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .pin-subtitle {
+      font-size: 13px;
+      color: rgba(245,236,215,0.5);
+      text-align: center;
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+    .pin-input-wrap {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .pin-digit {
+      width: 52px; height: 58px;
+      border: 1.5px solid rgba(184,150,62,0.25);
+      border-radius: 12px;
+      font-size: 22px;
+      font-weight: 700;
+      font-family: 'Lato', sans-serif;
+      color: #F5ECD7;
+      text-align: center;
+      background: rgba(245,236,215,0.06);
+      transition: border-color 0.2s, background 0.2s;
+      outline: none;
+      caret-color: var(--gold);
+    }
+    .pin-digit:focus { border-color: var(--gold); background: rgba(184,150,62,0.1); }
+    .pin-digit.error { border-color: #ef5350; animation: pinShake 0.35s ease; background: rgba(239,83,80,0.1); }
+    @keyframes pinShake {
+      0%,100% { transform: translateX(0); }
+      20% { transform: translateX(-7px); }
+      60% { transform: translateX(7px); }
+    }
+    .pin-error {
+      font-size: 12px;
+      color: #ef5350;
+      text-align: center;
+      margin-bottom: 12px;
+      min-height: 18px;
+    }
+    .pin-submit {
+      width: 100%;
+      background: linear-gradient(135deg, #C9A84C 0%, var(--gold) 100%);
+      color: #1C1814;
+      border: none;
+      border-radius: 50px;
+      padding: 16px;
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.15s, opacity 0.15s;
+      box-shadow: 0 4px 20px rgba(184,150,62,0.3);
+    }
+    .pin-submit:active { transform: scale(0.97); opacity: 0.88; }
+    .pin-privacy-note {
+      font-size: 11px;
+      color: rgba(245,236,215,0.3);
+      text-align: center;
+      margin-top: 16px;
+      line-height: 1.6;
+    }
+
+    /* ─── COOKIE CONSENT BANNER ──────────────────────── */
+    #cookie-banner {
+      position: fixed;
+      bottom: calc(var(--bottom-height) + 10px);
+      left: 12px; right: 12px;
+      background: var(--anthracite);
+      border-radius: 18px;
+      padding: 16px 18px;
+      z-index: 450;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      transform: translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    #cookie-banner.show { opacity: 1; transform: translateY(0); pointer-events: all; }
+    .cookie-text {
+      font-size: 12px;
+      color: rgba(253,250,244,0.8);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .cookie-text a { color: var(--gold); text-decoration: underline; }
+    .cookie-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .cookie-btn {
+      flex: 1;
+      padding: 10px 8px;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .cookie-btn:active { opacity: 0.8; }
+    .cookie-btn-accept { background: var(--gold); color: #1a1a1a; }
+    .cookie-btn-reject { background: rgba(255,255,255,0.12); color: var(--white); }
+
+    /* ─── FOOTER ─────────────────────────────────────── */
+    .page-footer {
+      margin-top: 36px;
+      padding: 22px 0 10px;
+      border-top: 1px solid var(--light-gray);
+    }
+    .footer-assistants {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .footer-assistant-card {
+      flex: 1;
+      background: var(--beige-mid);
+      border-radius: 14px;
+      padding: 13px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .footer-assistant-card:active { opacity: 0.75; }
+    .footer-assistant-icon { font-size: 18px; margin-bottom: 2px; }
+    .footer-assistant-badge {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 4px;
+      width: fit-content;
+    }
+    .footer-assistant-badge.concierge { background: var(--terracotta-light); color: var(--terracotta); }
+    .footer-assistant-badge.julia { background: var(--gold-light); color: var(--gold); }
+    .footer-assistant-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--anthracite);
+      line-height: 1.3;
+    }
+    .footer-assistant-desc {
+      font-size: 10px;
+      color: var(--gray);
+      line-height: 1.45;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    .footer-link {
+      font-size: 11px;
+      color: var(--gray);
+      text-decoration: underline;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: 'Lato', sans-serif;
+      padding: 2px 0;
+    }
+    .footer-copy {
+      font-size: 10px;
+      color: var(--light-gray);
+      text-align: center;
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── PRIVACY PAGE ───────────────────────────────── */
+    .privacy-section { margin-bottom: 18px; }
+    .privacy-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--terracotta);
+      margin-bottom: 8px;
+    }
+    .privacy-section p, .privacy-section li {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.75;
+    }
+    .privacy-section ul { padding-left: 18px; margin-top: 6px; }
+    .privacy-section li { margin-bottom: 4px; }
 
     /* ─── SAFE AREA (NOTCH) ──────────────────────────── */
     @supports (padding-bottom: env(safe-area-inset-bottom)) {
@@ -2772,6 +3029,109 @@
     </div>
   </div>
 
+  <!-- ══════════════════════════════════════════════════
+       12 · PRIVACY & LEGAL
+  ══════════════════════════════════════════════════ -->
+  <div class="page" id="page-12">
+    <div class="section-page">
+      <div class="section-header">
+        <p class="section-tag it">Legal</p>
+        <p class="section-tag en">Legal</p>
+        <p class="section-tag es">Legal</p>
+        <p class="section-tag fr">Mentions légales</p>
+        <h2 class="section-title it">Privacy & Termini</h2>
+        <h2 class="section-title en">Privacy & Terms</h2>
+        <h2 class="section-title es">Privacidad & Condiciones</h2>
+        <h2 class="section-title fr">Confidentialité & Conditions</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <!-- PRIVACY POLICY -->
+      <div class="privacy-section">
+        <h3 class="it">Privacy Policy</h3>
+        <h3 class="en">Privacy Policy</h3>
+        <h3 class="es">Política de Privacidad</h3>
+        <h3 class="fr">Politique de Confidentialité</h3>
+        <p class="it">Questa applicazione è una guida privata per gli ospiti di Domus Fiorelli (Piazza di Villa Fiorelli 12, Roma). Il titolare del trattamento è Alessandro Maracchia. L'app <strong>non raccoglie, non trasmette né conserva dati personali</strong> degli utenti. Non sono presenti sistemi di analisi, pixel di tracciamento o cookie di profilazione.</p>
+        <p class="en">This app is a private guest guide for Domus Fiorelli (Piazza di Villa Fiorelli 12, Rome). The data controller is Alessandro Maracchia. This app <strong>does not collect, transmit, or store any personal data</strong>. No analytics, tracking pixels, or profiling cookies are present.</p>
+        <p class="es">Esta app es una guía privada para los huéspedes de Domus Fiorelli. No recopila, transmite ni almacena datos personales. Sin analíticas ni cookies de perfilado.</p>
+        <p class="fr">Cette app est un guide privé pour les hôtes de Domus Fiorelli. Elle ne collecte, ne transmet ni ne conserve aucune donnée personnelle. Aucun outil d'analyse ni cookie de profilage.</p>
+        <ul style="margin-top:10px">
+          <li class="it"><strong>Google Fonts:</strong> caricato da Google per la tipografia. Può comportare il trasferimento dell'indirizzo IP a server Google (UE/USA).</li>
+          <li class="en"><strong>Google Fonts:</strong> loaded from Google for typography. May involve IP transfer to Google servers (EU/USA).</li>
+          <li class="es"><strong>Google Fonts:</strong> cargado desde Google para tipografía. Puede implicar transferencia de IP a Google.</li>
+          <li class="fr"><strong>Google Fonts:</strong> chargé depuis Google pour la typographie. Peut impliquer un transfert d'IP vers Google.</li>
+          <li class="it"><strong>Julia AI (Comune di Roma):</strong> assistente ufficiale del Comune di Roma integrato via iframe. Soggetto alla <em>privacy policy</em> del Comune di Roma.</li>
+          <li class="en"><strong>Julia AI (City of Rome):</strong> official Rome municipality assistant via iframe. Subject to the City of Rome's privacy policy.</li>
+          <li class="es"><strong>Julia AI (Comune di Roma):</strong> asistente oficial del Ayuntamiento de Roma. Sujeto a su política de privacidad.</li>
+          <li class="fr"><strong>Julia AI (Commune de Rome):</strong> assistant officiel de la Commune de Rome via iframe. Soumis à leur politique de confidentialité.</li>
+          <li class="it"><strong>Codice PIN (sessionStorage):</strong> verificato esclusivamente in locale. Si cancella automaticamente alla chiusura del browser.</li>
+          <li class="en"><strong>PIN code (sessionStorage):</strong> verified locally only. Cleared automatically when the browser is closed.</li>
+          <li class="es"><strong>Código PIN (sessionStorage):</strong> verificado solo localmente. Se borra al cerrar el navegador.</li>
+          <li class="fr"><strong>Code PIN (sessionStorage):</strong> vérifié uniquement en local. Effacé automatiquement à la fermeture du navigateur.</li>
+        </ul>
+        <p class="it" style="margin-top:10px">Per esercitare i diritti previsti dal GDPR (accesso, rettifica, cancellazione) scrivi a: <strong>info@domusfiorelli.it</strong></p>
+        <p class="en" style="margin-top:10px">To exercise GDPR rights (access, rectification, erasure) write to: <strong>info@domusfiorelli.it</strong></p>
+      </div>
+
+      <!-- COOKIE POLICY -->
+      <div class="privacy-section">
+        <h3 class="it">Cookie Policy</h3>
+        <h3 class="en">Cookie Policy</h3>
+        <h3 class="es">Política de Cookies</h3>
+        <h3 class="fr">Politique des Cookies</h3>
+        <p class="it">Questa app usa esclusivamente memoria tecnica essenziale, senza cookie di profilazione o marketing:</p>
+        <p class="en">This app uses only essential technical storage, with no profiling or marketing cookies:</p>
+        <p class="es">Esta app usa solo almacenamiento técnico esencial, sin cookies de perfilado o marketing:</p>
+        <p class="fr">Cette app utilise uniquement du stockage technique essentiel, sans cookies de profilage ou marketing :</p>
+        <ul style="margin-top:8px">
+          <li class="it"><strong>sessionStorage · df_auth</strong> — autenticazione PIN per la sessione. Durata: fino alla chiusura del browser. Non contiene dati personali.</li>
+          <li class="en"><strong>sessionStorage · df_auth</strong> — PIN authentication for the current session. Duration: until browser is closed. No personal data.</li>
+          <li class="es"><strong>sessionStorage · df_auth</strong> — autenticación PIN para la sesión. Duración: hasta cerrar el navegador. Sin datos personales.</li>
+          <li class="fr"><strong>sessionStorage · df_auth</strong> — authentification PIN pour la session. Durée : jusqu'à la fermeture du navigateur. Aucune donnée personnelle.</li>
+          <li class="it"><strong>localStorage · df_cookie_choice</strong> — preferenza cookie (essenziali / accetta). Non contiene dati personali.</li>
+          <li class="en"><strong>localStorage · df_cookie_choice</strong> — cookie preference (essential / accept). Contains no personal data.</li>
+          <li class="es"><strong>localStorage · df_cookie_choice</strong> — preferencia de cookies. Sin datos personales.</li>
+          <li class="fr"><strong>localStorage · df_cookie_choice</strong> — préférence cookies. Aucune donnée personnelle.</li>
+        </ul>
+      </div>
+
+      <!-- TERMS OF STAY -->
+      <div class="privacy-section">
+        <h3 class="it">Termini di Soggiorno</h3>
+        <h3 class="en">Terms of Stay</h3>
+        <h3 class="es">Condiciones de Estancia</h3>
+        <h3 class="fr">Conditions de Séjour</h3>
+        <ul>
+          <li class="it">Check-in: dalle 15:00 · Check-out: entro le 11:00</li>
+          <li class="en">Check-in: from 15:00 · Check-out: by 11:00</li>
+          <li class="es">Check-in: desde las 15:00 · Check-out: antes de las 11:00</li>
+          <li class="fr">Arrivée : à partir de 15h · Départ : avant 11h</li>
+          <li class="it">Vietato fumare all'interno della struttura.</li>
+          <li class="en">Smoking is not permitted inside the property.</li>
+          <li class="es">Prohibido fumar dentro de la propiedad.</li>
+          <li class="fr">Interdiction de fumer à l'intérieur de la propriété.</li>
+          <li class="it">Animali domestici: da concordare preventivamente con l'host.</li>
+          <li class="en">Pets: to be agreed upon in advance with the host.</li>
+          <li class="es">Mascotas: a acordar previamente con el anfitrión.</li>
+          <li class="fr">Animaux domestiques : à convenir à l'avance avec l'hôte.</li>
+          <li class="it">Rispettare il silenzio notturno dalle 22:00 alle 08:00.</li>
+          <li class="en">Please observe quiet hours from 22:00 to 08:00.</li>
+          <li class="es">Respetar el silencio de 22:00 a 08:00.</li>
+          <li class="fr">Merci de respecter le silence de 22h à 8h.</li>
+          <li class="it">Per qualsiasi necessità durante il soggiorno contattare Alessandro su WhatsApp: +39 349 351 1395.</li>
+          <li class="en">For any need during your stay contact Alessandro on WhatsApp: +39 349 351 1395.</li>
+          <li class="es">Para cualquier necesidad durante la estancia contactar a Alessandro por WhatsApp: +39 349 351 1395.</li>
+          <li class="fr">Pour tout besoin pendant votre séjour, contacter Alessandro sur WhatsApp : +39 349 351 1395.</li>
+        </ul>
+        <p class="it" style="margin-top:12px;font-style:italic;color:var(--gray);font-size:12px">Domus Fiorelli · Piazza di Villa Fiorelli 12, Roma · P.IVA [INSERIRE] · Ultimo aggiornamento: aprile 2026</p>
+        <p class="en" style="margin-top:12px;font-style:italic;color:var(--gray);font-size:12px">Domus Fiorelli · Piazza di Villa Fiorelli 12, Rome · Last updated: April 2026</p>
+      </div>
+
+      <div style="height:16px"></div>
+    </div>
+  </div>
+
 </div><!-- /pages -->
 
 <!-- BOTTOM TAB NAV -->
@@ -2817,6 +3177,83 @@
 <a id="whatsapp-btn" href="https://wa.me/393493511395" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#25D366"/><path d="M23.472 8.528A10.417 10.417 0 0016 5.583c-5.754 0-10.42 4.666-10.42 10.417 0 1.837.48 3.63 1.394 5.212L5.5 26.417l5.35-1.404a10.394 10.394 0 004.15.864h.004c5.75 0 10.416-4.666 10.416-10.417a10.388 10.388 0 00-1.948-6.932z" fill="#25D366"/><path d="M16 24.39a8.63 8.63 0 01-4.4-1.204l-.316-.188-3.174.833.848-3.094-.207-.318A8.607 8.607 0 017.37 16c0-4.762 3.872-8.633 8.634-8.633 2.305 0 4.473.898 6.103 2.53A8.577 8.577 0 0124.633 16c0 4.762-3.872 8.633-8.633 8.633v-.243zm5.014-6.46c-.275-.137-1.626-.801-1.878-.893-.252-.09-.435-.136-.618.138-.183.274-.707.893-.867 1.076-.16.183-.32.206-.594.069-.275-.138-1.161-.428-2.211-1.364-.817-.728-1.369-1.626-1.529-1.9-.16-.275-.017-.423.12-.56.124-.123.275-.32.413-.48.137-.16.183-.275.274-.458.092-.183.046-.343-.023-.48-.069-.138-.618-1.49-.847-2.04-.224-.536-.45-.463-.618-.472l-.527-.009a1.01 1.01 0 00-.733.344c-.252.274-.963.94-.963 2.293s.986 2.659 1.123 2.842c.137.183 1.94 2.96 4.7 4.153.657.283 1.169.452 1.569.579.659.21 1.26.18 1.733.11.529-.08 1.626-.665 1.855-1.307.23-.641.23-1.19.16-1.307-.068-.115-.251-.183-.526-.32z" fill="white"/></svg>
 </a>
+
+<!-- PIN GATE MODAL -->
+<div id="pin-overlay" onclick="if(event.target===this)closePinModal()">
+  <div id="pin-panel">
+    <div class="pin-handle"></div>
+    <div class="pin-icon">🔐</div>
+    <div class="pin-eyebrow it">Accesso Privato · Ospiti</div>
+    <div class="pin-eyebrow en">Private Access · Guests</div>
+    <div class="pin-eyebrow es">Acceso Privado · Huéspedes</div>
+    <div class="pin-eyebrow fr">Accès Privé · Invités</div>
+    <div class="pin-eyebrow ru">Частный доступ · Гости</div>
+    <div class="pin-eyebrow ar">وصول خاص · الضيوف</div>
+    <div class="pin-eyebrow ja">プライベートアクセス · ゲスト</div>
+    <div class="pin-eyebrow de">Privater Zugang · Gäste</div>
+    <div class="pin-title it">Il tuo spazio riservato.</div>
+    <div class="pin-title en">Your private vault.</div>
+    <div class="pin-title es">Tu espacio reservado.</div>
+    <div class="pin-title fr">Votre espace privé.</div>
+    <div class="pin-title ru">Ваш личный доступ.</div>
+    <div class="pin-title ar">مساحتك الخاصة.</div>
+    <div class="pin-title ja">あなたの専用スペース。</div>
+    <div class="pin-title de">Ihr persönlicher Bereich.</div>
+    <div class="pin-subtitle it">Inserisci il codice ricevuto al momento della prenotazione.</div>
+    <div class="pin-subtitle en">Enter the code you received at the time of booking.</div>
+    <div class="pin-subtitle es">Introduce el código que recibiste al realizar la reserva.</div>
+    <div class="pin-subtitle fr">Saisissez le code reçu lors de votre réservation.</div>
+    <div class="pin-subtitle ru">Введите код, полученный при бронировании.</div>
+    <div class="pin-subtitle ar">أدخل الرمز الذي تلقيته عند الحجز.</div>
+    <div class="pin-subtitle ja">予約時に受け取ったコードを入力してください。</div>
+    <div class="pin-subtitle de">Geben Sie den Code ein, den Sie bei der Buchung erhalten haben.</div>
+    <div class="pin-input-wrap">
+      <input class="pin-digit" type="text" inputmode="text" maxlength="1" id="pd0" oninput="pinInput(0)">
+      <input class="pin-digit" type="text" inputmode="text" maxlength="1" id="pd1" oninput="pinInput(1)">
+      <input class="pin-digit" type="text" inputmode="text" maxlength="1" id="pd2" oninput="pinInput(2)">
+      <input class="pin-digit" type="text" inputmode="text" maxlength="1" id="pd3" oninput="pinInput(3)">
+      <input class="pin-digit" type="text" inputmode="text" maxlength="1" id="pd4" oninput="pinInput(4)">
+      <input class="pin-digit" type="text" inputmode="text" maxlength="1" id="pd5" oninput="pinInput(5)">
+    </div>
+    <div class="pin-error" id="pin-error"></div>
+    <button class="pin-submit" onclick="checkPin()">
+      <span class="it">Accedi</span>
+      <span class="en">Enter</span>
+      <span class="es">Entrar</span>
+      <span class="fr">Accéder</span>
+      <span class="ru">Войти</span>
+      <span class="ar">دخول</span>
+      <span class="ja">入る</span>
+      <span class="de">Eintreten</span>
+    </button>
+    <p class="pin-privacy-note it">🔒 I tuoi dati non vengono mai trasmessi né salvati online.</p>
+    <p class="pin-privacy-note en">🔒 Your access details are never transmitted or stored online.</p>
+    <p class="pin-privacy-note es">🔒 Tus datos de acceso nunca se transmiten ni se guardan online.</p>
+    <p class="pin-privacy-note fr">🔒 Vos données ne sont jamais transmises ni stockées en ligne.</p>
+    <p class="pin-privacy-note ru">🔒 Ваши данные доступа никогда не передаются и не хранятся онлайн.</p>
+    <p class="pin-privacy-note ar">🔒 بيانات الوصول الخاصة بك لا تُرسل أو تُخزَّن عبر الإنترنت أبداً.</p>
+    <p class="pin-privacy-note ja">🔒 アクセス情報はオンラインで送信・保存されません。</p>
+    <p class="pin-privacy-note de">🔒 Ihre Zugangsdaten werden niemals online übertragen oder gespeichert.</p>
+  </div>
+</div>
+
+<!-- COOKIE CONSENT BANNER -->
+<div id="cookie-banner">
+  <div class="cookie-text">
+    <span class="it">Questa app usa Google Fonts (per la tipografia) e un iframe di Julia (Comune di Roma). Nessun cookie di profilazione. <button class="footer-link" style="color:var(--gold)" onclick="goToPrivacy()">Privacy Policy</button></span>
+    <span class="en" style="display:none">This app uses Google Fonts (typography) and a Julia iframe (City of Rome). No profiling cookies. <button class="footer-link" style="color:var(--gold)" onclick="goToPrivacy()">Privacy Policy</button></span>
+    <span class="es" style="display:none">Esta app usa Google Fonts (tipografía) y un iframe de Julia (Ayuntamiento de Roma). Sin cookies de perfilado. <button class="footer-link" style="color:var(--gold)" onclick="goToPrivacy()">Política de privacidad</button></span>
+    <span class="fr" style="display:none">Cette app utilise Google Fonts (typographie) et un iframe Julia (Commune de Rome). Aucun cookie de profilage. <button class="footer-link" style="color:var(--gold)" onclick="goToPrivacy()">Politique de confidentialité</button></span>
+  </div>
+  <div class="cookie-btns">
+    <button class="cookie-btn cookie-btn-reject" onclick="cookieChoice('reject')">
+      <span class="it">Solo essenziali</span><span class="en" style="display:none">Essential only</span><span class="es" style="display:none">Solo esenciales</span><span class="fr" style="display:none">Essentiels seulement</span>
+    </button>
+    <button class="cookie-btn cookie-btn-accept" onclick="cookieChoice('accept')">
+      <span class="it">Accetta</span><span class="en" style="display:none">Accept</span><span class="es" style="display:none">Aceptar</span><span class="fr" style="display:none">Accepter</span>
+    </button>
+  </div>
+</div>
 
 <!-- LANGUAGE PICKER -->
 <div id="lang-picker-overlay" onclick="closeLangPicker(event)">
@@ -3057,11 +3494,11 @@
 </div>
 
 <script>
-  const TOTAL = 12;
-  const NAMES_IT = ['Home','Benvenuto','Filosofia','Accesso','Casa','Regole','Emergenze','Mobilità','Food','Galateo','Esperienze','Arrivederci'];
-  const NAMES_EN = ['Home','Welcome','Philosophy','Access','Home','Rules','Emergency','Transport','Food','Tips','Experiences','Farewell'];
-  const NAMES_ES = ['Home','Bienvenida','Filosofía','Acceso','Casa','Normas','Emergencias','Moverse','Food','Etiqueta','Experiencias','Hasta pronto'];
-  const NAMES_FR = ['Home','Bienvenue','Philosophie','Accès','Logement','Règles','Urgences','Transport','Food','Étiquette','Expériences','Au revoir'];
+  const TOTAL = 13;
+  const NAMES_IT = ['Home','Benvenuto','Filosofia','Accesso','Casa','Regole','Emergenze','Mobilità','Food','Galateo','Esperienze','Arrivederci','Privacy'];
+  const NAMES_EN = ['Home','Welcome','Philosophy','Access','Home','Rules','Emergency','Transport','Food','Tips','Experiences','Farewell','Privacy'];
+  const NAMES_ES = ['Home','Bienvenida','Filosofía','Acceso','Casa','Normas','Emergencias','Moverse','Food','Etiqueta','Experiencias','Hasta pronto','Privacidad'];
+  const NAMES_FR = ['Home','Bienvenue','Philosophie','Accès','Logement','Règles','Urgences','Transport','Food','Étiquette','Expériences','Au revoir','Confidentialité'];
 
   // Tab ranges: which pages belong to which tab
   const TAB_HOME  = [0];
@@ -3114,9 +3551,87 @@
     document.getElementById('drawer-overlay').classList.remove('open');
   }
 
+  // ── PIN CONFIG (change here to update) ──────────────────
+  const GUEST_PIN = 'DF2026';
+
   function openQuick() {
-    document.getElementById('quick-overlay').classList.add('open');
-    document.getElementById('tab-quick').classList.add('active');
+    if (sessionStorage.getItem('df_auth') === 'ok') {
+      document.getElementById('quick-overlay').classList.add('open');
+      document.getElementById('tab-quick').classList.add('active');
+    } else {
+      openPinModal();
+    }
+  }
+
+  function openPinModal() {
+    // Reset digits and error
+    for (let i = 0; i < 6; i++) {
+      const el = document.getElementById('pd' + i);
+      if (el) { el.value = ''; el.classList.remove('error'); }
+    }
+    document.getElementById('pin-error').textContent = '';
+    document.getElementById('pin-overlay').classList.add('open');
+    // Focus first digit
+    setTimeout(() => { const el = document.getElementById('pd0'); if (el) el.focus(); }, 350);
+  }
+
+  function closePinModal() {
+    document.getElementById('pin-overlay').classList.remove('open');
+  }
+
+  function pinInput(i) {
+    const el = document.getElementById('pd' + i);
+    if (!el) return;
+    el.classList.remove('error');
+    document.getElementById('pin-error').textContent = '';
+    const val = el.value;
+    if (val.length >= 1 && i < 5) {
+      const next = document.getElementById('pd' + (i + 1));
+      if (next) { next.value = ''; next.focus(); }
+    }
+    // Auto-submit when last digit filled
+    if (i === 5 && val.length >= 1) {
+      setTimeout(checkPin, 120);
+    }
+  }
+
+  function checkPin() {
+    let code = '';
+    for (let i = 0; i < 6; i++) {
+      const el = document.getElementById('pd' + i);
+      code += el ? el.value.toUpperCase() : '';
+    }
+    if (code === GUEST_PIN) {
+      sessionStorage.setItem('df_auth', 'ok');
+      closePinModal();
+      setTimeout(() => {
+        document.getElementById('quick-overlay').classList.add('open');
+        document.getElementById('tab-quick').classList.add('active');
+      }, 280);
+    } else {
+      // Shake all digits and show error
+      for (let i = 0; i < 6; i++) {
+        const el = document.getElementById('pd' + i);
+        if (el) {
+          el.classList.add('error');
+          setTimeout(() => el.classList.remove('error'), 400);
+        }
+      }
+      const errEl = document.getElementById('pin-error');
+      if (errEl) {
+        const msgs = { it: 'Codice non valido. Riprova.', en: 'Invalid code. Please try again.', es: 'Código incorrecto. Inténtalo de nuevo.', fr: 'Code invalide. Veuillez réessayer.', ru: 'Неверный код. Попробуйте ещё раз.', ar: 'رمز غير صحيح. حاول مرة أخرى.', ja: 'コードが正しくありません。再試行してください。', de: 'Falscher Code. Bitte erneut versuchen.' };
+        errEl.textContent = msgs[lang] || msgs['en'];
+      }
+      // Clear and refocus first digit
+      setTimeout(() => {
+        for (let i = 0; i < 6; i++) {
+          const el = document.getElementById('pd' + i);
+          if (el) el.value = '';
+        }
+        const first = document.getElementById('pd0');
+        if (first) first.focus();
+      }, 420);
+    }
   }
 
   function closeQuick() {
@@ -3248,21 +3763,119 @@
   document.addEventListener('keydown', e => {
     if (e.key === 'ArrowRight') nextPage();
     if (e.key === 'ArrowLeft') prevPage();
-    if (e.key === 'Escape') { closeQuick(); closeLangPicker(); }
+    if (e.key === 'Escape') { closeQuick(); closeLangPicker(); closePinModal(); }
   });
 
-  // Hash routing: #farewell → go to page 11 (Arrivederci)
-  function handleHash() {
-    if (window.location.hash === '#farewell') {
-      goToPage(11);
+  // ── PIN: handle backspace between digits ─────────────────
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Backspace') {
+      const active = document.activeElement;
+      if (active && active.classList.contains('pin-digit')) {
+        if (active.value === '') {
+          const id = active.id; // pd0..pd5
+          const i = parseInt(id.replace('pd', ''), 10);
+          if (i > 0) {
+            const prev = document.getElementById('pd' + (i - 1));
+            if (prev) { prev.value = ''; prev.focus(); }
+          }
+        }
+      }
     }
+  }, true);
+
+  // ── COOKIE CHOICE ──────────────────────────────────────
+  function cookieChoice(choice) {
+    try { localStorage.setItem('df_cookie_choice', choice); } catch(e) {}
+    const banner = document.getElementById('cookie-banner');
+    if (banner) {
+      banner.style.opacity = '0';
+      banner.style.transform = 'translateY(20px)';
+      setTimeout(() => banner.classList.remove('show'), 300);
+    }
+  }
+
+  // ── PRIVACY PAGE ──────────────────────────────────────
+  function goToPrivacy() {
+    goToPage(12);
+    closeQuick();
+    closeLangPicker();
+    closePinModal();
+    const banner = document.getElementById('cookie-banner');
+    if (banner) banner.classList.remove('show');
+  }
+
+  // ── FOOTER INJECTION ─────────────────────────────────
+  function injectFooters() {
+    const footerHTML = `
+    <div class="page-footer">
+      <div class="footer-assistants">
+        <a class="footer-assistant-card" href="https://wa.me/393493511395" target="_blank" rel="noopener">
+          <div class="footer-assistant-icon">💬</div>
+          <div class="footer-assistant-badge concierge it">Concierge</div>
+          <div class="footer-assistant-badge concierge en">Concierge</div>
+          <div class="footer-assistant-badge concierge es">Concierge</div>
+          <div class="footer-assistant-badge concierge fr">Concierge</div>
+          <div class="footer-assistant-name it">Alessandro · WhatsApp</div>
+          <div class="footer-assistant-name en">Alessandro · WhatsApp</div>
+          <div class="footer-assistant-name es">Alessandro · WhatsApp</div>
+          <div class="footer-assistant-name fr">Alessandro · WhatsApp</div>
+          <div class="footer-assistant-desc it">Assistenza diretta host · Sempre disponibile</div>
+          <div class="footer-assistant-desc en">Direct host assistance · Always available</div>
+          <div class="footer-assistant-desc es">Asistencia directa del anfitrión</div>
+          <div class="footer-assistant-desc fr">Assistance directe hôte · Toujours disponible</div>
+        </a>
+        <a class="footer-assistant-card" href="https://julia.comune.roma.it" target="_blank" rel="noopener">
+          <div class="footer-assistant-icon">🏛️</div>
+          <div class="footer-assistant-badge julia it">Roma ufficiale</div>
+          <div class="footer-assistant-badge julia en">Official Rome</div>
+          <div class="footer-assistant-badge julia es">Roma oficial</div>
+          <div class="footer-assistant-badge julia fr">Rome officielle</div>
+          <div class="footer-assistant-name">Julia · AI Roma</div>
+          <div class="footer-assistant-desc it">Musei, trasporti, eventi, itinerari · Comune di Roma</div>
+          <div class="footer-assistant-desc en">Museums, transport, events, itineraries · City of Rome</div>
+          <div class="footer-assistant-desc es">Museos, transporte, eventos · Ayuntamiento de Roma</div>
+          <div class="footer-assistant-desc fr">Musées, transport, événements · Commune de Rome</div>
+        </a>
+      </div>
+      <div class="footer-links">
+        <button class="footer-link" onclick="goToPrivacy()">Privacy</button>
+        <button class="footer-link" onclick="goToPrivacy()">Cookie</button>
+        <button class="footer-link" onclick="goToPrivacy()">Termini / Terms</button>
+      </div>
+      <p class="footer-copy">© 2026 Domus Fiorelli · Piazza di Villa Fiorelli 12, Roma</p>
+    </div>`;
+    document.querySelectorAll('.section-page').forEach(sp => {
+      if (!sp.querySelector('.page-footer')) {
+        sp.insertAdjacentHTML('beforeend', footerHTML);
+      }
+    });
+  }
+
+  // ── HASH ROUTING ─────────────────────────────────────
+  function handleHash() {
+    const h = window.location.hash;
+    if (h === '#farewell') goToPage(11);
+    else if (h === '#privacy') goToPage(12);
   }
   window.addEventListener('hashchange', handleHash);
 
-  // Init
+  // ── INIT ─────────────────────────────────────────────
   handleHash();
   setLang(detectLang());
+  injectFooters();
   updateUI();
+
+  // Show cookie banner once (if no prior choice)
+  (function initCookieBanner() {
+    try {
+      if (!localStorage.getItem('df_cookie_choice')) {
+        setTimeout(() => {
+          const banner = document.getElementById('cookie-banner');
+          if (banner) banner.classList.add('show');
+        }, 1800);
+      }
+    } catch(e) {}
+  })();
 </script>
 </body>
 </html>
