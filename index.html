@@ -11,7 +11,7 @@
   <title>Domus Fiorelli · Welcome</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --beige: #F5ECD7;
@@ -28,13 +28,29 @@
       --bottom-height: 70px;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+
+    /* ─── FOCUS VISIBILE (accessibilità tastiera) ───────── */
+    :focus-visible {
+      outline: 2.5px solid var(--terracotta);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    /* ─── REDUCED MOTION ────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
 
     html, body {
       height: 100%;
       overflow: hidden;
       overflow-x: hidden;
-      font-family: 'Lato', sans-serif;
+      font-family: 'Raleway', sans-serif;
       background: var(--beige);
       color: var(--anthracite);
       max-width: 100vw;
@@ -78,7 +94,7 @@
     .header-btn:active { background: var(--light-gray); }
 
     #lang-toggle {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Raleway', sans-serif;
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.08em;
@@ -247,7 +263,7 @@
       border: none;
       padding: 15px 44px;
       border-radius: 50px;
-      font-family: 'Lato', sans-serif;
+      font-family: 'Raleway', sans-serif;
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.12em;
@@ -781,10 +797,11 @@
       background: none;
       border: none;
       cursor: pointer;
-      padding: 8px 2px 6px;
+      padding: 8px 4px 6px;
       -webkit-tap-highlight-color: transparent;
       transition: background 0.15s;
       position: relative;
+      min-height: 48px; /* touch target WCAG 44px+ */
     }
     .tab-btn:active { background: var(--beige); }
     .tab-icon { font-size: 21px; line-height: 1; }
@@ -1071,7 +1088,7 @@
       border: none;
       background: none;
       cursor: pointer;
-      font-family: 'Lato', sans-serif;
+      font-family: 'Raleway', sans-serif;
       font-size: 14px;
       color: var(--anthracite);
       text-align: left;
@@ -1156,7 +1173,7 @@
       border: none;
       border-radius: 50px;
       padding: 11px 20px;
-      font-family: 'Lato', sans-serif;
+      font-family: 'Raleway', sans-serif;
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.06em;
@@ -1456,7 +1473,7 @@
     }
     .pin-subtitle {
       font-size: 13px;
-      color: rgba(245,236,215,0.5);
+      color: rgba(245,236,215,0.68);
       text-align: center;
       line-height: 1.65;
       margin-bottom: 28px;
@@ -1473,7 +1490,7 @@
       border-radius: 12px;
       font-size: 22px;
       font-weight: 700;
-      font-family: 'Lato', sans-serif;
+      font-family: 'Raleway', sans-serif;
       color: #F5ECD7;
       text-align: center;
       background: rgba(245,236,215,0.06);
@@ -1502,7 +1519,7 @@
       border: none;
       border-radius: 50px;
       padding: 16px;
-      font-family: 'Lato', sans-serif;
+      font-family: 'Raleway', sans-serif;
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.1em;
@@ -1514,7 +1531,7 @@
     .pin-submit:active { transform: scale(0.97); opacity: 0.88; }
     .pin-privacy-note {
       font-size: 11px;
-      color: rgba(245,236,215,0.3);
+      color: rgba(245,236,215,0.5);
       text-align: center;
       margin-top: 16px;
       line-height: 1.6;
@@ -1552,7 +1569,7 @@
       padding: 10px 8px;
       border: none;
       border-radius: 10px;
-      font-family: 'Lato', sans-serif;
+      font-family: 'Raleway', sans-serif;
       font-size: 12px;
       font-weight: 700;
       cursor: pointer;
@@ -1624,7 +1641,7 @@
       cursor: pointer;
       background: none;
       border: none;
-      font-family: 'Lato', sans-serif;
+      font-family: 'Raleway', sans-serif;
       padding: 2px 0;
     }
     .footer-copy {
@@ -1775,11 +1792,15 @@
       flex-direction: column;
       box-shadow: 0 8px 28px rgba(0,0,0,0.16);
       text-decoration: none;
-      animation: expFadeIn 0.5s ease both;
+      animation: expFadeIn 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
+    .exp-card:nth-child(1) { animation-delay: 0.04s; }
+    .exp-card:nth-child(2) { animation-delay: 0.10s; }
+    .exp-card:nth-child(3) { animation-delay: 0.16s; }
+    .exp-card:nth-child(4) { animation-delay: 0.22s; }
     .exp-card:first-child { margin-left: 0; }
     @keyframes expFadeIn {
-      from { opacity: 0; transform: translateY(8px); }
+      from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
     .exp-card-img {
@@ -1828,7 +1849,7 @@
     }
     .exp-desc {
       font-size: 12px;
-      color: rgba(245,236,215,0.55);
+      color: rgba(245,236,215,0.75);
       line-height: 1.65;
       flex: 1;
     }
@@ -2086,11 +2107,11 @@
     </svg>
   </button>
   <span id="header-title">Domus Fiorelli</span>
-  <button id="lang-toggle" onclick="openLangPicker()">🌐 <span id="lang-code">IT</span></button>
+  <button id="lang-toggle" onclick="openLangPicker()" aria-label="Seleziona lingua / Select language">🌐 <span id="lang-code">IT</span></button>
 </header>
 
 <!-- ALL PAGES -->
-<div id="pages">
+<main id="pages" aria-label="Contenuto principale">
 
   <!-- ══════════════════════════════════════════════════
        COVER
@@ -4205,40 +4226,40 @@
     </div>
   </div>
 
-</div><!-- /pages -->
+</main><!-- /pages -->
 
 <!-- BOTTOM TAB NAV -->
-<div id="bottom-nav">
-  <button class="tab-btn" id="tab-home" onclick="goToPage(0)">
-    <span class="tab-icon">🏠</span>
+<div id="bottom-nav" role="navigation" aria-label="Navigazione principale">
+  <button class="tab-btn" id="tab-home" onclick="goToPage(0)" aria-label="Home">
+    <span class="tab-icon" aria-hidden="true">🏠</span>
     <span class="tab-label it">Home</span>
     <span class="tab-label en">Home</span>
     <span class="tab-label es">Home</span>
     <span class="tab-label fr">Home</span>
   </button>
-  <button class="tab-btn" id="tab-stay" onclick="goToPage(1)">
-    <span class="tab-icon">🛏</span>
+  <button class="tab-btn" id="tab-stay" onclick="goToPage(1)" aria-label="Soggiorno / Stay">
+    <span class="tab-icon" aria-hidden="true">🛏</span>
     <span class="tab-label it">Soggiorno</span>
     <span class="tab-label en">Stay</span>
     <span class="tab-label es">Estancia</span>
     <span class="tab-label fr">Séjour</span>
   </button>
-  <button class="tab-btn tab-quick" id="tab-quick" onclick="openQuick()">
-    <span class="tab-icon">⚡</span>
+  <button class="tab-btn tab-quick" id="tab-quick" onclick="openQuick()" aria-label="Quick Help">
+    <span class="tab-icon" aria-hidden="true">⚡</span>
     <span class="tab-label it">Quick Help</span>
     <span class="tab-label en">Quick Help</span>
     <span class="tab-label es">Ayuda</span>
     <span class="tab-label fr">Aide</span>
   </button>
-  <button class="tab-btn" id="tab-food" onclick="goToPage(8)">
-    <span class="tab-icon">🍝</span>
+  <button class="tab-btn" id="tab-food" onclick="goToPage(8)" aria-label="Food Guide">
+    <span class="tab-icon" aria-hidden="true">🍝</span>
     <span class="tab-label it">Food</span>
     <span class="tab-label en">Food</span>
     <span class="tab-label es">Food</span>
     <span class="tab-label fr">Food</span>
   </button>
-  <button class="tab-btn" id="tab-roma" onclick="goToPage(10)">
-    <span class="tab-icon">🗺️</span>
+  <button class="tab-btn" id="tab-roma" onclick="goToPage(10)" aria-label="Roma / Rome">
+    <span class="tab-icon" aria-hidden="true">🗺️</span>
     <span class="tab-label it">Roma</span>
     <span class="tab-label en">Rome</span>
     <span class="tab-label es">Roma</span>
@@ -4352,7 +4373,7 @@
     <div class="quick-header">
       <span class="quick-header-title it">⚡ Quick Help</span>
       <span class="quick-header-title en">⚡ Quick Help</span>
-      <button class="quick-close" onclick="closeQuick()">✕</button>
+      <button class="quick-close" onclick="closeQuick()" aria-label="Chiudi / Close">✕</button>
     </div>
     <div class="quick-grid">
 
