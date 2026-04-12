@@ -1634,6 +1634,319 @@
       letter-spacing: 0.06em;
     }
 
+    /* ─── WHATSAPP LUXURY PILL ──────────────────────── */
+    #whatsapp-btn {
+      position: fixed;
+      right: 14px;
+      bottom: calc(var(--bottom-height) + 12px);
+      background: var(--anthracite);
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 16px 11px 12px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.28), 0 1px 4px rgba(0,0,0,0.14);
+      z-index: 299;
+      text-decoration: none;
+      transition: transform 0.18s, box-shadow 0.18s;
+      border: 1px solid rgba(184,150,62,0.18);
+    }
+    #whatsapp-btn:active { transform: scale(0.95); box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+    .wa-icon-wrap {
+      width: 28px; height: 28px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .wa-text-wrap {
+      display: flex; flex-direction: column; line-height: 1.2;
+    }
+    .wa-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .wa-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #F5ECD7;
+      font-family: 'Lato', sans-serif;
+    }
+
+    /* ─── HOST PORTRAIT BLOCK ────────────────────────── */
+    .host-portrait-block {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: linear-gradient(135deg, rgba(184,150,62,0.08) 0%, rgba(196,98,45,0.05) 100%);
+      border-radius: 18px;
+      padding: 18px 16px;
+      margin: 0 0 16px;
+      border: 1px solid rgba(184,150,62,0.15);
+    }
+    .host-portrait-img {
+      flex-shrink: 0;
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: linear-gradient(135deg, #3a3028 0%, #2C2C2C 100%);
+      display: flex; align-items: center; justify-content: center;
+      border: 2px solid rgba(184,150,62,0.3);
+    }
+    .host-portrait-initial {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-style: italic;
+      color: rgba(184,150,62,0.7);
+    }
+    .host-portrait-content { flex: 1; }
+    .host-signature {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-style: italic;
+      color: var(--terracotta);
+      margin-bottom: 6px;
+    }
+    .host-portrait-copy {
+      font-size: 12px;
+      color: var(--gray);
+      line-height: 1.65;
+    }
+
+    /* ─── SELECTED BY ALESSANDRO — EDITORIAL ─────────── */
+    .selected-page-intro {
+      padding: 8px 0 20px;
+    }
+    .selected-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .selected-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-style: italic;
+      color: var(--anthracite);
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .selected-body {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.8;
+      margin-bottom: 8px;
+    }
+    .selected-sublabel {
+      font-size: 11px;
+      color: var(--gold);
+      font-style: italic;
+      letter-spacing: 0.04em;
+      border-left: 2px solid var(--gold);
+      padding-left: 10px;
+      margin-top: 12px;
+    }
+
+    /* ─── CAROUSEL SECTION ───────────────────────────── */
+    .carousel-section { margin-bottom: 36px; }
+    .carousel-cat-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 4px;
+    }
+    .carousel-cat-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--anthracite);
+      margin-bottom: 12px;
+    }
+    .exp-carousel {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 4px 20px 16px 0;
+      margin: 0 -20px;
+      padding-left: 0;
+      padding-right: 20px;
+    }
+    .exp-carousel::-webkit-scrollbar { display: none; }
+
+    /* ─── EXPERIENCE CARD ────────────────────────────── */
+    .exp-card {
+      flex: 0 0 76vw;
+      max-width: 300px;
+      scroll-snap-align: start;
+      background: var(--anthracite);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.16);
+      text-decoration: none;
+      animation: expFadeIn 0.5s ease both;
+    }
+    .exp-card:first-child { margin-left: 0; }
+    @keyframes expFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .exp-card-img {
+      height: 148px;
+      background: linear-gradient(135deg, #3D3228 0%, #252018 60%, #1a1510 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 46px;
+      position: relative;
+      overflow: hidden;
+    }
+    .exp-card-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(28,24,20,0.5) 100%);
+    }
+    .exp-card-body {
+      padding: 14px 14px 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .exp-badge {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(184,150,62,0.14);
+      border-radius: 20px;
+      padding: 3px 9px;
+      width: fit-content;
+    }
+    .exp-badge.sig { color: var(--terracotta); background: rgba(196,98,45,0.14); }
+    .exp-badge.loc { color: #7cb9a0; background: rgba(124,185,160,0.14); }
+    .exp-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #F5ECD7;
+      line-height: 1.35;
+    }
+    .exp-desc {
+      font-size: 12px;
+      color: rgba(245,236,215,0.55);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .host-note-tag {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin-top: 2px;
+      padding: 8px 10px;
+      background: rgba(184,150,62,0.08);
+      border-radius: 10px;
+      border-left: 2px solid rgba(184,150,62,0.4);
+    }
+    .host-note-tag-icon { font-size: 11px; padding-top: 1px; flex-shrink: 0; }
+    .host-note-tag-text {
+      font-size: 11px;
+      color: rgba(184,150,62,0.85);
+      font-style: italic;
+      line-height: 1.5;
+    }
+    .exp-cta {
+      display: block;
+      text-align: center;
+      background: rgba(184,150,62,0.12);
+      color: var(--gold);
+      border: 1px solid rgba(184,150,62,0.25);
+      border-radius: 50px;
+      padding: 10px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      transition: background 0.2s;
+      margin-top: auto;
+    }
+    .exp-cta:active { background: rgba(184,150,62,0.22); }
+    .exp-cta.terra {
+      background: rgba(196,98,45,0.1);
+      color: #e8845a;
+      border-color: rgba(196,98,45,0.22);
+    }
+
+    /* Neighborhood cards reuse exp-card but with slight variant */
+    .exp-card.local {
+      background: #1F1B16;
+    }
+    .exp-card-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .exp-link-chip {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(245,236,215,0.6);
+      background: rgba(245,236,215,0.07);
+      border-radius: 8px;
+      padding: 6px 10px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .exp-link-chip:active { background: rgba(245,236,215,0.12); }
+
+    /* Neighborhood section header */
+    .neighborhood-intro {
+      padding: 28px 0 20px;
+      border-top: 1px solid var(--light-gray);
+      margin-top: 8px;
+    }
+    .neighborhood-eyebrow {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 8px;
+    }
+    .neighborhood-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-style: italic;
+      color: var(--anthracite);
+      margin-bottom: 10px;
+    }
+    .neighborhood-sublabel {
+      font-size: 11px;
+      color: var(--gold);
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+    .neighborhood-body {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.8;
+    }
+
     /* ─── PRIVACY PAGE ───────────────────────────────── */
     .privacy-section { margin-bottom: 18px; }
     .privacy-section h3 {
@@ -1773,6 +2086,13 @@
       <span class="drawer-item-label es">Hasta pronto</span>
       <span class="drawer-item-label fr">Au revoir</span>
     </button>
+    <button class="drawer-item" onclick="goToPage(13); closeDrawer()" style="border-top: 1px solid var(--light-gray); margin-top: 6px; padding-top: 14px;">
+      <span class="drawer-item-icon" style="font-size:15px">✦</span>
+      <span class="drawer-item-label it" style="color:var(--gold);font-weight:700">Selezionato da Alessandro</span>
+      <span class="drawer-item-label en" style="color:var(--gold);font-weight:700">Selected by Alessandro</span>
+      <span class="drawer-item-label es" style="color:var(--gold);font-weight:700">Seleccionado por Alessandro</span>
+      <span class="drawer-item-label fr" style="color:var(--gold);font-weight:700">Sélectionné par Alessandro</span>
+    </button>
   </div>
 </nav>
 
@@ -1863,6 +2183,20 @@
           <span class="welcome-pill en">✦ Always reachable</span>
           <span class="welcome-pill es">✦ Siempre disponibles</span>
           <span class="welcome-pill fr">✦ Toujours disponibles</span>
+        </div>
+      </div>
+
+      <!-- Host Portrait Block -->
+      <div class="host-portrait-block">
+        <div class="host-portrait-img">
+          <span class="host-portrait-initial">A</span>
+        </div>
+        <div class="host-portrait-content">
+          <div class="host-signature">Alessandro</div>
+          <p class="host-portrait-copy it">Accogliere di persona è parte dell'esperienza Domus Fiorelli. Ogni volta che è possibile, Alessandro sarà felice di accoglierti personalmente e aiutarti a vivere Roma come un locale.</p>
+          <p class="host-portrait-copy en">Personally welcoming our guests is part of the Domus Fiorelli experience. Whenever possible, Alessandro will be delighted to greet you in person and help you discover Rome as a local.</p>
+          <p class="host-portrait-copy es">Recibir personalmente a los huéspedes forma parte de la experiencia Domus Fiorelli. Siempre que sea posible, Alessandro estará encantado de recibirte en persona y ayudarte a descubrir Roma como un local.</p>
+          <p class="host-portrait-copy fr">Accueillir personnellement les hôtes fait partie de l'expérience Domus Fiorelli. Chaque fois que possible, Alessandro sera ravi de vous accueillir en personne et de vous aider à découvrir Rome comme un local.</p>
         </div>
       </div>
 
@@ -1999,8 +2333,10 @@
       <div class="card">
         <div class="card-title">
           <span class="card-title-icon">🗝️</span>
-          <span class="it">Il tuo concierge personale</span>
-          <span class="en">Your personal concierge</span>
+          <span class="it">Il tuo host Alessandro</span>
+          <span class="en">Your Host Alessandro</span>
+          <span class="es">Tu anfitrión Alessandro</span>
+          <span class="fr">Votre hôte Alessandro</span>
         </div>
         <div class="it">
           <div class="concierge-item"><span class="concierge-check">✦</span><span>Ristoranti selezionati per i tuoi gusti, con prenotazione se necessario</span></div>
@@ -2016,6 +2352,24 @@
           <div class="concierge-item"><span class="concierge-check">✦</span><span>Tips on transport, aperitivo spots, and where to have breakfast like a Roman</span></div>
           <div class="concierge-item"><span class="concierge-check">✦</span><span>Immediate support for any unexpected need</span></div>
         </div>
+        <div class="es">
+          <div class="concierge-item"><span class="concierge-check">✦</span><span>Recomendaciones de restaurantes adaptadas a tus gustos</span></div>
+          <div class="concierge-item"><span class="concierge-check">✦</span><span>Itinerarios personalizados — de la mañana al atardecer</span></div>
+          <div class="concierge-item"><span class="concierge-check">✦</span><span>Secretos locales que no encontrarás en ninguna guía</span></div>
+          <div class="concierge-item"><span class="concierge-check">✦</span><span>Apoyo inmediato ante cualquier imprevisto</span></div>
+        </div>
+        <div class="fr">
+          <div class="concierge-item"><span class="concierge-check">✦</span><span>Recommandations de restaurants adaptées à vos goûts</span></div>
+          <div class="concierge-item"><span class="concierge-check">✦</span><span>Itinéraires personnalisés — du matin au coucher du soleil</span></div>
+          <div class="concierge-item"><span class="concierge-check">✦</span><span>Secrets locaux que vous ne trouverez dans aucun guide</span></div>
+          <div class="concierge-item"><span class="concierge-check">✦</span><span>Assistance immédiate pour tout imprévu</span></div>
+        </div>
+        <a class="exp-cta terra" href="https://wa.me/393493511395" target="_blank" rel="noopener noreferrer" style="margin-top:14px;display:block">
+          <span class="it">✦ Scrivi ad Alessandro</span>
+          <span class="en">✦ Message Alessandro directly</span>
+          <span class="es">✦ Escribe a Alessandro</span>
+          <span class="fr">✦ Écrire à Alessandro</span>
+        </a>
       </div>
 
       <div class="highlight it" style="font-style:italic; font-family:'Playfair Display',serif; font-size:15px; line-height:1.7">
@@ -2957,6 +3311,22 @@
           <span class="dest-maps-arrow">↗</span>
         </a>
       </div>
+
+      <!-- Entry point → Selected by Alessandro -->
+      <div onclick="goToSelected()" style="cursor:pointer;margin-top:4px;background:var(--anthracite);border-radius:18px;padding:18px 16px;display:flex;align-items:center;gap:14px;">
+        <div style="font-size:32px;flex-shrink:0">✦</div>
+        <div>
+          <div style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:4px" class="it">Curato da Alessandro</div>
+          <div style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:4px" class="en">Curated by Alessandro</div>
+          <div style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:4px" class="es">Curado por Alessandro</div>
+          <div style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:4px" class="fr">Par Alessandro</div>
+          <div style="font-family:'Playfair Display',serif;font-size:16px;color:#F5ECD7;line-height:1.3" class="it">Esperienze Selezionate · Chef, Vespa, Segreti Romani</div>
+          <div style="font-family:'Playfair Display',serif;font-size:16px;color:#F5ECD7;line-height:1.3" class="en">Selected Experiences · Chefs, Vespas, Roman Secrets</div>
+          <div style="font-family:'Playfair Display',serif;font-size:16px;color:#F5ECD7;line-height:1.3" class="es">Experiencias Seleccionadas · Chefs, Vespas, Secretos Romanos</div>
+          <div style="font-family:'Playfair Display',serif;font-size:16px;color:#F5ECD7;line-height:1.3" class="fr">Expériences Sélectionnées · Chefs, Vespas, Secrets Romains</div>
+        </div>
+        <div style="margin-left:auto;color:rgba(184,150,62,0.6);font-size:18px">›</div>
+      </div>
     </div>
   </div>
 
@@ -3132,6 +3502,729 @@
     </div>
   </div>
 
+  <!-- ══════════════════════════════════════════════════
+       13 · SELECTED BY ALESSANDRO
+  ══════════════════════════════════════════════════ -->
+  <div class="page" id="page-13">
+    <div class="section-page">
+
+      <!-- ── INTRO ─────────────────────────────────── -->
+      <div class="selected-page-intro">
+        <div class="selected-eyebrow it">✦ Selezionato da Alessandro</div>
+        <div class="selected-eyebrow en">✦ Selected by Alessandro</div>
+        <div class="selected-eyebrow es">✦ Seleccionado por Alessandro</div>
+        <div class="selected-eyebrow fr">✦ Sélectionné par Alessandro</div>
+        <h2 class="selected-headline it">Roma ha strati infiniti.</h2>
+        <h2 class="selected-headline en">Rome is a city of infinite layers.</h2>
+        <h2 class="selected-headline es">Roma tiene capas infinitas.</h2>
+        <h2 class="selected-headline fr">Rome est une ville aux couches infinies.</h2>
+        <p class="selected-body it">Alessandro ha curato personalmente una selezione di esperienze esclusive, servizi privati e rituali romani autentici — pensati per aiutarti a scoprire la Città Eterna al di là delle folle. Ogni raccomandazione è stata scelta per offrire eleganza, privacy e momenti indimenticabili.</p>
+        <p class="selected-body en">Alessandro has personally curated a selection of exclusive experiences, private services, and authentic Roman rituals designed to help you discover the Eternal City beyond the crowds. Each recommendation has been selected to offer elegance, privacy, and memorable moments.</p>
+        <p class="selected-body es">Alessandro ha seleccionado personalmente experiencias exclusivas, servicios privados y rituales romanos auténticos, diseñados para ayudarte a descubrir la Ciudad Eterna más allá de las multitudes. Cada recomendación ha sido elegida para ofrecer elegancia, privacidad y momentos inolvidables.</p>
+        <p class="selected-body fr">Alessandro a personnellement sélectionné des expériences exclusives, des services privés et des rituels romains authentiques conçus pour vous aider à découvrir la Ville Éternelle au-delà des foules. Chaque recommandation a été choisie pour offrir élégance, intimité et moments inoubliables.</p>
+        <div class="selected-sublabel it">Curato personalmente per gli ospiti di Domus Fiorelli</div>
+        <div class="selected-sublabel en">Personally curated for guests of Domus Fiorelli</div>
+        <div class="selected-sublabel es">Seleccionado personalmente para los huéspedes de Domus Fiorelli</div>
+        <div class="selected-sublabel fr">Personnellement sélectionné pour les hôtes de Domus Fiorelli</div>
+      </div>
+
+      <!-- ══ 1 · IN-HOUSE SANCTUARY ══ -->
+      <div class="carousel-section">
+        <div class="carousel-cat-label it">01 — Santuario</div>
+        <div class="carousel-cat-label en">01 — In-house Sanctuary</div>
+        <div class="carousel-cat-label es">01 — Santuario</div>
+        <div class="carousel-cat-label fr">01 — Sanctuaire</div>
+        <div class="carousel-cat-title it">I servizi che vengono da te.</div>
+        <div class="carousel-cat-title en">The services that come to you.</div>
+        <div class="carousel-cat-title es">Los servicios que llegan a ti.</div>
+        <div class="carousel-cat-title fr">Les services qui viennent à vous.</div>
+        <div class="exp-carousel">
+
+          <div class="exp-card">
+            <div class="exp-card-img">🍽️</div>
+            <div class="exp-card-body">
+              <span class="exp-badge sig it">Signature · In-casa</span>
+              <span class="exp-badge sig en">Signature · In-house</span>
+              <span class="exp-badge sig es">Signature · En casa</span>
+              <span class="exp-badge sig fr">Signature · À domicile</span>
+              <div class="exp-title it">Chef Privato a Domicilio</div>
+              <div class="exp-title en">Bespoke Dining at Home</div>
+              <div class="exp-title es">Chef Privado en Casa</div>
+              <div class="exp-title fr">Dîner Gastronomique Privé</div>
+              <div class="exp-desc it">Un'esperienza di chef privato direttamente nell'appartamento, con menù personalizzato e pulizia inclusa.</div>
+              <div class="exp-desc en">Private chef experience directly in the apartment with personalized menu and cleanup included.</div>
+              <div class="exp-desc es">Experiencia de chef privado en el apartamento, con menú personalizado y limpieza incluida.</div>
+              <div class="exp-desc fr">Expérience chef privé dans l'appartement, menu personnalisé et nettoyage inclus.</div>
+              <a class="exp-cta" href="https://www.takeachef.com/en-it/private-chef/rome" target="_blank" rel="noopener noreferrer">
+                <span class="it">Riserva l'esperienza ↗</span>
+                <span class="en">Reserve the experience ↗</span>
+                <span class="es">Reservar la experiencia ↗</span>
+                <span class="fr">Réserver l'expérience ↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="exp-card">
+            <div class="exp-card-img">🧘</div>
+            <div class="exp-card-body">
+              <span class="exp-badge it">Relax · Benessere</span>
+              <span class="exp-badge en">Relax · Wellness</span>
+              <span class="exp-badge es">Relax · Bienestar</span>
+              <span class="exp-badge fr">Détente · Bien-être</span>
+              <div class="exp-title it">Wellness Privato in Appartamento</div>
+              <div class="exp-title en">Private In-Room Wellness</div>
+              <div class="exp-title es">Wellness Privado en el Apartamento</div>
+              <div class="exp-title fr">Bien-être Privé en Appartement</div>
+              <div class="exp-desc it">Sessioni private di yoga e wellness direttamente a Domus Fiorelli o nel parco di Villa Fiorelli.</div>
+              <div class="exp-desc en">Private yoga and wellness sessions directly at Domus Fiorelli or in Villa Fiorelli park.</div>
+              <div class="exp-desc es">Sesiones privadas de yoga y bienestar en Domus Fiorelli o en el parque de Villa Fiorelli.</div>
+              <div class="exp-desc fr">Séances privées de yoga et bien-être à Domus Fiorelli ou dans le parc Villa Fiorelli.</div>
+              <a class="exp-cta" href="https://sarahblissyoga.com/" target="_blank" rel="noopener noreferrer">
+                <span class="it">Prenota una sessione ↗</span>
+                <span class="en">Book a yoga session ↗</span>
+                <span class="es">Reservar una sesión ↗</span>
+                <span class="fr">Réserver une séance ↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="exp-card">
+            <div class="exp-card-img">👔</div>
+            <div class="exp-card-body">
+              <span class="exp-badge it">Servizio · Comfort</span>
+              <span class="exp-badge en">Service · Comfort</span>
+              <span class="exp-badge es">Servicio · Comodidad</span>
+              <span class="exp-badge fr">Service · Confort</span>
+              <div class="exp-title it">Cura Premium del Guardaroba</div>
+              <div class="exp-title en">Premium Wardrobe Care</div>
+              <div class="exp-title es">Cuidado Premium del Guardarropa</div>
+              <div class="exp-title fr">Entretien Premium de la Garde-robe</div>
+              <div class="exp-desc it">Servizio di lavanderia di lusso con ritiro e consegna direttamente dall'appartamento.</div>
+              <div class="exp-desc en">Luxury laundry pickup and delivery directly from the apartment.</div>
+              <div class="exp-desc es">Servicio de lavandería de lujo con recogida y entrega directamente en el apartamento.</div>
+              <div class="exp-desc fr">Service de blanchisserie de luxe avec collecte et livraison directement depuis l'appartement.</div>
+              <a class="exp-cta" href="https://www.washingrome.com/" target="_blank" rel="noopener noreferrer">
+                <span class="it">Richiedi il servizio ↗</span>
+                <span class="en">Request laundry service ↗</span>
+                <span class="es">Solicitar el servicio ↗</span>
+                <span class="fr">Demander le service ↗</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ 2 · UNSEEN HISTORY ══ -->
+      <div class="carousel-section">
+        <div class="carousel-cat-label it">02 — Storia Nascosta</div>
+        <div class="carousel-cat-label en">02 — Unseen History</div>
+        <div class="carousel-cat-label es">02 — Historia Oculta</div>
+        <div class="carousel-cat-label fr">02 — Histoire Secrète</div>
+        <div class="carousel-cat-title it">Roma che pochi vedono.</div>
+        <div class="carousel-cat-title en">The Rome few ever see.</div>
+        <div class="carousel-cat-title es">La Roma que pocos ven.</div>
+        <div class="carousel-cat-title fr">La Rome que peu de gens voient.</div>
+        <div class="exp-carousel">
+
+          <div class="exp-card">
+            <div class="exp-card-img">🏛️</div>
+            <div class="exp-card-body">
+              <span class="exp-badge sig it">Accesso Esclusivo · Scelta di Alessandro</span>
+              <span class="exp-badge sig en">Exclusive Access · Alessandro's Pick</span>
+              <span class="exp-badge sig es">Acceso Exclusivo · Elección de Alessandro</span>
+              <span class="exp-badge sig fr">Accès Exclusif · Choix d'Alessandro</span>
+              <div class="exp-title it">Vaticano All'Alba — Early Bird PRIME</div>
+              <div class="exp-title en">Early Bird Vatican PRIME</div>
+              <div class="exp-title es">Vaticano al Amanecer — Early Bird PRIME</div>
+              <div class="exp-title fr">Vatican à l'Aube — Early Bird PRIME</div>
+              <div class="exp-desc it">Accesso privilegiato al Vaticano prima dell'apertura al pubblico. Nessuna coda, massima intimità.</div>
+              <div class="exp-desc en">Privileged access to the Vatican before public opening. No queues, maximum intimacy.</div>
+              <div class="exp-desc es">Acceso privilegiado al Vaticano antes de la apertura al público. Sin colas, máxima intimidad.</div>
+              <div class="exp-desc fr">Accès privilégié au Vatican avant l'ouverture au public. Sans files d'attente, intimité maximale.</div>
+              <a class="exp-cta" href="https://eyesofrome.com/" target="_blank" rel="noopener noreferrer">
+                <span class="it">Assicura l'accesso anticipato ↗</span>
+                <span class="en">Secure early access ↗</span>
+                <span class="es">Asegurar acceso anticipado ↗</span>
+                <span class="fr">Réserver l'accès anticipé ↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="exp-card">
+            <div class="exp-card-img">🕍</div>
+            <div class="exp-card-body">
+              <span class="exp-badge it">Roma Nascosta · Tour Privato</span>
+              <span class="exp-badge en">Hidden Rome · Private Tour</span>
+              <span class="exp-badge es">Roma Oculta · Tour Privado</span>
+              <span class="exp-badge fr">Rome Cachée · Tour Privé</span>
+              <div class="exp-title it">Il Ghetto Segreto e le Catacombe</div>
+              <div class="exp-title en">The Secret Ghetto & Catacombs</div>
+              <div class="exp-title es">El Ghetto Secreto y las Catacumbas</div>
+              <div class="exp-title fr">Le Ghetto Secret et les Catacombes</div>
+              <div class="exp-desc it">Un percorso intimo tra i millenni più profondi di Roma. Storia ebraica, sottosuolo, silenzio.</div>
+              <div class="exp-desc en">An intimate journey through Rome's deepest millennia. Jewish history, underground layers, silence.</div>
+              <div class="exp-desc es">Un recorrido íntimo por los milenios más profundos de Roma.</div>
+              <div class="exp-desc fr">Un voyage intime à travers les millénaires les plus profonds de Rome.</div>
+              <a class="exp-cta" href="https://romanjews.com/" target="_blank" rel="noopener noreferrer">
+                <span class="it">Scopri la Roma nascosta ↗</span>
+                <span class="en">Discover hidden Rome ↗</span>
+                <span class="es">Descubrir la Roma oculta ↗</span>
+                <span class="fr">Découvrir la Rome cachée ↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="exp-card">
+            <div class="exp-card-img">🌙</div>
+            <div class="exp-card-body">
+              <span class="exp-badge sig it">Serale · Signature</span>
+              <span class="exp-badge sig en">Night Experience · Signature</span>
+              <span class="exp-badge sig es">Experiencia Nocturna · Signature</span>
+              <span class="exp-badge sig fr">Expérience Nocturne · Signature</span>
+              <div class="exp-title it">Notturno Imperiale — Terme di Caracalla</div>
+              <div class="exp-title en">Imperial Nocturne — Baths of Caracalla</div>
+              <div class="exp-title es">Nocturno Imperial — Termas de Caracalla</div>
+              <div class="exp-title fr">Nocturne Impérial — Thermes de Caracalla</div>
+              <div class="exp-desc it">Le Terme di Caracalla illuminate di notte. Un'esperienza di rara bellezza, a dieci minuti da Domus Fiorelli.</div>
+              <div class="exp-desc en">The Baths of Caracalla lit at night. A rare beauty, ten minutes from Domus Fiorelli.</div>
+              <div class="exp-desc es">Las Termas de Caracalla iluminadas de noche. Una experiencia de rara belleza.</div>
+              <div class="exp-desc fr">Les Thermes de Caracalla illuminés la nuit. Une expérience d'une beauté rare.</div>
+              <div class="host-note-tag">
+                <span class="host-note-tag-icon">✦</span>
+                <span class="host-note-tag-text it">A 10 minuti a piedi da Domus Fiorelli — il modo più bello per finire una serata.</span>
+                <span class="host-note-tag-text en">10 minutes walking from Domus Fiorelli — the most beautiful way to end an evening.</span>
+                <span class="host-note-tag-text es">A 10 minutos a pie de Domus Fiorelli.</span>
+                <span class="host-note-tag-text fr">À 10 minutes à pied de Domus Fiorelli.</span>
+              </div>
+              <a class="exp-cta" href="https://www.italy-museum.com/rome/thermae-caracalla-night-guided-tour" target="_blank" rel="noopener noreferrer">
+                <span class="it">Prenota l'esperienza serale ↗</span>
+                <span class="en">Reserve the night experience ↗</span>
+                <span class="es">Reservar la experiencia nocturna ↗</span>
+                <span class="fr">Réserver l'expérience nocturne ↗</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ 3 · THE ROMAN LIFESTYLE ══ -->
+      <div class="carousel-section">
+        <div class="carousel-cat-label it">03 — Stile Romano</div>
+        <div class="carousel-cat-label en">03 — The Roman Lifestyle</div>
+        <div class="carousel-cat-label es">03 — El Estilo Romano</div>
+        <div class="carousel-cat-label fr">03 — Le Style Romain</div>
+        <div class="carousel-cat-title it">Vivere Roma come un privilegio.</div>
+        <div class="carousel-cat-title en">Living Rome as a privilege.</div>
+        <div class="carousel-cat-title es">Vivir Roma como un privilegio.</div>
+        <div class="carousel-cat-title fr">Vivre Rome comme un privilège.</div>
+        <div class="exp-carousel">
+
+          <div class="exp-card">
+            <div class="exp-card-img">📸</div>
+            <div class="exp-card-body">
+              <span class="exp-badge it">Romantico · Editoriale</span>
+              <span class="exp-badge en">Romantic · Editorial</span>
+              <span class="exp-badge es">Romántico · Editorial</span>
+              <span class="exp-badge fr">Romantique · Éditorial</span>
+              <div class="exp-title it">Fotografia Editoriale all'Alba</div>
+              <div class="exp-title en">Sunrise Editorial Photography</div>
+              <div class="exp-title es">Fotografía Editorial al Amanecer</div>
+              <div class="exp-title fr">Photographie Éditoriale au Lever du Soleil</div>
+              <div class="exp-desc it">Servizi fotografici professionali all'alba, quando Roma appartiene ancora a chi la sa ascoltare.</div>
+              <div class="exp-desc en">Professional photo sessions at sunrise, when Rome still belongs to those who know how to listen.</div>
+              <div class="exp-desc es">Sesiones fotográficas profesionales al amanecer, cuando Roma pertenece a quienes saben escucharla.</div>
+              <div class="exp-desc fr">Séances photo professionnelles à l'aube, quand Rome appartient encore à ceux qui savent l'écouter.</div>
+              <a class="exp-cta" href="https://www.romeitalyphotographer.com/family-sunrise-photoshoots-rome" target="_blank" rel="noopener noreferrer">
+                <span class="it">Prenota il tuo servizio ↗</span>
+                <span class="en">Book your sunrise shoot ↗</span>
+                <span class="es">Reservar tu sesión ↗</span>
+                <span class="fr">Réserver votre séance ↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="exp-card">
+            <div class="exp-card-img">🛵</div>
+            <div class="exp-card-body">
+              <span class="exp-badge it">Tramonto · Roma Iconica</span>
+              <span class="exp-badge en">Sunset · Iconic Rome</span>
+              <span class="exp-badge es">Atardecer · Roma Icónica</span>
+              <span class="exp-badge fr">Coucher de Soleil · Rome Iconique</span>
+              <div class="exp-title it">Il Rito della Vespa Vintage</div>
+              <div class="exp-title en">The Vintage Vespa Rite</div>
+              <div class="exp-title es">El Rito de la Vespa Vintage</div>
+              <div class="exp-title fr">Le Rite de la Vespa Vintage</div>
+              <div class="exp-desc it">Esplorare Roma al tramonto su una Vespa. Qualcosa di cui ci si ricorda tutta la vita.</div>
+              <div class="exp-desc en">Exploring Rome at sunset on a Vespa. Something you remember for the rest of your life.</div>
+              <div class="exp-desc es">Explorar Roma al atardecer en una Vespa. Algo que se recuerda toda la vida.</div>
+              <div class="exp-desc fr">Explorer Rome au coucher du soleil en Vespa. Quelque chose dont on se souvient toute sa vie.</div>
+              <a class="exp-cta" href="https://scooteroma.com/" target="_blank" rel="noopener noreferrer">
+                <span class="it">Esplora con Scooteroma ↗</span>
+                <span class="en">Ride with Scooteroma ↗</span>
+                <span class="es">Explorar con Scooteroma ↗</span>
+                <span class="fr">Rouler avec Scooteroma ↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="exp-card">
+            <div class="exp-card-img">🧵</div>
+            <div class="exp-card-body">
+              <span class="exp-badge it">Made in Italy · Shopping</span>
+              <span class="exp-badge en">Made in Italy · Shopping</span>
+              <span class="exp-badge es">Made in Italy · Compras</span>
+              <span class="exp-badge fr">Made in Italy · Shopping</span>
+              <div class="exp-title it">Artigiani su Misura</div>
+              <div class="exp-title en">Bespoke Artisans</div>
+              <div class="exp-title es">Artesanos a Medida</div>
+              <div class="exp-title fr">Artisans sur Mesure</div>
+              <div class="exp-desc it">Un tour di shopping su misura tra gli artigiani romani autentici — lontano dai negozi di souvenir.</div>
+              <div class="exp-desc en">A bespoke shopping tour among authentic Roman artisans — far from souvenir shops.</div>
+              <div class="exp-desc es">Un tour de compras a medida entre los artesanos romanos auténticos.</div>
+              <div class="exp-desc fr">Un tour shopping sur mesure parmi les artisans romains authentiques.</div>
+              <a class="exp-cta" href="https://www.florencefashiontour.com/rome-shopping-tour/" target="_blank" rel="noopener noreferrer">
+                <span class="it">Progetta il tuo tour ↗</span>
+                <span class="en">Design your shopping tour ↗</span>
+                <span class="es">Diseña tu tour ↗</span>
+                <span class="fr">Concevoir votre tour ↗</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ 4 · TASTE & TERROIR ══ -->
+      <div class="carousel-section">
+        <div class="carousel-cat-label it">04 — Sapori & Territorio</div>
+        <div class="carousel-cat-label en">04 — Taste & Terroir</div>
+        <div class="carousel-cat-label es">04 — Sabores y Territorio</div>
+        <div class="carousel-cat-label fr">04 — Saveurs & Terroir</div>
+        <div class="carousel-cat-title it">Il gusto come cultura.</div>
+        <div class="carousel-cat-title en">Taste as culture.</div>
+        <div class="carousel-cat-title es">El sabor como cultura.</div>
+        <div class="carousel-cat-title fr">Le goût comme culture.</div>
+        <div class="exp-carousel">
+
+          <div class="exp-card">
+            <div class="exp-card-img">🍝</div>
+            <div class="exp-card-body">
+              <span class="exp-badge it">Il Gusto di Roma · Favorito delle Coppie</span>
+              <span class="exp-badge en">Taste Rome · Couple Favorite</span>
+              <span class="exp-badge es">Sabor Roma · Favorito de Parejas</span>
+              <span class="exp-badge fr">Saveur Rome · Favori des Couples</span>
+              <div class="exp-title it">Masterclass in un Palazzo del '600</div>
+              <div class="exp-title en">17th-Century Palazzo Masterclass</div>
+              <div class="exp-title es">Masterclass en un Palazzo del Siglo XVII</div>
+              <div class="exp-title fr">Masterclass dans un Palazzo du XVIIe Siècle</div>
+              <div class="exp-desc it">Cucina italiana autentica in un palazzo storico del centro. Un'esperienza culinaria difficile da dimenticare.</div>
+              <div class="exp-desc en">Authentic Italian cooking in a historic palazzo. A culinary experience difficult to forget.</div>
+              <div class="exp-desc es">Cocina italiana auténtica en un palazzo histórico. Una experiencia culinaria difícil de olvidar.</div>
+              <div class="exp-desc fr">Cuisine italienne authentique dans un palazzo historique. Une expérience culinaire difficile à oublier.</div>
+              <a class="exp-cta" href="https://www.inromecooking.com/" target="_blank" rel="noopener noreferrer">
+                <span class="it">Riserva la tua masterclass ↗</span>
+                <span class="en">Reserve your masterclass ↗</span>
+                <span class="es">Reservar tu masterclass ↗</span>
+                <span class="fr">Réserver votre masterclass ↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="exp-card">
+            <div class="exp-card-img">🍷</div>
+            <div class="exp-card-body">
+              <span class="exp-badge it">Vino · Evasione</span>
+              <span class="exp-badge en">Wine · Escape</span>
+              <span class="exp-badge es">Vino · Escapada</span>
+              <span class="exp-badge fr">Vin · Évasion</span>
+              <div class="exp-title it">Fuga ai Vigneti dei Castelli Romani</div>
+              <div class="exp-title en">Castelli Romani Wine Escape</div>
+              <div class="exp-title es">Escapada Vinícola a los Castelli Romani</div>
+              <div class="exp-title fr">Escapade Viticole aux Castelli Romani</div>
+              <div class="exp-desc it">Un giorno tra i vigneti dei Colli Albani, a meno di un'ora da Roma. Con pranzo e degustazione inclusi.</div>
+              <div class="exp-desc en">A day among the Alban Hills vineyards, less than an hour from Rome. Lunch and tasting included.</div>
+              <div class="exp-desc es">Un día entre los viñedos de los Colli Albani, a menos de una hora de Roma.</div>
+              <div class="exp-desc fr">Une journée parmi les vignobles des Colli Albani, à moins d'une heure de Rome.</div>
+              <a class="exp-cta" href="https://eyesofrome.com/our-tours/rome/day-trip-from-rome-castelli-romani-wine-tour-with-lunch-dinner" target="_blank" rel="noopener noreferrer">
+                <span class="it">Fuggi tra i vigneti ↗</span>
+                <span class="en">Escape to the vineyards ↗</span>
+                <span class="es">Escapar a los viñedos ↗</span>
+                <span class="fr">S'évader vers les vignobles ↗</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ 5 · LITTLE EMPERORS ══ -->
+      <div class="carousel-section">
+        <div class="carousel-cat-label it">05 — Piccoli Imperatori</div>
+        <div class="carousel-cat-label en">05 — Little Emperors</div>
+        <div class="carousel-cat-label es">05 — Pequeños Emperadores</div>
+        <div class="carousel-cat-label fr">05 — Petits Empereurs</div>
+        <div class="carousel-cat-title it">Roma è meravigliosamente per famiglie.</div>
+        <div class="carousel-cat-title en">Rome is wonderfully family.</div>
+        <div class="carousel-cat-title es">Roma es maravillosamente familiar.</div>
+        <div class="carousel-cat-title fr">Rome est merveilleusement familiale.</div>
+        <div class="exp-carousel">
+
+          <div class="exp-card">
+            <div class="exp-card-img">⚔️</div>
+            <div class="exp-card-body">
+              <span class="exp-badge it">Famiglia · I Bambini Adorano</span>
+              <span class="exp-badge en">Family · Kids Favorite</span>
+              <span class="exp-badge es">Familia · Favorito de Niños</span>
+              <span class="exp-badge fr">Famille · Favori des Enfants</span>
+              <div class="exp-title it">Accademia dei Gladiatori</div>
+              <div class="exp-title en">Gladiator Academy</div>
+              <div class="exp-title es">Academia de Gladiadores</div>
+              <div class="exp-title fr">Académie des Gladiateurs</div>
+              <div class="exp-desc it">I bambini (e non solo) si trasformano in veri gladiatori romani. Un'esperienza che rimane.</div>
+              <div class="exp-desc en">Children (and adults) become real Roman gladiators. An experience that stays with you.</div>
+              <div class="exp-desc es">Los niños (y adultos) se convierten en verdaderos gladiadores romanos.</div>
+              <div class="exp-desc fr">Les enfants (et les adultes) deviennent de vrais gladiateurs romains.</div>
+              <a class="exp-cta" href="https://www.gruppostoricoromano.it/en/" target="_blank" rel="noopener noreferrer">
+                <span class="it">Addestrati come un gladiatore ↗</span>
+                <span class="en">Train like a gladiator ↗</span>
+                <span class="es">Entrenar como un gladiador ↗</span>
+                <span class="fr">S'entraîner comme un gladiateur ↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="exp-card">
+            <div class="exp-card-img">🎨</div>
+            <div class="exp-card-body">
+              <span class="exp-badge it">Famiglia · Ricordi da Creare</span>
+              <span class="exp-badge en">Family · Memory Maker</span>
+              <span class="exp-badge es">Familia · Creador de Recuerdos</span>
+              <span class="exp-badge fr">Famille · Créateur de Souvenirs</span>
+              <div class="exp-title it">Workshop di Mosaico Romano</div>
+              <div class="exp-title en">Master Mosaic Workshop</div>
+              <div class="exp-title es">Taller Maestro de Mosaico</div>
+              <div class="exp-title fr">Atelier Maître Mosaïque</div>
+              <div class="exp-desc it">L'arte millenaria del mosaico romano in un workshop hands-on. Si porta a casa un'opera tua.</div>
+              <div class="exp-desc en">The millennial art of Roman mosaic in a hands-on workshop. Take home your own creation.</div>
+              <div class="exp-desc es">El arte milenario del mosaico romano en un taller práctico. Te llevas a casa tu propia obra.</div>
+              <div class="exp-desc fr">L'art millénaire de la mosaïque romaine en atelier pratique. Repartez avec votre propre création.</div>
+              <a class="exp-cta" href="https://www.studiocassio.com/" target="_blank" rel="noopener noreferrer">
+                <span class="it">Prenota il workshop ↗</span>
+                <span class="en">Book the workshop ↗</span>
+                <span class="es">Reservar el taller ↗</span>
+                <span class="fr">Réserver l'atelier ↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="exp-card">
+            <div class="exp-card-img">👶</div>
+            <div class="exp-card-body">
+              <span class="exp-badge it">Tempo per i Genitori · Lusso Famiglia</span>
+              <span class="exp-badge en">Parents Time · Family Luxury</span>
+              <span class="exp-badge es">Tiempo para Padres · Lujo Familiar</span>
+              <span class="exp-badge fr">Temps Parents · Luxe Famille</span>
+              <div class="exp-title it">Babysitting Premium</div>
+              <div class="exp-title en">Premium Childcare</div>
+              <div class="exp-title es">Cuidado Infantil Premium</div>
+              <div class="exp-title fr">Garde d'Enfants Premium</div>
+              <div class="exp-desc it">Babysitting professionale e di fiducia, direttamente a Domus Fiorelli. I genitori meritano Roma.</div>
+              <div class="exp-desc en">Professional, trusted childcare directly at Domus Fiorelli. Parents deserve Rome too.</div>
+              <div class="exp-desc es">Cuidado infantil profesional y de confianza en Domus Fiorelli. Los padres también merecen Roma.</div>
+              <div class="exp-desc fr">Garde d'enfants professionnelle à Domus Fiorelli. Les parents méritent aussi Rome.</div>
+              <a class="exp-cta" href="https://www.nannybutler.com/rome-nanny-agency/" target="_blank" rel="noopener noreferrer">
+                <span class="it">Organizza il babysitting ↗</span>
+                <span class="en">Arrange premium childcare ↗</span>
+                <span class="es">Organizar el cuidado infantil ↗</span>
+                <span class="fr">Organiser la garde d'enfants ↗</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════
+           NEIGHBORHOOD SECRETS
+      ══════════════════════════════════════════════ -->
+      <div class="neighborhood-intro">
+        <div class="neighborhood-eyebrow it">Il taccuino segreto di Alessandro</div>
+        <div class="neighborhood-eyebrow en">Alessandro's private neighborhood notebook</div>
+        <div class="neighborhood-eyebrow es">El cuaderno privado del barrio de Alessandro</div>
+        <div class="neighborhood-eyebrow fr">Le carnet privé d'Alessandro</div>
+        <h3 class="neighborhood-headline it">I Segreti del Quartiere.</h3>
+        <h3 class="neighborhood-headline en">Neighborhood Secrets by Alessandro.</h3>
+        <h3 class="neighborhood-headline es">Los Secretos del Barrio.</h3>
+        <h3 class="neighborhood-headline fr">Les Secrets du Quartier.</h3>
+        <div class="neighborhood-sublabel it">I luoghi che amiamo davvero intorno a Domus Fiorelli</div>
+        <div class="neighborhood-sublabel en">The places we truly love around Domus Fiorelli</div>
+        <div class="neighborhood-sublabel es">Los lugares que verdaderamente amamos cerca de Domus Fiorelli</div>
+        <div class="neighborhood-sublabel fr">Les endroits que nous aimons vraiment autour de Domus Fiorelli</div>
+        <p class="neighborhood-body it">Al di là della Roma iconica, alcuni dei momenti più belli della città iniziano a pochi passi da casa. Questi sono i luoghi amati dal quartiere, raccomandati attraverso una conoscenza locale autentica e selezionati personalmente da Alessandro per aiutarti a vivere Roma come un residente.</p>
+        <p class="neighborhood-body en">Beyond iconic Rome, some of the city's most memorable moments begin just steps from home. These are the places loved by the neighbourhood, recommended through genuine local knowledge and personally selected by Alessandro to help guests experience Rome as a resident.</p>
+        <p class="neighborhood-body es">Más allá de la Roma icónica, algunos de los momentos más memorables de la ciudad comienzan a pocos pasos de casa. Estos son los lugares amados por el barrio, recomendados a través de un conocimiento local genuino.</p>
+        <p class="neighborhood-body fr">Au-delà de la Rome iconique, certains des moments les plus mémorables de la ville commencent juste devant chez vous. Ce sont les lieux aimés du quartier, recommandés grâce à une connaissance locale authentique.</p>
+      </div>
+
+      <!-- ══ N1 · MORNING RITUAL ══ -->
+      <div class="carousel-section">
+        <div class="carousel-cat-label it">Rito del Mattino</div>
+        <div class="carousel-cat-label en">Morning Ritual</div>
+        <div class="carousel-cat-label es">Ritual Matutino</div>
+        <div class="carousel-cat-label fr">Rituel du Matin</div>
+        <div class="carousel-cat-title it">Come comincia una vera giornata romana.</div>
+        <div class="carousel-cat-title en">How a real Roman day begins.</div>
+        <div class="carousel-cat-title es">Cómo empieza un verdadero día romano.</div>
+        <div class="carousel-cat-title fr">Comment commence une vraie journée romaine.</div>
+        <div class="exp-carousel">
+
+          <div class="exp-card local">
+            <div class="exp-card-img">☕</div>
+            <div class="exp-card-body">
+              <span class="exp-badge loc it">Preferito del Quartiere · Rito del Mattino</span>
+              <span class="exp-badge loc en">Local Favorite · Morning Ritual</span>
+              <span class="exp-badge loc es">Favorito Local · Ritual Matutino</span>
+              <span class="exp-badge loc fr">Favori Local · Rituel du Matin</span>
+              <div class="exp-title">Bar Enna</div>
+              <div class="exp-desc it">La vera giornata romana comincia al bancone. A pochi passi da Domus Fiorelli, Bar Enna è il bar di fiducia di Alessandro per un espresso e un cornetto caldo prima di esplorare la città.</div>
+              <div class="exp-desc en">The true Roman day begins standing at the counter. Just steps from Domus Fiorelli, Bar Enna is Alessandro's trusted neighbourhood café for espresso and a warm cornetto before exploring the city.</div>
+              <div class="exp-desc es">El verdadero día romano comienza en la barra. A pocos pasos de Domus Fiorelli, Bar Enna es el café de confianza de Alessandro.</div>
+              <div class="exp-desc fr">La vraie journée romaine commence au comptoir. À quelques pas de Domus Fiorelli, Bar Enna est le café de confiance d'Alessandro.</div>
+              <div class="host-note-tag">
+                <span class="host-note-tag-icon">⏰</span>
+                <span class="host-note-tag-text it">Alessandro consiglia: tra le 7:30 e le 9:00 per l'esperienza autentica.</span>
+                <span class="host-note-tag-text en">Alessandro recommends: best between 7:30 and 9:00 AM.</span>
+                <span class="host-note-tag-text es">Alessandro recomienda: entre las 7:30 y las 9:00.</span>
+                <span class="host-note-tag-text fr">Alessandro recommande : entre 7h30 et 9h00.</span>
+              </div>
+              <div class="exp-card-links">
+                <a class="exp-link-chip" href="https://www.google.com/maps/search/?api=1&query=Bar+Enna+Roma+Piazza+Villa+Fiorelli" target="_blank" rel="noopener noreferrer">📍 <span class="it">Indicazioni</span><span class="en">Directions</span><span class="es">Indicaciones</span><span class="fr">Itinéraire</span></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ N2 · ROMAN SOUL ══ -->
+      <div class="carousel-section">
+        <div class="carousel-cat-label it">L'Anima Romana</div>
+        <div class="carousel-cat-label en">Roman Classics</div>
+        <div class="carousel-cat-label es">Clásicos Romanos</div>
+        <div class="carousel-cat-label fr">Classiques Romains</div>
+        <div class="carousel-cat-title it">Dove i romani mangiano davvero.</div>
+        <div class="carousel-cat-title en">Where Romans truly eat.</div>
+        <div class="carousel-cat-title es">Donde comen de verdad los romanos.</div>
+        <div class="carousel-cat-title fr">Là où les Romains mangent vraiment.</div>
+        <div class="exp-carousel">
+
+          <div class="exp-card local">
+            <div class="exp-card-img">🍷</div>
+            <div class="exp-card-body">
+              <span class="exp-badge loc it">Roma Classica · Tradizionale</span>
+              <span class="exp-badge loc en">Classic Rome · Traditional</span>
+              <span class="exp-badge loc es">Roma Clásica · Tradicional</span>
+              <span class="exp-badge loc fr">Rome Classique · Traditionnel</span>
+              <div class="exp-title">La Villetta dal 1940</div>
+              <div class="exp-desc it">Un'istituzione romana storica. Una delle trattorie più autentiche per vivere i veri sapori della città in un'atmosfera calda di quartiere.</div>
+              <div class="exp-desc en">A historic Roman institution and one of the most authentic trattorias to enjoy the true flavours of the city in a warm neighbourhood atmosphere.</div>
+              <div class="exp-desc es">Una institución romana histórica y una de las trattorias más auténticas para disfrutar los verdaderos sabores de la ciudad.</div>
+              <div class="exp-desc fr">Une institution romaine historique et l'une des trattorias les plus authentiques pour savourer les vraies saveurs de la ville.</div>
+              <div class="host-note-tag">
+                <span class="host-note-tag-icon">✦</span>
+                <span class="host-note-tag-text it">Perfetta per la tua prima cena romana autentica.</span>
+                <span class="host-note-tag-text en">Perfect for your first authentic Roman dinner.</span>
+                <span class="host-note-tag-text es">Perfecta para tu primera cena romana auténtica.</span>
+                <span class="host-note-tag-text fr">Parfaite pour votre premier dîner romain authentique.</span>
+              </div>
+              <div class="exp-card-links">
+                <a class="exp-link-chip" href="http://www.lavillettadal1940.it" target="_blank" rel="noopener noreferrer">🌐 <span class="it">Sito web</span><span class="en">Website</span><span class="es">Sitio web</span><span class="fr">Site web</span></a>
+                <a class="exp-link-chip" href="https://www.google.com/maps/search/?api=1&query=La+Villetta+dal+1940+Roma" target="_blank" rel="noopener noreferrer">📍 <span class="it">Mappa</span><span class="en">Map</span><span class="es">Mapa</span><span class="fr">Carte</span></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-card local">
+            <div class="exp-card-img">🫙</div>
+            <div class="exp-card-body">
+              <span class="exp-badge loc it">Segreto di Quartiere · Scelta di Alessandro</span>
+              <span class="exp-badge loc en">Neighborhood Secret · Alessandro's Pick</span>
+              <span class="exp-badge loc es">Secreto del Barrio · Elección de Alessandro</span>
+              <span class="exp-badge loc fr">Secret de Quartier · Choix d'Alessandro</span>
+              <div class="exp-title">Osteria Pocci</div>
+              <div class="exp-desc it">Una gemma nascosta del quartiere, dietro l'angolo. Autenticità romana pura, spesso con piatti giornalieri presentati direttamente al tavolo.</div>
+              <div class="exp-desc en">A hidden neighbourhood gem just around the corner. Pure Roman authenticity, often with daily dishes personally presented at the table.</div>
+              <div class="exp-desc es">Una joya escondida del barrio. Autenticidad romana pura, a menudo con platos del día presentados en la mesa.</div>
+              <div class="exp-desc fr">Un joyau caché du quartier au coin de la rue. Authenticité romaine pure, souvent avec des plats du jour présentés directement à table.</div>
+              <div class="host-note-tag">
+                <span class="host-note-tag-icon">✦</span>
+                <span class="host-note-tag-text it">Chiedi il piatto del giorno — non te ne pentirai.</span>
+                <span class="host-note-tag-text en">Ask for the dish of the day — you won't regret it.</span>
+                <span class="host-note-tag-text es">Pide el plato del día — no te arrepentirás.</span>
+                <span class="host-note-tag-text fr">Demandez le plat du jour — vous ne le regretterez pas.</span>
+              </div>
+              <div class="exp-card-links">
+                <a class="exp-link-chip" href="https://www.google.com/maps/search/?api=1&query=Osteria+Pocci+Roma" target="_blank" rel="noopener noreferrer">📍 <span class="it">Indicazioni</span><span class="en">Directions</span><span class="es">Indicaciones</span><span class="fr">Itinéraire</span></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-card local">
+            <div class="exp-card-img">🍋</div>
+            <div class="exp-card-body">
+              <span class="exp-badge loc it">Cena Signature · Leggenda Romana</span>
+              <span class="exp-badge loc en">Signature Dinner · Roman Legend</span>
+              <span class="exp-badge loc es">Cena Signature · Leyenda Romana</span>
+              <span class="exp-badge loc fr">Dîner Signature · Légende Romaine</span>
+              <div class="exp-title">Flavio al Velavevodetto</div>
+              <div class="exp-desc it">Una delle esperienze gastronomiche romane più iconiche per chi vuole scoprire l'anima culinaria di Testaccio.</div>
+              <div class="exp-desc en">One of the most iconic Roman dining experiences for guests wishing to discover the culinary soul of Testaccio.</div>
+              <div class="exp-desc es">Una de las experiencias gastronómicas romanas más icónicas para descubrir el alma culinaria de Testaccio.</div>
+              <div class="exp-desc fr">L'une des expériences gastronomiques romaines les plus emblématiques pour découvrir l'âme culinaire de Testaccio.</div>
+              <div class="host-note-tag">
+                <span class="host-note-tag-icon">✦</span>
+                <span class="host-note-tag-text it">Altamente consigliato per gli amanti della carbonara autentica.</span>
+                <span class="host-note-tag-text en">Highly recommended for carbonara lovers.</span>
+                <span class="host-note-tag-text es">Muy recomendado para los amantes de la carbonara.</span>
+                <span class="host-note-tag-text fr">Fortement recommandé pour les amoureux de la carbonara.</span>
+              </div>
+              <div class="exp-card-links">
+                <a class="exp-link-chip" href="https://www.ristorantevelavevodetto.it" target="_blank" rel="noopener noreferrer">🌐 Website</a>
+                <a class="exp-link-chip" href="https://www.google.com/maps/search/?api=1&query=Flavio+al+Velavevodetto+Roma+Testaccio" target="_blank" rel="noopener noreferrer">📍 <span class="it">Mappa</span><span class="en">Map</span><span class="es">Mapa</span><span class="fr">Carte</span></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-card local">
+            <div class="exp-card-img">🫒</div>
+            <div class="exp-card-body">
+              <span class="exp-badge loc it">Tradizionale · Elegante</span>
+              <span class="exp-badge loc en">Traditional · Elegant</span>
+              <span class="exp-badge loc es">Tradicional · Elegante</span>
+              <span class="exp-badge loc fr">Traditionnel · Élégant</span>
+              <div class="exp-title">Osteria Fratelli Mori</div>
+              <div class="exp-desc it">Un'esperienza di cena romana raffinata ma autentica, dove la tradizione di famiglia incontra l'ospitalità senza tempo.</div>
+              <div class="exp-desc en">A refined yet authentic Roman dining experience where family tradition meets timeless hospitality.</div>
+              <div class="exp-desc es">Una experiencia de cena romana refinada pero auténtica, donde la tradición familiar encuentra la hospitalidad intemporal.</div>
+              <div class="exp-desc fr">Une expérience gastronomique romaine raffinée mais authentique où la tradition familiale rencontre l'hospitalité intemporelle.</div>
+              <div class="exp-card-links">
+                <a class="exp-link-chip" href="http://www.osteriafratellimori.it" target="_blank" rel="noopener noreferrer">🌐 Website</a>
+                <a class="exp-link-chip" href="https://www.google.com/maps/search/?api=1&query=Osteria+Fratelli+Mori+Roma" target="_blank" rel="noopener noreferrer">📍 <span class="it">Mappa</span><span class="en">Map</span><span class="es">Mapa</span><span class="fr">Carte</span></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ N3 · NIGHT & MIXOLOGY ══ -->
+      <div class="carousel-section">
+        <div class="carousel-cat-label it">Serate Romane</div>
+        <div class="carousel-cat-label en">Roman Evenings</div>
+        <div class="carousel-cat-label es">Veladas Romanas</div>
+        <div class="carousel-cat-label fr">Soirées Romaines</div>
+        <div class="carousel-cat-title it">La notte che non ti aspetti.</div>
+        <div class="carousel-cat-title en">The night you didn't expect.</div>
+        <div class="carousel-cat-title es">La noche que no esperabas.</div>
+        <div class="carousel-cat-title fr">La nuit que vous n'attendiez pas.</div>
+        <div class="exp-carousel">
+
+          <div class="exp-card local">
+            <div class="exp-card-img">🍸</div>
+            <div class="exp-card-body">
+              <span class="exp-badge loc it">Cocktail · Bar Nascosto</span>
+              <span class="exp-badge loc en">Cocktails · Hidden Bar</span>
+              <span class="exp-badge loc es">Cócteles · Bar Oculto</span>
+              <span class="exp-badge loc fr">Cocktails · Bar Caché</span>
+              <div class="exp-title">Blind Pig</div>
+              <div class="exp-desc it">Un sofisticato speakeasy di quartiere, ideale per cocktail eleganti dopo cena e serate intime.</div>
+              <div class="exp-desc en">A sophisticated neighbourhood speakeasy, ideal for elegant post-dinner cocktails and intimate evenings.</div>
+              <div class="exp-desc es">Un sofisticado speakeasy de barrio, ideal para cócteles elegantes después de cenar.</div>
+              <div class="exp-desc fr">Un speakeasy de quartier sophistiqué, idéal pour des cocktails élégants après le dîner.</div>
+              <div class="host-note-tag">
+                <span class="host-note-tag-icon">🕯️</span>
+                <span class="host-note-tag-text it">Perfetto per le coppie — atmosfera intima e ricercata.</span>
+                <span class="host-note-tag-text en">Perfect for couples — intimate and refined atmosphere.</span>
+                <span class="host-note-tag-text es">Perfecto para parejas — ambiente íntimo y refinado.</span>
+                <span class="host-note-tag-text fr">Parfait pour les couples — atmosphère intime et raffinée.</span>
+              </div>
+              <div class="exp-card-links">
+                <a class="exp-link-chip" href="https://www.google.com/maps/search/?api=1&query=Blind+Pig+Roma" target="_blank" rel="noopener noreferrer">📍 <span class="it">Indicazioni</span><span class="en">Directions</span><span class="es">Indicaciones</span><span class="fr">Itinéraire</span></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-card local">
+            <div class="exp-card-img">🎭</div>
+            <div class="exp-card-body">
+              <span class="exp-badge loc it">Pigneto · Vita Notturna</span>
+              <span class="exp-badge loc en">Pigneto · Nightlife</span>
+              <span class="exp-badge loc es">Pigneto · Vida Nocturna</span>
+              <span class="exp-badge loc fr">Pigneto · Vie Nocturne</span>
+              <div class="exp-title">Magnebevo</div>
+              <div class="exp-desc it">Per chi cerca la vita notturna artistica e bohémienne di Roma — uno dei locali serali locali più autentici del quartiere.</div>
+              <div class="exp-desc en">For guests looking for Rome's artistic and bohemian nightlife — one of the most authentic local evening spots.</div>
+              <div class="exp-desc es">Para quienes buscan la vida nocturna artística y bohemia de Roma.</div>
+              <div class="exp-desc fr">Pour les hôtes à la recherche de la vie nocturne artistique et bohème de Rome.</div>
+              <div class="exp-card-links">
+                <a class="exp-link-chip" href="https://www.google.com/maps/search/?api=1&query=Magnebevo+Roma+Pigneto" target="_blank" rel="noopener noreferrer">📍 <span class="it">Indicazioni</span><span class="en">Directions</span><span class="es">Indicaciones</span><span class="fr">Itinéraire</span></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ N4 · CULTURAL SECRETS ══ -->
+      <div class="carousel-section">
+        <div class="carousel-cat-label it">Roma Culturale Nascosta</div>
+        <div class="carousel-cat-label en">Hidden Cultural Rome</div>
+        <div class="carousel-cat-label es">Roma Cultural Oculta</div>
+        <div class="carousel-cat-label fr">Rome Culturelle Cachée</div>
+        <div class="carousel-cat-title it">Le emozioni che le guide non raccontano.</div>
+        <div class="carousel-cat-title en">The emotions guidebooks don't capture.</div>
+        <div class="carousel-cat-title es">Las emociones que las guías no cuentan.</div>
+        <div class="carousel-cat-title fr">Les émotions que les guides ne racontent pas.</div>
+        <div class="exp-carousel">
+
+          <div class="exp-card local">
+            <div class="exp-card-img">✝️</div>
+            <div class="exp-card-body">
+              <span class="exp-badge loc it">Roma Nascosta · Culturale</span>
+              <span class="exp-badge loc en">Hidden Rome · Cultural</span>
+              <span class="exp-badge loc es">Roma Oculta · Cultural</span>
+              <span class="exp-badge loc fr">Rome Cachée · Culturel</span>
+              <div class="exp-title it">S. Maria Maggiore & S. Prassede</div>
+              <div class="exp-title en">Santa Maria Maggiore & Santa Prassede</div>
+              <div class="exp-title es">Santa María Mayor & Santa Práxedes</div>
+              <div class="exp-title fr">Sainte-Marie-Majeure & Sainte-Praxède</div>
+              <div class="exp-desc it">Una raccomandazione culturale raffinata al di fuori dei percorsi turistici classici. Abbina la grandiosità di Santa Maria Maggiore ai mosaici bizantini straordinari nascosti all'interno di Santa Prassede.</div>
+              <div class="exp-desc en">A refined cultural recommendation beyond the classic tourist routes. Pair the grandeur of Santa Maria Maggiore with the extraordinary Byzantine mosaics hidden inside Santa Prassede.</div>
+              <div class="exp-desc es">Una recomendación cultural refinada más allá de las rutas turísticas clásicas. Combina la grandiosidad de Santa María Mayor con los extraordinarios mosaicos bizantinos ocultos en Santa Práxedes.</div>
+              <div class="exp-desc fr">Une recommandation culturelle raffinée au-delà des circuits touristiques classiques. Associez la grandeur de Sainte-Marie-Majeure aux extraordinaires mosaïques byzantines cachées dans Sainte-Praxède.</div>
+              <div class="host-note-tag">
+                <span class="host-note-tag-icon">✦</span>
+                <span class="host-note-tag-text it">Un'esperienza profondamente emozionante — e quasi sempre silenziosa.</span>
+                <span class="host-note-tag-text en">A deeply emotional and quieter Roman experience.</span>
+                <span class="host-note-tag-text es">Una experiencia profundamente emotiva y generalmente silenciosa.</span>
+                <span class="host-note-tag-text fr">Une expérience profondément émouvante et généralement silencieuse.</span>
+              </div>
+              <div class="exp-card-links">
+                <a class="exp-link-chip" href="https://www.google.com/maps/search/?api=1&query=Santa+Maria+Maggiore+Roma" target="_blank" rel="noopener noreferrer">📍 S. Maria M.</a>
+                <a class="exp-link-chip" href="https://www.google.com/maps/search/?api=1&query=Santa+Prassede+Roma" target="_blank" rel="noopener noreferrer">📍 S. Prassede</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div style="height:16px"></div>
+    </div>
+  </div>
+
 </div><!-- /pages -->
 
 <!-- BOTTOM TAB NAV -->
@@ -3173,9 +4266,18 @@
   </button>
 </div>
 
-<!-- WHATSAPP BUTTON -->
-<a id="whatsapp-btn" href="https://wa.me/393493511395" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#25D366"/><path d="M23.472 8.528A10.417 10.417 0 0016 5.583c-5.754 0-10.42 4.666-10.42 10.417 0 1.837.48 3.63 1.394 5.212L5.5 26.417l5.35-1.404a10.394 10.394 0 004.15.864h.004c5.75 0 10.416-4.666 10.416-10.417a10.388 10.388 0 00-1.948-6.932z" fill="#25D366"/><path d="M16 24.39a8.63 8.63 0 01-4.4-1.204l-.316-.188-3.174.833.848-3.094-.207-.318A8.607 8.607 0 017.37 16c0-4.762 3.872-8.633 8.634-8.633 2.305 0 4.473.898 6.103 2.53A8.577 8.577 0 0124.633 16c0 4.762-3.872 8.633-8.633 8.633v-.243zm5.014-6.46c-.275-.137-1.626-.801-1.878-.893-.252-.09-.435-.136-.618.138-.183.274-.707.893-.867 1.076-.16.183-.32.206-.594.069-.275-.138-1.161-.428-2.211-1.364-.817-.728-1.369-1.626-1.529-1.9-.16-.275-.017-.423.12-.56.124-.123.275-.32.413-.48.137-.16.183-.275.274-.458.092-.183.046-.343-.023-.48-.069-.138-.618-1.49-.847-2.04-.224-.536-.45-.463-.618-.472l-.527-.009a1.01 1.01 0 00-.733.344c-.252.274-.963.94-.963 2.293s.986 2.659 1.123 2.842c.137.183 1.94 2.96 4.7 4.153.657.283 1.169.452 1.569.579.659.21 1.26.18 1.733.11.529-.08 1.626-.665 1.855-1.307.23-.641.23-1.19.16-1.307-.068-.115-.251-.183-.526-.32z" fill="white"/></svg>
+<!-- WHATSAPP LUXURY PILL -->
+<a id="whatsapp-btn" href="https://wa.me/393493511395" target="_blank" rel="noopener noreferrer" aria-label="Message Alessandro on WhatsApp">
+  <div class="wa-icon-wrap">
+    <svg width="16" height="16" viewBox="0 0 32 32" fill="none"><path d="M23.472 8.528A10.417 10.417 0 0016 5.583c-5.754 0-10.42 4.666-10.42 10.417 0 1.837.48 3.63 1.394 5.212L5.5 26.417l5.35-1.404a10.394 10.394 0 004.15.864h.004c5.75 0 10.416-4.666 10.416-10.417a10.388 10.388 0 00-1.948-6.932z" fill="white"/><path d="M21.014 17.93c-.275-.137-1.626-.801-1.878-.893-.252-.09-.435-.136-.618.138-.183.274-.707.893-.867 1.076-.16.183-.32.206-.594.069-.275-.138-1.161-.428-2.211-1.364-.817-.728-1.369-1.626-1.529-1.9-.16-.275-.017-.423.12-.56.124-.123.275-.32.413-.48.137-.16.183-.275.274-.458.092-.183.046-.343-.023-.48-.069-.138-.618-1.49-.847-2.04-.224-.536-.45-.463-.618-.472l-.527-.009a1.01 1.01 0 00-.733.344c-.252.274-.963.94-.963 2.293s.986 2.659 1.123 2.842c.137.183 1.94 2.96 4.7 4.153.657.283 1.169.452 1.569.579.659.21 1.26.18 1.733.11.529-.08 1.626-.665 1.855-1.307.23-.641.23-1.19.16-1.307-.068-.115-.251-.183-.526-.32z" fill="rgba(0,0,0,0.3)"/></svg>
+  </div>
+  <div class="wa-text-wrap">
+    <span class="wa-label it">Il tuo host</span>
+    <span class="wa-label en">Your host</span>
+    <span class="wa-label es">Tu anfitrión</span>
+    <span class="wa-label fr">Votre hôte</span>
+    <span class="wa-name">Alessandro</span>
+  </div>
 </a>
 
 <!-- PIN GATE MODAL -->
@@ -3435,7 +4537,7 @@
     <!-- Julia AI Concierge -->
     <div style="padding: 0 14px 32px;">
       <div class="julia-card">
-        <div class="julia-card-eyebrow">Roma AI Concierge</div>
+        <div class="julia-card-eyebrow">Julia · AI Roma</div>
         <div class="julia-card-title">Julia</div>
         <div class="julia-card-sub it">L'assistente AI ufficiale del Comune di Roma. Per esplorare la città in tempo reale — consigli, itinerari, trasporti, eventi.</div>
         <div class="julia-card-sub en">Rome's official AI assistant. Explore the city in real time — recommendations, itineraries, transport, events.</div>
@@ -3494,17 +4596,17 @@
 </div>
 
 <script>
-  const TOTAL = 13;
-  const NAMES_IT = ['Home','Benvenuto','Filosofia','Accesso','Casa','Regole','Emergenze','Mobilità','Food','Galateo','Esperienze','Arrivederci','Privacy'];
-  const NAMES_EN = ['Home','Welcome','Philosophy','Access','Home','Rules','Emergency','Transport','Food','Tips','Experiences','Farewell','Privacy'];
-  const NAMES_ES = ['Home','Bienvenida','Filosofía','Acceso','Casa','Normas','Emergencias','Moverse','Food','Etiqueta','Experiencias','Hasta pronto','Privacidad'];
-  const NAMES_FR = ['Home','Bienvenue','Philosophie','Accès','Logement','Règles','Urgences','Transport','Food','Étiquette','Expériences','Au revoir','Confidentialité'];
+  const TOTAL = 14;
+  const NAMES_IT = ['Home','Benvenuto','Filosofia','Accesso','Casa','Regole','Emergenze','Mobilità','Food','Galateo','Esperienze','Arrivederci','Privacy','Selezionato'];
+  const NAMES_EN = ['Home','Welcome','Philosophy','Access','Home','Rules','Emergency','Transport','Food','Tips','Experiences','Farewell','Privacy','Selected'];
+  const NAMES_ES = ['Home','Bienvenida','Filosofía','Acceso','Casa','Normas','Emergencias','Moverse','Food','Etiqueta','Experiencias','Hasta pronto','Privacidad','Seleccionado'];
+  const NAMES_FR = ['Home','Bienvenue','Philosophie','Accès','Logement','Règles','Urgences','Transport','Food','Étiquette','Expériences','Au revoir','Confidentialité','Sélectionné'];
 
   // Tab ranges: which pages belong to which tab
   const TAB_HOME  = [0];
   const TAB_STAY  = [1,2,3,4,5,6,7];
   const TAB_FOOD  = [8];
-  const TAB_ROMA  = [10,11];
+  const TAB_ROMA  = [10,11,13];
 
   let cur = 0;
   let lang = 'it'; // will be overridden by setLang(detectLang()) on init
@@ -3804,6 +4906,12 @@
     if (banner) banner.classList.remove('show');
   }
 
+  function goToSelected() {
+    goToPage(13);
+    closeDrawer();
+    closeQuick();
+  }
+
   // ── FOOTER INJECTION ─────────────────────────────────
   function injectFooters() {
     const footerHTML = `
@@ -3811,10 +4919,10 @@
       <div class="footer-assistants">
         <a class="footer-assistant-card" href="https://wa.me/393493511395" target="_blank" rel="noopener">
           <div class="footer-assistant-icon">💬</div>
-          <div class="footer-assistant-badge concierge it">Concierge</div>
-          <div class="footer-assistant-badge concierge en">Concierge</div>
-          <div class="footer-assistant-badge concierge es">Concierge</div>
-          <div class="footer-assistant-badge concierge fr">Concierge</div>
+          <div class="footer-assistant-badge concierge it">Host · Domus Fiorelli</div>
+          <div class="footer-assistant-badge concierge en">Host · Domus Fiorelli</div>
+          <div class="footer-assistant-badge concierge es">Anfitrión · Domus Fiorelli</div>
+          <div class="footer-assistant-badge concierge fr">Hôte · Domus Fiorelli</div>
           <div class="footer-assistant-name it">Alessandro · WhatsApp</div>
           <div class="footer-assistant-name en">Alessandro · WhatsApp</div>
           <div class="footer-assistant-name es">Alessandro · WhatsApp</div>
@@ -3856,6 +4964,7 @@
     const h = window.location.hash;
     if (h === '#farewell') goToPage(11);
     else if (h === '#privacy') goToPage(12);
+    else if (h === '#selected') goToPage(13);
   }
   window.addEventListener('hashchange', handleHash);
 
