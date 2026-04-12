@@ -1996,6 +1996,61 @@
       line-height: 1.8;
     }
 
+    /* ─── SELECTED BY ALEX: SUB-TABS ────────────────── */
+    #sel-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      background: var(--beige);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 10px 0 6px;
+    }
+    .sel-tab-btn {
+      flex: 1;
+      padding: 10px 6px;
+      border-radius: 50px;
+      border: 1.5px solid var(--light-gray);
+      background: var(--white);
+      font-family: 'Raleway', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gray);
+      cursor: pointer;
+      transition: all 0.2s;
+      min-height: 40px;
+    }
+    .sel-tab-btn.active {
+      background: var(--anthracite);
+      border-color: var(--anthracite);
+      color: var(--white);
+    }
+    .sel-panel { display: none; }
+    .sel-panel.active { display: block; }
+
+    /* ─── VERTICAL EXP CARDS (page 13) ──────────────── */
+    #page-13 .exp-carousel {
+      flex-direction: column;
+      overflow-x: visible;
+      overflow-y: visible;
+      scroll-snap-type: none;
+      touch-action: auto;
+      overscroll-behavior-x: auto;
+      padding: 0;
+      margin: 0;
+      gap: 12px;
+    }
+    #page-13 .exp-card {
+      flex: none;
+      width: 100%;
+      max-width: 100%;
+      scroll-snap-align: none;
+    }
+    #page-13 .carousel-arrows { display: none; }
+
     /* ─── SPOTIFY MOOD CARDS ────────────────────────── */
     .spotify-card {
       background: var(--white);
@@ -3745,6 +3800,25 @@
         <div class="selected-sublabel fr">Personnellement sélectionné pour les hôtes de Domus Fiorelli</div>
       </div>
 
+      <!-- ── SUB-TAB NAV ── -->
+      <div id="sel-tabs">
+        <button class="sel-tab-btn active" onclick="selTab(0)">
+          <span class="it">Esperienze</span>
+          <span class="en">Experiences</span>
+          <span class="es">Experiencias</span>
+          <span class="fr">Expériences</span>
+        </button>
+        <button class="sel-tab-btn" onclick="selTab(1)">
+          <span class="it">Quartiere</span>
+          <span class="en">Neighbourhood</span>
+          <span class="es">Barrio</span>
+          <span class="fr">Quartier</span>
+        </button>
+      </div>
+
+      <!-- ── PANEL 0: Esperienze (1–5) ── -->
+      <div class="sel-panel active" id="sel-panel-0">
+
       <!-- ══ 1 · IN-HOUSE SANCTUARY ══ -->
       <div class="carousel-section">
         <div class="carousel-cat-label it">01 — Santuario</div>
@@ -4163,6 +4237,11 @@
         </div>
       </div>
 
+      </div><!-- /sel-panel-0 -->
+
+      <!-- ── PANEL 1: Quartiere (N1–N4) ── -->
+      <div class="sel-panel" id="sel-panel-1">
+
       <!-- ══════════════════════════════════════════════
            NEIGHBORHOOD SECRETS
       ══════════════════════════════════════════════ -->
@@ -4439,6 +4518,7 @@
       </div>
 
       <div style="height:16px"></div>
+      </div><!-- /sel-panel-1 -->
     </div>
   </div>
 
@@ -5142,6 +5222,14 @@
     goToPage(13);
     closeDrawer();
     closeQuick();
+  }
+
+  function selTab(n) {
+    document.querySelectorAll('.sel-panel').forEach((p, i) => p.classList.toggle('active', i === n));
+    document.querySelectorAll('.sel-tab-btn').forEach((b, i) => b.classList.toggle('active', i === n));
+    // scroll page to top when switching tab
+    const page13 = document.getElementById('page-13');
+    if (page13) page13.scrollTop = 0;
   }
 
   // ── FOOTER INJECTION ─────────────────────────────────
