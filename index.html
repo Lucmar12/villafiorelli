@@ -286,7 +286,7 @@
 
     /* ─── SECTION PAGES ──────────────────────────────── */
     .section-page {
-      padding: 24px 16px 36px;
+      padding: 24px 16px 100px;
       min-height: 100%;
       background: var(--beige);
     }
@@ -1874,7 +1874,7 @@
       flex-direction: column;
       gap: 8px;
     }
-    .exp-badge {
+    .exp-card .exp-badge {
       display: inline-block;
       font-size: 9px;
       font-weight: 700;
@@ -1886,16 +1886,16 @@
       padding: 3px 9px;
       width: fit-content;
     }
-    .exp-badge.sig { color: var(--terracotta); background: rgba(196,98,45,0.14); }
-    .exp-badge.loc { color: #7cb9a0; background: rgba(124,185,160,0.14); }
-    .exp-title {
+    .exp-card .exp-badge.sig { color: var(--terracotta); background: rgba(196,98,45,0.14); }
+    .exp-card .exp-badge.loc { color: #7cb9a0; background: rgba(124,185,160,0.14); }
+    .exp-card .exp-title {
       font-family: 'Playfair Display', serif;
       font-size: 16px;
       font-weight: 600;
       color: #F5ECD7;
       line-height: 1.35;
     }
-    .exp-desc {
+    .exp-card .exp-desc {
       font-size: 12px;
       color: rgba(245,236,215,0.75);
       line-height: 1.65;
