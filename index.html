@@ -5070,6 +5070,25 @@
     const allCover = document.querySelectorAll('.cover-quote, .cover-value-prop-text, .cover-btn .it, .cover-btn .en, .cover-btn .es, .cover-btn .fr, .cover-btn .ru, .cover-btn .ar, .cover-btn .ja, .cover-btn .de');
     allCover.forEach(el => { el.style.display = ''; });
 
+    // ── EN FALLBACK for ES/FR/RU/AR/JA/DE ──────────────────
+    // Reset any inline styles applied by a previous fallback call
+    document.querySelectorAll('.en[data-fb]').forEach(el => {
+      el.removeAttribute('data-fb');
+      el.style.display = '';
+    });
+    // If the chosen lang is not IT/EN, show .en where no target-lang sibling exists
+    if (l !== 'it' && l !== 'en') {
+      document.querySelectorAll('.en').forEach(enEl => {
+        const parent = enEl.parentElement;
+        if (parent && !parent.querySelector('.' + l)) {
+          // no translation in target lang → show EN as fallback
+          enEl.setAttribute('data-fb', '1');
+          enEl.style.display = enEl.tagName === 'SPAN' ? 'inline' : 'block';
+        }
+      });
+    }
+    // ────────────────────────────────────────────────────────
+
     // Highlight active lang in picker
     document.querySelectorAll('.lang-opt').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.lang === l);
