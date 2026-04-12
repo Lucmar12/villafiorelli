@@ -161,14 +161,17 @@
     #drawer-nav {
       flex: 1;
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
       padding: 10px 0;
+      padding-bottom: calc(env(safe-area-inset-bottom, 24px) + 24px);
     }
 
     .drawer-item {
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 13px 22px;
+      padding: 15px 22px;
+      min-height: 52px;
       cursor: pointer;
       transition: background 0.15s;
       border: none;
@@ -1239,11 +1242,27 @@
       .card:hover { box-shadow: 0 6px 24px rgba(44,44,44,0.1); transform: translateY(-1px); }
       .rest-card:hover { box-shadow: 0 6px 24px rgba(44,44,44,0.1); transform: translateY(-1px); }
     }
-    .section-page { animation: fadeUp 0.32s ease both; }
+    .section-page { animation: fadeUp 0.38s cubic-bezier(0.22,1,0.36,1) both; }
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(14px); }
       to   { opacity: 1; transform: translateY(0); }
     }
+
+    /* ─── PREMIUM HOVER ELEVATION ────────────────────── */
+    @media (hover: hover) {
+      .card:hover { box-shadow: 0 6px 24px rgba(44,44,44,0.1); transform: translateY(-2px); transition: box-shadow 0.2s, transform 0.2s; }
+      .spotify-card:hover { box-shadow: 0 6px 22px rgba(44,44,44,0.1); transform: translateY(-2px); }
+      .exp-card:hover { box-shadow: 0 14px 36px rgba(0,0,0,0.22); transform: translateY(-3px); transition: box-shadow 0.22s, transform 0.22s; }
+      a.quick-card:hover { transform: scale(1.015); box-shadow: 0 4px 18px rgba(44,44,44,0.1); }
+    }
+
+    /* ─── WHATSAPP FLOAT ANIMATION ───────────────────── */
+    @keyframes wafloat {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-5px); }
+    }
+    #whatsapp-btn { animation: wafloat 3.2s ease-in-out infinite; }
+    #whatsapp-btn:active { animation: none; transform: scale(0.92); }
 
     a { color: inherit; text-decoration: none; }
     .text-link { color: var(--terracotta); text-decoration: underline; }
@@ -1779,6 +1798,8 @@
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
+      touch-action: pan-x;
+      overscroll-behavior-x: contain;
       scrollbar-width: none;
       padding: 4px 20px 16px 0;
       margin: 0 -20px;
@@ -1786,6 +1807,26 @@
       padding-right: 20px;
     }
     .exp-carousel::-webkit-scrollbar { display: none; }
+    .carousel-wrap { position: relative; }
+    .carousel-arrows {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 8px;
+      padding-right: 4px;
+    }
+    .carousel-arrow {
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      border-radius: 50%;
+      width: 34px; height: 34px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.15s;
+      color: var(--anthracite);
+    }
+    .carousel-arrow:active { background: var(--beige-mid); transform: scale(0.93); }
 
     /* ─── EXPERIENCE CARD ────────────────────────────── */
     .exp-card {
@@ -1954,6 +1995,72 @@
       color: var(--gray);
       line-height: 1.8;
     }
+
+    /* ─── SPOTIFY MOOD CARDS ────────────────────────── */
+    .spotify-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 10px rgba(44,44,44,0.06);
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+    .spotify-card:active { transform: scale(0.985); box-shadow: 0 1px 6px rgba(44,44,44,0.08); }
+    .spotify-card-top { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+    .spotify-card-meta { display: flex; align-items: center; gap: 12px; flex: 1; }
+    .spotify-icon { width: 32px; height: 32px; flex-shrink: 0; }
+    .spotify-card-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--anthracite);
+      margin-bottom: 3px;
+    }
+    .spotify-card-mood {
+      font-size: 12px;
+      color: var(--gray);
+      font-style: italic;
+      line-height: 1.5;
+    }
+    .spotify-cta {
+      display: block;
+      background: linear-gradient(135deg, #1DB954, #169c46);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      padding: 11px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-align: center;
+      transition: transform 0.15s, opacity 0.15s;
+    }
+    .spotify-cta:active { transform: scale(0.97); opacity: 0.9; }
+
+    /* ─── COMFORT ACTIONS ────────────────────────────── */
+    .comfort-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .comfort-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--beige);
+      border: 1.5px solid var(--light-gray);
+      border-radius: 12px;
+      padding: 13px 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--anthracite);
+      text-decoration: none;
+      min-height: 50px;
+      text-align: center;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .comfort-btn.full { grid-column: 1 / -1; background: var(--terracotta); color: var(--white); border-color: var(--terracotta); }
+    .comfort-btn:active { transform: scale(0.97); }
 
     /* ─── PRIVACY PAGE ───────────────────────────────── */
     .privacy-section { margin-bottom: 18px; }
@@ -2369,7 +2476,7 @@
           <div class="concierge-item"><span class="concierge-check">✦</span><span>Secrets locaux que vous ne trouverez dans aucun guide</span></div>
           <div class="concierge-item"><span class="concierge-check">✦</span><span>Assistance immédiate pour tout imprévu</span></div>
         </div>
-        <a class="exp-cta terra" href="https://wa.me/393493511395" target="_blank" rel="noopener noreferrer" style="margin-top:14px;display:block">
+        <a class="exp-cta terra" href="https://wa.me/393755991515" target="_blank" rel="noopener noreferrer" style="margin-top:14px;display:block">
           <span class="it">✦ Scrivi ad Alessandro</span>
           <span class="en">✦ Message Alessandro directly</span>
           <span class="es">✦ Escribe a Alessandro</span>
@@ -2570,6 +2677,98 @@
           <p>If this is your first encounter, welcome to Europe. The <strong>bidet</strong> is the low basin next to the toilet, used for personal hygiene. Sit facing the tap, adjust the temperature, wash as needed. Dry with the small towel on the left. Romans use it every single day.</p>
         </div>
       </div>
+
+      <!-- ── THE SOUND OF YOUR STAY ── -->
+      <div class="section-header" style="margin-top:28px; margin-bottom:16px">
+        <p class="section-tag it">Atmosfera · Suoni</p>
+        <p class="section-tag en">Atmosphere · Sound</p>
+        <h2 class="section-title it">Il suono del tuo soggiorno.</h2>
+        <h2 class="section-title en">The Sound of Your Stay.</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="spotify-card">
+        <div class="spotify-card-top">
+          <div class="spotify-card-meta">
+            <svg class="spotify-icon" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            <div>
+              <div class="spotify-card-label it">01 · Mattino Romano</div>
+              <div class="spotify-card-label en">01 · Roman Morning</div>
+              <div class="spotify-card-mood it">jazz morbido · espresso · risveglio gentile</div>
+              <div class="spotify-card-mood en">soft jazz · espresso · gentle awakening</div>
+            </div>
+          </div>
+        </div>
+        <a class="spotify-cta" href="https://open.spotify.com/search/Roman%20Morning%20Jazz%20Espresso" target="_blank" rel="noopener">
+          <span class="it">▶ Ascolta l'atmosfera</span>
+          <span class="en">▶ Play the atmosphere</span>
+        </a>
+      </div>
+
+      <div class="spotify-card">
+        <div class="spotify-card-top">
+          <div class="spotify-card-meta">
+            <svg class="spotify-icon" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            <div>
+              <div class="spotify-card-label it">02 · Tramonto Romano</div>
+              <div class="spotify-card-label en">02 · Roman Sunset</div>
+              <div class="spotify-card-mood it">aperitivo · ora d'oro · atmosfera calda</div>
+              <div class="spotify-card-mood en">aperitivo · golden hour · warm Roman glow</div>
+            </div>
+          </div>
+        </div>
+        <a class="spotify-cta" href="https://open.spotify.com/search/Roman%20Sunset%20Aperitivo%20Lounge" target="_blank" rel="noopener">
+          <span class="it">▶ Ascolta l'atmosfera</span>
+          <span class="en">▶ Play the atmosphere</span>
+        </a>
+      </div>
+
+      <div class="spotify-card">
+        <div class="spotify-card-top">
+          <div class="spotify-card-meta">
+            <svg class="spotify-icon" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            <div>
+              <div class="spotify-card-label it">03 · Notte Romana</div>
+              <div class="spotify-card-label en">03 · Roman Night</div>
+              <div class="spotify-card-mood it">relax · pianoforte lento · serata elegante</div>
+              <div class="spotify-card-mood en">relax · slow piano · elegant evening mood</div>
+            </div>
+          </div>
+        </div>
+        <a class="spotify-cta" href="https://open.spotify.com/search/Roman%20Night%20Slow%20Piano%20Elegant" target="_blank" rel="noopener">
+          <span class="it">▶ Ascolta l'atmosfera</span>
+          <span class="en">▶ Play the atmosphere</span>
+        </a>
+      </div>
+
+      <!-- ── YOUR REST MATTERS ── -->
+      <div class="section-header" style="margin-top:32px; margin-bottom:16px">
+        <p class="section-tag it">Comfort · Riposo</p>
+        <p class="section-tag en">Comfort · Rest</p>
+        <h2 class="section-title it">Il tuo riposo è importante.</h2>
+        <h2 class="section-title en">Your Rest Matters.</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-text it" style="line-height:1.75; margin-bottom:16px">Abbiamo preparato l'appartamento con biancheria da letto di qualità premium e cuscini selezionati con cura per garantire un sonno rigenerante.<br><br>Se preferisci un cuscino più sodo, una coperta extra o qualsiasi altro comfort aggiuntivo, Alessandro sarà felice di assisterti immediatamente.</div>
+        <div class="card-text en" style="line-height:1.75; margin-bottom:16px">We have prepared the apartment with premium-quality linens and carefully selected pillows to ensure a restorative sleep.<br><br>Should you prefer a firmer pillow, an extra blanket, or any additional comfort item, Alessandro will be happy to assist immediately.</div>
+        <div class="comfort-actions">
+          <a class="comfort-btn" href="https://wa.me/393755991515?text=Ciao%20Alessandro,%20vorrei%20un%20cuscino%20extra%20per%20favore." target="_blank" rel="noopener">
+            <span class="it">🛏 Cuscino extra</span>
+            <span class="en">🛏 Extra pillow</span>
+          </a>
+          <a class="comfort-btn" href="https://wa.me/393755991515?text=Ciao%20Alessandro,%20vorrei%20una%20coperta%20extra%20per%20favore." target="_blank" rel="noopener">
+            <span class="it">🧣 Coperta extra</span>
+            <span class="en">🧣 Extra blanket</span>
+          </a>
+          <a class="comfort-btn full" href="https://wa.me/393755991515" target="_blank" rel="noopener">
+            <span class="it">💬 Scrivi ad Alessandro</span>
+            <span class="en">💬 Message Alessandro</span>
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -2732,12 +2931,12 @@
         <span class="emerg-arrow">→</span>
       </a>
 
-      <a class="emerg-btn host-btn" href="tel:+393493511395">
+      <a class="emerg-btn host-btn" href="tel:+393755991515">
         <span class="emerg-icon">🏠</span>
         <div class="emerg-info">
           <div class="emerg-service it">Alessandro — Contatto diretto</div>
           <div class="emerg-service en">Alessandro — Direct contact</div>
-          <div class="emerg-num">+39 349 351 1395</div>
+          <div class="emerg-num">+39 375 599 1515</div>
         </div>
         <span class="emerg-arrow">→</span>
       </a>
@@ -3353,14 +3552,14 @@
       </div>
 
       <div class="farewell-hero">
-        <h2 class="it">Arrivederci.</h2>
-        <h2 class="en">Goodbye.</h2>
-        <h2 class="es">Hasta pronto.</h2>
-        <h2 class="fr">Au revoir.</h2>
-        <p class="it">È stato un onore averti ospitato. Speriamo che questi giorni a Roma ti abbiano dato qualcosa che non sapevi di cercare — e che averti accolto di persona abbia reso il tuo arrivo un po' più speciale.</p>
-        <p class="en">It has been an honour to host you. We hope these days in Rome gave you something you didn't know you were looking for — and that welcoming you in person made your arrival a little more special.</p>
-        <p class="es">Ha sido un honor tenerte como huésped. Esperamos que estos días en Roma te hayan dado algo que no sabías que buscabas — y que haberte recibido en persona haya hecho tu llegada un poco más especial.</p>
-        <p class="fr">Ce fut un honneur de vous accueillir. Nous espérons que ces jours à Rome vous ont apporté quelque chose que vous ne saviez pas chercher — et que vous avoir accueilli en personne a rendu votre arrivée un peu plus spéciale.</p>
+        <h2 class="it">Grazie per aver soggiornato da noi.</h2>
+        <h2 class="en">Thank You for Staying with Us.</h2>
+        <h2 class="es">Gracias por quedarte con nosotros.</h2>
+        <h2 class="fr">Merci d'avoir séjourné chez nous.</h2>
+        <p class="it">Speriamo sinceramente che Domus Fiorelli abbia reso il tuo soggiorno romano indimenticabile. In quanto residenza indipendente gestita direttamente dal suo host, le parole dei nostri ospiti sono la nostra forma più preziosa di riconoscimento.</p>
+        <p class="en">We truly hope Domus Fiorelli has made your Roman stay memorable. As an independent host-led residence, the kind words of our guests are our most meaningful form of recognition.</p>
+        <p class="es">Esperamos sinceramente que Domus Fiorelli haya hecho memorable tu estancia en Roma. Como residencia independiente gestionada directamente, las palabras de nuestros huéspedes son nuestro reconocimiento más valioso.</p>
+        <p class="fr">Nous espérons sincèrement que Domus Fiorelli a rendu votre séjour romain mémorable. En tant que résidence indépendante, les mots de nos hôtes sont notre forme de reconnaissance la plus précieuse.</p>
         <p class="farewell-quote it">"Roma non finisce mai."</p>
         <p class="farewell-quote en">"Rome never really ends."</p>
         <p class="farewell-quote es">"Roma nunca termina del todo."</p>
@@ -3368,24 +3567,36 @@
       </div>
 
       <div class="card">
-        <div class="card-title"><span class="card-title-icon">⭐</span><span class="it">La tua opinione conta</span><span class="en">Your opinion matters</span><span class="es">Tu opinión importa</span><span class="fr">Votre avis compte</span></div>
-        <div class="card-text it" style="margin-bottom:6px">Se ti sei sentito accolto — dalla casa, dal quartiere, da noi — raccontalo. Una recensione autentica è il modo più bello per ringraziarci e aiutare altri viaggiatori a scegliere bene.</div>
-        <div class="card-text en" style="margin-bottom:6px">If you felt genuinely welcomed — by the home, the neighbourhood, by us — please share it. An honest review is the most meaningful way to say thank you and help other travellers make the right choice.</div>
-        <div class="card-text es" style="margin-bottom:6px">Si te sentiste bienvenido — por el apartamento, el barrio, por nosotros — cuéntalo. Una reseña honesta es la forma más bonita de agradecernos y ayudar a otros viajeros a elegir bien.</div>
-        <div class="card-text fr" style="margin-bottom:6px">Si vous vous êtes senti vraiment bienvenu — par l'appartement, le quartier, par nous — partagez-le. Un avis sincère est la plus belle façon de nous remercier et d'aider d'autres voyageurs à bien choisir.</div>
-        <div class="note-box it" style="margin-bottom:14px; font-style:italic">"Abbiamo adorato accoglierti di persona. Ci fa piacere sapere com'è stato per te."</div>
-        <div class="note-box en" style="margin-bottom:14px; font-style:italic">"We loved welcoming you in person. We would love to hear how your stay felt to you."</div>
-        <div class="note-box es" style="margin-bottom:14px; font-style:italic">"Nos encantó darte la bienvenida en persona. Nos alegra saber cómo fue tu estancia."</div>
-        <div class="note-box fr" style="margin-bottom:14px; font-style:italic">« Nous avons adoré vous accueillir en personne. Nous serions ravis de savoir comment s'est passé votre séjour. »</div>
-        <a class="review-btn" href="https://www.google.com/search?num=10&client=safari&hs=nJgp&hl=it-IT&sca_esv=6e9105e3f9215b89&cs=0&output=search&tbm=lcl&kgmid=/g/11yzb7pzj9&q=Domus+Fiorelli&shndl=30&source=sh/x/kp/local/m1/1&kgs=dd25e82205e6a696&utm_source=sh/x/kp/local/m1/1#" target="_blank" rel="noopener">
+        <div class="card-title" style="flex-direction:column; align-items:flex-start; gap:4px">
+          <span style="font-size:28px; margin-bottom:8px">✦</span>
+          <span class="it" style="font-family:'Playfair Display',serif; font-size:18px; font-style:italic; font-weight:400; color:var(--terracotta)">Se il tuo soggiorno è stato speciale</span>
+          <span class="en" style="font-family:'Playfair Display',serif; font-size:18px; font-style:italic; font-weight:400; color:var(--terracotta)">If your stay has been special</span>
+          <span class="es" style="font-family:'Playfair Display',serif; font-size:18px; font-style:italic; font-weight:400; color:var(--terracotta)">Si tu estancia fue especial</span>
+          <span class="fr" style="font-family:'Playfair Display',serif; font-size:18px; font-style:italic; font-weight:400; color:var(--terracotta)">Si votre séjour a été spécial</span>
+        </div>
+        <div class="card-text it" style="margin-bottom:16px;line-height:1.75">Condividere la tua esperienza su Google o Airbnb significherebbe moltissimo per noi. Le tue parole aiutano i futuri ospiti a scoprire Roma attraverso la nostra casa.</div>
+        <div class="card-text en" style="margin-bottom:16px;line-height:1.75">Sharing your experience on Google or Airbnb would mean the world to us. Your words help future guests discover Rome through our home.</div>
+        <div class="card-text es" style="margin-bottom:16px;line-height:1.75">Compartir tu experiencia en Google o Airbnb significaría mucho para nosotros. Tus palabras ayudan a futuros huéspedes a descubrir Roma a través de nuestra casa.</div>
+        <div class="card-text fr" style="margin-bottom:16px;line-height:1.75">Partager votre expérience sur Google ou Airbnb nous toucherait profondément. Vos mots aident de futurs voyageurs à découvrir Rome à travers notre maison.</div>
+        <a class="review-btn" href="https://www.google.com/search?num=10&client=safari&hs=nJgp&hl=it-IT&sca_esv=6e9105e3f9215b89&cs=0&output=search&tbm=lcl&kgmid=/g/11yzb7pzj9&q=Domus+Fiorelli&shndl=30&source=sh/x/kp/local/m1/1&kgs=dd25e82205e6a696&utm_source=sh/x/kp/local/m1/1#" target="_blank" rel="noopener" style="background:var(--gold)">
           <span class="it">⭐ Scrivi una recensione su Google</span>
-          <span class="en">⭐ Leave a Google review</span>
+          <span class="en">⭐ Leave a Google Review</span>
           <span class="es">⭐ Dejar una reseña en Google</span>
           <span class="fr">⭐ Laisser un avis sur Google</span>
           <span class="ru">⭐ Оставить отзыв в Google</span>
           <span class="ar">⭐ اترك تقييماً على Google</span>
           <span class="ja">⭐ Googleでレビューを書く</span>
           <span class="de">⭐ Google-Bewertung schreiben</span>
+        </a>
+        <a class="review-btn" href="https://www.airbnb.com/users/show/reviews" target="_blank" rel="noopener" style="background:var(--anthracite); margin-top:0">
+          <span class="it">🏡 Recensisci su Airbnb</span>
+          <span class="en">🏡 Review on Airbnb</span>
+          <span class="es">🏡 Reseñar en Airbnb</span>
+          <span class="fr">🏡 Avis sur Airbnb</span>
+          <span class="ru">🏡 Отзыв на Airbnb</span>
+          <span class="ar">🏡 تقييم على Airbnb</span>
+          <span class="ja">🏡 Airbnbでレビュー</span>
+          <span class="de">🏡 Bewertung auf Airbnb</span>
         </a>
       </div>
 
@@ -3494,10 +3705,10 @@
           <li class="en">Please observe quiet hours from 22:00 to 08:00.</li>
           <li class="es">Respetar el silencio de 22:00 a 08:00.</li>
           <li class="fr">Merci de respecter le silence de 22h à 8h.</li>
-          <li class="it">Per qualsiasi necessità durante il soggiorno contattare Alessandro su WhatsApp: +39 349 351 1395.</li>
-          <li class="en">For any need during your stay contact Alessandro on WhatsApp: +39 349 351 1395.</li>
-          <li class="es">Para cualquier necesidad durante la estancia contactar a Alessandro por WhatsApp: +39 349 351 1395.</li>
-          <li class="fr">Pour tout besoin pendant votre séjour, contacter Alessandro sur WhatsApp : +39 349 351 1395.</li>
+          <li class="it">Per qualsiasi necessità durante il soggiorno contattare Alessandro su WhatsApp: +39 375 599 1515.</li>
+          <li class="en">For any need during your stay contact Alessandro on WhatsApp: +39 375 599 1515.</li>
+          <li class="es">Para cualquier necesidad durante la estancia contactar a Alessandro por WhatsApp: +39 375 599 1515.</li>
+          <li class="fr">Pour tout besoin pendant votre séjour, contacter Alessandro sur WhatsApp : +39 375 599 1515.</li>
         </ul>
         <p class="it" style="margin-top:12px;font-style:italic;color:var(--gray);font-size:12px">Domus Fiorelli · Piazza di Villa Fiorelli 12, Roma · P.IVA [INSERIRE] · Ultimo aggiornamento: aprile 2026</p>
         <p class="en" style="margin-top:12px;font-style:italic;color:var(--gray);font-size:12px">Domus Fiorelli · Piazza di Villa Fiorelli 12, Rome · Last updated: April 2026</p>
@@ -4272,7 +4483,7 @@
 </div>
 
 <!-- WHATSAPP BUTTON -->
-<a id="whatsapp-btn" href="https://wa.me/393493511395" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Alessandro">
+<a id="whatsapp-btn" href="https://wa.me/393755991515" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Alessandro">
   <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#25D366"/><path d="M23.472 8.528A10.417 10.417 0 0016 5.583c-5.754 0-10.42 4.666-10.42 10.417 0 1.837.48 3.63 1.394 5.212L5.5 26.417l5.35-1.404a10.394 10.394 0 004.15.864h.004c5.75 0 10.416-4.666 10.416-10.417a10.388 10.388 0 00-1.948-6.932z" fill="#25D366"/><path d="M16 24.39a8.63 8.63 0 01-4.4-1.204l-.316-.188-3.174.833.848-3.094-.207-.318A8.607 8.607 0 017.37 16c0-4.762 3.872-8.633 8.634-8.633 2.305 0 4.473.898 6.103 2.53A8.577 8.577 0 0124.633 16c0 4.762-3.872 8.633-8.633 8.633v-.243zm5.014-6.46c-.275-.137-1.626-.801-1.878-.893-.252-.09-.435-.136-.618.138-.183.274-.707.893-.867 1.076-.16.183-.32.206-.594.069-.275-.138-1.161-.428-2.211-1.364-.817-.728-1.369-1.626-1.529-1.9-.16-.275-.017-.423.12-.56.124-.123.275-.32.413-.48.137-.16.183-.275.274-.458.092-.183.046-.343-.023-.48-.069-.138-.618-1.49-.847-2.04-.224-.536-.45-.463-.618-.472l-.527-.009a1.01 1.01 0 00-.733.344c-.252.274-.963.94-.963 2.293s.986 2.659 1.123 2.842c.137.183 1.94 2.96 4.7 4.153.657.283 1.169.452 1.569.579.659.21 1.26.18 1.733.11.529-.08 1.626-.665 1.855-1.307.23-.641.23-1.19.16-1.307-.068-.115-.251-.183-.526-.32z" fill="white"/></svg>
 </a>
 
@@ -4388,7 +4599,28 @@
         <div class="quick-card-sub">Password: <strong style="color:var(--gold)">[PASSWORD]</strong></div>
       </div>
 
-      <a class="quick-card terra" href="https://wa.me/393493511395" target="_blank" rel="noopener">
+      <button class="quick-card dark" onclick="closeQuick(); setTimeout(()=>goToPage(13),200)" style="cursor:pointer;text-align:left">
+        <span class="quick-card-icon">✦</span>
+        <div class="quick-card-label it">Selezione · Alessandro</div>
+        <div class="quick-card-label en">Selected · Alessandro</div>
+        <div class="quick-card-label es">Selección · Alessandro</div>
+        <div class="quick-card-label fr">Sélection · Alessandro</div>
+        <div class="quick-card-label ru">Выбор · Алессандро</div>
+        <div class="quick-card-label ar">اختيارات · أليساندرو</div>
+        <div class="quick-card-label ja">厳選 · アレッサンドロ</div>
+        <div class="quick-card-label de">Auswahl · Alessandro</div>
+        <div class="quick-card-value" style="font-size:13px;line-height:1.3" class="it">Esperienze, spa, enoteche — curate per te</div>
+        <div class="quick-card-sub it">Esperienze & segreti ↗</div>
+        <div class="quick-card-sub en">Experiences & secrets ↗</div>
+        <div class="quick-card-sub es">Experiencias & secretos ↗</div>
+        <div class="quick-card-sub fr">Expériences & secrets ↗</div>
+        <div class="quick-card-sub ru">Опыт и секреты ↗</div>
+        <div class="quick-card-sub ar">تجارب وأسرار ↗</div>
+        <div class="quick-card-sub ja">体験と秘密 ↗</div>
+        <div class="quick-card-sub de">Erlebnisse & Geheimnisse ↗</div>
+      </button>
+
+      <a class="quick-card terra" href="https://wa.me/393755991515" target="_blank" rel="noopener">
         <span class="quick-card-icon">💬</span>
         <div class="quick-card-label it">Alessandro · WhatsApp</div>
         <div class="quick-card-label en">Alessandro · WhatsApp</div>
@@ -4398,7 +4630,7 @@
         <div class="quick-card-label ar">أليساندرو · واتساب</div>
         <div class="quick-card-label ja">アレッサンドロ · WhatsApp</div>
         <div class="quick-card-label de">Alessandro · WhatsApp</div>
-        <div class="quick-card-value">+39 349 351 1395</div>
+        <div class="quick-card-value">+39 375 599 1515</div>
         <div class="quick-card-sub it">Sempre disponibile ↗</div>
         <div class="quick-card-sub en">Always available ↗</div>
         <div class="quick-card-sub es">Siempre disponible ↗</div>
@@ -4916,7 +5148,7 @@
     const footerHTML = `
     <div class="page-footer">
       <div class="footer-assistants">
-        <a class="footer-assistant-card" href="https://wa.me/393493511395" target="_blank" rel="noopener">
+        <a class="footer-assistant-card" href="https://wa.me/393755991515" target="_blank" rel="noopener">
           <div class="footer-assistant-icon">💬</div>
           <div class="footer-assistant-badge concierge it">Host · Domus Fiorelli</div>
           <div class="footer-assistant-badge concierge en">Host · Domus Fiorelli</div>
@@ -4967,11 +5199,38 @@
   }
   window.addEventListener('hashchange', handleHash);
 
+  // ── CAROUSEL ARROWS ──────────────────────────────────
+  function initCarouselArrows() {
+    document.querySelectorAll('.exp-carousel').forEach((carousel, idx) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'carousel-arrows';
+      wrap.setAttribute('data-no-swipe', '');
+      const btnPrev = document.createElement('button');
+      btnPrev.className = 'carousel-arrow';
+      btnPrev.setAttribute('aria-label', 'Previous');
+      btnPrev.innerHTML = '←';
+      const btnNext = document.createElement('button');
+      btnNext.className = 'carousel-arrow';
+      btnNext.setAttribute('aria-label', 'Next');
+      btnNext.innerHTML = '→';
+      const cardWidth = () => {
+        const first = carousel.querySelector('.exp-card');
+        return first ? first.offsetWidth + 12 : 240;
+      };
+      btnPrev.addEventListener('click', e => { e.stopPropagation(); carousel.scrollBy({ left: -cardWidth(), behavior: 'smooth' }); });
+      btnNext.addEventListener('click', e => { e.stopPropagation(); carousel.scrollBy({ left: cardWidth(), behavior: 'smooth' }); });
+      wrap.appendChild(btnPrev);
+      wrap.appendChild(btnNext);
+      carousel.after(wrap);
+    });
+  }
+
   // ── INIT ─────────────────────────────────────────────
   handleHash();
   setLang(detectLang());
   injectFooters();
   updateUI();
+  initCarouselArrows();
 
   // Show cookie banner once (if no prior choice)
   (function initCookieBanner() {
