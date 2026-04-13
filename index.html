@@ -128,8 +128,9 @@
 
     #drawer {
       position: fixed;
-      top: 0; left: 0; bottom: 0;
+      top: 0; left: 0;
       width: 280px;
+      height: 100dvh;
       background: var(--white);
       z-index: 201;
       transform: translateX(-100%);
@@ -137,6 +138,7 @@
       display: flex;
       flex-direction: column;
       box-shadow: 4px 0 24px rgba(44,44,44,0.12);
+      overflow: hidden;
     }
     #drawer.open { transform: translateX(0); }
 
@@ -162,8 +164,10 @@
       flex: 1;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
       padding: 10px 0;
-      padding-bottom: calc(env(safe-area-inset-bottom, 24px) + 24px);
+      padding-bottom: calc(env(safe-area-inset-bottom, 24px) + 32px);
+      min-height: 0; /* flex fix: allows child to shrink below its content height */
     }
 
     .drawer-item {
@@ -230,10 +234,10 @@
 
     /* ─── COVER PAGE ─────────────────────────────────── */
     #page-0 {
-      background: var(--white);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: var(--beige);
+      display: block;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     .cover-inner {
@@ -241,7 +245,8 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: 40px 32px;
+      padding: 40px 32px 32px;
+      background: var(--white);
     }
 
     .cover-logo {
@@ -833,8 +838,12 @@
       background: var(--terracotta);
       border-radius: 0 0 3px 3px;
     }
-    .tab-btn.tab-quick .tab-label { color: var(--gold); }
-    .tab-btn.tab-quick::after { background: var(--gold); }
+    .tab-btn.tab-selected .tab-label { color: var(--gold); }
+    .tab-btn.tab-selected.active .tab-label { color: var(--gold); font-weight: 700; }
+    .tab-btn.tab-selected::after { background: var(--gold); }
+    .tab-btn.tab-selected .tab-icon { color: var(--gold); }
+    /* Chat tab as link */
+    a.tab-btn { text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 
     /* ─── QUICK HELP OVERLAY ─────────────────────────── */
     #quick-overlay {
@@ -2273,7 +2282,10 @@
     </svg>
   </button>
   <span id="header-title">Domus Fiorelli</span>
-  <button id="lang-toggle" onclick="openLangPicker()" aria-label="Seleziona lingua / Select language">🌐 <span id="lang-code">IT</span></button>
+  <div style="display:flex;align-items:center;gap:6px">
+    <button class="header-btn" onclick="openQuick()" aria-label="Quick Help" style="font-size:17px;color:var(--gold)">⚡</button>
+    <button id="lang-toggle" onclick="openLangPicker()" aria-label="Seleziona lingua / Select language">🌐 <span id="lang-code">IT</span></button>
+  </div>
 </header>
 
 <!-- ALL PAGES -->
@@ -2303,6 +2315,97 @@
         <span class="es">Descubre tu hogar</span>
         <span class="fr">Découvrez votre maison</span>
       </button>
+    </div>
+
+    <!-- ── THE ROMAN SOUNDTRACK ── -->
+    <div style="padding: 28px 16px 100px">
+      <div class="section-header" style="margin-bottom:16px">
+        <p class="section-tag it">Musica · Atmosfera</p>
+        <p class="section-tag en">Music · Atmosphere</p>
+        <p class="section-tag es">Música · Ambiente</p>
+        <p class="section-tag fr">Musique · Ambiance</p>
+        <h2 class="section-title it">The Roman Soundtrack.</h2>
+        <h2 class="section-title en">The Roman Soundtrack.</h2>
+        <h2 class="section-title es">The Roman Soundtrack.</h2>
+        <h2 class="section-title fr">The Roman Soundtrack.</h2>
+        <div class="section-divider"></div>
+      </div>
+      <p style="font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:20px" class="it">Tre playlist curate per tre momenti del giorno. Lasciati accompagnare dalla colonna sonora giusta per ogni ora romana.</p>
+      <p style="font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:20px" class="en">Three playlists curated for three moments of the day. Let the right soundtrack carry you through every Roman hour.</p>
+      <p style="font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:20px" class="es">Tres listas de reproducción creadas para tres momentos del día. Deja que la banda sonora perfecta te acompañe en cada hora romana.</p>
+      <p style="font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:20px" class="fr">Trois playlists conçues pour trois moments de la journée. Laissez-vous porter par la bande-son parfaite à chaque heure romaine.</p>
+
+      <div class="spotify-card">
+        <div class="spotify-card-top">
+          <div class="spotify-card-meta">
+            <svg class="spotify-icon" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            <div>
+              <div class="spotify-card-label it">01 · Mattino Romano</div>
+              <div class="spotify-card-label en">01 · Roman Morning</div>
+              <div class="spotify-card-label es">01 · Mañana Romana</div>
+              <div class="spotify-card-label fr">01 · Matin Romain</div>
+              <div class="spotify-card-mood it">jazz morbido · espresso · risveglio gentile</div>
+              <div class="spotify-card-mood en">soft jazz · espresso · gentle awakening</div>
+              <div class="spotify-card-mood es">jazz suave · espresso · despertar tranquilo</div>
+              <div class="spotify-card-mood fr">jazz doux · espresso · réveil en douceur</div>
+            </div>
+          </div>
+        </div>
+        <a class="spotify-cta" href="https://open.spotify.com/search/Roman%20Morning%20Jazz%20Espresso" target="_blank" rel="noopener">
+          <span class="it">▶ Ascolta l'atmosfera</span>
+          <span class="en">▶ Play the atmosphere</span>
+          <span class="es">▶ Escucha el ambiente</span>
+          <span class="fr">▶ Écouter l'ambiance</span>
+        </a>
+      </div>
+
+      <div class="spotify-card">
+        <div class="spotify-card-top">
+          <div class="spotify-card-meta">
+            <svg class="spotify-icon" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            <div>
+              <div class="spotify-card-label it">02 · Tramonto Romano</div>
+              <div class="spotify-card-label en">02 · Roman Sunset</div>
+              <div class="spotify-card-label es">02 · Atardecer Romano</div>
+              <div class="spotify-card-label fr">02 · Coucher de Soleil Romain</div>
+              <div class="spotify-card-mood it">aperitivo · ora d'oro · atmosfera calda</div>
+              <div class="spotify-card-mood en">aperitivo · golden hour · warm Roman glow</div>
+              <div class="spotify-card-mood es">aperitivo · hora dorada · calor romano</div>
+              <div class="spotify-card-mood fr">apéritif · heure dorée · chaleur romaine</div>
+            </div>
+          </div>
+        </div>
+        <a class="spotify-cta" href="https://open.spotify.com/search/Roman%20Sunset%20Aperitivo%20Lounge" target="_blank" rel="noopener">
+          <span class="it">▶ Ascolta l'atmosfera</span>
+          <span class="en">▶ Play the atmosphere</span>
+          <span class="es">▶ Escucha el ambiente</span>
+          <span class="fr">▶ Écouter l'ambiance</span>
+        </a>
+      </div>
+
+      <div class="spotify-card">
+        <div class="spotify-card-top">
+          <div class="spotify-card-meta">
+            <svg class="spotify-icon" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            <div>
+              <div class="spotify-card-label it">03 · Notte Romana</div>
+              <div class="spotify-card-label en">03 · Roman Night</div>
+              <div class="spotify-card-label es">03 · Noche Romana</div>
+              <div class="spotify-card-label fr">03 · Nuit Romaine</div>
+              <div class="spotify-card-mood it">relax · pianoforte lento · serata elegante</div>
+              <div class="spotify-card-mood en">relax · slow piano · elegant evening mood</div>
+              <div class="spotify-card-mood es">relajación · piano suave · velada elegante</div>
+              <div class="spotify-card-mood fr">détente · piano lent · soirée élégante</div>
+            </div>
+          </div>
+        </div>
+        <a class="spotify-cta" href="https://open.spotify.com/search/Roman%20Night%20Slow%20Piano%20Elegant" target="_blank" rel="noopener">
+          <span class="it">▶ Ascolta l'atmosfera</span>
+          <span class="en">▶ Play the atmosphere</span>
+          <span class="es">▶ Escucha el ambiente</span>
+          <span class="fr">▶ Écouter l'ambiance</span>
+        </a>
+      </div>
     </div>
   </div>
 
@@ -2599,30 +2702,10 @@
           <span class="card-title-icon">🔐</span>
           <span>Smart Lock</span>
         </div>
-        <ul class="step-list it">
-          <li>Digita il codice <strong>[CODICE]</strong> sul tastierino</li>
-          <li>Premi il simbolo ✓ o attendi il clic</li>
-          <li>La serratura si apre in 2–3 secondi</li>
-        </ul>
-        <ul class="step-list en">
-          <li>Type the code <strong>[CODE]</strong> on the keypad</li>
-          <li>Press ✓ or wait for the click</li>
-          <li>The lock opens within 2–3 seconds</li>
-        </ul>
-        <ul class="step-list es">
-          <li>Introduce el código <strong>[CÓDIGO]</strong> en el teclado</li>
-          <li>Pulsa ✓ o espera el clic</li>
-          <li>La cerradura se abre en 2–3 segundos</li>
-        </ul>
-        <ul class="step-list fr">
-          <li>Tapez le code <strong>[CODE]</strong> sur le clavier</li>
-          <li>Appuyez sur ✓ ou attendez le clic</li>
-          <li>La serrure s'ouvre en 2–3 secondes</li>
-        </ul>
-        <div class="note-box it">Per chiudere dall'esterno: premi 🔒 o ruota la maniglia. Aspetta sempre il clic prima di allontanarti.</div>
-        <div class="note-box en">To lock from outside: press 🔒 or turn the handle. Always wait for the click before walking away.</div>
-        <div class="note-box es">Para cerrar desde fuera: pulsa 🔒 o gira el pomo. Espera siempre el clic antes de alejarte.</div>
-        <div class="note-box fr">Pour fermer de l'extérieur : appuyez sur 🔒 ou tournez la poignée. Attendez toujours le clic avant de vous éloigner.</div>
+        <div class="note-box it" style="background:var(--cream);border-left:3px solid var(--gold)">🔒 Per privacy e sicurezza, le istruzioni di accesso sono disponibili nella tua area ospite riservata, condivisa privatamente al momento della prenotazione.</div>
+        <div class="note-box en" style="background:var(--cream);border-left:3px solid var(--gold)">🔒 For privacy and security, access details are available in your protected guest stay area, shared privately at the time of booking.</div>
+        <div class="note-box es" style="background:var(--cream);border-left:3px solid var(--gold)">🔒 Por privacidad y seguridad, los detalles de acceso están disponibles en tu área privada de huéspedes, compartida de forma privada en el momento de la reserva.</div>
+        <div class="note-box fr" style="background:var(--cream);border-left:3px solid var(--gold)">🔒 Pour votre confidentialité et sécurité, les détails d'accès sont disponibles dans votre espace personnel réservé, partagé en privé lors de la réservation.</div>
       </div>
 
       <div class="card">
@@ -2806,104 +2889,19 @@
       </div>
 
       <div class="card">
-        <div class="card-title"><span class="card-title-icon">🚿</span><span class="it">Il Bidet — Nota Culturale</span><span class="en">The Bidet — Cultural Note</span><span class="es">El Bidé — Nota Cultural</span><span class="fr">Le Bidet — Note Culturelle</span></div>
+        <div class="card-title"><span class="card-title-icon">🚿</span><span class="it">Un dettaglio tutto italiano</span><span class="en">A Quintessentially Italian Detail</span><span class="es">Un detalle genuinamente italiano</span><span class="fr">Un détail authentiquement italien</span></div>
         <div class="card-text it">
-          <p>Se è la tua prima volta, benvenuto in Europa. Il <strong>bidet</strong> è la vaschetta accanto alla toilette, usata per l'igiene personale. Siediti verso il rubinetto, regola la temperatura, procedi. Asciugati con l'asciugamano piccolo sul lato sinistro. I romani lo usano ogni giorno.</p>
+          <p>Come in ogni autentica casa italiana, il bagno include un <strong>bidet</strong> — un piccolo ma iconico dettaglio della tradizione italiana di comfort e ospitalità.</p>
         </div>
         <div class="card-text en">
-          <p>If this is your first encounter, welcome to Europe. The <strong>bidet</strong> is the low basin next to the toilet, used for personal hygiene. Sit facing the tap, adjust the temperature, wash as needed. Dry with the small towel on the left. Romans use it every single day.</p>
+          <p>As in every authentic Italian home, the bathroom includes a <strong>bidet</strong> — a small but iconic detail of the Italian tradition of comfort and hospitality.</p>
         </div>
         <div class="card-text es">
-          <p>Si es tu primer encuentro, bienvenido a Europa. El <strong>bidé</strong> es la pequeña pila junto al inodoro, usada para la higiene personal. Siéntate mirando el grifo, regula la temperatura y úsalo. Sécate con la toalla pequeña de la izquierda. Los romanos lo usan cada día.</p>
+          <p>Como en cada hogar italiano auténtico, el baño incluye un <strong>bidé</strong> — un pequeño pero icónico detalle de la tradición italiana de confort y hospitalidad.</p>
         </div>
         <div class="card-text fr">
-          <p>Si c'est votre première fois, bienvenue en Europe. Le <strong>bidet</strong> est le petit bassin à côté des toilettes, utilisé pour l'hygiène personnelle. Asseyez-vous face au robinet, réglez la température, procédez. Séchez-vous avec la petite serviette à gauche. Les Romains l'utilisent chaque jour.</p>
+          <p>Comme dans toute maison italienne authentique, la salle de bain comprend un <strong>bidet</strong> — un petit détail mais emblématique de la tradition italienne de confort et d'hospitalité.</p>
         </div>
-      </div>
-
-      <!-- ── THE SOUND OF YOUR STAY ── -->
-      <div class="section-header" style="margin-top:28px; margin-bottom:16px">
-        <p class="section-tag it">Atmosfera · Suoni</p>
-        <p class="section-tag en">Atmosphere · Sound</p>
-        <p class="section-tag es">Atmósfera · Sonidos</p>
-        <p class="section-tag fr">Ambiance · Sons</p>
-        <h2 class="section-title it">Il suono del tuo soggiorno.</h2>
-        <h2 class="section-title en">The Sound of Your Stay.</h2>
-        <h2 class="section-title es">El sonido de tu estancia.</h2>
-        <h2 class="section-title fr">La musique de votre séjour.</h2>
-        <div class="section-divider"></div>
-      </div>
-
-      <div class="spotify-card">
-        <div class="spotify-card-top">
-          <div class="spotify-card-meta">
-            <svg class="spotify-icon" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-            <div>
-              <div class="spotify-card-label it">01 · Mattino Romano</div>
-              <div class="spotify-card-label en">01 · Roman Morning</div>
-              <div class="spotify-card-label es">01 · Mañana Romana</div>
-              <div class="spotify-card-label fr">01 · Matin Romain</div>
-              <div class="spotify-card-mood it">jazz morbido · espresso · risveglio gentile</div>
-              <div class="spotify-card-mood en">soft jazz · espresso · gentle awakening</div>
-              <div class="spotify-card-mood es">jazz suave · espresso · despertar tranquilo</div>
-              <div class="spotify-card-mood fr">jazz doux · espresso · réveil en douceur</div>
-            </div>
-          </div>
-        </div>
-        <a class="spotify-cta" href="https://open.spotify.com/search/Roman%20Morning%20Jazz%20Espresso" target="_blank" rel="noopener">
-          <span class="it">▶ Ascolta l'atmosfera</span>
-          <span class="en">▶ Play the atmosphere</span>
-          <span class="es">▶ Escucha el ambiente</span>
-          <span class="fr">▶ Écouter l'ambiance</span>
-        </a>
-      </div>
-
-      <div class="spotify-card">
-        <div class="spotify-card-top">
-          <div class="spotify-card-meta">
-            <svg class="spotify-icon" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-            <div>
-              <div class="spotify-card-label it">02 · Tramonto Romano</div>
-              <div class="spotify-card-label en">02 · Roman Sunset</div>
-              <div class="spotify-card-label es">02 · Atardecer Romano</div>
-              <div class="spotify-card-label fr">02 · Coucher de Soleil Romain</div>
-              <div class="spotify-card-mood it">aperitivo · ora d'oro · atmosfera calda</div>
-              <div class="spotify-card-mood en">aperitivo · golden hour · warm Roman glow</div>
-              <div class="spotify-card-mood es">aperitivo · hora dorada · calor romano</div>
-              <div class="spotify-card-mood fr">apéritif · heure dorée · chaleur romaine</div>
-            </div>
-          </div>
-        </div>
-        <a class="spotify-cta" href="https://open.spotify.com/search/Roman%20Sunset%20Aperitivo%20Lounge" target="_blank" rel="noopener">
-          <span class="it">▶ Ascolta l'atmosfera</span>
-          <span class="en">▶ Play the atmosphere</span>
-          <span class="es">▶ Escucha el ambiente</span>
-          <span class="fr">▶ Écouter l'ambiance</span>
-        </a>
-      </div>
-
-      <div class="spotify-card">
-        <div class="spotify-card-top">
-          <div class="spotify-card-meta">
-            <svg class="spotify-icon" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-            <div>
-              <div class="spotify-card-label it">03 · Notte Romana</div>
-              <div class="spotify-card-label en">03 · Roman Night</div>
-              <div class="spotify-card-label es">03 · Noche Romana</div>
-              <div class="spotify-card-label fr">03 · Nuit Romaine</div>
-              <div class="spotify-card-mood it">relax · pianoforte lento · serata elegante</div>
-              <div class="spotify-card-mood en">relax · slow piano · elegant evening mood</div>
-              <div class="spotify-card-mood es">relajación · piano suave · velada elegante</div>
-              <div class="spotify-card-mood fr">détente · piano lent · soirée élégante</div>
-            </div>
-          </div>
-        </div>
-        <a class="spotify-cta" href="https://open.spotify.com/search/Roman%20Night%20Slow%20Piano%20Elegant" target="_blank" rel="noopener">
-          <span class="it">▶ Ascolta l'atmosfera</span>
-          <span class="en">▶ Play the atmosphere</span>
-          <span class="es">▶ Escucha el ambiente</span>
-          <span class="fr">▶ Écouter l'ambiance</span>
-        </a>
       </div>
 
       <!-- ── YOUR REST MATTERS ── -->
@@ -2920,23 +2918,11 @@
       </div>
 
       <div class="card">
-        <div class="card-text it" style="line-height:1.75; margin-bottom:16px">Abbiamo preparato l'appartamento con biancheria da letto di qualità premium e cuscini selezionati con cura per garantire un sonno rigenerante.<br><br>Se preferisci un cuscino più sodo, una coperta extra o qualsiasi altro comfort aggiuntivo, Alessandro sarà felice di assisterti immediatamente.</div>
-        <div class="card-text en" style="line-height:1.75; margin-bottom:16px">We have prepared the apartment with premium-quality linens and carefully selected pillows to ensure a restorative sleep.<br><br>Should you prefer a firmer pillow, an extra blanket, or any additional comfort item, Alessandro will be happy to assist immediately.</div>
-        <div class="card-text es" style="line-height:1.75; margin-bottom:16px">Hemos preparado el apartamento con ropa de cama de calidad premium y almohadas cuidadosamente seleccionadas para garantizar un sueño reparador.<br><br>Si prefieres una almohada más firme, una manta extra o cualquier otro elemento de confort adicional, Alessandro estará encantado de ayudarte de inmediato.</div>
-        <div class="card-text fr" style="line-height:1.75; margin-bottom:16px">Nous avons préparé l'appartement avec du linge de lit de qualité premium et des oreillers soigneusement sélectionnés pour garantir un sommeil réparateur.<br><br>Si vous préférez un oreiller plus ferme, une couverture supplémentaire ou tout autre élément de confort, Alessandro sera heureux de vous aider immédiatement.</div>
+        <div class="card-text it" style="line-height:1.75; margin-bottom:16px">Il letto matrimoniale da <strong>200 cm</strong> è vestito con piumino d'oca premium e biancheria in cotone a lungo filo — soffice, termoregolante, pensato per il sonno romano più profondo.<br><br>Per chi viaggia in gruppo, il divano letto offre un materasso da <strong>21 cm</strong> su rete a molle indipendenti (160×190 cm): un secondo letto vero, non un ripiego.</div>
+        <div class="card-text en" style="line-height:1.75; margin-bottom:16px">The <strong>200 cm</strong> double bed is dressed in premium goose-down duvet and long-staple cotton linen — soft, thermoregulating, designed for the deepest Roman sleep.<br><br>For groups, the sofa bed features a full <strong>21 cm</strong> pocket-spring mattress (160×190 cm): a genuine second bed, not an afterthought.</div>
+        <div class="card-text es" style="line-height:1.75; margin-bottom:16px">La cama doble de <strong>200 cm</strong> está vestida con edredón de plumón de ganso premium y ropa de cama de algodón de fibra larga — suave, termorreguladora, diseñada para el sueño más profundo.<br><br>Para grupos, el sofá cama dispone de un colchón completo de <strong>21 cm</strong> con muelles ensacados (160×190 cm): una segunda cama real, no un recurso de emergencia.</div>
+        <div class="card-text fr" style="line-height:1.75; margin-bottom:16px">Le lit double de <strong>200 cm</strong> est habillé d'une couette en duvet d'oie premium et de linge en coton longues fibres — doux, thermorégulateur, conçu pour le sommeil romain le plus profond.<br><br>Pour les groupes, le canapé-lit dispose d'un vrai matelas de <strong>21 cm</strong> à ressorts ensachés (160×190 cm) : un second lit à part entière, pas un pis-aller.</div>
         <div class="comfort-actions">
-          <a class="comfort-btn" href="https://wa.me/393755991515?text=Ciao%20Alessandro,%20vorrei%20un%20cuscino%20extra%20per%20favore." target="_blank" rel="noopener">
-            <span class="it">🛏 Cuscino extra</span>
-            <span class="en">🛏 Extra pillow</span>
-            <span class="es">🛏 Almohada extra</span>
-            <span class="fr">🛏 Oreiller supplémentaire</span>
-          </a>
-          <a class="comfort-btn" href="https://wa.me/393755991515?text=Ciao%20Alessandro,%20vorrei%20una%20coperta%20extra%20per%20favore." target="_blank" rel="noopener">
-            <span class="it">🧣 Coperta extra</span>
-            <span class="en">🧣 Extra blanket</span>
-            <span class="es">🧣 Manta extra</span>
-            <span class="fr">🧣 Couverture supplémentaire</span>
-          </a>
           <a class="comfort-btn full" href="https://wa.me/393755991515" target="_blank" rel="noopener">
             <span class="it">💬 Scrivi ad Alessandro</span>
             <span class="en">💬 Message Alessandro</span>
@@ -2996,77 +2982,11 @@
       </div>
 
       <div class="card">
-        <div class="card-title"><span class="card-title-icon">♻️</span><span class="it">Raccolta Differenziata</span><span class="en">Recycling</span></div>
-
-        <div class="recycle-row" style="background:rgba(101,67,33,0.08)">
-          <div class="recycle-dot" style="background:#7B4A1E"></div>
-          <div>
-            <div class="recycle-color it">Marrone — Organico</div>
-            <div class="recycle-color en">Brown — Organic</div>
-            <div class="recycle-color es">Marrón — Orgánico</div>
-            <div class="recycle-color fr">Marron — Organique</div>
-            <div class="recycle-desc it">Scarti alimentari, fondi caffè, gusci d'uovo</div>
-            <div class="recycle-desc en">Food scraps, coffee grounds, eggshells</div>
-            <div class="recycle-desc es">Restos de comida, posos de café, cáscaras de huevo</div>
-            <div class="recycle-desc fr">Déchets alimentaires, marc de café, coquilles d'œuf</div>
-          </div>
-        </div>
-
-        <div class="recycle-row" style="background:rgba(220,180,0,0.09)">
-          <div class="recycle-dot" style="background:#C9A800"></div>
-          <div>
-            <div class="recycle-color it">Giallo — Plastica & Metallo</div>
-            <div class="recycle-color en">Yellow — Plastic & Metal</div>
-            <div class="recycle-color es">Amarillo — Plástico & Metal</div>
-            <div class="recycle-color fr">Jaune — Plastique & Métal</div>
-            <div class="recycle-desc it">Bottiglie, lattine, tetrapak</div>
-            <div class="recycle-desc en">Bottles, cans, tetra pak</div>
-            <div class="recycle-desc es">Botellas, latas, tetrabrik</div>
-            <div class="recycle-desc fr">Bouteilles, canettes, briques</div>
-          </div>
-        </div>
-
-        <div class="recycle-row" style="background:rgba(180,180,180,0.12)">
-          <div class="recycle-dot" style="background:#AAAAAA"></div>
-          <div>
-            <div class="recycle-color it">Bianco — Carta & Cartone</div>
-            <div class="recycle-color en">White — Paper & Cardboard</div>
-            <div class="recycle-color es">Blanco — Papel & Cartón</div>
-            <div class="recycle-color fr">Blanc — Papier & Carton</div>
-            <div class="recycle-desc it">Giornali, scatole, imballaggi</div>
-            <div class="recycle-desc en">Newspapers, boxes, packaging</div>
-            <div class="recycle-desc es">Periódicos, cajas, embalajes</div>
-            <div class="recycle-desc fr">Journaux, boîtes, emballages</div>
-          </div>
-        </div>
-
-        <div class="recycle-row" style="background:rgba(0,130,0,0.07)">
-          <div class="recycle-dot" style="background:#2E7D32"></div>
-          <div>
-            <div class="recycle-color it">Verde — Vetro</div>
-            <div class="recycle-color en">Green — Glass</div>
-            <div class="recycle-color es">Verde — Vidrio</div>
-            <div class="recycle-color fr">Vert — Verre</div>
-            <div class="recycle-desc it">Bottiglie, barattoli (rimuovi i tappi)</div>
-            <div class="recycle-desc en">Bottles, jars (remove lids first)</div>
-            <div class="recycle-desc es">Botellas, tarros (quita los tapones)</div>
-            <div class="recycle-desc fr">Bouteilles, bocaux (retirez les bouchons)</div>
-          </div>
-        </div>
-
-        <div class="recycle-row" style="background:rgba(44,44,44,0.05)">
-          <div class="recycle-dot" style="background:#333"></div>
-          <div>
-            <div class="recycle-color it">Nero — Indifferenziato</div>
-            <div class="recycle-color en">Black — General Waste</div>
-            <div class="recycle-color es">Negro — Residuos Generales</div>
-            <div class="recycle-color fr">Noir — Déchets Résiduels</div>
-            <div class="recycle-desc it">Tutto il resto. In dubbio? Usa il nero.</div>
-            <div class="recycle-desc en">Everything else. When in doubt? Use black.</div>
-            <div class="recycle-desc es">Todo lo demás. ¿Dudas? Usa el negro.</div>
-            <div class="recycle-desc fr">Tout le reste. Un doute ? Utilisez le noir.</div>
-          </div>
-        </div>
+        <div class="card-title"><span class="card-title-icon">♻️</span><span class="it">Raccolta Differenziata</span><span class="en">Recycling</span><span class="es">Reciclaje</span><span class="fr">Tri des déchets</span></div>
+        <div class="note-box it" style="background:var(--cream);border-left:3px solid var(--gold)">🗓 Stiamo aggiornando il calendario ufficiale della raccolta rifiuti per Piazza di Villa Fiorelli 12. Le istruzioni aggiornate saranno disponibili a breve. Nel frattempo, contatta Alessandro per qualsiasi dubbio.</div>
+        <div class="note-box en" style="background:var(--cream);border-left:3px solid var(--gold)">🗓 We are currently updating the official local waste collection calendar for Piazza di Villa Fiorelli 12. Updated instructions will be available shortly. In the meantime, contact Alessandro for any questions.</div>
+        <div class="note-box es" style="background:var(--cream);border-left:3px solid var(--gold)">🗓 Estamos actualizando el calendario oficial de recogida de residuos para Piazza di Villa Fiorelli 12. Las instrucciones actualizadas estarán disponibles próximamente. Mientras tanto, contacta con Alessandro para cualquier duda.</div>
+        <div class="note-box fr" style="background:var(--cream);border-left:3px solid var(--gold)">🗓 Nous mettons actuellement à jour le calendrier officiel de collecte des déchets pour Piazza di Villa Fiorelli 12. Les instructions mises à jour seront disponibles prochainement. En attendant, contactez Alessandro pour toute question.</div>
       </div>
 
       <div class="card">
@@ -3242,16 +3162,16 @@
       <div class="card">
         <div class="card-title"><span class="card-title-icon">🗺️</span><span class="it">Destinazioni Principali</span><span class="en">Key Destinations</span><span class="es">Destinos Principales</span><span class="fr">Destinations Principales</span></div>
 
-        <a class="dest-row" href="https://www.google.com/maps/dir/?api=1&destination=Colosseo,+Roma&travelmode=transit" target="_blank" rel="noopener">
+        <a class="dest-row" href="https://www.google.com/maps/dir/?api=1&destination=Colosseo,+Roma&travelmode=transit" target="_blank" rel="noopener" style="position:relative">
           <span class="dest-icon">🏟️</span>
           <div class="dest-info">
-            <div class="dest-name">Colosseo</div>
-            <div class="dest-how it">Metro A + B (cambio Termini)</div>
-            <div class="dest-how en">Metro A + B (change at Termini)</div>
-            <div class="dest-how es">Metro A + B (cambio en Termini)</div>
-            <div class="dest-how fr">Métro A + B (correspondance Termini)</div>
+            <div class="dest-name" style="display:flex;align-items:center;gap:8px">Colosseo <span style="font-size:10px;background:var(--gold);color:#fff;border-radius:6px;padding:2px 7px;font-weight:700;letter-spacing:0.3px">⚡ Fastest Route</span></div>
+            <div class="dest-how it">Metro C da Lodi → Colosseo/Fori Imperiali in 3 fermate (400m a piedi)</div>
+            <div class="dest-how en">Metro C from Lodi → Colosseo/Fori Imperiali in 3 stops (400m walk)</div>
+            <div class="dest-how es">Metro C desde Lodi → Colosseo/Fori Imperiali en 3 paradas (400m a pie)</div>
+            <div class="dest-how fr">Métro C depuis Lodi → Colosseo/Fori Imperiali en 3 arrêts (400m à pied)</div>
           </div>
-          <div class="dest-time">15–20 min</div>
+          <div class="dest-time">8–12 min</div>
           <span class="dest-maps-arrow">↗</span>
         </a>
 
@@ -4285,6 +4205,30 @@
             </div>
           </div>
 
+          <div class="exp-card">
+            <div class="exp-card-img">⛪</div>
+            <div class="exp-card-body">
+              <span class="exp-badge sig it">Eredità · Memoria Viva</span>
+              <span class="exp-badge sig en">Legacy · Living Memory</span>
+              <span class="exp-badge sig es">Legado · Memoria Viva</span>
+              <span class="exp-badge sig fr">Héritage · Mémoire Vivante</span>
+              <div class="exp-title it">Santa Maria Maggiore & l'Eredità di Papa Francesco</div>
+              <div class="exp-title en">Santa Maria Maggiore & the Legacy of Pope Francis</div>
+              <div class="exp-title es">Santa Maria Maggiore y el Legado del Papa Francisco</div>
+              <div class="exp-title fr">Santa Maria Maggiore et l'Héritage du Pape François</div>
+              <div class="exp-desc it">Una delle quattro grandi basiliche patriarcali di Roma. Qui Papa Francesco veniva a pregare prima e dopo ogni viaggio internazionale — una devozione privata che la storia ha reso universale. A meno di 2 km da Domus Fiorelli.</div>
+              <div class="exp-desc en">One of Rome's four great patriarchal basilicas. Pope Francis came here to pray before and after every international journey — a private devotion that history has made universal. Less than 2 km from Domus Fiorelli.</div>
+              <div class="exp-desc es">Una de las cuatro grandes basílicas patriarcales de Roma. El Papa Francisco venía aquí a rezar antes y después de cada viaje internacional — una devoción privada que la historia ha hecho universal. A menos de 2 km de Domus Fiorelli.</div>
+              <div class="exp-desc fr">L'une des quatre grandes basiliques patriarcales de Rome. Le Pape François venait ici prier avant et après chaque voyage international — une dévotion privée que l'histoire a rendue universelle. À moins de 2 km de Domus Fiorelli.</div>
+              <a class="exp-cta" href="https://www.google.com/maps/search/Santa+Maria+Maggiore,+Roma" target="_blank" rel="noopener noreferrer">
+                <span class="it">Visita la basilica ↗</span>
+                <span class="en">Visit the basilica ↗</span>
+                <span class="es">Visitar la basílica ↗</span>
+                <span class="fr">Visiter la basilique ↗</span>
+              </a>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -4821,34 +4765,34 @@
     <span class="tab-label es">Home</span>
     <span class="tab-label fr">Home</span>
   </button>
-  <button class="tab-btn" id="tab-stay" onclick="goToPage(1)" aria-label="Soggiorno / Stay">
+  <button class="tab-btn" id="tab-casa" onclick="goToPage(4)" aria-label="La Casa">
     <span class="tab-icon" aria-hidden="true">🛏</span>
-    <span class="tab-label it">Soggiorno</span>
-    <span class="tab-label en">Stay</span>
-    <span class="tab-label es">Estancia</span>
-    <span class="tab-label fr">Séjour</span>
+    <span class="tab-label it">La Casa</span>
+    <span class="tab-label en">Home</span>
+    <span class="tab-label es">El Piso</span>
+    <span class="tab-label fr">Logement</span>
   </button>
-  <button class="tab-btn tab-quick" id="tab-quick" onclick="openQuick()" aria-label="Quick Help">
-    <span class="tab-icon" aria-hidden="true">⚡</span>
-    <span class="tab-label it">Quick Help</span>
-    <span class="tab-label en">Quick Help</span>
-    <span class="tab-label es">Ayuda</span>
-    <span class="tab-label fr">Aide</span>
-  </button>
-  <button class="tab-btn" id="tab-food" onclick="goToPage(8)" aria-label="Food Guide">
-    <span class="tab-icon" aria-hidden="true">🍝</span>
-    <span class="tab-label it">Food</span>
-    <span class="tab-label en">Food</span>
-    <span class="tab-label es">Food</span>
-    <span class="tab-label fr">Food</span>
-  </button>
-  <button class="tab-btn" id="tab-roma" onclick="goToPage(10)" aria-label="Roma / Rome">
+  <button class="tab-btn" id="tab-muoversi" onclick="goToPage(7)" aria-label="Come Muoversi">
     <span class="tab-icon" aria-hidden="true">🗺️</span>
-    <span class="tab-label it">Roma</span>
-    <span class="tab-label en">Rome</span>
-    <span class="tab-label es">Roma</span>
-    <span class="tab-label fr">Rome</span>
+    <span class="tab-label it">Muoversi</span>
+    <span class="tab-label en">Transport</span>
+    <span class="tab-label es">Moverse</span>
+    <span class="tab-label fr">Transports</span>
   </button>
+  <button class="tab-btn tab-selected" id="tab-selected" onclick="goToSelected()" aria-label="Selected by Alessandro">
+    <span class="tab-icon" aria-hidden="true">✦</span>
+    <span class="tab-label it">Selected</span>
+    <span class="tab-label en">Selected</span>
+    <span class="tab-label es">Selected</span>
+    <span class="tab-label fr">Selected</span>
+  </button>
+  <a class="tab-btn" id="tab-chat" href="https://wa.me/393755991515" target="_blank" rel="noopener noreferrer" aria-label="Chat WhatsApp Alessandro">
+    <span class="tab-icon" aria-hidden="true">💬</span>
+    <span class="tab-label it">Chat</span>
+    <span class="tab-label en">Chat</span>
+    <span class="tab-label es">Chat</span>
+    <span class="tab-label fr">Chat</span>
+  </a>
 </div>
 
 <!-- WHATSAPP BUTTON -->
@@ -5200,10 +5144,10 @@
   const NAMES_FR = ['Home','Bienvenue','Philosophie','Accès','Logement','Règles','Urgences','Transport','Food','Étiquette','Expériences','Au revoir','Confidentialité','Sélectionné'];
 
   // Tab ranges: which pages belong to which tab
-  const TAB_HOME  = [0];
-  const TAB_STAY  = [1,2,3,4,5,6,7];
-  const TAB_FOOD  = [8];
-  const TAB_ROMA  = [10,11,13];
+  const TAB_HOME     = [0];
+  const TAB_CASA     = [1,2,3,4,5,6,8,9]; // La Casa covers welcome/philosophy/access/home/rules + food/galateo
+  const TAB_MUOVERSI = [7];
+  const TAB_SELECTED = [10,11,13]; // Esperienze, Arrivederci, Selected
 
   let cur = 0;
   let lang = 'it'; // will be overridden by setLang(detectLang()) on init
@@ -5231,10 +5175,9 @@
 
     // Update tab active states
     document.getElementById('tab-home').classList.toggle('active', TAB_HOME.includes(cur));
-    document.getElementById('tab-stay').classList.toggle('active', TAB_STAY.includes(cur));
-    document.getElementById('tab-food').classList.toggle('active', TAB_FOOD.includes(cur));
-    document.getElementById('tab-roma').classList.toggle('active', TAB_ROMA.includes(cur));
-    document.getElementById('tab-quick').classList.remove('active');
+    document.getElementById('tab-casa').classList.toggle('active', TAB_CASA.includes(cur));
+    document.getElementById('tab-muoversi').classList.toggle('active', TAB_MUOVERSI.includes(cur));
+    document.getElementById('tab-selected').classList.toggle('active', TAB_SELECTED.includes(cur));
 
     document.querySelectorAll('.drawer-item').forEach((item, i) => {
       item.classList.toggle('active', i === cur);
@@ -5257,7 +5200,6 @@
   function openQuick() {
     if (sessionStorage.getItem('df_auth') === 'ok') {
       document.getElementById('quick-overlay').classList.add('open');
-      document.getElementById('tab-quick').classList.add('active');
     } else {
       openPinModal();
     }
@@ -5306,7 +5248,6 @@
       closePinModal();
       setTimeout(() => {
         document.getElementById('quick-overlay').classList.add('open');
-        document.getElementById('tab-quick').classList.add('active');
       }, 280);
     } else {
       // Shake all digits and show error
@@ -5336,7 +5277,6 @@
 
   function closeQuick() {
     document.getElementById('quick-overlay').classList.remove('open');
-    document.getElementById('tab-quick').classList.remove('active');
     updateUI();
   }
 
