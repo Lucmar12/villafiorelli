@@ -842,8 +842,374 @@
     .tab-btn.tab-selected.active .tab-label { color: var(--gold); font-weight: 700; }
     .tab-btn.tab-selected::after { background: var(--gold); }
     .tab-btn.tab-selected .tab-icon { color: var(--gold); }
+    /* Sound tab accent */
+    .tab-btn.tab-sound .tab-label { color: var(--terracotta); }
+    .tab-btn.tab-sound.active .tab-icon { color: var(--terracotta); }
+    .tab-btn.tab-sound.active .tab-label { color: var(--terracotta); font-weight: 700; }
+    .tab-btn.tab-sound::after { background: var(--terracotta); }
     /* Chat tab as link */
     a.tab-btn { text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+    /* ─── SOUND OF ITALY PAGE ────────────────────────── */
+    #page-14 {
+      background: #111;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .soi-hero {
+      position: relative;
+      background: linear-gradient(160deg, #1a1008 0%, #0e0d0a 55%, #1a100a 100%);
+      padding: calc(env(safe-area-inset-top, 0px) + 80px) 24px 48px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .soi-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 30%, rgba(184,150,62,0.13) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .soi-hero-eyebrow {
+      font-family: 'Raleway', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+      opacity: 0.85;
+    }
+    .soi-hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 8vw, 44px);
+      font-weight: 400;
+      font-style: italic;
+      color: #f5edd8;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+    .soi-hero-subtitle {
+      font-family: 'Raleway', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(245,237,215,0.55);
+      letter-spacing: 0.06em;
+      margin-bottom: 0;
+    }
+    .soi-hero-ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 24px 0 0;
+      opacity: 0.4;
+    }
+    .soi-hero-ornament-line {
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+    .soi-hero-ornament-line:last-child {
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+    .soi-hero-ornament-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+    /* Marshall Bluetooth card */
+    .soi-section {
+      padding: 32px 18px 0;
+    }
+    .soi-section-last {
+      padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 100px);
+    }
+    .soi-section-eyebrow {
+      font-family: 'Raleway', sans-serif;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      opacity: 0.7;
+    }
+    .soi-section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: #f0e8d5;
+      line-height: 1.3;
+      margin-bottom: 14px;
+    }
+    .soi-marshall-card {
+      background: linear-gradient(145deg, #1e1b14, #161310);
+      border: 1px solid rgba(184,150,62,0.18);
+      border-radius: 20px;
+      padding: 22px 20px;
+      margin-top: 6px;
+    }
+    .soi-marshall-intro {
+      font-family: 'Raleway', sans-serif;
+      font-size: 13.5px;
+      font-weight: 400;
+      color: rgba(240,232,213,0.72);
+      line-height: 1.75;
+      margin-bottom: 22px;
+    }
+    .soi-marshall-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(184,150,62,0.25), transparent);
+      margin-bottom: 22px;
+    }
+    .soi-marshall-how-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .soi-bt-icon {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      opacity: 0.85;
+    }
+    .soi-marshall-how-label {
+      font-family: 'Raleway', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .soi-step-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+    .soi-step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+    }
+    .soi-step-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid rgba(184,150,62,0.4);
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+      font-size: 11px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .soi-step-text {
+      font-family: 'Raleway', sans-serif;
+      font-size: 13px;
+      color: rgba(240,232,213,0.8);
+      line-height: 1.55;
+    }
+    .soi-step-text strong {
+      color: #f0e8d5;
+      font-weight: 600;
+    }
+    /* Editorial quote block */
+    .soi-editorial-block {
+      padding: 36px 24px;
+      text-align: center;
+      position: relative;
+    }
+    .soi-editorial-block::before {
+      content: '\201C';
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Playfair Display', serif;
+      font-size: 72px;
+      color: var(--gold);
+      opacity: 0.12;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .soi-editorial-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-style: italic;
+      font-weight: 400;
+      color: rgba(240,232,213,0.85);
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+    .soi-editorial-quote em {
+      font-style: normal;
+      color: #f0e8d5;
+    }
+    .soi-editorial-attr {
+      font-family: 'Raleway', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(184,150,62,0.55);
+    }
+    /* Playlist cards — editorial, NOT music-app */
+    .soi-playlist-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 0 18px;
+    }
+    .soi-playlist-card {
+      background: linear-gradient(150deg, #1c1813 0%, #131109 100%);
+      border: 1px solid rgba(184,150,62,0.14);
+      border-radius: 22px;
+      padding: 26px 22px 22px;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease, box-shadow 0.2s;
+    }
+    .soi-playlist-card.soi-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .soi-playlist-card { opacity: 1; transform: none; }
+    }
+    .soi-playlist-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(184,150,62,0.45), transparent);
+    }
+    .soi-playlist-card:active { box-shadow: 0 2px 12px rgba(0,0,0,0.5); }
+    @media (hover: hover) {
+      .soi-playlist-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.45); border-color: rgba(184,150,62,0.3); }
+    }
+    .soi-card-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 11px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--gold);
+      opacity: 0.55;
+      margin-bottom: 10px;
+      letter-spacing: 0.08em;
+    }
+    .soi-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: #f0e8d5;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .soi-card-subtitle {
+      font-family: 'Raleway', sans-serif;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.65;
+      margin-bottom: 14px;
+    }
+    .soi-card-divider {
+      height: 1px;
+      background: rgba(184,150,62,0.12);
+      margin-bottom: 14px;
+    }
+    .soi-card-desc {
+      font-family: 'Raleway', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(240,232,213,0.6);
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .soi-card-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(29,185,84,0.1);
+      border: 1px solid rgba(29,185,84,0.22);
+      border-radius: 12px;
+      padding: 13px 16px;
+      text-decoration: none;
+      transition: background 0.18s, transform 0.15s;
+    }
+    .soi-card-cta:active { transform: scale(0.985); background: rgba(29,185,84,0.18); }
+    @media (hover: hover) {
+      .soi-card-cta:hover { background: rgba(29,185,84,0.16); }
+    }
+    .soi-card-cta-text {
+      font-family: 'Raleway', sans-serif;
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #1DB954;
+    }
+    .soi-card-cta-icon {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    /* Sound-entry card for home / casa access */
+    .soi-entry-card {
+      margin: 16px 0;
+      background: linear-gradient(135deg, #1a1008 0%, #111 100%);
+      border: 1px solid rgba(184,150,62,0.22);
+      border-radius: 18px;
+      padding: 18px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.15s;
+      text-decoration: none;
+    }
+    .soi-entry-card:active { opacity: 0.85; transform: scale(0.985); }
+    .soi-entry-card-icon {
+      font-size: 26px;
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(184,150,62,0.12);
+      border-radius: 12px;
+    }
+    .soi-entry-card-body { flex: 1; min-width: 0; }
+    .soi-entry-card-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #f0e8d5;
+      margin-bottom: 3px;
+    }
+    .soi-entry-card-sub {
+      font-family: 'Raleway', sans-serif;
+      font-size: 11.5px;
+      color: rgba(184,150,62,0.7);
+      letter-spacing: 0.04em;
+    }
+    .soi-entry-card-arrow {
+      font-size: 16px;
+      color: rgba(184,150,62,0.5);
+      flex-shrink: 0;
+    }
 
     /* ─── QUICK HELP OVERLAY ─────────────────────────── */
     #quick-overlay {
@@ -2262,7 +2628,14 @@
       <span class="drawer-item-label es">Hasta pronto</span>
       <span class="drawer-item-label fr">Au revoir</span>
     </button>
-    <button class="drawer-item" onclick="goToPage(13); closeDrawer()" style="border-top: 1px solid var(--light-gray); margin-top: 6px; padding-top: 14px;">
+    <button class="drawer-item" onclick="goToSound()" style="border-top: 1px solid var(--light-gray); margin-top: 6px; padding-top: 14px;">
+      <span class="drawer-item-icon">🎵</span>
+      <span class="drawer-item-label it" style="color:var(--terracotta)">The Sound of Italy</span>
+      <span class="drawer-item-label en" style="color:var(--terracotta)">The Sound of Italy</span>
+      <span class="drawer-item-label es" style="color:var(--terracotta)">The Sound of Italy</span>
+      <span class="drawer-item-label fr" style="color:var(--terracotta)">The Sound of Italy</span>
+    </button>
+    <button class="drawer-item" onclick="goToPage(13); closeDrawer()" style="padding-top: 8px;">
       <span class="drawer-item-icon" style="font-size:15px">✦</span>
       <span class="drawer-item-label it" style="color:var(--gold);font-weight:700">Selezionato da Alessandro</span>
       <span class="drawer-item-label en" style="color:var(--gold);font-weight:700">Selected by Alessandro</span>
@@ -2315,6 +2688,21 @@
         <span class="es">Descubre tu hogar</span>
         <span class="fr">Découvrez votre maison</span>
       </button>
+    </div>
+
+    <!-- ── SOUND OF ITALY ENTRY ── -->
+    <div style="padding: 16px 16px 0">
+      <div class="soi-entry-card" onclick="goToSound()" role="button" aria-label="The Sound of Italy">
+        <div class="soi-entry-card-icon">🎵</div>
+        <div class="soi-entry-card-body">
+          <div class="soi-entry-card-label">The Sound of Italy</div>
+          <div class="soi-entry-card-sub it">Marshall speaker · 5 playlist curate · Bluetooth</div>
+          <div class="soi-entry-card-sub en">Marshall speaker · 5 curated playlists · Bluetooth</div>
+          <div class="soi-entry-card-sub es">Altavoz Marshall · 5 playlists · Bluetooth</div>
+          <div class="soi-entry-card-sub fr">Enceinte Marshall · 5 playlists · Bluetooth</div>
+        </div>
+        <div class="soi-entry-card-arrow">›</div>
+      </div>
     </div>
 
     <!-- ── THE ROMAN SOUNDTRACK ── -->
@@ -2777,6 +3165,19 @@
         <h2 class="section-title es">Cómo funciona todo.</h2>
         <h2 class="section-title fr">Comment tout fonctionne.</h2>
         <div class="section-divider"></div>
+      </div>
+
+      <!-- Sound of Italy entry -->
+      <div class="soi-entry-card" onclick="goToSound()" role="button" aria-label="The Sound of Italy" style="margin-bottom:20px">
+        <div class="soi-entry-card-icon">🎵</div>
+        <div class="soi-entry-card-body">
+          <div class="soi-entry-card-label">The Sound of Italy</div>
+          <div class="soi-entry-card-sub it">Marshall Acton III · Connetti via Bluetooth</div>
+          <div class="soi-entry-card-sub en">Marshall Acton III · Connect via Bluetooth</div>
+          <div class="soi-entry-card-sub es">Marshall Acton III · Conectar por Bluetooth</div>
+          <div class="soi-entry-card-sub fr">Marshall Acton III · Connecter via Bluetooth</div>
+        </div>
+        <div class="soi-entry-card-arrow">›</div>
       </div>
 
       <div class="card">
@@ -4765,6 +5166,13 @@
     <span class="tab-label es">Home</span>
     <span class="tab-label fr">Home</span>
   </button>
+  <button class="tab-btn tab-sound" id="tab-sound" onclick="goToSound()" aria-label="The Sound of Italy">
+    <span class="tab-icon" aria-hidden="true">🎵</span>
+    <span class="tab-label it">Sound</span>
+    <span class="tab-label en">Sound</span>
+    <span class="tab-label es">Sound</span>
+    <span class="tab-label fr">Sound</span>
+  </button>
   <button class="tab-btn" id="tab-casa" onclick="goToPage(4)" aria-label="La Casa">
     <span class="tab-icon" aria-hidden="true">🛏</span>
     <span class="tab-label it">La Casa</span>
@@ -5136,15 +5544,330 @@
   </div>
 </div>
 
+<!-- ══════════════════════════════════════════════════
+     14 · THE SOUND OF ITALY
+══════════════════════════════════════════════════ -->
+<div class="page" id="page-14">
+
+  <!-- HERO -->
+  <div class="soi-hero">
+    <div class="soi-hero-eyebrow">Domus Fiorelli · Musica &amp; Cultura</div>
+    <h1 class="soi-hero-title">The Sound<br>of Italy</h1>
+    <p class="soi-hero-subtitle it">Un viaggio sensoriale attraverso la musica italiana</p>
+    <p class="soi-hero-subtitle en">A sensory journey through Italian music</p>
+    <p class="soi-hero-subtitle es">Un viaje sensorial a través de la música italiana</p>
+    <p class="soi-hero-subtitle fr">Un voyage sensoriel à travers la musique italienne</p>
+    <div class="soi-hero-ornament">
+      <div class="soi-hero-ornament-line"></div>
+      <div class="soi-hero-ornament-dot"></div>
+      <div class="soi-hero-ornament-line"></div>
+    </div>
+  </div>
+
+  <!-- SECTION 1 · YOUR SOUND RITUAL (Marshall) -->
+  <div class="soi-section">
+    <div class="soi-section-eyebrow it">Il Rituale · Suono</div>
+    <div class="soi-section-eyebrow en">Sound · Ritual</div>
+    <div class="soi-section-eyebrow es">Ritual · Sonido</div>
+    <div class="soi-section-eyebrow fr">Rituel · Son</div>
+    <div class="soi-section-title it">Your Sound Ritual.</div>
+    <div class="soi-section-title en">Your Sound Ritual.</div>
+    <div class="soi-section-title es">Your Sound Ritual.</div>
+    <div class="soi-section-title fr">Your Sound Ritual.</div>
+
+    <div class="soi-marshall-card">
+      <p class="soi-marshall-intro it">
+        In Domus Fiorelli, la musica è parte dell'esperienza.<br>
+        In Italia, il suono è cultura, memoria e atmosfera.<br>
+        Per questo abbiamo scelto uno <strong>speaker Marshall Acton III</strong>, per accompagnarti dentro il mood romano con tutta la profondità che merita.
+      </p>
+      <p class="soi-marshall-intro en">
+        At Domus Fiorelli, music is part of the experience.<br>
+        In Italy, sound is culture, memory, and atmosphere.<br>
+        For this reason, we have chosen a <strong>Marshall Acton III speaker</strong> to help you fully immerse yourself in the Roman mood.
+      </p>
+      <p class="soi-marshall-intro es">
+        En Domus Fiorelli, la música es parte de la experiencia.<br>
+        En Italia, el sonido es cultura, memoria y atmósfera.<br>
+        Por eso hemos elegido un <strong>altavoz Marshall Acton III</strong> para ayudarte a sumergirte plenamente en el ambiente romano.
+      </p>
+      <p class="soi-marshall-intro fr">
+        À Domus Fiorelli, la musique fait partie de l'expérience.<br>
+        En Italie, le son est culture, mémoire et atmosphère.<br>
+        Pour cette raison, nous avons choisi un <strong>enceinte Marshall Acton III</strong> pour vous permettre de vous immerger pleinement dans l'ambiance romaine.
+      </p>
+
+      <div class="soi-marshall-divider"></div>
+
+      <div class="soi-marshall-how-title">
+        <svg class="soi-bt-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.5 7.5L12 2L17.5 7.5L12.5 12.5L17.5 17.5L12 22L6.5 17.5L11.5 12.5L6.5 7.5Z" stroke="#B8963E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="soi-marshall-how-label it">Come connettere</span>
+        <span class="soi-marshall-how-label en">How to connect</span>
+        <span class="soi-marshall-how-label es">Cómo conectar</span>
+        <span class="soi-marshall-how-label fr">Comment connecter</span>
+      </div>
+
+      <ol class="soi-step-list it">
+        <li class="soi-step-item">
+          <div class="soi-step-num">1</div>
+          <div class="soi-step-text">Tieni premuto il <strong>simbolo Bluetooth</strong> sullo speaker Marshall</div>
+        </li>
+        <li class="soi-step-item">
+          <div class="soi-step-num">2</div>
+          <div class="soi-step-text">Aspetta fino a quando la luce inizia a <strong>lampeggiare</strong></div>
+        </li>
+        <li class="soi-step-item">
+          <div class="soi-step-num">3</div>
+          <div class="soi-step-text">Apri le <strong>Impostazioni Bluetooth</strong> del tuo telefono</div>
+        </li>
+        <li class="soi-step-item">
+          <div class="soi-step-num">4</div>
+          <div class="soi-step-text">Cerca <strong>Acton III</strong> nella lista dei dispositivi</div>
+        </li>
+        <li class="soi-step-item">
+          <div class="soi-step-num">5</div>
+          <div class="soi-step-text">Tocca per connettere. La connessione richiede 2–3 secondi.</div>
+        </li>
+      </ol>
+
+      <ol class="soi-step-list en">
+        <li class="soi-step-item">
+          <div class="soi-step-num">1</div>
+          <div class="soi-step-text">Press and hold the <strong>Bluetooth symbol</strong> on the Marshall speaker</div>
+        </li>
+        <li class="soi-step-item">
+          <div class="soi-step-num">2</div>
+          <div class="soi-step-text">Wait until the <strong>light starts blinking</strong></div>
+        </li>
+        <li class="soi-step-item">
+          <div class="soi-step-num">3</div>
+          <div class="soi-step-text">Open your phone <strong>Bluetooth settings</strong></div>
+        </li>
+        <li class="soi-step-item">
+          <div class="soi-step-num">4</div>
+          <div class="soi-step-text">Search for <strong>Acton III</strong> in the device list</div>
+        </li>
+        <li class="soi-step-item">
+          <div class="soi-step-num">5</div>
+          <div class="soi-step-text">Tap to connect. Takes 2–3 seconds.</div>
+        </li>
+      </ol>
+
+      <ol class="soi-step-list es">
+        <li class="soi-step-item">
+          <div class="soi-step-num">1</div>
+          <div class="soi-step-text">Mantén presionado el <strong>símbolo Bluetooth</strong> en el altavoz Marshall</div>
+        </li>
+        <li class="soi-step-item">
+          <div class="soi-step-num">2</div>
+          <div class="soi-step-text">Espera hasta que la luz comience a <strong>parpadear</strong></div>
+        </li>
+        <li class="soi-step-item">
+          <div class="soi-step-num">3</div>
+          <div class="soi-step-text">Abre los <strong>ajustes de Bluetooth</strong> de tu teléfono</div>
+        </li>
+        <li class="soi-step-item">
+          <div class="soi-step-num">4</div>
+          <div class="soi-step-text">Busca <strong>Acton III</strong> en la lista de dispositivos</div>
+        </li>
+        <li class="soi-step-item">
+          <div class="soi-step-num">5</div>
+          <div class="soi-step-text">Toca para conectar. Tarda 2–3 segundos.</div>
+        </li>
+      </ol>
+
+      <ol class="soi-step-list fr">
+        <li class="soi-step-item">
+          <div class="soi-step-num">1</div>
+          <div class="soi-step-text">Maintenez le <strong>symbole Bluetooth</strong> de l'enceinte Marshall enfoncé</div>
+        </li>
+        <li class="soi-step-item">
+          <div class="soi-step-num">2</div>
+          <div class="soi-step-text">Attendez que la lumière commence à <strong>clignoter</strong></div>
+        </li>
+        <li class="soi-step-item">
+          <div class="soi-step-num">3</div>
+          <div class="soi-step-text">Ouvrez les <strong>paramètres Bluetooth</strong> de votre téléphone</div>
+        </li>
+        <li class="soi-step-item">
+          <div class="soi-step-num">4</div>
+          <div class="soi-step-text">Recherchez <strong>Acton III</strong> dans la liste des appareils</div>
+        </li>
+        <li class="soi-step-item">
+          <div class="soi-step-num">5</div>
+          <div class="soi-step-text">Appuyez pour connecter. La connexion prend 2–3 secondes.</div>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- SECTION 2 · EDITORIAL INTRO -->
+  <div class="soi-editorial-block">
+    <p class="soi-editorial-quote it">
+      La musica in Italia non accompagna soltanto i momenti:<br>
+      <em>li definisce.</em><br>
+      Dal caffè del mattino all'aperitivo al tramonto,<br>ogni istante ha il suo suono.
+    </p>
+    <p class="soi-editorial-quote en">
+      In Italy, music does not simply accompany moments:<br>
+      <em>it defines them.</em><br>
+      From your morning coffee to sunset aperitivo,<br>every moment has its own sound.
+    </p>
+    <p class="soi-editorial-quote es">
+      En Italia, la música no solo acompaña los momentos:<br>
+      <em>los define.</em><br>
+      Desde el café de la mañana hasta el aperitivo al atardecer,<br>cada instante tiene su propio sonido.
+    </p>
+    <p class="soi-editorial-quote fr">
+      En Italie, la musique n'accompagne pas seulement les moments&nbsp;:<br>
+      <em>elle les définit.</em><br>
+      Du café du matin à l'apéritif au coucher du soleil,<br>chaque instant a son propre son.
+    </p>
+    <div class="soi-editorial-attr">Domus Fiorelli · Roma</div>
+  </div>
+
+  <!-- SECTION 3 · CURATED PLAYLIST EXPERIENCE -->
+  <div style="padding: 0 0 8px;">
+    <div style="padding: 0 18px; margin-bottom: 20px;">
+      <div class="soi-section-eyebrow it">Playlist Curate · Esperienze Sonore</div>
+      <div class="soi-section-eyebrow en">Curated Playlists · Sound Experiences</div>
+      <div class="soi-section-eyebrow es">Playlists Curadas · Experiencias Sonoras</div>
+      <div class="soi-section-eyebrow fr">Playlists Sélectionnées · Expériences Sonores</div>
+      <div class="soi-section-title it">Cinque emozioni.<br>Cinque momenti italiani.</div>
+      <div class="soi-section-title en">Five emotions.<br>Five Italian moments.</div>
+      <div class="soi-section-title es">Cinco emociones.<br>Cinco momentos italianos.</div>
+      <div class="soi-section-title fr">Cinq émotions.<br>Cinq moments italiens.</div>
+    </div>
+
+    <div class="soi-playlist-grid">
+
+      <!-- PLAYLIST 1 · Colazione Italiana -->
+      <div class="soi-playlist-card">
+        <div class="soi-card-number">N° 01</div>
+        <div class="soi-card-title">Colazione Italiana</div>
+        <div class="soi-card-subtitle">Morning Coffee Ritual</div>
+        <div class="soi-card-divider"></div>
+        <div class="soi-card-desc it">"Pensata per accompagnare l'inizio lento ed elegante della tua mattina romana, con la luce e il calore di una vera colazione italiana."</div>
+        <div class="soi-card-desc en">"Designed to accompany the slow and elegant beginning of your Roman morning, with the light and warmth of a true Italian breakfast."</div>
+        <div class="soi-card-desc es">"Diseñada para acompañar el inicio lento y elegante de tu mañana romana, con la luz y el calor de un auténtico desayuno italiano."</div>
+        <div class="soi-card-desc fr">"Conçue pour accompagner le début lent et élégant de votre matinée romaine, avec la lumière et la chaleur d'un vrai petit-déjeuner italien."</div>
+        <a class="soi-card-cta" href="https://open.spotify.com/playlist/12tKw4qBy4pVqdEOEFAg5g?si=DB9LzwXGSmaSNd0dGtJhEg&pi=7iFKWzssQA6eS" target="_blank" rel="noopener noreferrer">
+          <span class="soi-card-cta-text it">Inizia la tua mattina</span>
+          <span class="soi-card-cta-text en">Start your morning</span>
+          <span class="soi-card-cta-text es">Comienza tu mañana</span>
+          <span class="soi-card-cta-text fr">Commencez votre matinée</span>
+          <span class="soi-card-cta-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            ↗
+          </span>
+        </a>
+      </div>
+
+      <!-- PLAYLIST 2 · Aperitivo Italiano -->
+      <div class="soi-playlist-card">
+        <div class="soi-card-number">N° 02</div>
+        <div class="soi-card-title">Aperitivo Italiano</div>
+        <div class="soi-card-subtitle">Golden Hour in Rome</div>
+        <div class="soi-card-divider"></div>
+        <div class="soi-card-desc it">"La colonna sonora perfetta per l'ora d'oro, un bicchiere di vino e il ritorno a casa dopo una giornata esplorando Roma."</div>
+        <div class="soi-card-desc en">"The perfect soundtrack for golden hour, a glass of wine, and the return home after a day exploring Rome."</div>
+        <div class="soi-card-desc es">"La banda sonora perfecta para la hora dorada, una copa de vino y el regreso a casa tras un día explorando Roma."</div>
+        <div class="soi-card-desc fr">"La bande-son parfaite pour l'heure dorée, un verre de vin et le retour à la maison après une journée d'exploration de Rome."</div>
+        <a class="soi-card-cta" href="https://open.spotify.com/playlist/5Crxhuc1bxYAYw0jbsOhYs?si=uHNZXtDkSsyE34lFDHfPRA&pi=omcKkwWyTsaa5" target="_blank" rel="noopener noreferrer">
+          <span class="soi-card-cta-text it">Inizia l'aperitivo</span>
+          <span class="soi-card-cta-text en">Begin aperitivo</span>
+          <span class="soi-card-cta-text es">Comienza el aperitivo</span>
+          <span class="soi-card-cta-text fr">Commencer l'apéritif</span>
+          <span class="soi-card-cta-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            ↗
+          </span>
+        </a>
+      </div>
+
+      <!-- PLAYLIST 3 · La Dolce Vita -->
+      <div class="soi-playlist-card">
+        <div class="soi-card-number">N° 03</div>
+        <div class="soi-card-title">La Dolce Vita</div>
+        <div class="soi-card-subtitle">Timeless Italian Elegance</div>
+        <div class="soi-card-divider"></div>
+        <div class="soi-card-desc it">"Un viaggio cinematografico nell'eleganza italiana senza tempo, ispirato agli anni d'oro di Roma."</div>
+        <div class="soi-card-desc en">"A cinematic journey through timeless Italian elegance, inspired by Rome's golden years."</div>
+        <div class="soi-card-desc es">"Un viaje cinematográfico por la elegancia italiana intemporal, inspirado en los años dorados de Roma."</div>
+        <div class="soi-card-desc fr">"Un voyage cinématographique à travers l'élégance italienne intemporelle, inspiré des années dorées de Rome."</div>
+        <a class="soi-card-cta" href="https://open.spotify.com/playlist/7LjJIuTPIagEnEdWqYfdRi?si=2arYIkglQ_aCEwiNB-2-fA&pi=ivOQUww0RFK_N" target="_blank" rel="noopener noreferrer">
+          <span class="soi-card-cta-text it">Vivi la Dolce Vita</span>
+          <span class="soi-card-cta-text en">Live the Dolce Vita</span>
+          <span class="soi-card-cta-text es">Vive la Dolce Vita</span>
+          <span class="soi-card-cta-text fr">Vivre la Dolce Vita</span>
+          <span class="soi-card-cta-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            ↗
+          </span>
+        </a>
+      </div>
+
+      <!-- PLAYLIST 4 · Estate Italiana -->
+      <div class="soi-playlist-card">
+        <div class="soi-card-number">N° 04</div>
+        <div class="soi-card-title">Estate Italiana</div>
+        <div class="soi-card-subtitle">Summer · Joy · Beauty</div>
+        <div class="soi-card-divider"></div>
+        <div class="soi-card-desc it">"Il suono vibrante dell'estate in Italia: luce solare, gioia e bellezza senza sforzo."</div>
+        <div class="soi-card-desc en">"The vibrant sound of summer in Italy: sunlight, joy, and effortless beauty."</div>
+        <div class="soi-card-desc es">"El vibrante sonido del verano en Italia: luz solar, alegría y belleza sin esfuerzo."</div>
+        <div class="soi-card-desc fr">"Le son vibrant de l'été en Italie&nbsp;: soleil, joie et beauté sans effort."</div>
+        <a class="soi-card-cta" href="https://open.spotify.com/playlist/3LhGyyUbYvXL2c8sP28Cz4?si=l86IswRvR2Sn6QHdnofH3w&pi=1OGZBXXIShK5j" target="_blank" rel="noopener noreferrer">
+          <span class="soi-card-cta-text it">Senti l'estate</span>
+          <span class="soi-card-cta-text en">Feel the summer</span>
+          <span class="soi-card-cta-text es">Siente el verano</span>
+          <span class="soi-card-cta-text fr">Ressentir l'été</span>
+          <span class="soi-card-cta-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            ↗
+          </span>
+        </a>
+      </div>
+
+      <!-- PLAYLIST 5 · Sanremo Classics -->
+      <div class="soi-playlist-card soi-section-last">
+        <div class="soi-card-number">N° 05</div>
+        <div class="soi-card-title">Sanremo Classics</div>
+        <div class="soi-card-subtitle">The Soul of Italian Music</div>
+        <div class="soi-card-divider"></div>
+        <div class="soi-card-desc it">"Un viaggio nell'anima della musica italiana e in una delle tradizioni culturali più iconiche del paese."</div>
+        <div class="soi-card-desc en">"A journey through the soul of Italian music and one of the most iconic cultural traditions of the country."</div>
+        <div class="soi-card-desc es">"Un viaje por el alma de la música italiana y una de las tradiciones culturales más icónicas del país."</div>
+        <div class="soi-card-desc fr">"Un voyage à travers l'âme de la musique italienne et l'une des traditions culturelles les plus emblématiques du pays."</div>
+        <a class="soi-card-cta" href="https://open.spotify.com/playlist/3OI9PIxZBk2DccS2QJ6SZf?si=hTm0pJY1QE6XE6CvBfweXA" target="_blank" rel="noopener noreferrer">
+          <span class="soi-card-cta-text it">Esplora Sanremo</span>
+          <span class="soi-card-cta-text en">Explore Sanremo</span>
+          <span class="soi-card-cta-text es">Explorar Sanremo</span>
+          <span class="soi-card-cta-text fr">Explorer Sanremo</span>
+          <span class="soi-card-cta-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            ↗
+          </span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
 <script>
-  const TOTAL = 14;
-  const NAMES_IT = ['Home','Benvenuto','Filosofia','Accesso','Casa','Regole','Emergenze','Mobilità','Food','Galateo','Esperienze','Arrivederci','Privacy','Selezionato'];
-  const NAMES_EN = ['Home','Welcome','Philosophy','Access','Home','Rules','Emergency','Transport','Food','Tips','Experiences','Farewell','Privacy','Selected'];
-  const NAMES_ES = ['Home','Bienvenida','Filosofía','Acceso','Casa','Normas','Emergencias','Moverse','Food','Etiqueta','Experiencias','Hasta pronto','Privacidad','Seleccionado'];
-  const NAMES_FR = ['Home','Bienvenue','Philosophie','Accès','Logement','Règles','Urgences','Transport','Food','Étiquette','Expériences','Au revoir','Confidentialité','Sélectionné'];
+  const TOTAL = 15;
+  const NAMES_IT = ['Home','Benvenuto','Filosofia','Accesso','Casa','Regole','Emergenze','Mobilità','Food','Galateo','Esperienze','Arrivederci','Privacy','Selezionato','Sound of Italy'];
+  const NAMES_EN = ['Home','Welcome','Philosophy','Access','Home','Rules','Emergency','Transport','Food','Tips','Experiences','Farewell','Privacy','Selected','Sound of Italy'];
+  const NAMES_ES = ['Home','Bienvenida','Filosofía','Acceso','Casa','Normas','Emergencias','Moverse','Food','Etiqueta','Experiencias','Hasta pronto','Privacidad','Seleccionado','Sound of Italy'];
+  const NAMES_FR = ['Home','Bienvenue','Philosophie','Accès','Logement','Règles','Urgences','Transport','Food','Étiquette','Expériences','Au revoir','Confidentialité','Sélectionné','Sound of Italy'];
 
   // Tab ranges: which pages belong to which tab
   const TAB_HOME     = [0];
+  const TAB_SOUND    = [14];
   const TAB_CASA     = [1,2,3,4,5,6,8,9]; // La Casa covers welcome/philosophy/access/home/rules + food/galateo
   const TAB_MUOVERSI = [7];
   const TAB_SELECTED = [10,11,13]; // Esperienze, Arrivederci, Selected
@@ -5175,12 +5898,28 @@
 
     // Update tab active states
     document.getElementById('tab-home').classList.toggle('active', TAB_HOME.includes(cur));
+    document.getElementById('tab-sound').classList.toggle('active', TAB_SOUND.includes(cur));
     document.getElementById('tab-casa').classList.toggle('active', TAB_CASA.includes(cur));
     document.getElementById('tab-muoversi').classList.toggle('active', TAB_MUOVERSI.includes(cur));
     document.getElementById('tab-selected').classList.toggle('active', TAB_SELECTED.includes(cur));
 
+    // Trigger playlist card fade-in when on Sound page
+    if (cur === 14) triggerSoiAnimations();
+
     document.querySelectorAll('.drawer-item').forEach((item, i) => {
       item.classList.toggle('active', i === cur);
+    });
+  }
+
+  function goToSound() {
+    goToPage(14);
+    closeDrawer();
+  }
+
+  function triggerSoiAnimations() {
+    const cards = document.querySelectorAll('.soi-playlist-card');
+    cards.forEach((card, i) => {
+      setTimeout(() => card.classList.add('soi-visible'), i * 110);
     });
   }
 
