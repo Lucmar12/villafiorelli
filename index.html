@@ -166,8 +166,9 @@
       -webkit-overflow-scrolling: touch;
       overscroll-behavior: contain;
       padding: 10px 0;
-      padding-bottom: calc(env(safe-area-inset-bottom, 24px) + 32px);
+      padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 88px);
       min-height: 0; /* flex fix: allows child to shrink below its content height */
+      scroll-padding-bottom: 40px;
     }
 
     .drawer-item {
@@ -847,7 +848,12 @@
     .tab-btn.tab-sound.active .tab-icon { color: var(--terracotta); }
     .tab-btn.tab-sound.active .tab-label { color: var(--terracotta); font-weight: 700; }
     .tab-btn.tab-sound::after { background: var(--terracotta); }
-    /* Chat tab as link */
+    /* Quick Help tab accent */
+    .tab-btn.tab-quickhelp { color: var(--terracotta); }
+    .tab-btn.tab-quickhelp .tab-icon { color: var(--terracotta); }
+    .tab-btn.tab-quickhelp .tab-label { color: var(--terracotta); }
+    .tab-btn.tab-quickhelp::after { background: var(--terracotta); }
+    /* Chat tab as link (kept for a.tab-btn selectors if needed) */
     a.tab-btn { text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 
     /* ─── SOUND OF ITALY PAGE ────────────────────────── */
@@ -924,9 +930,7 @@
     .soi-section {
       padding: 32px 18px 0;
     }
-    .soi-section-last {
-      padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 100px);
-    }
+    .soi-section-last { /* reserved for future use */ }
     .soi-section-eyebrow {
       font-family: 'Raleway', sans-serif;
       font-size: 9.5px;
@@ -1066,6 +1070,7 @@
       flex-direction: column;
       gap: 16px;
       padding: 0 18px;
+      padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 100px);
     }
     .soi-playlist-card {
       background: linear-gradient(150deg, #1c1813 0%, #131109 100%);
@@ -2705,96 +2710,7 @@
       </div>
     </div>
 
-    <!-- ── THE ROMAN SOUNDTRACK ── -->
-    <div style="padding: 28px 16px 100px">
-      <div class="section-header" style="margin-bottom:16px">
-        <p class="section-tag it">Musica · Atmosfera</p>
-        <p class="section-tag en">Music · Atmosphere</p>
-        <p class="section-tag es">Música · Ambiente</p>
-        <p class="section-tag fr">Musique · Ambiance</p>
-        <h2 class="section-title it">The Roman Soundtrack.</h2>
-        <h2 class="section-title en">The Roman Soundtrack.</h2>
-        <h2 class="section-title es">The Roman Soundtrack.</h2>
-        <h2 class="section-title fr">The Roman Soundtrack.</h2>
-        <div class="section-divider"></div>
-      </div>
-      <p style="font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:20px" class="it">Tre playlist curate per tre momenti del giorno. Lasciati accompagnare dalla colonna sonora giusta per ogni ora romana.</p>
-      <p style="font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:20px" class="en">Three playlists curated for three moments of the day. Let the right soundtrack carry you through every Roman hour.</p>
-      <p style="font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:20px" class="es">Tres listas de reproducción creadas para tres momentos del día. Deja que la banda sonora perfecta te acompañe en cada hora romana.</p>
-      <p style="font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:20px" class="fr">Trois playlists conçues pour trois moments de la journée. Laissez-vous porter par la bande-son parfaite à chaque heure romaine.</p>
-
-      <div class="spotify-card">
-        <div class="spotify-card-top">
-          <div class="spotify-card-meta">
-            <svg class="spotify-icon" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-            <div>
-              <div class="spotify-card-label it">01 · Mattino Romano</div>
-              <div class="spotify-card-label en">01 · Roman Morning</div>
-              <div class="spotify-card-label es">01 · Mañana Romana</div>
-              <div class="spotify-card-label fr">01 · Matin Romain</div>
-              <div class="spotify-card-mood it">jazz morbido · espresso · risveglio gentile</div>
-              <div class="spotify-card-mood en">soft jazz · espresso · gentle awakening</div>
-              <div class="spotify-card-mood es">jazz suave · espresso · despertar tranquilo</div>
-              <div class="spotify-card-mood fr">jazz doux · espresso · réveil en douceur</div>
-            </div>
-          </div>
-        </div>
-        <a class="spotify-cta" href="https://open.spotify.com/search/Roman%20Morning%20Jazz%20Espresso" target="_blank" rel="noopener">
-          <span class="it">▶ Ascolta l'atmosfera</span>
-          <span class="en">▶ Play the atmosphere</span>
-          <span class="es">▶ Escucha el ambiente</span>
-          <span class="fr">▶ Écouter l'ambiance</span>
-        </a>
-      </div>
-
-      <div class="spotify-card">
-        <div class="spotify-card-top">
-          <div class="spotify-card-meta">
-            <svg class="spotify-icon" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-            <div>
-              <div class="spotify-card-label it">02 · Tramonto Romano</div>
-              <div class="spotify-card-label en">02 · Roman Sunset</div>
-              <div class="spotify-card-label es">02 · Atardecer Romano</div>
-              <div class="spotify-card-label fr">02 · Coucher de Soleil Romain</div>
-              <div class="spotify-card-mood it">aperitivo · ora d'oro · atmosfera calda</div>
-              <div class="spotify-card-mood en">aperitivo · golden hour · warm Roman glow</div>
-              <div class="spotify-card-mood es">aperitivo · hora dorada · calor romano</div>
-              <div class="spotify-card-mood fr">apéritif · heure dorée · chaleur romaine</div>
-            </div>
-          </div>
-        </div>
-        <a class="spotify-cta" href="https://open.spotify.com/search/Roman%20Sunset%20Aperitivo%20Lounge" target="_blank" rel="noopener">
-          <span class="it">▶ Ascolta l'atmosfera</span>
-          <span class="en">▶ Play the atmosphere</span>
-          <span class="es">▶ Escucha el ambiente</span>
-          <span class="fr">▶ Écouter l'ambiance</span>
-        </a>
-      </div>
-
-      <div class="spotify-card">
-        <div class="spotify-card-top">
-          <div class="spotify-card-meta">
-            <svg class="spotify-icon" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-            <div>
-              <div class="spotify-card-label it">03 · Notte Romana</div>
-              <div class="spotify-card-label en">03 · Roman Night</div>
-              <div class="spotify-card-label es">03 · Noche Romana</div>
-              <div class="spotify-card-label fr">03 · Nuit Romaine</div>
-              <div class="spotify-card-mood it">relax · pianoforte lento · serata elegante</div>
-              <div class="spotify-card-mood en">relax · slow piano · elegant evening mood</div>
-              <div class="spotify-card-mood es">relajación · piano suave · velada elegante</div>
-              <div class="spotify-card-mood fr">détente · piano lent · soirée élégante</div>
-            </div>
-          </div>
-        </div>
-        <a class="spotify-cta" href="https://open.spotify.com/search/Roman%20Night%20Slow%20Piano%20Elegant" target="_blank" rel="noopener">
-          <span class="it">▶ Ascolta l'atmosfera</span>
-          <span class="en">▶ Play the atmosphere</span>
-          <span class="es">▶ Escucha el ambiente</span>
-          <span class="fr">▶ Écouter l'ambiance</span>
-        </a>
-      </div>
-    </div>
+    <div style="padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 88px)"></div>
   </div>
 
   <!-- ══════════════════════════════════════════════════
@@ -3085,41 +3001,26 @@
         <div class="section-divider"></div>
       </div>
 
-      <div class="card">
-        <div class="card-title">
+      <!-- Privacy notice + Quick Help CTA -->
+      <div class="card" style="border-left: 3px solid var(--gold); background: linear-gradient(135deg, rgba(184,150,62,0.05), rgba(184,150,62,0.02))">
+        <div class="card-title" style="margin-bottom:12px">
           <span class="card-title-icon">🔐</span>
-          <span>Smart Lock</span>
+          <span class="it">Accesso Sicuro</span>
+          <span class="en">Secure Access</span>
+          <span class="es">Acceso Seguro</span>
+          <span class="fr">Accès Sécurisé</span>
         </div>
-        <div class="note-box it" style="background:var(--cream);border-left:3px solid var(--gold)">🔒 Per privacy e sicurezza, le istruzioni di accesso sono disponibili nella tua area ospite riservata, condivisa privatamente al momento della prenotazione.</div>
-        <div class="note-box en" style="background:var(--cream);border-left:3px solid var(--gold)">🔒 For privacy and security, access details are available in your protected guest stay area, shared privately at the time of booking.</div>
-        <div class="note-box es" style="background:var(--cream);border-left:3px solid var(--gold)">🔒 Por privacidad y seguridad, los detalles de acceso están disponibles en tu área privada de huéspedes, compartida de forma privada en el momento de la reserva.</div>
-        <div class="note-box fr" style="background:var(--cream);border-left:3px solid var(--gold)">🔒 Pour votre confidentialité et sécurité, les détails d'accès sont disponibles dans votre espace personnel réservé, partagé en privé lors de la réservation.</div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">
-          <span class="card-title-icon">📶</span>
-          Wi-Fi
-        </div>
-        <div class="wifi-row">
-          <span class="wifi-label it">Rete</span>
-          <span class="wifi-label en">Network</span>
-          <span class="wifi-label es">Red</span>
-          <span class="wifi-label fr">Réseau</span>
-          <span class="wifi-value">[NOME_RETE]</span>
-        </div>
-        <div class="wifi-row">
-          <span class="wifi-label">Password</span>
-          <div style="display:flex; align-items:center; gap:10px">
-            <span class="wifi-value" id="wifi-pass">[PASSWORD]</span>
-            <button class="copy-btn" onclick="copyWifi()">
-              <span class="it">Copia</span>
-              <span class="en">Copy</span>
-              <span class="es">Copiar</span>
-              <span class="fr">Copier</span>
-            </button>
-          </div>
-        </div>
+        <div class="card-text it" style="line-height:1.75;margin-bottom:18px">Per la tua privacy e la sicurezza della residenza, le istruzioni di accesso e le credenziali Wi-Fi sono disponibili tramite <strong>Quick Help</strong> dopo autenticazione con PIN sicuro.</div>
+        <div class="card-text en" style="line-height:1.75;margin-bottom:18px">For your privacy and the security of the residence, access details and Wi-Fi instructions are available via <strong>Quick Help</strong> after secure PIN authentication.</div>
+        <div class="card-text es" style="line-height:1.75;margin-bottom:18px">Para tu privacidad y la seguridad de la residencia, los detalles de acceso y las instrucciones de Wi-Fi están disponibles a través de <strong>Quick Help</strong> tras autenticación con PIN seguro.</div>
+        <div class="card-text fr" style="line-height:1.75;margin-bottom:18px">Pour votre confidentialité et la sécurité de la résidence, les détails d'accès et les instructions Wi-Fi sont disponibles via <strong>Quick Help</strong> après authentification PIN sécurisée.</div>
+        <button onclick="openQuick()" style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:var(--anthracite);color:var(--white);border:none;border-radius:14px;padding:14px 20px;font-family:'Raleway',sans-serif;font-size:14px;font-weight:600;cursor:pointer;letter-spacing:0.03em;transition:opacity 0.15s" ontouchstart="">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2C9.24 2 7 4.24 7 7v1H5a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-2V7c0-2.76-2.24-5-5-5zm0 2c1.66 0 3 1.34 3 3v1H9V7c0-1.66 1.34-3 3-3zm0 9a2 2 0 1 1 0 4 2 2 0 0 1 0-4z" fill="white"/></svg>
+          <span class="it">Apri Quick Help</span>
+          <span class="en">Open Quick Help</span>
+          <span class="es">Abrir Quick Help</span>
+          <span class="fr">Ouvrir Quick Help</span>
+        </button>
       </div>
 
       <div class="time-row">
@@ -4235,12 +4136,12 @@
           <span class="es" style="font-family:'Playfair Display',serif; font-size:18px; font-style:italic; font-weight:400; color:var(--terracotta)">Si tu estancia fue especial</span>
           <span class="fr" style="font-family:'Playfair Display',serif; font-size:18px; font-style:italic; font-weight:400; color:var(--terracotta)">Si votre séjour a été spécial</span>
         </div>
-        <div class="card-text it" style="margin-bottom:16px;line-height:1.75">Condividere la tua esperienza su Google o Airbnb significherebbe moltissimo per noi. Le tue parole aiutano i futuri ospiti a scoprire Roma attraverso la nostra casa.</div>
-        <div class="card-text en" style="margin-bottom:16px;line-height:1.75">Sharing your experience on Google or Airbnb would mean the world to us. Your words help future guests discover Rome through our home.</div>
-        <div class="card-text es" style="margin-bottom:16px;line-height:1.75">Compartir tu experiencia en Google o Airbnb significaría mucho para nosotros. Tus palabras ayudan a futuros huéspedes a descubrir Roma a través de nuestra casa.</div>
-        <div class="card-text fr" style="margin-bottom:16px;line-height:1.75">Partager votre expérience sur Google ou Airbnb nous toucherait profondément. Vos mots aident de futurs voyageurs à découvrir Rome à travers notre maison.</div>
-        <a class="review-btn" href="https://www.google.com/search?num=10&client=safari&hs=nJgp&hl=it-IT&sca_esv=6e9105e3f9215b89&cs=0&output=search&tbm=lcl&kgmid=/g/11yzb7pzj9&q=Domus+Fiorelli&shndl=30&source=sh/x/kp/local/m1/1&kgs=dd25e82205e6a696&utm_source=sh/x/kp/local/m1/1#" target="_blank" rel="noopener" style="background:var(--gold)">
-          <span class="it">⭐ Scrivi una recensione su Google</span>
+        <div class="card-text it" style="margin-bottom:16px;line-height:1.75">Se il tuo soggiorno è stato speciale, la tua recensione significa moltissimo per noi. Le tue parole aiutano i futuri ospiti a scoprire Roma attraverso la nostra casa.</div>
+        <div class="card-text en" style="margin-bottom:16px;line-height:1.75">If your stay was special, your review means the world to us. Your words help future guests discover Rome through our home.</div>
+        <div class="card-text es" style="margin-bottom:16px;line-height:1.75">Si tu estancia fue especial, tu reseña significa mucho para nosotros. Tus palabras ayudan a futuros huéspedes a descubrir Roma a través de nuestra casa.</div>
+        <div class="card-text fr" style="margin-bottom:16px;line-height:1.75">Si votre séjour a été spécial, votre avis compte énormément pour nous. Vos mots aident de futurs voyageurs à découvrir Rome à travers notre maison.</div>
+        <a class="review-btn" href="https://g.page/r/CctP4VPcRnX_EBM/review" target="_blank" rel="noopener noreferrer" style="background:var(--gold)">
+          <span class="it">⭐ Lascia una recensione su Google</span>
           <span class="en">⭐ Leave a Google Review</span>
           <span class="es">⭐ Dejar una reseña en Google</span>
           <span class="fr">⭐ Laisser un avis sur Google</span>
@@ -5194,13 +5095,15 @@
     <span class="tab-label es">Selected</span>
     <span class="tab-label fr">Selected</span>
   </button>
-  <a class="tab-btn" id="tab-chat" href="https://wa.me/393755991515" target="_blank" rel="noopener noreferrer" aria-label="Chat WhatsApp Alessandro">
-    <span class="tab-icon" aria-hidden="true">💬</span>
-    <span class="tab-label it">Chat</span>
-    <span class="tab-label en">Chat</span>
-    <span class="tab-label es">Chat</span>
-    <span class="tab-label fr">Chat</span>
-  </a>
+  <button class="tab-btn tab-quickhelp" id="tab-quickhelp" onclick="openQuick()" aria-label="Quick Help — Private Access">
+    <svg aria-hidden="true" class="tab-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" style="font-size:inherit">
+      <path d="M12 2C9.24 2 7 4.24 7 7v1H5a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-2V7c0-2.76-2.24-5-5-5zm0 2c1.66 0 3 1.34 3 3v1H9V7c0-1.66 1.34-3 3-3zm0 9a2 2 0 1 1 0 4 2 2 0 0 1 0-4z" fill="currentColor"/>
+    </svg>
+    <span class="tab-label it">Accesso</span>
+    <span class="tab-label en">Access</span>
+    <span class="tab-label es">Acceso</span>
+    <span class="tab-label fr">Accès</span>
+  </button>
 </div>
 
 <!-- WHATSAPP BUTTON -->
@@ -5832,7 +5735,7 @@
       </div>
 
       <!-- PLAYLIST 5 · Sanremo Classics -->
-      <div class="soi-playlist-card soi-section-last">
+      <div class="soi-playlist-card">
         <div class="soi-card-number">N° 05</div>
         <div class="soi-card-title">Sanremo Classics</div>
         <div class="soi-card-subtitle">The Soul of Italian Music</div>
