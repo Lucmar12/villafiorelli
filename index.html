@@ -495,6 +495,49 @@
     .recycle-color { font-weight: 700; font-size: 13px; color: var(--anthracite); }
     .recycle-desc { font-size: 12px; color: var(--gray); margin-top: 2px; }
 
+    /* ─── SWIPE HINT ARROWS ─────────────────────────── */
+    .swipe-hint {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 350;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .swipe-hint.visible { opacity: 1; }
+    .swipe-hint.hidden  { opacity: 0; }
+    #swipe-hint-left  { left: 10px; }
+    #swipe-hint-right { right: 10px; }
+    .swipe-hint-btn {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: rgba(44,44,44,0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 3px 16px rgba(0,0,0,0.28);
+      border: 1px solid rgba(245,236,215,0.15);
+      animation: swipeFloat 2.2s ease-in-out infinite;
+    }
+    #swipe-hint-right .swipe-hint-btn { animation-delay: 0.3s; }
+    @keyframes swipeFloat {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-5px); }
+    }
+    .swipe-hint-arrow {
+      width: 10px; height: 10px;
+      border-top: 2px solid rgba(245,236,215,0.75);
+      border-right: 2px solid rgba(245,236,215,0.75);
+    }
+    #swipe-hint-left  .swipe-hint-arrow { transform: rotate(-135deg) translateX(1px); }
+    #swipe-hint-right .swipe-hint-arrow { transform: rotate(45deg) translateX(-1px); }
+    /* hide on page-0 cover (no prev page) and page-14 (no next) */
+    .swipe-hide { display: none !important; }
+    @media (prefers-reduced-motion: reduce) {
+      .swipe-hint-btn { animation: none; }
+    }
+
     /* ─── EMERGENCY BUTTONS ──────────────────────────── */
     .emerg-btn {
       display: flex;
@@ -855,6 +898,31 @@
     .tab-btn.tab-quickhelp::after { background: var(--terracotta); }
     /* Chat tab as link (kept for a.tab-btn selectors if needed) */
     a.tab-btn { text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+    /* ─── SOI MARSHALL IMAGE ───────────────────────────── */
+    .soi-marshall-img-wrap {
+      padding: 0 18px 0;
+      margin-bottom: 28px;
+    }
+    .soi-marshall-img {
+      width: 100%;
+      max-width: 360px;
+      display: block;
+      margin: 0 auto;
+      border-radius: 22px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(184,150,62,0.15);
+      background: #1a1712; /* fallback while loading */
+    }
+    .soi-marshall-img-caption {
+      text-align: center;
+      font-family: 'Raleway', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(184,150,62,0.45);
+      margin-top: 12px;
+    }
 
     /* ─── SOUND OF ITALY PAGE ────────────────────────── */
     #page-14 {
@@ -2081,43 +2149,123 @@
 
     /* ─── HOST PORTRAIT BLOCK ────────────────────────── */
     .host-portrait-block {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      background: linear-gradient(135deg, rgba(184,150,62,0.08) 0%, rgba(196,98,45,0.05) 100%);
-      border-radius: 18px;
-      padding: 18px 16px;
+      background: linear-gradient(145deg, #2C2C2C 0%, #1e1c18 100%);
+      border-radius: 22px;
+      padding: 28px 20px 24px;
       margin: 0 0 16px;
-      border: 1px solid rgba(184,150,62,0.15);
+      border: 1px solid rgba(184,150,62,0.18);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .host-portrait-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(184,150,62,0.4), transparent);
+    }
+    .host-identity-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 20px;
     }
     .host-portrait-img {
-      flex-shrink: 0;
-      width: 72px; height: 72px;
+      position: relative;
+      width: 84px; height: 84px;
       border-radius: 50%;
       overflow: hidden;
       background: linear-gradient(135deg, #3a3028 0%, #2C2C2C 100%);
       display: flex; align-items: center; justify-content: center;
-      border: 2px solid rgba(184,150,62,0.3);
+      border: 2px solid rgba(184,150,62,0.45);
+      margin: 0 auto 0;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.5);
+      flex-shrink: 0;
+    }
+    .host-portrait-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(100%) contrast(1.05);
+      display: block;
     }
     .host-portrait-initial {
       font-family: 'Playfair Display', serif;
-      font-size: 28px;
+      font-size: 32px;
       font-style: italic;
-      color: rgba(184,150,62,0.7);
+      color: rgba(184,150,62,0.75);
     }
-    .host-portrait-content { flex: 1; }
+    /* When photo is present, hide the initial */
+    .host-portrait-img:has(.host-portrait-photo) .host-portrait-initial { display: none; }
+    .host-monogram-ring {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: rgba(184,150,62,0.1);
+      border: 1.5px solid rgba(184,150,62,0.35);
+      display: flex; align-items: center; justify-content: center;
+      margin: -14px auto 0;
+      position: relative;
+      z-index: 1;
+    }
+    .host-monogram-letter {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-style: italic;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .host-portrait-content { text-align: center; }
     .host-signature {
       font-family: 'Playfair Display', serif;
-      font-size: 20px;
+      font-size: 22px;
       font-style: italic;
-      color: var(--terracotta);
-      margin-bottom: 6px;
+      color: #f0e8d5;
+      margin-bottom: 4px;
+      margin-top: 14px;
+    }
+    .host-portrait-role {
+      font-family: 'Raleway', sans-serif;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.65;
+      margin-bottom: 14px;
     }
     .host-portrait-copy {
-      font-size: 12px;
-      color: var(--gray);
-      line-height: 1.65;
+      font-size: 13px;
+      font-family: 'Raleway', sans-serif;
+      color: rgba(240,232,213,0.65);
+      line-height: 1.75;
+      font-style: italic;
     }
+    .host-portrait-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(184,150,62,0.25), transparent);
+      margin: 16px 0;
+    }
+    .host-wa-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+      background: rgba(37,211,102,0.12);
+      border: 1px solid rgba(37,211,102,0.25);
+      border-radius: 12px;
+      padding: 9px 18px;
+      text-decoration: none;
+      font-family: 'Raleway', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #25D366;
+      letter-spacing: 0.03em;
+      transition: background 0.18s;
+    }
+    .host-wa-cta:active { background: rgba(37,211,102,0.22); }
 
     /* ─── SELECTED BY ALESSANDRO — EDITORIAL ─────────── */
     .selected-page-intro {
@@ -2762,15 +2910,34 @@
 
       <!-- Host Portrait Block -->
       <div class="host-portrait-block">
-        <div class="host-portrait-img">
-          <span class="host-portrait-initial">A</span>
+        <div class="host-identity-stack">
+          <div class="host-portrait-img">
+            <!-- Replace src with actual photo when available: e.g. src="alessandro.jpg" -->
+            <img class="host-portrait-photo" src="alessandro.jpg" alt="Alessandro — Host at Domus Fiorelli" onerror="this.style.display='none'">
+            <span class="host-portrait-initial">A</span>
+          </div>
+          <div class="host-monogram-ring">
+            <span class="host-monogram-letter">A</span>
+          </div>
         </div>
         <div class="host-portrait-content">
           <div class="host-signature">Alessandro</div>
-          <p class="host-portrait-copy it">Accogliere di persona è parte dell'esperienza Domus Fiorelli. Ogni volta che è possibile, Alessandro sarà felice di accoglierti personalmente e aiutarti a vivere Roma come un locale.</p>
-          <p class="host-portrait-copy en">Personally welcoming our guests is part of the Domus Fiorelli experience. Whenever possible, Alessandro will be delighted to greet you in person and help you discover Rome as a local.</p>
-          <p class="host-portrait-copy es">Recibir personalmente a los huéspedes forma parte de la experiencia Domus Fiorelli. Siempre que sea posible, Alessandro estará encantado de recibirte en persona y ayudarte a descubrir Roma como un local.</p>
-          <p class="host-portrait-copy fr">Accueillir personnellement les hôtes fait partie de l'expérience Domus Fiorelli. Chaque fois que possible, Alessandro sera ravi de vous accueillir en personne et de vous aider à découvrir Rome comme un local.</p>
+          <div class="host-portrait-role it">Il tuo host · Domus Fiorelli</div>
+          <div class="host-portrait-role en">Your host · Domus Fiorelli</div>
+          <div class="host-portrait-role es">Tu anfitrión · Domus Fiorelli</div>
+          <div class="host-portrait-role fr">Votre hôte · Domus Fiorelli</div>
+          <div class="host-portrait-divider"></div>
+          <p class="host-portrait-copy it">"Benvenuto a Domus Fiorelli. Ogni dettaglio di questa casa è stato curato personalmente per aiutarti a vivere Roma con comfort, eleganza e autenticità."</p>
+          <p class="host-portrait-copy en">"Welcome to Domus Fiorelli. Every detail of this home has been personally curated to help you experience Rome with comfort, elegance, and authenticity."</p>
+          <p class="host-portrait-copy es">"Bienvenido a Domus Fiorelli. Cada detalle de esta casa ha sido curado personalmente para ayudarte a vivir Roma con confort, elegancia y autenticidad."</p>
+          <p class="host-portrait-copy fr">"Bienvenue à Domus Fiorelli. Chaque détail de cette maison a été personnellement curé pour vous aider à vivre Rome avec confort, élégance et authenticité."</p>
+          <a class="host-wa-cta" href="https://wa.me/393755991515" target="_blank" rel="noopener noreferrer" aria-label="Contact Alessandro on WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#25D366"/><path d="M23.472 8.528A10.417 10.417 0 0016 5.583c-5.754 0-10.42 4.666-10.42 10.417 0 1.837.48 3.63 1.394 5.212L5.5 26.417l5.35-1.404a10.394 10.394 0 004.15.864h.004c5.75 0 10.416-4.666 10.416-10.417a10.388 10.388 0 00-1.948-6.932z" fill="#25D366"/><path d="M16 24.39a8.63 8.63 0 01-4.4-1.204l-.316-.188-3.174.833.848-3.094-.207-.318A8.607 8.607 0 017.37 16c0-4.762 3.872-8.633 8.634-8.633 2.305 0 4.473.898 6.103 2.53A8.577 8.577 0 0124.633 16c0 4.762-3.872 8.633-8.633 8.633v-.243zm5.014-6.46c-.275-.137-1.626-.801-1.878-.893-.252-.09-.435-.136-.618.138-.183.274-.707.893-.867 1.076-.16.183-.32.206-.594.069-.275-.138-1.161-.428-2.211-1.364-.817-.728-1.369-1.626-1.529-1.9-.16-.275-.017-.423.12-.56.124-.123.275-.32.413-.48.137-.16.183-.275.274-.458.092-.183.046-.343-.023-.48-.069-.138-.618-1.49-.847-2.04-.224-.536-.45-.463-.618-.472l-.527-.009a1.01 1.01 0 00-.733.344c-.252.274-.963.94-.963 2.293s.986 2.659 1.123 2.842c.137.183 1.94 2.96 4.7 4.153.657.283 1.169.452 1.569.579.659.21 1.26.18 1.733.11.529-.08 1.626-.665 1.855-1.307.23-.641.23-1.19.16-1.307-.068-.115-.251-.183-.526-.32z" fill="white"/></svg>
+            <span class="it">Scrivi ad Alessandro</span>
+            <span class="en">Message Alessandro</span>
+            <span class="es">Escribe a Alessandro</span>
+            <span class="fr">Écrire à Alessandro</span>
+          </a>
         </div>
       </div>
 
@@ -3285,10 +3452,81 @@
 
       <div class="card">
         <div class="card-title"><span class="card-title-icon">♻️</span><span class="it">Raccolta Differenziata</span><span class="en">Recycling</span><span class="es">Reciclaje</span><span class="fr">Tri des déchets</span></div>
-        <div class="note-box it" style="background:var(--cream);border-left:3px solid var(--gold)">🗓 Stiamo aggiornando il calendario ufficiale della raccolta rifiuti per Piazza di Villa Fiorelli 12. Le istruzioni aggiornate saranno disponibili a breve. Nel frattempo, contatta Alessandro per qualsiasi dubbio.</div>
-        <div class="note-box en" style="background:var(--cream);border-left:3px solid var(--gold)">🗓 We are currently updating the official local waste collection calendar for Piazza di Villa Fiorelli 12. Updated instructions will be available shortly. In the meantime, contact Alessandro for any questions.</div>
-        <div class="note-box es" style="background:var(--cream);border-left:3px solid var(--gold)">🗓 Estamos actualizando el calendario oficial de recogida de residuos para Piazza di Villa Fiorelli 12. Las instrucciones actualizadas estarán disponibles próximamente. Mientras tanto, contacta con Alessandro para cualquier duda.</div>
-        <div class="note-box fr" style="background:var(--cream);border-left:3px solid var(--gold)">🗓 Nous mettons actuellement à jour le calendrier officiel de collecte des déchets pour Piazza di Villa Fiorelli 12. Les instructions mises à jour seront disponibles prochainement. En attendant, contactez Alessandro pour toute question.</div>
+
+        <div class="card-text it" style="font-size:12.5px;color:var(--gray);line-height:1.65;margin-bottom:16px">I cassonetti pubblici AMA si trovano direttamente in Piazza di Villa Fiorelli, a pochi passi dall'ingresso. Segui la codifica colori ufficiale indicata di seguito.</div>
+        <div class="card-text en" style="font-size:12.5px;color:var(--gray);line-height:1.65;margin-bottom:16px">For your convenience, public AMA waste bins are located directly in Piazza di Villa Fiorelli, just a few steps from the entrance. Please follow the official colour coding below.</div>
+        <div class="card-text es" style="font-size:12.5px;color:var(--gray);line-height:1.65;margin-bottom:16px">Los contenedores públicos AMA se encuentran directamente en Piazza di Villa Fiorelli, a pocos pasos de la entrada. Por favor, siga la codificación de colores oficial indicada abajo.</div>
+        <div class="card-text fr" style="font-size:12.5px;color:var(--gray);line-height:1.65;margin-bottom:16px">Pour votre confort, les bennes publiques AMA se trouvent directement sur la Piazza di Villa Fiorelli, à quelques pas de l'entrée. Veuillez suivre le code couleur officiel ci-dessous.</div>
+
+        <div class="recycle-row" style="background:rgba(101,67,33,0.08)">
+          <div class="recycle-dot" style="background:#7B4A1E"></div>
+          <div>
+            <div class="recycle-color it">Marrone — Organico</div>
+            <div class="recycle-color en">Brown — Organic</div>
+            <div class="recycle-color es">Marrón — Orgánico</div>
+            <div class="recycle-color fr">Marron — Organique</div>
+            <div class="recycle-desc it">Scarti alimentari, fondi caffè, gusci d'uovo</div>
+            <div class="recycle-desc en">Food scraps, coffee grounds, eggshells</div>
+            <div class="recycle-desc es">Restos de comida, posos de café, cáscaras de huevo</div>
+            <div class="recycle-desc fr">Déchets alimentaires, marc de café, coquilles d'œuf</div>
+          </div>
+        </div>
+
+        <div class="recycle-row" style="background:rgba(220,180,0,0.09)">
+          <div class="recycle-dot" style="background:#C9A800"></div>
+          <div>
+            <div class="recycle-color it">Giallo — Plastica & Metallo</div>
+            <div class="recycle-color en">Yellow — Plastic & Metal</div>
+            <div class="recycle-color es">Amarillo — Plástico & Metal</div>
+            <div class="recycle-color fr">Jaune — Plastique & Métal</div>
+            <div class="recycle-desc it">Bottiglie, lattine, tetrapak</div>
+            <div class="recycle-desc en">Bottles, cans, tetrapak</div>
+            <div class="recycle-desc es">Botellas, latas, tetrabrik</div>
+            <div class="recycle-desc fr">Bouteilles, canettes, briques</div>
+          </div>
+        </div>
+
+        <div class="recycle-row" style="background:rgba(180,180,180,0.1)">
+          <div class="recycle-dot" style="background:#AAAAAA"></div>
+          <div>
+            <div class="recycle-color it">Bianco/Grigio — Carta & Cartone</div>
+            <div class="recycle-color en">White/Grey — Paper & Cardboard</div>
+            <div class="recycle-color es">Blanco/Gris — Papel & Cartón</div>
+            <div class="recycle-color fr">Blanc/Gris — Papier & Carton</div>
+            <div class="recycle-desc it">Giornali, scatole, imballaggi</div>
+            <div class="recycle-desc en">Newspapers, boxes, packaging</div>
+            <div class="recycle-desc es">Periódicos, cajas, embalajes</div>
+            <div class="recycle-desc fr">Journaux, boîtes, emballages</div>
+          </div>
+        </div>
+
+        <div class="recycle-row" style="background:rgba(0,130,0,0.07)">
+          <div class="recycle-dot" style="background:#2E7D32"></div>
+          <div>
+            <div class="recycle-color it">Verde — Vetro</div>
+            <div class="recycle-color en">Green — Glass</div>
+            <div class="recycle-color es">Verde — Vidrio</div>
+            <div class="recycle-color fr">Vert — Verre</div>
+            <div class="recycle-desc it">Bottiglie, barattoli (rimuovi i tappi)</div>
+            <div class="recycle-desc en">Bottles, jars (remove caps)</div>
+            <div class="recycle-desc es">Botellas, tarros (quita los tapones)</div>
+            <div class="recycle-desc fr">Bouteilles, bocaux (retirez les bouchons)</div>
+          </div>
+        </div>
+
+        <div class="recycle-row" style="background:rgba(44,44,44,0.05)">
+          <div class="recycle-dot" style="background:#333"></div>
+          <div>
+            <div class="recycle-color it">Nero — Indifferenziato</div>
+            <div class="recycle-color en">Black — General Waste</div>
+            <div class="recycle-color es">Negro — Residuos Generales</div>
+            <div class="recycle-color fr">Noir — Déchets Résiduels</div>
+            <div class="recycle-desc it">Tutto il resto. In dubbio? Usa il nero.</div>
+            <div class="recycle-desc en">Everything else. When in doubt, use black.</div>
+            <div class="recycle-desc es">Todo lo demás. ¿Dudas? Usa el negro.</div>
+            <div class="recycle-desc fr">Tout le reste. Un doute ? Utilisez le noir.</div>
+          </div>
+        </div>
       </div>
 
       <div class="card">
@@ -5106,6 +5344,14 @@
   </button>
 </div>
 
+<!-- SWIPE HINT ARROWS -->
+<div id="swipe-hint-left" class="swipe-hint" aria-hidden="true">
+  <div class="swipe-hint-btn"><div class="swipe-hint-arrow"></div></div>
+</div>
+<div id="swipe-hint-right" class="swipe-hint" aria-hidden="true">
+  <div class="swipe-hint-btn"><div class="swipe-hint-arrow"></div></div>
+</div>
+
 <!-- WHATSAPP BUTTON -->
 <a id="whatsapp-btn" href="https://wa.me/393755991515" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Alessandro">
   <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#25D366"/><path d="M23.472 8.528A10.417 10.417 0 0016 5.583c-5.754 0-10.42 4.666-10.42 10.417 0 1.837.48 3.63 1.394 5.212L5.5 26.417l5.35-1.404a10.394 10.394 0 004.15.864h.004c5.75 0 10.416-4.666 10.416-10.417a10.388 10.388 0 00-1.948-6.932z" fill="#25D366"/><path d="M16 24.39a8.63 8.63 0 01-4.4-1.204l-.316-.188-3.174.833.848-3.094-.207-.318A8.607 8.607 0 017.37 16c0-4.762 3.872-8.633 8.634-8.633 2.305 0 4.473.898 6.103 2.53A8.577 8.577 0 0124.633 16c0 4.762-3.872 8.633-8.633 8.633v-.243zm5.014-6.46c-.275-.137-1.626-.801-1.878-.893-.252-.09-.435-.136-.618.138-.183.274-.707.893-.867 1.076-.16.183-.32.206-.594.069-.275-.138-1.161-.428-2.211-1.364-.817-.728-1.369-1.626-1.529-1.9-.16-.275-.017-.423.12-.56.124-.123.275-.32.413-.48.137-.16.183-.275.274-.458.092-.183.046-.343-.023-.48-.069-.138-.618-1.49-.847-2.04-.224-.536-.45-.463-.618-.472l-.527-.009a1.01 1.01 0 00-.733.344c-.252.274-.963.94-.963 2.293s.986 2.659 1.123 2.842c.137.183 1.94 2.96 4.7 4.153.657.283 1.169.452 1.569.579.659.21 1.26.18 1.733.11.529-.08 1.626-.665 1.855-1.307.23-.641.23-1.19.16-1.307-.068-.115-.251-.183-.526-.32z" fill="white"/></svg>
@@ -5467,6 +5713,12 @@
     </div>
   </div>
 
+  <!-- MARSHALL IMAGE HERO -->
+  <div class="soi-marshall-img-wrap" style="padding-top:28px">
+    <img class="soi-marshall-img" src="marshall.jpg" alt="Marshall Acton III — Domus Fiorelli" loading="lazy">
+    <div class="soi-marshall-img-caption">Marshall Acton III · Domus Fiorelli</div>
+  </div>
+
   <!-- SECTION 1 · YOUR SOUND RITUAL (Marshall) -->
   <div class="soi-section">
     <div class="soi-section-eyebrow it">Il Rituale · Suono</div>
@@ -5790,6 +6042,8 @@
     pages[cur].classList.add('active');
     pages[cur].scrollTop = 0;
     updateUI();
+    // refresh swipe hints on navigation (delayed to let page settle)
+    setTimeout(showSwipeHints, 600);
   }
 
   function prevPage() { goToPage(cur - 1); }
@@ -5818,6 +6072,37 @@
     goToPage(14);
     closeDrawer();
   }
+
+  // ── SWIPE HINT ARROWS ──────────────────────────────
+  let swipeHintTimer = null;
+  let swipeUsed = false;
+  const hintL = document.getElementById('swipe-hint-left');
+  const hintR = document.getElementById('swipe-hint-right');
+
+  function showSwipeHints() {
+    if (swipeUsed) return;
+    clearTimeout(swipeHintTimer);
+    // Left arrow: only if not on first page
+    if (hintL) hintL.classList.toggle('visible', cur > 0);
+    // Right arrow: only if not on last page
+    if (hintR) hintR.classList.toggle('visible', cur < TOTAL - 1);
+    // Auto-hide after 3 s
+    swipeHintTimer = setTimeout(hideSwipeHints, 3000);
+  }
+
+  function hideSwipeHints() {
+    if (hintL) hintL.classList.remove('visible');
+    if (hintR) hintR.classList.remove('visible');
+  }
+
+  function dismissSwipeHints() {
+    swipeUsed = true;
+    clearTimeout(swipeHintTimer);
+    hideSwipeHints();
+  }
+
+  // Show on first page load after a short delay
+  setTimeout(showSwipeHints, 1200);
 
   function triggerSoiAnimations() {
     const cards = document.querySelectorAll('.soi-playlist-card');
@@ -6057,6 +6342,7 @@
     const dx = e.changedTouches[0].clientX - touchX;
     const dy = e.changedTouches[0].clientY - touchY;
     if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 60) {
+      dismissSwipeHints(); // hide arrows after first real swipe
       if (dx < 0) nextPage();
       else prevPage();
     }
