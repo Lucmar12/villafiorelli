@@ -1847,6 +1847,129 @@
     a.quick-card { text-decoration: none; color: inherit; transition: transform 0.15s; }
     a.quick-card:active { transform: scale(0.97); }
 
+    /* ─── QUICK HELP PRIVATE HUB ─────────────────────── */
+    .qh-block-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(184,150,62,0.8);
+      margin: 18px 0 10px;
+      padding: 0 2px;
+    }
+    .qh-block-label:first-of-type,
+    .qh-block-label:first-child { margin-top: 4px; }
+
+    /* Wi-Fi card */
+    .qh-wifi-card {
+      background: #1e1c18;
+      border: 1px solid rgba(184,150,62,0.2);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 4px;
+    }
+    .qh-wifi-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 4px 0;
+    }
+    .qh-wifi-field-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(184,150,62,0.7);
+      margin-bottom: 3px;
+    }
+    .qh-wifi-value {
+      font-family: 'Courier New', monospace;
+      font-size: 16px;
+      font-weight: 700;
+      color: #F5ECD7;
+      letter-spacing: 0.04em;
+    }
+    .qh-wifi-password { color: var(--gold); font-size: 18px; letter-spacing: 0.08em; }
+    .qh-copy-btn {
+      width: 34px; height: 34px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(184,150,62,0.12);
+      border: 1px solid rgba(184,150,62,0.2);
+      border-radius: 9px;
+      color: rgba(184,150,62,0.8);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .qh-copy-btn:active { background: rgba(184,150,62,0.25); }
+    .qh-copy-btn.copied { background: rgba(34,197,94,0.2); color: #22c55e; border-color: rgba(34,197,94,0.3); }
+    .qh-wifi-divider { height: 1px; background: rgba(184,150,62,0.12); margin: 10px 0; }
+    .qh-wifi-qr {
+      margin-top: 14px;
+      padding: 14px;
+      background: rgba(245,236,215,0.05);
+      border: 1px dashed rgba(184,150,62,0.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .qh-wifi-qr-icon { font-size: 28px; opacity: 0.4; flex-shrink: 0; }
+    .qh-wifi-qr-label { font-size: 11px; color: rgba(245,236,215,0.45); font-style: italic; }
+
+    /* Ops grid */
+    .qh-ops-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 4px; }
+    .qh-ops-card {
+      background: var(--white);
+      border-radius: 13px;
+      padding: 13px 11px;
+      box-shadow: 0 2px 8px rgba(44,44,44,0.05);
+      border: 1px solid rgba(44,44,44,0.05);
+    }
+    .qh-ops-icon { font-size: 20px; margin-bottom: 6px; }
+    .qh-ops-name { font-size: 12px; font-weight: 700; color: var(--anthracite); line-height: 1.3; }
+    .qh-ops-where {
+      font-size: 10.5px;
+      color: var(--gray);
+      margin-top: 4px;
+      font-style: italic;
+    }
+
+    /* Checkout card */
+    .qh-checkout-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 4px 16px;
+      box-shadow: 0 2px 10px rgba(44,44,44,0.06);
+      border: 1px solid rgba(44,44,44,0.05);
+      margin-bottom: 4px;
+    }
+    .qh-checkout-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--light-gray);
+    }
+    .qh-checkout-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+    .qh-checkout-title { font-size: 13px; font-weight: 700; color: var(--anthracite); line-height: 1.3; }
+    .qh-checkout-detail { font-size: 11.5px; color: var(--gray); margin-top: 3px; line-height: 1.4; }
+
+    /* WhatsApp CTA */
+    .qh-wa-btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 15px 16px;
+      background: #1a3d2b;
+      border-radius: 16px;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid rgba(37,211,102,0.2);
+      transition: background 0.15s;
+    }
+    .qh-wa-btn:active { background: #1e4d35; }
+
     /* ─── WHATSAPP BUTTON ────────────────────────────── */
     #whatsapp-btn {
       position: fixed;
@@ -4304,19 +4427,19 @@
 
       <div class="card">
         <div class="card-title"><span class="card-title-icon">🛒</span><span class="it">Supermercati</span><span class="en">Supermarkets</span><span class="es">Supermercados</span><span class="fr">Supermarchés</span></div>
-        <a href="https://www.google.com/maps/search/?api=1&query=Elite+Supermercato+Via+Appia+Nuova+Roma" target="_blank" rel="noopener" style="display:block; text-decoration:none; color:inherit; padding:10px 0; border-bottom:1px solid var(--light-gray)">
+        <a href="https://maps.app.goo.gl/TpTtd1B7sDhJk6Fv7?g_st=ic" target="_blank" rel="noopener noreferrer" style="display:block; text-decoration:none; color:inherit; padding:10px 0; border-bottom:1px solid var(--light-gray)">
           <div style="display:flex; justify-content:space-between; align-items:center">
-            <strong>Elite Supermercato</strong>
+            <strong>Conad</strong>
             <span style="color:var(--gold); font-size:14px">↗</span>
           </div>
-          <p style="color:var(--gray); font-size:13px; margin-top:3px">Via Appia Nuova &nbsp;·&nbsp; <span class="it">Aperto domenica fino alle 20:30</span><span class="en">Open Sundays until 8:30 pm</span><span class="es">Abierto domingos hasta las 20:30</span><span class="fr">Ouvert le dimanche jusqu'à 20h30</span></p>
+          <p style="color:var(--gray); font-size:13px; margin-top:3px"><span class="it">Il supermercato più vicino per la spesa quotidiana, colazione, acqua, snack e acquisti dell'ultimo minuto.</span><span class="en">Closest supermarket for daily essentials, breakfast, water, snacks, and last-minute shopping.</span><span class="es">El supermercado más cercano para la compra diaria, desayuno, agua, snacks y compras de última hora.</span><span class="fr">Le supermarché le plus proche pour les essentiels quotidiens, petit-déjeuner, eau, snacks et achats de dernière minute.</span></p>
         </a>
-        <a href="https://www.google.com/maps/search/?api=1&query=NaturaSi+Via+Tuscolana+1241+Roma" target="_blank" rel="noopener" style="display:block; text-decoration:none; color:inherit; padding:10px 0">
+        <a href="https://maps.app.goo.gl/YAeQFXaVLAH3hv6q8?g_st=ic" target="_blank" rel="noopener noreferrer" style="display:block; text-decoration:none; color:inherit; padding:10px 0">
           <div style="display:flex; justify-content:space-between; align-items:center">
-            <strong>NaturaSì</strong>
+            <strong>Tigre</strong>
             <span style="color:var(--gold); font-size:14px">↗</span>
           </div>
-          <p style="color:var(--gray); font-size:13px; margin-top:3px">Via Tuscolana 1241 &nbsp;·&nbsp; <span class="it">Biologico, vegano, naturale</span><span class="en">Organic, vegan, natural</span><span class="es">Biológico, vegano, natural</span><span class="fr">Bio, vegan, naturel</span></p>
+          <p style="color:var(--gray); font-size:13px; margin-top:3px"><span class="it">Ottima alternativa nelle vicinanze per generi alimentari e articoli per la casa.</span><span class="en">Excellent nearby alternative for groceries and household essentials.</span><span class="es">Excelente alternativa cercana para comestibles y artículos del hogar.</span><span class="fr">Excellente alternative proche pour l'épicerie et les essentiels ménagers.</span></p>
         </a>
       </div>
     </div>
@@ -6559,180 +6682,196 @@
       <span class="quick-header-title en">⚡ Quick Help</span>
       <button class="quick-close" onclick="closeQuick()" aria-label="Chiudi / Close">✕</button>
     </div>
-    <div class="quick-grid">
-
-      <div class="quick-card full dark">
-        <span class="quick-card-icon">📶</span>
-        <div class="quick-card-label">Wi-Fi</div>
-        <div class="quick-card-value">[NOME_RETE]</div>
-        <div class="quick-card-sub">Password: <strong style="color:var(--gold)">[PASSWORD]</strong></div>
+    <!-- ── BLOCK 1 · WI-FI ACCESS ── -->
+    <div class="qh-block-label it">📶 Wi-Fi Access</div>
+    <div class="qh-block-label en">📶 Wi-Fi Access</div>
+    <div class="qh-block-label es">📶 Wi-Fi Access</div>
+    <div class="qh-block-label fr">📶 Wi-Fi Access</div>
+    <div class="qh-wifi-card">
+      <div class="qh-wifi-row">
+        <div>
+          <div class="qh-wifi-field-label it">Nome rete</div>
+          <div class="qh-wifi-field-label en">Network name</div>
+          <div class="qh-wifi-field-label es">Nombre de red</div>
+          <div class="qh-wifi-field-label fr">Nom du réseau</div>
+          <div class="qh-wifi-value" id="wifi-ssid">[NOME_RETE]</div>
+        </div>
+        <button class="qh-copy-btn" onclick="copyQH('wifi-ssid',this)" aria-label="Copia rete">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        </button>
       </div>
-
-      <button class="quick-card dark" onclick="closeQuick(); setTimeout(()=>goToPage(13),200)" style="cursor:pointer;text-align:left">
-        <span class="quick-card-icon">✦</span>
-        <div class="quick-card-label it">Selezione · Alessandro</div>
-        <div class="quick-card-label en">Selected · Alessandro</div>
-        <div class="quick-card-label es">Selección · Alessandro</div>
-        <div class="quick-card-label fr">Sélection · Alessandro</div>
-        <div class="quick-card-label ru">Выбор · Алессандро</div>
-        <div class="quick-card-label ar">اختيارات · أليساندرو</div>
-        <div class="quick-card-label ja">厳選 · アレッサンドロ</div>
-        <div class="quick-card-label de">Auswahl · Alessandro</div>
-        <div class="quick-card-value it" style="font-size:13px;line-height:1.3">Esperienze, spa, enoteche — curate per te</div>
-        <div class="quick-card-value en" style="font-size:13px;line-height:1.3">Experiences, spas, wine bars — curated for you</div>
-        <div class="quick-card-value es" style="font-size:13px;line-height:1.3">Experiencias, spas, bodegas — seleccionadas para ti</div>
-        <div class="quick-card-value fr" style="font-size:13px;line-height:1.3">Expériences, spas, bars à vin — sélectionnés pour vous</div>
-        <div class="quick-card-sub it">Esperienze & segreti ↗</div>
-        <div class="quick-card-sub en">Experiences & secrets ↗</div>
-        <div class="quick-card-sub es">Experiencias & secretos ↗</div>
-        <div class="quick-card-sub fr">Expériences & secrets ↗</div>
-        <div class="quick-card-sub ru">Опыт и секреты ↗</div>
-        <div class="quick-card-sub ar">تجارب وأسرار ↗</div>
-        <div class="quick-card-sub ja">体験と秘密 ↗</div>
-        <div class="quick-card-sub de">Erlebnisse & Geheimnisse ↗</div>
-      </button>
-
-      <a class="quick-card terra" href="https://wa.me/393493511305" target="_blank" rel="noopener">
-        <span class="quick-card-icon">💬</span>
-        <div class="quick-card-label it">Alessandro · WhatsApp</div>
-        <div class="quick-card-label en">Alessandro · WhatsApp</div>
-        <div class="quick-card-label es">Alessandro · WhatsApp</div>
-        <div class="quick-card-label fr">Alessandro · WhatsApp</div>
-        <div class="quick-card-label ru">Алессандро · WhatsApp</div>
-        <div class="quick-card-label ar">أليساندرو · واتساب</div>
-        <div class="quick-card-label ja">アレッサンドロ · WhatsApp</div>
-        <div class="quick-card-label de">Alessandro · WhatsApp</div>
-        <div class="quick-card-value">+39 349 351 1305</div>
-        <div class="quick-card-sub it">Sempre disponibile ↗</div>
-        <div class="quick-card-sub en">Always available ↗</div>
-        <div class="quick-card-sub es">Siempre disponible ↗</div>
-        <div class="quick-card-sub fr">Toujours disponible ↗</div>
-        <div class="quick-card-sub ru">Всегда доступен ↗</div>
-        <div class="quick-card-sub ar">متاح دائماً ↗</div>
-        <div class="quick-card-sub ja">いつでも対応可能 ↗</div>
-        <div class="quick-card-sub de">Immer erreichbar ↗</div>
-      </a>
-
-      <a class="quick-card terra" href="tel:112">
-        <span class="quick-card-icon">🚨</span>
-        <div class="quick-card-label it">Emergenza</div>
-        <div class="quick-card-label en">Emergency</div>
-        <div class="quick-card-label es">Emergencia</div>
-        <div class="quick-card-label fr">Urgence</div>
-        <div class="quick-card-label ru">Экстренная помощь</div>
-        <div class="quick-card-label ar">طوارئ</div>
-        <div class="quick-card-label ja">緊急</div>
-        <div class="quick-card-label de">Notruf</div>
-        <div class="quick-card-value">112</div>
-        <div class="quick-card-sub it">Numero Unico Europeo</div>
-        <div class="quick-card-sub en">European emergency</div>
-        <div class="quick-card-sub es">Número europeo único</div>
-        <div class="quick-card-sub fr">Numéro unique européen</div>
-        <div class="quick-card-sub ru">Единый номер Европы</div>
-        <div class="quick-card-sub ar">الرقم الأوروبي الموحد</div>
-        <div class="quick-card-sub ja">欧州共通緊急番号</div>
-        <div class="quick-card-sub de">Europäische Notrufnummer</div>
-      </a>
-
-      <div class="quick-card">
-        <span class="quick-card-icon">🔑</span>
-        <div class="quick-card-label it">Check-in / out</div>
-        <div class="quick-card-label en">Check-in / out</div>
-        <div class="quick-card-label es">Check-in / out</div>
-        <div class="quick-card-label fr">Arrivée / départ</div>
-        <div class="quick-card-label ru">Заезд / выезд</div>
-        <div class="quick-card-label ar">وصول / مغادرة</div>
-        <div class="quick-card-label ja">チェックイン / アウト</div>
-        <div class="quick-card-label de">An- / Abreise</div>
-        <div class="quick-card-value">[ORA]</div>
-        <div class="quick-card-sub">Out: [ORA]</div>
+      <div class="qh-wifi-divider"></div>
+      <div class="qh-wifi-row">
+        <div>
+          <div class="qh-wifi-field-label">Password</div>
+          <div class="qh-wifi-value qh-wifi-password" id="wifi-password">[PASSWORD]</div>
+        </div>
+        <button class="qh-copy-btn" onclick="copyQH('wifi-password',this)" aria-label="Copia password">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        </button>
       </div>
-
-      <div class="quick-card">
-        <span class="quick-card-icon">🚇</span>
-        <div class="quick-card-label it">Metro più vicina</div>
-        <div class="quick-card-label en">Nearest metro</div>
-        <div class="quick-card-label es">Metro más cercano</div>
-        <div class="quick-card-label fr">Métro le plus proche</div>
-        <div class="quick-card-label ru">Ближайшее метро</div>
-        <div class="quick-card-label ar">أقرب مترو</div>
-        <div class="quick-card-label ja">最寄りの地下鉄</div>
-        <div class="quick-card-label de">Nächste U-Bahn</div>
-        <div class="quick-card-value">Lodi</div>
-        <div class="quick-card-sub">Linea C · 5 min</div>
+      <div class="qh-wifi-qr">
+        <div class="qh-wifi-qr-icon">▣</div>
+        <div class="qh-wifi-qr-label it">QR Code — connessione rapida</div>
+        <div class="qh-wifi-qr-label en">QR Code — quick connect</div>
+        <div class="qh-wifi-qr-label es">Código QR — conexión rápida</div>
+        <div class="qh-wifi-qr-label fr">QR Code — connexion rapide</div>
       </div>
-
-      <div class="quick-card">
-        <span class="quick-card-icon">🚉</span>
-        <div class="quick-card-label it">Stazione treni</div>
-        <div class="quick-card-label en">Train station</div>
-        <div class="quick-card-label es">Estación de tren</div>
-        <div class="quick-card-label fr">Gare ferroviaire</div>
-        <div class="quick-card-label ru">Ж/д станция</div>
-        <div class="quick-card-label ar">محطة القطار</div>
-        <div class="quick-card-label ja">最寄り駅</div>
-        <div class="quick-card-label de">Bahnhof</div>
-        <div class="quick-card-value">Tuscolana</div>
-        <div class="quick-card-sub it">270m · 2 min a piedi</div>
-        <div class="quick-card-sub en">270m · 2 min walk</div>
-        <div class="quick-card-sub es">270m · 2 min a pie</div>
-        <div class="quick-card-sub fr">270m · 2 min à pied</div>
-        <div class="quick-card-sub ru">270м · 2 мин пешком</div>
-        <div class="quick-card-sub ar">270م · دقيقتان سيراً</div>
-        <div class="quick-card-sub ja">270m · 徒歩2分</div>
-        <div class="quick-card-sub de">270m · 2 Min. zu Fuß</div>
-      </div>
-
-      <a class="quick-card" href="https://www.google.com/maps/dir/?api=1&destination=Aeroporto+di+Fiumicino,+Roma&travelmode=transit" target="_blank" rel="noopener">
-        <span class="quick-card-icon">✈️</span>
-        <div class="quick-card-label it">Aeroporto · Fiumicino</div>
-        <div class="quick-card-label en">Airport · Fiumicino</div>
-        <div class="quick-card-label es">Aeropuerto · Fiumicino</div>
-        <div class="quick-card-label fr">Aéroport · Fiumicino</div>
-        <div class="quick-card-label ru">Аэропорт · Фьюмичино</div>
-        <div class="quick-card-label ar">مطار فيوميتشينو</div>
-        <div class="quick-card-label ja">空港 · フィウミチーノ</div>
-        <div class="quick-card-label de">Flughafen · Fiumicino</div>
-        <div class="quick-card-value">41 min</div>
-        <div class="quick-card-sub">FL1 · ~€8 ↗</div>
-      </a>
-
-      <a class="quick-card" href="https://www.google.com/maps/search/?api=1&query=Farmacia+Villa+Fiorelli+Via+Enna+Roma" target="_blank" rel="noopener">
-        <span class="quick-card-icon">💊</span>
-        <div class="quick-card-label it">Farmacia vicina</div>
-        <div class="quick-card-label en">Nearest pharmacy</div>
-        <div class="quick-card-label es">Farmacia cercana</div>
-        <div class="quick-card-label fr">Pharmacie proche</div>
-        <div class="quick-card-label ru">Ближайшая аптека</div>
-        <div class="quick-card-label ar">أقرب صيدلية</div>
-        <div class="quick-card-label ja">最寄り薬局</div>
-        <div class="quick-card-label de">Nächste Apotheke</div>
-        <div class="quick-card-value" style="font-size:13px">Villa Fiorelli</div>
-        <div class="quick-card-sub">Via Enna 17/B ↗</div>
-      </a>
-
-      <a class="quick-card" href="https://www.google.com/maps/search/?api=1&query=Elite+Supermercato+Via+Appia+Nuova+Roma" target="_blank" rel="noopener">
-        <span class="quick-card-icon">🛒</span>
-        <div class="quick-card-label it">Supermercato</div>
-        <div class="quick-card-label en">Supermarket</div>
-        <div class="quick-card-label es">Supermercado</div>
-        <div class="quick-card-label fr">Supermarché</div>
-        <div class="quick-card-label ru">Супермаркет</div>
-        <div class="quick-card-label ar">سوبرماركت</div>
-        <div class="quick-card-label ja">スーパー</div>
-        <div class="quick-card-label de">Supermarkt</div>
-        <div class="quick-card-value" style="font-size:13px">Elite</div>
-        <div class="quick-card-sub it">Via Appia · anche dom. ↗</div>
-        <div class="quick-card-sub en">Via Appia · open Sun ↗</div>
-        <div class="quick-card-sub es">Via Appia · abre dom. ↗</div>
-        <div class="quick-card-sub fr">Via Appia · ouvert dim. ↗</div>
-        <div class="quick-card-sub ru">Via Appia · откр. вс ↗</div>
-        <div class="quick-card-sub ar">Via Appia · مفتوح الأحد ↗</div>
-        <div class="quick-card-sub ja">Via Appia · 日曜営業 ↗</div>
-        <div class="quick-card-sub de">Via Appia · So. geöffnet ↗</div>
-      </a>
-
     </div>
+
+    <!-- ── BLOCK 2 · HOME OPERATIONS ── -->
+    <div class="qh-block-label it">🏠 Operazioni Casa</div>
+    <div class="qh-block-label en">🏠 Home Operations</div>
+    <div class="qh-block-label es">🏠 Operaciones del Apartamento</div>
+    <div class="qh-block-label fr">🏠 Opérations du Logement</div>
+    <div class="qh-ops-grid">
+      <div class="qh-ops-card">
+        <div class="qh-ops-icon">⚡</div>
+        <div class="qh-ops-name it">Quadro elettrico</div>
+        <div class="qh-ops-name en">Electricity panel</div>
+        <div class="qh-ops-name es">Cuadro eléctrico</div>
+        <div class="qh-ops-name fr">Tableau électrique</div>
+        <div class="qh-ops-where">[posizione]</div>
+      </div>
+      <div class="qh-ops-card">
+        <div class="qh-ops-icon">💧</div>
+        <div class="qh-ops-name it">Rubinetto principale</div>
+        <div class="qh-ops-name en">Water shut-off</div>
+        <div class="qh-ops-name es">Llave del agua</div>
+        <div class="qh-ops-name fr">Robinet principal</div>
+        <div class="qh-ops-where">[posizione]</div>
+      </div>
+      <div class="qh-ops-card">
+        <div class="qh-ops-icon">🌡️</div>
+        <div class="qh-ops-name it">Caldaia / acqua calda</div>
+        <div class="qh-ops-name en">Boiler / hot water</div>
+        <div class="qh-ops-name es">Caldera / agua caliente</div>
+        <div class="qh-ops-name fr">Chaudière / eau chaude</div>
+        <div class="qh-ops-where">[posizione]</div>
+      </div>
+      <div class="qh-ops-card">
+        <div class="qh-ops-icon">❄️</div>
+        <div class="qh-ops-name it">Interruttore clima</div>
+        <div class="qh-ops-name en">AC master switch</div>
+        <div class="qh-ops-name es">Interruptor del clima</div>
+        <div class="qh-ops-name fr">Interrupteur climatisation</div>
+        <div class="qh-ops-where">[posizione]</div>
+      </div>
+    </div>
+
+    <!-- ── BLOCK 3 · CHECK-OUT ── -->
+    <div class="qh-block-label it">🗝️ Istruzioni Check-out</div>
+    <div class="qh-block-label en">🗝️ Check-out Instructions</div>
+    <div class="qh-block-label es">🗝️ Instrucciones de Salida</div>
+    <div class="qh-block-label fr">🗝️ Instructions de Départ</div>
+    <div class="qh-checkout-card">
+      <div class="qh-checkout-row">
+        <div class="qh-checkout-icon">⏰</div>
+        <div>
+          <div class="qh-checkout-title it">Orario check-out</div>
+          <div class="qh-checkout-title en">Check-out time</div>
+          <div class="qh-checkout-title es">Hora de salida</div>
+          <div class="qh-checkout-title fr">Heure de départ</div>
+          <div class="qh-checkout-detail">entro le 11:00</div>
+        </div>
+      </div>
+      <div class="qh-checkout-row">
+        <div class="qh-checkout-icon">🔑</div>
+        <div>
+          <div class="qh-checkout-title it">Restituzione chiave</div>
+          <div class="qh-checkout-title en">Key return</div>
+          <div class="qh-checkout-title es">Devolución de llave</div>
+          <div class="qh-checkout-title fr">Restitution de la clé</div>
+          <div class="qh-checkout-detail it">[istruzioni chiave]</div>
+          <div class="qh-checkout-detail en">[key instructions]</div>
+          <div class="qh-checkout-detail es">[instrucciones llave]</div>
+          <div class="qh-checkout-detail fr">[instructions clé]</div>
+        </div>
+      </div>
+      <div class="qh-checkout-row">
+        <div class="qh-checkout-icon">❄️</div>
+        <div>
+          <div class="qh-checkout-title it">Clima e luci</div>
+          <div class="qh-checkout-title en">AC &amp; lights</div>
+          <div class="qh-checkout-title es">Clima y luces</div>
+          <div class="qh-checkout-title fr">Climatisation et lumières</div>
+          <div class="qh-checkout-detail it">Spegnere tutto prima di uscire</div>
+          <div class="qh-checkout-detail en">Turn everything off before leaving</div>
+          <div class="qh-checkout-detail es">Apagar todo antes de salir</div>
+          <div class="qh-checkout-detail fr">Tout éteindre avant de partir</div>
+        </div>
+      </div>
+      <div class="qh-checkout-row">
+        <div class="qh-checkout-icon">♻️</div>
+        <div>
+          <div class="qh-checkout-title it">Raccolta differenziata</div>
+          <div class="qh-checkout-title en">Waste disposal</div>
+          <div class="qh-checkout-title es">Residuos</div>
+          <div class="qh-checkout-title fr">Tri des déchets</div>
+          <div class="qh-checkout-detail it">Cassonetti in Piazza di Villa Fiorelli</div>
+          <div class="qh-checkout-detail en">Bins in Piazza di Villa Fiorelli</div>
+          <div class="qh-checkout-detail es">Contenedores en Piazza di Villa Fiorelli</div>
+          <div class="qh-checkout-detail fr">Bacs Piazza di Villa Fiorelli</div>
+        </div>
+      </div>
+      <div class="qh-checkout-row" style="border-bottom:none">
+        <div class="qh-checkout-icon">🚪</div>
+        <div>
+          <div class="qh-checkout-title it">Porte e finestre</div>
+          <div class="qh-checkout-title en">Doors &amp; windows</div>
+          <div class="qh-checkout-title es">Puertas y ventanas</div>
+          <div class="qh-checkout-title fr">Portes et fenêtres</div>
+          <div class="qh-checkout-detail it">Verificare tutte le chiusure</div>
+          <div class="qh-checkout-detail en">Check all locks before leaving</div>
+          <div class="qh-checkout-detail es">Verificar todos los cierres</div>
+          <div class="qh-checkout-detail fr">Vérifier toutes les fermetures</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── BLOCK 4 · DIRECT SUPPORT ── -->
+    <div class="qh-block-label it">💬 Assistenza Immediata</div>
+    <div class="qh-block-label en">💬 Need Immediate Assistance?</div>
+    <div class="qh-block-label es">💬 ¿Necesitas Ayuda Inmediata?</div>
+    <div class="qh-block-label fr">💬 Besoin d'Aide Immédiate ?</div>
+    <a class="qh-wa-btn" href="https://wa.me/393493511305" target="_blank" rel="noopener noreferrer">
+      <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#25D366"/><path d="M23.472 8.528A10.417 10.417 0 0016 5.583c-5.754 0-10.42 4.666-10.42 10.417 0 1.837.48 3.63 1.394 5.212L5.5 26.417l5.35-1.404a10.394 10.394 0 004.15.864h.004c5.75 0 10.416-4.666 10.416-10.417a10.388 10.388 0 00-1.948-6.932z" fill="#25D366"/><path d="M16 24.39a8.63 8.63 0 01-4.4-1.204l-.316-.188-3.174.833.848-3.094-.207-.318A8.607 8.607 0 017.37 16c0-4.762 3.872-8.633 8.634-8.633 2.305 0 4.473.898 6.103 2.53A8.577 8.577 0 0124.633 16c0 4.762-3.872 8.633-8.633 8.633v-.243zm5.014-6.46c-.275-.137-1.626-.801-1.878-.893-.252-.09-.435-.136-.618.138-.183.274-.707.893-.867 1.076-.16.183-.32.206-.594.069-.275-.138-1.161-.428-2.211-1.364-.817-.728-1.369-1.626-1.529-1.9-.16-.275-.017-.423.12-.56.124-.123.275-.32.413-.48.137-.16.183-.275.274-.458.092-.183.046-.343-.023-.48-.069-.138-.618-1.49-.847-2.04-.224-.536-.45-.463-.618-.472l-.527-.009a1.01 1.01 0 00-.733.344c-.252.274-.963.94-.963 2.293s.986 2.659 1.123 2.842c.137.183 1.94 2.96 4.7 4.153.657.283 1.169.452 1.569.579.659.21 1.26.18 1.733.11.529-.08 1.626-.665 1.855-1.307.23-.641.23-1.19.16-1.307-.068-.115-.251-.183-.526-.32z" fill="white"/></svg>
+      <div style="flex:1">
+        <div style="font-size:14px;font-weight:700;color:#fff">
+          <span class="it">Scrivi ad Alessandro</span>
+          <span class="en">Message Alessandro</span>
+          <span class="es">Escribe a Alessandro</span>
+          <span class="fr">Écrire à Alessandro</span>
+          <span class="ru">Написать Алессандро</span>
+          <span class="ar">تواصل مع أليساندرو</span>
+          <span class="ja">アレッサンドロへ連絡</span>
+          <span class="de">Alessandro schreiben</span>
+        </div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.7);margin-top:2px">+39 349 351 1305</div>
+      </div>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a class="quick-card terra full" href="tel:112" style="margin-top:8px">
+      <span class="quick-card-icon">🚨</span>
+      <div class="quick-card-label it">Emergenza — 112</div>
+      <div class="quick-card-label en">Emergency — 112</div>
+      <div class="quick-card-label es">Emergencia — 112</div>
+      <div class="quick-card-label fr">Urgence — 112</div>
+      <div class="quick-card-label ru">Экстренная — 112</div>
+      <div class="quick-card-label ar">طوارئ — 112</div>
+      <div class="quick-card-label ja">緊急 — 112</div>
+      <div class="quick-card-label de">Notruf — 112</div>
+      <div class="quick-card-sub it">Numero Unico Europeo</div>
+      <div class="quick-card-sub en">European emergency number</div>
+      <div class="quick-card-sub es">Número europeo único</div>
+      <div class="quick-card-sub fr">Numéro unique européen</div>
+      <div class="quick-card-sub ru">Единый номер Европы</div>
+      <div class="quick-card-sub ar">الرقم الأوروبي الموحد</div>
+      <div class="quick-card-sub ja">欧州共通緊急番号</div>
+      <div class="quick-card-sub de">Europäische Notrufnummer</div>
+    </a>
+
+    <div style="height:16px"></div>
 
     <!-- Julia AI Concierge -->
     <div style="padding: 0 14px 32px;">
@@ -7311,6 +7450,15 @@
 
   function closeQuickOnBg(e) {
     if (e.target === document.getElementById('quick-overlay')) closeQuick();
+  }
+
+  function copyQH(id, btn) {
+    const text = document.getElementById(id)?.textContent?.trim();
+    if (!text || text.startsWith('[')) return;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.classList.add('copied');
+      setTimeout(() => btn.classList.remove('copied'), 2000);
+    }).catch(() => {});
   }
 
   const LANGS_FULL  = ['it','en','es','fr'];
