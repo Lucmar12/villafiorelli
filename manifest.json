@@ -1,17 +1,55 @@
 {
   "name": "Domus Fiorelli",
-  "short_name": "Domus Fiorelli",
-  "description": "Guida per gli ospiti · Piazza di Villa Fiorelli 12, Roma",
-  "start_url": "./index.html",
+  "short_name": "Domus",
+  "description": "Luxury Roman Guest Guide — your private stay companion",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "orientation": "portrait",
-  "background_color": "#F5ECD7",
-  "theme_color": "#C4622D",
-  "lang": "it",
+  "orientation": "portrait-primary",
+  "background_color": "#F8F3E8",
+  "theme_color": "#111111",
+  "lang": "it-IT",
+  "categories": ["travel", "lifestyle"],
   "icons": [
+    {
+      "src": "icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
     {
       "src": "icon-192.png",
       "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-384.png",
+      "sizes": "384x384",
       "type": "image/png",
       "purpose": "any maskable"
     },
@@ -22,5 +60,12 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["travel", "lifestyle"]
+  "screenshots": [
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ]
 }

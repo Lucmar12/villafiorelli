@@ -5,12 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="robots" content="noindex, nofollow">
   <meta name="googlebot" content="noindex, nofollow">
+  <!-- PWA / App meta -->
+  <meta name="application-name" content="Domus Fiorelli">
+  <meta name="theme-color" content="#111111">
+  <meta name="mobile-web-app-capable" content="yes">
+  <!-- iOS PWA -->
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Domus Fiorelli">
+  <meta name="apple-mobile-web-app-title" content="Domus">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#C4622D">
+  <!-- iOS icons -->
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="icon-152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <!-- Android / manifest -->
   <link rel="manifest" href="manifest.json">
-  <link rel="apple-touch-icon" href="icon-180.png">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
   <title>Domus Fiorelli · Welcome</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2521,6 +2532,165 @@
     .cookie-btn-accept { background: var(--gold); color: #1a1a1a; }
     .cookie-btn-reject { background: rgba(255,255,255,0.12); color: var(--white); }
 
+    /* ─── SPLASH SCREEN ─────────────────────────────── */
+    #df-splash {
+      position: fixed;
+      inset: 0;
+      background: #F8F3E8;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+    #df-splash.fade-out { opacity: 0; }
+    #df-splash.hidden { display: none; }
+    .df-splash-logo {
+      width: 110px;
+      height: 110px;
+      border-radius: 26px;
+      background: #fff;
+      box-shadow: 0 8px 40px rgba(44,44,44,0.1), 0 2px 8px rgba(44,44,44,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      animation: splashLogoIn 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    .df-splash-logo img { width: 80px; height: 80px; object-fit: contain; }
+    .df-splash-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: #2C2C2C;
+      letter-spacing: 0.04em;
+      animation: splashTextIn 0.6s 0.15s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    .df-splash-tagline {
+      font-family: 'Raleway', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #B8963E;
+      animation: splashTextIn 0.6s 0.25s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    .df-splash-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #B8963E;
+      animation: splashDot 1.2s 0.5s ease-in-out infinite alternate;
+    }
+    @keyframes splashLogoIn {
+      from { opacity: 0; transform: scale(0.75); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    @keyframes splashTextIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes splashDot {
+      from { opacity: 0.3; transform: scale(0.8); }
+      to   { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* ─── INSTALL PROMPT ─────────────────────────────── */
+    #df-install-prompt {
+      position: fixed;
+      bottom: calc(var(--bottom-height) + 12px);
+      left: 12px; right: 12px;
+      background: #FDFAF4;
+      border: 1px solid rgba(184,150,62,0.25);
+      border-radius: 22px;
+      padding: 20px 18px 18px;
+      z-index: 480;
+      box-shadow: 0 12px 40px rgba(44,44,44,0.14), 0 2px 8px rgba(44,44,44,0.06);
+      transform: translateY(30px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.22,1,0.36,1);
+    }
+    #df-install-prompt.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+    #df-install-prompt.hidden { display: none; }
+    .install-prompt-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .install-prompt-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 4px 14px rgba(44,44,44,0.1);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .install-prompt-icon img { width: 38px; height: 38px; object-fit: contain; }
+    .install-prompt-copy-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #2C2C2C;
+      line-height: 1.25;
+      margin-bottom: 4px;
+    }
+    .install-prompt-copy-sub {
+      font-size: 12.5px;
+      color: #6B6B6B;
+      line-height: 1.55;
+    }
+    .install-prompt-divider {
+      height: 1px;
+      background: rgba(184,150,62,0.18);
+      margin-bottom: 14px;
+    }
+    .install-prompt-btns {
+      display: flex;
+      gap: 9px;
+    }
+    .install-btn-primary {
+      flex: 2;
+      padding: 12px 10px;
+      background: #2C2C2C;
+      color: #F5ECD7;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+    .install-btn-primary:active { background: #444; }
+    .install-btn-later {
+      flex: 1;
+      padding: 12px 10px;
+      background: transparent;
+      color: #6B6B6B;
+      border: 1.5px solid rgba(44,44,44,0.15);
+      border-radius: 12px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .install-btn-later:active { background: rgba(44,44,44,0.05); }
+
     /* ─── FOOTER ─────────────────────────────────────── */
     .page-footer {
       margin-top: 36px;
@@ -3143,6 +3313,48 @@
   </style>
 </head>
 <body>
+
+<!-- ── SPLASH SCREEN ─────────────────────────────────── -->
+<div id="df-splash" role="presentation" aria-hidden="true">
+  <div class="df-splash-logo">
+    <img src="logo.png" alt="Domus Fiorelli" onerror="this.style.display='none'">
+  </div>
+  <div class="df-splash-name">Domus Fiorelli</div>
+  <div class="df-splash-tagline">Roma · Piazza di Villa Fiorelli</div>
+  <div class="df-splash-dot"></div>
+</div>
+
+<!-- ── INSTALL PROMPT ─────────────────────────────────── -->
+<div id="df-install-prompt" role="dialog" aria-modal="true" aria-label="Installa l'app">
+  <div class="install-prompt-top">
+    <div class="install-prompt-icon">
+      <img src="logo.png" alt="Domus Fiorelli" onerror="this.style.display='none'">
+    </div>
+    <div>
+      <div class="install-prompt-copy-title">Domus Fiorelli</div>
+      <div class="install-prompt-copy-sub it">Aggiungi alla schermata Home per avere la guida sempre a portata di mano durante il soggiorno.</div>
+      <div class="install-prompt-copy-sub en">Add to your Home Screen for instant access during your stay.</div>
+      <div class="install-prompt-copy-sub es">Añade a la pantalla de inicio para acceso instantáneo durante tu estancia.</div>
+      <div class="install-prompt-copy-sub fr">Ajoutez à l'écran d'accueil pour un accès immédiat pendant votre séjour.</div>
+    </div>
+  </div>
+  <div class="install-prompt-divider"></div>
+  <div class="install-prompt-btns">
+    <button class="install-btn-primary" id="install-btn-accept" aria-label="Add to Home Screen">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+      <span class="it">Aggiungi</span>
+      <span class="en">Add to Home</span>
+      <span class="es">Añadir</span>
+      <span class="fr">Ajouter</span>
+    </button>
+    <button class="install-btn-later" id="install-btn-later">
+      <span class="it">Dopo</span>
+      <span class="en">Later</span>
+      <span class="es">Después</span>
+      <span class="fr">Plus tard</span>
+    </button>
+  </div>
+</div>
 
 <!-- DRAWER OVERLAY -->
 <div id="drawer-overlay" onclick="closeDrawer()"></div>
@@ -7436,6 +7648,127 @@
       }
     } catch(e) {}
   })();
+</script>
+
+<script>
+/* ============================================================
+   PWA — Splash Screen
+   Shows branded splash on every load, fades out after 900ms
+   Skipped for already-loaded tabs (sessionStorage flag)
+   ============================================================ */
+(function() {
+  const splash = document.getElementById('df-splash');
+  if (!splash) return;
+
+  /* Skip splash if user is navigating back within same session */
+  if (sessionStorage.getItem('df_splash_done')) {
+    splash.classList.add('hidden');
+    return;
+  }
+
+  /* Fade out after 900ms, remove from DOM after transition */
+  setTimeout(() => {
+    splash.classList.add('fade-out');
+    splash.addEventListener('transitionend', () => {
+      splash.classList.add('hidden');
+    }, { once: true });
+    sessionStorage.setItem('df_splash_done', '1');
+  }, 900);
+})();
+
+/* ============================================================
+   PWA — Install Prompt
+   Intercepts beforeinstallprompt (Android/Chrome)
+   Shows elegant prompt after 10s if not yet installed
+   iOS: shows after 12s with instructions (no native prompt)
+   ============================================================ */
+(function() {
+  const prompt  = document.getElementById('df-install-prompt');
+  const btnYes  = document.getElementById('install-btn-accept');
+  const btnNo   = document.getElementById('install-btn-later');
+  if (!prompt || !btnYes || !btnNo) return;
+
+  /* Don't show if already installed (standalone mode) */
+  const isStandalone =
+    window.matchMedia('(display-mode: standalone)').matches ||
+    window.navigator.standalone === true;
+  if (isStandalone) return;
+
+  /* Don't show if already dismissed this session */
+  if (sessionStorage.getItem('df_install_dismissed')) return;
+
+  let deferredPrompt = null;
+
+  /* Chrome/Android: capture the native install event */
+  window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    deferredPrompt = e;
+    schedulePrompt(10000);
+  });
+
+  /* iOS Safari: show informational prompt (no native API) */
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  if (isIOS && isSafari && !isStandalone) {
+    schedulePrompt(12000);
+  }
+
+  function schedulePrompt(delay) {
+    setTimeout(() => {
+      if (sessionStorage.getItem('df_install_dismissed')) return;
+      prompt.classList.add('show');
+    }, delay);
+  }
+
+  /* Accept — trigger native prompt or show iOS instructions */
+  btnYes.addEventListener('click', () => {
+    prompt.classList.remove('show');
+    sessionStorage.setItem('df_install_dismissed', '1');
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(() => { deferredPrompt = null; });
+    } else if (isIOS) {
+      /* iOS fallback: brief haptic + instruction */
+      if (navigator.vibrate) navigator.vibrate(10);
+      alert('Tocca 󰋜 "Condividi" nella barra Safari, poi "Aggiungi a schermata Home".\n\nTap 󰋜 "Share" in Safari, then "Add to Home Screen".');
+    }
+  });
+
+  /* Dismiss */
+  btnNo.addEventListener('click', () => {
+    prompt.classList.remove('show');
+    sessionStorage.setItem('df_install_dismissed', '1');
+  });
+
+  /* Auto-hide if user installs */
+  window.addEventListener('appinstalled', () => {
+    prompt.classList.remove('show');
+    prompt.classList.add('hidden');
+    sessionStorage.setItem('df_install_dismissed', '1');
+  });
+})();
+
+/* ============================================================
+   PWA — Service Worker Registration
+   ============================================================ */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js', { scope: '/' })
+      .then(reg => {
+        /* Check for updates silently */
+        reg.addEventListener('updatefound', () => {
+          const nw = reg.installing;
+          if (nw) nw.addEventListener('statechange', () => {
+            if (nw.state === 'installed' && navigator.serviceWorker.controller) {
+              /* New version available — skip for now, activate on next open */
+              nw.postMessage({ type: 'SKIP_WAITING' });
+            }
+          });
+        });
+      })
+      .catch(() => { /* SW unavailable — app still works online */ });
+  });
+}
 </script>
 </body>
 </html>
