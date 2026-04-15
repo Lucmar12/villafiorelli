@@ -752,86 +752,70 @@
     }
 
     /* Metro destinations scroll */
-    .mob-dest-scroll {
-      display: flex;
+    /* Metro stop grid — 2-col, matches quartieri style */
+    .mob-stop-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 6px;
       margin-bottom: 20px;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
     }
-    .mob-dest-scroll::-webkit-scrollbar { display: none; }
-    .mob-dest-card {
-      flex-shrink: 0;
-      width: 200px;
+    .mob-stop-card {
       background: var(--white);
-      border-radius: 16px;
-      padding: 16px;
-      box-shadow: 0 2px 12px rgba(44,44,44,0.07);
-      border: 1px solid rgba(44,44,44,0.06);
-      scroll-snap-align: start;
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 2px 10px rgba(44,44,44,0.06);
+      border: 1px solid rgba(44,44,44,0.05);
+      text-decoration: none;
+      color: inherit;
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 4px;
+      transition: transform 0.15s;
     }
-    .mob-dest-line-badge {
+    .mob-stop-card:active { transform: scale(0.97); }
+    .mob-stop-emoji { font-size: 22px; margin-bottom: 4px; }
+    .mob-stop-line-badge {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      font-size: 9.5px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
+      font-size: 8.5px;
+      font-weight: 800;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
-      padding: 3px 9px;
-      border-radius: 5px;
-      margin-bottom: 5px;
+      padding: 2px 7px;
+      border-radius: 4px;
+      margin-bottom: 4px;
       align-self: flex-start;
     }
-    .mob-dest-line-a { background: #F97316; color: white; }
-    .mob-dest-line-c { background: #22C55E; color: white; }
-    .mob-dest-name {
+    .mob-stop-line-a { background: #F97316; color: white; }
+    .mob-stop-line-c { background: #22C55E; color: white; }
+    .mob-stop-name {
       font-family: 'Playfair Display', serif;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
       color: var(--anthracite);
       line-height: 1.2;
     }
-    .mob-dest-how {
-      font-size: 11px;
-      color: var(--terracotta);
+    .mob-stop-how {
+      font-size: 10px;
       font-weight: 600;
-      margin-top: 2px;
+      color: var(--terracotta);
+      margin-top: 1px;
     }
-    .mob-dest-for {
-      font-size: 11.5px;
+    .mob-stop-for {
+      font-size: 11px;
       color: var(--gray);
-      line-height: 1.5;
+      line-height: 1.45;
       margin-top: 3px;
       flex: 1;
     }
-    .mob-dest-why {
-      font-size: 11px;
-      font-style: italic;
-      color: var(--anthracite);
-      line-height: 1.45;
-      border-top: 1px solid var(--light-gray);
-      padding-top: 7px;
-      margin-top: 5px;
-    }
-    .mob-dest-maps-btn {
-      display: flex; align-items: center; justify-content: center; gap: 5px;
-      margin-top: 8px;
-      padding: 8px;
-      background: rgba(44,44,44,0.06);
-      color: var(--anthracite);
-      border-radius: 9px;
-      font-size: 11.5px;
+    .mob-stop-footer {
+      font-size: 10px;
       font-weight: 700;
-      text-decoration: none;
+      color: var(--gold);
+      margin-top: 5px;
+      padding-top: 6px;
+      border-top: 1px solid var(--light-gray);
     }
-    .mob-dest-maps-btn:active { background: rgba(44,44,44,0.12); }
 
     /* Quarters */
     .mob-quarter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
@@ -2598,21 +2582,24 @@
       to   { opacity: 1; transform: scale(1.2); }
     }
 
-    /* ─── INSTALL PROMPT ─────────────────────────────── */
+    /* ─── INSTALL BANNER (subtle, dismissible) ───────── */
     #df-install-prompt {
       position: fixed;
-      bottom: calc(var(--bottom-height) + 12px);
+      bottom: calc(var(--bottom-height) + 10px);
       left: 12px; right: 12px;
       background: #FDFAF4;
-      border: 1px solid rgba(184,150,62,0.25);
-      border-radius: 22px;
-      padding: 20px 18px 18px;
+      border: 1px solid rgba(184,150,62,0.3);
+      border-radius: 16px;
+      padding: 13px 14px 13px 16px;
       z-index: 480;
-      box-shadow: 0 12px 40px rgba(44,44,44,0.14), 0 2px 8px rgba(44,44,44,0.06);
-      transform: translateY(30px);
+      box-shadow: 0 6px 24px rgba(44,44,44,0.1), 0 1px 4px rgba(44,44,44,0.05);
+      transform: translateY(16px);
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.22,1,0.36,1);
+      transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22,1,0.36,1);
+      display: flex;
+      align-items: center;
+      gap: 11px;
     }
     #df-install-prompt.show {
       opacity: 1;
@@ -2620,76 +2607,62 @@
       pointer-events: all;
     }
     #df-install-prompt.hidden { display: none; }
-    .install-prompt-top {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 14px;
-    }
-    .install-prompt-icon {
-      width: 52px; height: 52px;
-      border-radius: 14px;
+    .install-banner-icon {
+      width: 38px; height: 38px; flex-shrink: 0;
+      border-radius: 10px;
       background: #fff;
-      box-shadow: 0 4px 14px rgba(44,44,44,0.1);
+      box-shadow: 0 2px 8px rgba(44,44,44,0.1);
       display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
       overflow: hidden;
     }
-    .install-prompt-icon img { width: 38px; height: 38px; object-fit: contain; }
-    .install-prompt-copy-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 16px;
-      font-weight: 600;
-      color: #2C2C2C;
-      line-height: 1.25;
-      margin-bottom: 4px;
-    }
-    .install-prompt-copy-sub {
+    .install-banner-icon img { width: 28px; height: 28px; object-fit: contain; }
+    .install-banner-copy { flex: 1; min-width: 0; }
+    .install-banner-title {
       font-size: 12.5px;
+      font-weight: 700;
+      color: #2C2C2C;
+      line-height: 1.3;
+      margin-bottom: 2px;
+    }
+    .install-banner-sub {
+      font-size: 11px;
       color: #6B6B6B;
-      line-height: 1.55;
+      line-height: 1.4;
     }
-    .install-prompt-divider {
-      height: 1px;
-      background: rgba(184,150,62,0.18);
-      margin-bottom: 14px;
-    }
-    .install-prompt-btns {
+    .install-banner-actions {
       display: flex;
-      gap: 9px;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
     }
     .install-btn-primary {
-      flex: 2;
-      padding: 12px 10px;
+      padding: 7px 12px;
       background: #2C2C2C;
       color: #F5ECD7;
       border: none;
-      border-radius: 12px;
+      border-radius: 9px;
       font-family: 'Raleway', sans-serif;
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 700;
       cursor: pointer;
+      white-space: nowrap;
       transition: background 0.15s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
     }
     .install-btn-primary:active { background: #444; }
     .install-btn-later {
-      flex: 1;
-      padding: 12px 10px;
+      width: 28px; height: 28px;
+      display: flex; align-items: center; justify-content: center;
       background: transparent;
-      color: #6B6B6B;
-      border: 1.5px solid rgba(44,44,44,0.15);
-      border-radius: 12px;
-      font-family: 'Raleway', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
+      color: #AAAAAA;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
       cursor: pointer;
-      transition: background 0.15s;
+      padding: 0;
+      line-height: 1;
+      transition: color 0.15s;
     }
-    .install-btn-later:active { background: rgba(44,44,44,0.05); }
+    .install-btn-later:active { color: #555; }
 
     /* ─── FOOTER ─────────────────────────────────────── */
     .page-footer {
@@ -3324,35 +3297,29 @@
   <div class="df-splash-dot"></div>
 </div>
 
-<!-- ── INSTALL PROMPT ─────────────────────────────────── -->
-<div id="df-install-prompt" role="dialog" aria-modal="true" aria-label="Installa l'app">
-  <div class="install-prompt-top">
-    <div class="install-prompt-icon">
-      <img src="logo.png" alt="Domus Fiorelli" onerror="this.style.display='none'">
-    </div>
-    <div>
-      <div class="install-prompt-copy-title">Domus Fiorelli</div>
-      <div class="install-prompt-copy-sub it">Aggiungi alla schermata Home per avere la guida sempre a portata di mano durante il soggiorno.</div>
-      <div class="install-prompt-copy-sub en">Add to your Home Screen for instant access during your stay.</div>
-      <div class="install-prompt-copy-sub es">Añade a la pantalla de inicio para acceso instantáneo durante tu estancia.</div>
-      <div class="install-prompt-copy-sub fr">Ajoutez à l'écran d'accueil pour un accès immédiat pendant votre séjour.</div>
-    </div>
+<!-- ── INSTALL BANNER (subtle, dismissible) ─────────────── -->
+<div id="df-install-prompt" role="complementary" aria-label="Salva l'app">
+  <div class="install-banner-icon">
+    <img src="logo.png" alt="Domus Fiorelli" onerror="this.style.display='none'">
   </div>
-  <div class="install-prompt-divider"></div>
-  <div class="install-prompt-btns">
-    <button class="install-btn-primary" id="install-btn-accept" aria-label="Add to Home Screen">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
-      <span class="it">Aggiungi</span>
-      <span class="en">Add to Home</span>
-      <span class="es">Añadir</span>
-      <span class="fr">Ajouter</span>
+  <div class="install-banner-copy">
+    <div class="install-banner-title it">Salva su schermata Home</div>
+    <div class="install-banner-title en">Save to Home Screen</div>
+    <div class="install-banner-title es">Guardar en inicio</div>
+    <div class="install-banner-title fr">Sauvegarder sur l'écran</div>
+    <div class="install-banner-sub it">Disponibile come app, anche offline</div>
+    <div class="install-banner-sub en">Available anytime, even like an app</div>
+    <div class="install-banner-sub es">Disponible en cualquier momento</div>
+    <div class="install-banner-sub fr">Disponible à tout moment</div>
+  </div>
+  <div class="install-banner-actions">
+    <button class="install-btn-primary" id="install-btn-accept">
+      <span class="it">Come fare</span>
+      <span class="en">How to save</span>
+      <span class="es">Cómo guardar</span>
+      <span class="fr">Comment faire</span>
     </button>
-    <button class="install-btn-later" id="install-btn-later">
-      <span class="it">Dopo</span>
-      <span class="en">Later</span>
-      <span class="es">Después</span>
-      <span class="fr">Plus tard</span>
-    </button>
+    <button class="install-btn-later" id="install-btn-later" aria-label="Chiudi">×</button>
   </div>
 </div>
 
@@ -4473,126 +4440,120 @@
       </div>
 
       <!-- ── P3 · METRO DESTINATIONS ── -->
-      <div class="mob-section-label it">Destinazioni Metro — scorri →</div>
-      <div class="mob-section-label en">Metro Destinations — swipe →</div>
-      <div class="mob-section-label es">Destinos Metro — desliza →</div>
-      <div class="mob-section-label fr">Destinations Métro — glissez →</div>
+      <div class="mob-section-label it">Le fermate iconiche</div>
+      <div class="mob-section-label en">Iconic Metro Stops</div>
+      <div class="mob-section-label es">Las paradas icónicas</div>
+      <div class="mob-section-label fr">Les arrêts iconiques</div>
 
-      <div class="mob-dest-scroll">
+      <div class="mob-stop-grid">
 
         <!-- Spagna -->
-        <div class="mob-dest-card">
-          <span class="mob-dest-line-badge mob-dest-line-a">Metro A</span>
-          <div class="mob-dest-name">Spagna</div>
-          <div class="mob-dest-how it">Da Re di Roma</div>
-          <div class="mob-dest-how en">From Re di Roma</div>
-          <div class="mob-dest-how es">Desde Re di Roma</div>
-          <div class="mob-dest-how fr">Depuis Re di Roma</div>
-          <div class="mob-dest-for it">Via Condotti · Via del Corso · Piazza di Spagna · Trinità dei Monti · shopping di lusso</div>
-          <div class="mob-dest-for en">Via Condotti · Via del Corso · Piazza di Spagna · Trinità dei Monti · luxury shopping</div>
-          <div class="mob-dest-for es">Via Condotti · Via del Corso · Piazza di Spagna · Trinità dei Monti · compras de lujo</div>
-          <div class="mob-dest-for fr">Via Condotti · Via del Corso · Piazza di Spagna · Trinità dei Monti · shopping de luxe</div>
-          <div class="mob-dest-why it">L'area più elegante di Roma, perfetta per lo shopping e le passeggiate serali.</div>
-          <div class="mob-dest-why en">Rome's most elegant area, perfect for shopping and evening walks.</div>
-          <div class="mob-dest-why es">La zona más elegante de Roma, perfecta para compras y paseos vespertinos.</div>
-          <div class="mob-dest-why fr">Le quartier le plus élégant de Rome, idéal pour le shopping et les promenades du soir.</div>
-          <a class="mob-dest-maps-btn" href="https://maps.google.com/?q=Piazza+di+Spagna+Roma" target="_blank" rel="noopener noreferrer">📍 Maps</a>
-        </div>
+        <a class="mob-stop-card" href="https://maps.google.com/?q=Piazza+di+Spagna+Roma" target="_blank" rel="noopener noreferrer">
+          <div class="mob-stop-emoji">🛍️</div>
+          <span class="mob-stop-line-badge mob-stop-line-a">Metro A</span>
+          <div class="mob-stop-name">Spagna</div>
+          <div class="mob-stop-how it">Da Re di Roma</div>
+          <div class="mob-stop-how en">From Re di Roma</div>
+          <div class="mob-stop-how es">Desde Re di Roma</div>
+          <div class="mob-stop-how fr">Depuis Re di Roma</div>
+          <div class="mob-stop-for it">Via Condotti · Via del Corso · Piazza di Spagna · boutique italiane</div>
+          <div class="mob-stop-for en">Via Condotti · Via del Corso · Piazza di Spagna · luxury boutiques</div>
+          <div class="mob-stop-for es">Via Condotti · Via del Corso · Piazza di Spagna · boutiques</div>
+          <div class="mob-stop-for fr">Via Condotti · Via del Corso · Piazza di Spagna · boutiques</div>
+          <div class="mob-stop-footer it">shopping · lusso · Roma iconica</div>
+          <div class="mob-stop-footer en">shopping · luxury · iconic Rome</div>
+          <div class="mob-stop-footer es">shopping · lujo · Roma icónica</div>
+          <div class="mob-stop-footer fr">shopping · luxe · Rome iconique</div>
+        </a>
 
         <!-- Barberini -->
-        <div class="mob-dest-card">
-          <span class="mob-dest-line-badge mob-dest-line-a">Metro A</span>
-          <div class="mob-dest-name">Barberini</div>
-          <div class="mob-dest-how it">Da Re di Roma</div>
-          <div class="mob-dest-how en">From Re di Roma</div>
-          <div class="mob-dest-how es">Desde Re di Roma</div>
-          <div class="mob-dest-how fr">Depuis Re di Roma</div>
-          <div class="mob-dest-for it">Fontana di Trevi · Via Veneto · Palazzo Barberini · Villa Borghese</div>
-          <div class="mob-dest-for en">Fontana di Trevi · Via Veneto · Palazzo Barberini · Villa Borghese</div>
-          <div class="mob-dest-for es">Fontana di Trevi · Via Veneto · Palazzo Barberini · Villa Borghese</div>
-          <div class="mob-dest-for fr">Fontana di Trevi · Via Veneto · Palazzo Barberini · Villa Borghese</div>
-          <div class="mob-dest-why it">Arte, cinema e l'atmosfera della Dolce Vita.</div>
-          <div class="mob-dest-why en">Art, cinema and the atmosphere of La Dolce Vita.</div>
-          <div class="mob-dest-why es">Arte, cine y la atmósfera de La Dolce Vita.</div>
-          <div class="mob-dest-why fr">Art, cinéma et l'atmosphère de La Dolce Vita.</div>
-          <a class="mob-dest-maps-btn" href="https://maps.google.com/?q=Barberini+Roma" target="_blank" rel="noopener noreferrer">📍 Maps</a>
-        </div>
+        <a class="mob-stop-card" href="https://maps.google.com/?q=Fontana+di+Trevi+Roma" target="_blank" rel="noopener noreferrer">
+          <div class="mob-stop-emoji">⛲</div>
+          <span class="mob-stop-line-badge mob-stop-line-a">Metro A</span>
+          <div class="mob-stop-name">Barberini</div>
+          <div class="mob-stop-how it">Da Re di Roma</div>
+          <div class="mob-stop-how en">From Re di Roma</div>
+          <div class="mob-stop-how es">Desde Re di Roma</div>
+          <div class="mob-stop-how fr">Depuis Re di Roma</div>
+          <div class="mob-stop-for it">Fontana di Trevi · Via Veneto · Palazzo Barberini · Villa Borghese</div>
+          <div class="mob-stop-for en">Fontana di Trevi · Via Veneto · Palazzo Barberini · Villa Borghese</div>
+          <div class="mob-stop-for es">Fontana di Trevi · Via Veneto · Palazzo Barberini</div>
+          <div class="mob-stop-for fr">Fontana di Trevi · Via Veneto · Palazzo Barberini</div>
+          <div class="mob-stop-footer">Trevi · cinema · Dolce Vita</div>
+        </a>
 
         <!-- Ottaviano -->
-        <div class="mob-dest-card">
-          <span class="mob-dest-line-badge mob-dest-line-a">Metro A</span>
-          <div class="mob-dest-name">Ottaviano</div>
-          <div class="mob-dest-how it">Da Re di Roma</div>
-          <div class="mob-dest-how en">From Re di Roma</div>
-          <div class="mob-dest-how es">Desde Re di Roma</div>
-          <div class="mob-dest-how fr">Depuis Re di Roma</div>
-          <div class="mob-dest-for it">Musei Vaticani · Basilica di San Pietro · Castel Sant'Angelo</div>
-          <div class="mob-dest-for en">Vatican Museums · St. Peter's Basilica · Castel Sant'Angelo</div>
-          <div class="mob-dest-for es">Museos Vaticanos · Basílica de San Pedro · Castel Sant'Angelo</div>
-          <div class="mob-dest-for fr">Musées du Vatican · Basilique Saint-Pierre · Castel Sant'Angelo</div>
-          <div class="mob-dest-why it">Il cuore spirituale e monumentale di Roma.</div>
-          <div class="mob-dest-why en">The spiritual and monumental heart of Rome.</div>
-          <div class="mob-dest-why es">El corazón espiritual y monumental de Roma.</div>
-          <div class="mob-dest-why fr">Le cœur spirituel et monumental de Rome.</div>
-          <a class="mob-dest-maps-btn" href="https://maps.google.com/?q=Ottaviano+Roma" target="_blank" rel="noopener noreferrer">📍 Maps</a>
-        </div>
+        <a class="mob-stop-card" href="https://maps.google.com/?q=Musei+Vaticani+Roma" target="_blank" rel="noopener noreferrer">
+          <div class="mob-stop-emoji">⛪</div>
+          <span class="mob-stop-line-badge mob-stop-line-a">Metro A</span>
+          <div class="mob-stop-name">Ottaviano</div>
+          <div class="mob-stop-how it">Da Re di Roma</div>
+          <div class="mob-stop-how en">From Re di Roma</div>
+          <div class="mob-stop-how es">Desde Re di Roma</div>
+          <div class="mob-stop-how fr">Depuis Re di Roma</div>
+          <div class="mob-stop-for it">Musei Vaticani · Basilica di San Pietro · Castel Sant'Angelo</div>
+          <div class="mob-stop-for en">Vatican Museums · St. Peter's · Castel Sant'Angelo</div>
+          <div class="mob-stop-for es">Museos Vaticanos · San Pedro · Castel Sant'Angelo</div>
+          <div class="mob-stop-for fr">Musées du Vatican · Saint-Pierre · Castel Sant'Angelo</div>
+          <div class="mob-stop-footer">Vatican · museums · St Peter</div>
+        </a>
 
         <!-- Flaminio -->
-        <div class="mob-dest-card">
-          <span class="mob-dest-line-badge mob-dest-line-a">Metro A</span>
-          <div class="mob-dest-name">Flaminio</div>
-          <div class="mob-dest-how it">Da Re di Roma</div>
-          <div class="mob-dest-how en">From Re di Roma</div>
-          <div class="mob-dest-how es">Desde Re di Roma</div>
-          <div class="mob-dest-how fr">Depuis Re di Roma</div>
-          <div class="mob-dest-for it">Piazza del Popolo · Terrazza del Pincio · Villa Borghese</div>
-          <div class="mob-dest-for en">Piazza del Popolo · Pincio terrace · Villa Borghese</div>
-          <div class="mob-dest-for es">Piazza del Popolo · Terraza del Pincio · Villa Borghese</div>
-          <div class="mob-dest-for fr">Piazza del Popolo · Terrasse du Pincio · Villa Borghese</div>
-          <div class="mob-dest-why it">Tramonti mozzafiato e una delle passeggiate più eleganti di Roma.</div>
-          <div class="mob-dest-why en">Sunset views and one of Rome's most elegant walks.</div>
-          <div class="mob-dest-why es">Vistas al atardecer y uno de los paseos más elegantes de Roma.</div>
-          <div class="mob-dest-why fr">Couchers de soleil et l'une des plus belles promenades de Rome.</div>
-          <a class="mob-dest-maps-btn" href="https://maps.google.com/?q=Flaminio+Roma" target="_blank" rel="noopener noreferrer">📍 Maps</a>
-        </div>
+        <a class="mob-stop-card" href="https://maps.google.com/?q=Piazza+del+Popolo+Roma" target="_blank" rel="noopener noreferrer">
+          <div class="mob-stop-emoji">🌿</div>
+          <span class="mob-stop-line-badge mob-stop-line-a">Metro A</span>
+          <div class="mob-stop-name">Flaminio</div>
+          <div class="mob-stop-how it">Da Re di Roma</div>
+          <div class="mob-stop-how en">From Re di Roma</div>
+          <div class="mob-stop-how es">Desde Re di Roma</div>
+          <div class="mob-stop-how fr">Depuis Re di Roma</div>
+          <div class="mob-stop-for it">Piazza del Popolo · Pincio · Villa Borghese</div>
+          <div class="mob-stop-for en">Piazza del Popolo · Pincio terrace · Villa Borghese</div>
+          <div class="mob-stop-for es">Piazza del Popolo · Pincio · Villa Borghese</div>
+          <div class="mob-stop-for fr">Piazza del Popolo · Pincio · Villa Borghese</div>
+          <div class="mob-stop-footer it">tramonto · cultura · parco</div>
+          <div class="mob-stop-footer en">sunset · culture · park</div>
+          <div class="mob-stop-footer es">atardecer · cultura · parque</div>
+          <div class="mob-stop-footer fr">coucher de soleil · culture · parc</div>
+        </a>
 
         <!-- Colosseo -->
-        <div class="mob-dest-card">
-          <span class="mob-dest-line-badge mob-dest-line-c">Metro C</span>
-          <div class="mob-dest-name">Colosseo</div>
-          <div class="mob-dest-how it">Da Lodi — 3 fermate</div>
-          <div class="mob-dest-how en">From Lodi — 3 stops</div>
-          <div class="mob-dest-how es">Desde Lodi — 3 paradas</div>
-          <div class="mob-dest-how fr">Depuis Lodi — 3 arrêts</div>
-          <div class="mob-dest-for it">Colosseo · Fori Imperiali · Domus Aurea · Monti</div>
-          <div class="mob-dest-for en">Colosseum · Imperial Forums · Domus Aurea · Monti</div>
-          <div class="mob-dest-for es">Coliseo · Foros Imperiales · Domus Aurea · Monti</div>
-          <div class="mob-dest-for fr">Colisée · Forums Impériaux · Domus Aurea · Monti</div>
-          <div class="mob-dest-why it">Il cuore della Roma Antica.</div>
-          <div class="mob-dest-why en">The heart of Ancient Rome.</div>
-          <div class="mob-dest-why es">El corazón de la Roma Antigua.</div>
-          <div class="mob-dest-why fr">Le cœur de la Rome Antique.</div>
-          <a class="mob-dest-maps-btn" href="https://maps.google.com/?q=Colosseo+Roma" target="_blank" rel="noopener noreferrer">📍 Maps</a>
-        </div>
+        <a class="mob-stop-card" href="https://maps.google.com/?q=Colosseo+Roma" target="_blank" rel="noopener noreferrer">
+          <div class="mob-stop-emoji">🏛️</div>
+          <span class="mob-stop-line-badge mob-stop-line-c">Metro C</span>
+          <div class="mob-stop-name">Colosseo</div>
+          <div class="mob-stop-how it">Da Lodi — 3 fermate</div>
+          <div class="mob-stop-how en">From Lodi — 3 stops</div>
+          <div class="mob-stop-how es">Desde Lodi — 3 paradas</div>
+          <div class="mob-stop-how fr">Depuis Lodi — 3 arrêts</div>
+          <div class="mob-stop-for it">Colosseo · Fori Imperiali · Monti · Domus Aurea</div>
+          <div class="mob-stop-for en">Colosseum · Imperial Forums · Monti · Domus Aurea</div>
+          <div class="mob-stop-for es">Coliseo · Foros Imperiales · Monti · Domus Aurea</div>
+          <div class="mob-stop-for fr">Colisée · Forums Impériaux · Monti · Domus Aurea</div>
+          <div class="mob-stop-footer it">Roma imperiale · storia</div>
+          <div class="mob-stop-footer en">imperial Rome · history</div>
+          <div class="mob-stop-footer es">Roma imperial · historia</div>
+          <div class="mob-stop-footer fr">Rome impériale · histoire</div>
+        </a>
 
         <!-- Pigneto -->
-        <div class="mob-dest-card">
-          <span class="mob-dest-line-badge mob-dest-line-c">Metro C</span>
-          <div class="mob-dest-name">Pigneto</div>
-          <div class="mob-dest-how it">Da Lodi — 1 fermata</div>
-          <div class="mob-dest-how en">From Lodi — 1 stop</div>
-          <div class="mob-dest-how es">Desde Lodi — 1 parada</div>
-          <div class="mob-dest-how fr">Depuis Lodi — 1 arrêt</div>
-          <div class="mob-dest-for it">Cocktail bar · Street art · Vita notturna locale · Ristoranti</div>
-          <div class="mob-dest-for en">Cocktail bars · Street art · Local nightlife · Restaurants</div>
-          <div class="mob-dest-for es">Cócteles · Street art · Vida nocturna local · Restaurantes</div>
-          <div class="mob-dest-for fr">Bars à cocktails · Street art · Vie nocturne locale · Restaurants</div>
-          <div class="mob-dest-why it">La Roma giovane, creativa e autentica.</div>
-          <div class="mob-dest-why en">Young, creative and authentic Rome.</div>
-          <div class="mob-dest-why es">La Roma joven, creativa y auténtica.</div>
-          <div class="mob-dest-why fr">La Rome jeune, créative et authentique.</div>
-          <a class="mob-dest-maps-btn" href="https://maps.google.com/?q=Pigneto+Roma" target="_blank" rel="noopener noreferrer">📍 Maps</a>
-        </div>
+        <a class="mob-stop-card" href="https://maps.google.com/?q=Pigneto+Roma" target="_blank" rel="noopener noreferrer">
+          <div class="mob-stop-emoji">🎨</div>
+          <span class="mob-stop-line-badge mob-stop-line-c">Metro C</span>
+          <div class="mob-stop-name">Pigneto</div>
+          <div class="mob-stop-how it">Da Lodi — 1 fermata</div>
+          <div class="mob-stop-how en">From Lodi — 1 stop</div>
+          <div class="mob-stop-how es">Desde Lodi — 1 parada</div>
+          <div class="mob-stop-how fr">Depuis Lodi — 1 arrêt</div>
+          <div class="mob-stop-for it">Cocktail bar · Street art · Ristoranti locali</div>
+          <div class="mob-stop-for en">Cocktail bars · Street art · Local restaurants</div>
+          <div class="mob-stop-for es">Cócteles · Street art · Restaurantes locales</div>
+          <div class="mob-stop-for fr">Bars à cocktails · Street art · Restaurants</div>
+          <div class="mob-stop-footer it">creativo · vita notturna · locale</div>
+          <div class="mob-stop-footer en">creative · nightlife · local vibe</div>
+          <div class="mob-stop-footer es">creativo · vida nocturna · local</div>
+          <div class="mob-stop-footer fr">créatif · vie nocturne · local</div>
+        </a>
 
       </div>
 
@@ -7720,17 +7681,24 @@
     }, delay);
   }
 
-  /* Accept — trigger native prompt or show iOS instructions */
+  /* Accept — trigger native prompt or show elegant iOS instructions */
   btnYes.addEventListener('click', () => {
     prompt.classList.remove('show');
     sessionStorage.setItem('df_install_dismissed', '1');
     if (deferredPrompt) {
       deferredPrompt.prompt();
       deferredPrompt.userChoice.then(() => { deferredPrompt = null; });
-    } else if (isIOS) {
-      /* iOS fallback: brief haptic + instruction */
+    } else {
+      /* iOS / desktop fallback: show inline instruction toast */
+      const lang = document.body.className.match(/lang-(\w+)/)?.[1] || 'it';
+      const msgs = {
+        it: '1. Tocca il tasto "Condividi" (□↑) in Safari\n2. Scorri e tocca "Aggiungi a schermata Home"\n3. Tocca "Aggiungi"',
+        en: '1. Tap the "Share" button (□↑) in Safari\n2. Scroll and tap "Add to Home Screen"\n3. Tap "Add"',
+        es: '1. Toca el botón "Compartir" (□↑) en Safari\n2. Desplázate y toca "Añadir a inicio"\n3. Toca "Añadir"',
+        fr: '1. Appuyez sur le bouton "Partager" (□↑) dans Safari\n2. Faites défiler et appuyez sur "Sur l\'écran d\'accueil"\n3. Appuyez sur "Ajouter"',
+      };
       if (navigator.vibrate) navigator.vibrate(10);
-      alert('Tocca 󰋜 "Condividi" nella barra Safari, poi "Aggiungi a schermata Home".\n\nTap 󰋜 "Share" in Safari, then "Add to Home Screen".');
+      alert(msgs[lang] || msgs.en);
     }
   });
 
