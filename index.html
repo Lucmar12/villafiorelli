@@ -608,6 +608,474 @@
       white-space: nowrap;
     }
 
+    /* ─── MOBILITY PAGE ─────────────────────────────── */
+    .mob-hero {
+      background: linear-gradient(160deg, #1e1c18 0%, #2a2620 60%, #1a1816 100%);
+      border-radius: 20px;
+      padding: 28px 22px 24px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(184,150,62,0.18);
+      position: relative;
+      overflow: hidden;
+    }
+    .mob-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(184,150,62,0.5), transparent);
+    }
+    .mob-hero-tag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      opacity: 0.85;
+    }
+    .mob-hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #F5ECD7;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+    .mob-hero-divider {
+      width: 36px;
+      height: 1px;
+      background: rgba(184,150,62,0.5);
+      margin-bottom: 14px;
+    }
+    .mob-hero-body {
+      font-size: 13.5px;
+      line-height: 1.75;
+      color: rgba(245,236,215,0.72);
+    }
+
+    /* Hubs */
+    .mob-hub-grid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
+    .mob-hub-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 2px 12px rgba(44,44,44,0.06);
+      border: 1px solid rgba(44,44,44,0.06);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: transform 0.15s;
+    }
+    .mob-hub-card:active { transform: scale(0.98); }
+    .mob-hub-top { display: flex; align-items: flex-start; gap: 12px; justify-content: space-between; }
+    .mob-hub-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #2C2C2C, #1e1c18);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .mob-hub-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--anthracite);
+      line-height: 1.2;
+      flex: 1;
+    }
+    .mob-hub-dist {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(184,150,62,0.1);
+      border: 1px solid rgba(184,150,62,0.2);
+      border-radius: 6px;
+      padding: 3px 8px;
+      white-space: nowrap;
+      align-self: flex-start;
+    }
+    .mob-hub-desc {
+      font-size: 12.5px;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+    .mob-hub-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .mob-hub-tag {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--anthracite);
+      background: rgba(44,44,44,0.06);
+      border-radius: 6px;
+      padding: 3px 8px;
+    }
+    .mob-hub-maps-btn {
+      display: flex; align-items: center; gap: 6px;
+      margin-top: 6px;
+      padding: 9px 14px;
+      background: var(--anthracite);
+      color: #F5ECD7;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      align-self: flex-start;
+      transition: background 0.15s;
+    }
+    .mob-hub-maps-btn:active { background: #444; }
+
+    /* Section label */
+    .mob-section-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      margin-top: 4px;
+    }
+
+    /* Metro destinations scroll */
+    .mob-dest-scroll {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      margin-bottom: 20px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .mob-dest-scroll::-webkit-scrollbar { display: none; }
+    .mob-dest-card {
+      flex-shrink: 0;
+      width: 200px;
+      background: var(--white);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 2px 12px rgba(44,44,44,0.07);
+      border: 1px solid rgba(44,44,44,0.06);
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .mob-dest-line-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 5px;
+      margin-bottom: 5px;
+      align-self: flex-start;
+    }
+    .mob-dest-line-a { background: #F97316; color: white; }
+    .mob-dest-line-c { background: #22C55E; color: white; }
+    .mob-dest-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--anthracite);
+      line-height: 1.2;
+    }
+    .mob-dest-how {
+      font-size: 11px;
+      color: var(--terracotta);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    .mob-dest-for {
+      font-size: 11.5px;
+      color: var(--gray);
+      line-height: 1.5;
+      margin-top: 3px;
+      flex: 1;
+    }
+    .mob-dest-why {
+      font-size: 11px;
+      font-style: italic;
+      color: var(--anthracite);
+      line-height: 1.45;
+      border-top: 1px solid var(--light-gray);
+      padding-top: 7px;
+      margin-top: 5px;
+    }
+    .mob-dest-maps-btn {
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+      margin-top: 8px;
+      padding: 8px;
+      background: rgba(44,44,44,0.06);
+      color: var(--anthracite);
+      border-radius: 9px;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .mob-dest-maps-btn:active { background: rgba(44,44,44,0.12); }
+
+    /* Quarters */
+    .mob-quarter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+    .mob-quarter-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 2px 10px rgba(44,44,44,0.06);
+      border: 1px solid rgba(44,44,44,0.05);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: transform 0.15s;
+    }
+    .mob-quarter-card:active { transform: scale(0.97); }
+    .mob-quarter-emoji { font-size: 22px; margin-bottom: 5px; }
+    .mob-quarter-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--anthracite);
+      line-height: 1.2;
+    }
+    .mob-quarter-how {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--terracotta);
+      margin-top: 1px;
+    }
+    .mob-quarter-why {
+      font-size: 11px;
+      color: var(--gray);
+      line-height: 1.45;
+      margin-top: 3px;
+      flex: 1;
+    }
+    .mob-quarter-plus {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-top: 5px;
+      padding-top: 6px;
+      border-top: 1px solid var(--light-gray);
+    }
+
+    /* Bus */
+    .mob-bus-card {
+      background: linear-gradient(135deg, rgba(196,98,45,0.06), rgba(196,98,45,0.02));
+      border: 1.5px solid rgba(196,98,45,0.18);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+    .mob-bus-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .mob-bus-badge {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--terracotta);
+      color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 900;
+      font-family: 'Playfair Display', serif;
+      flex-shrink: 0;
+    }
+    .mob-bus-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--anthracite);
+    }
+    .mob-bus-sub { font-size: 12px; color: var(--gray); margin-top: 2px; }
+    .mob-bus-stops { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+    .mob-bus-stop-tag {
+      font-size: 11px;
+      font-weight: 600;
+      background: rgba(196,98,45,0.1);
+      color: var(--terracotta);
+      border-radius: 6px;
+      padding: 4px 10px;
+    }
+
+    /* Airports */
+    .mob-airport-grid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .mob-airport-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 2px 10px rgba(44,44,44,0.06);
+      border: 1px solid rgba(44,44,44,0.05);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.15s;
+    }
+    .mob-airport-card:active { transform: scale(0.98); }
+    .mob-airport-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #2C2C2C, #1e1c18);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .mob-airport-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--anthracite);
+    }
+    .mob-airport-how { font-size: 12px; color: var(--gray); margin-top: 3px; line-height: 1.4; }
+    .mob-airport-time {
+      margin-left: auto;
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gold);
+      text-align: right;
+      white-space: nowrap;
+    }
+    .mob-airport-time-label { font-size: 9px; color: var(--gray); font-weight: 600; font-family: inherit; display: block; }
+
+    /* Tap & Go highlight card */
+    .mob-tapgo-card {
+      background: linear-gradient(145deg, #1e1c18 0%, #2a2620 100%);
+      border-radius: 18px;
+      padding: 22px 20px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(184,150,62,0.22);
+      position: relative;
+      overflow: hidden;
+    }
+    .mob-tapgo-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(184,150,62,0.6), transparent);
+    }
+    .mob-tapgo-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .mob-tapgo-icon {
+      width: 46px; height: 46px; border-radius: 14px;
+      background: linear-gradient(135deg, rgba(184,150,62,0.25), rgba(184,150,62,0.1));
+      border: 1px solid rgba(184,150,62,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .mob-tapgo-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #F5ECD7;
+    }
+    .mob-tapgo-sub { font-size: 11px; color: rgba(184,150,62,0.8); margin-top: 2px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+    .mob-tapgo-body {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: rgba(245,236,215,0.78);
+      margin-bottom: 10px;
+    }
+    .mob-tapgo-note {
+      font-size: 12px;
+      color: rgba(184,150,62,0.8);
+      font-style: italic;
+      line-height: 1.5;
+    }
+    .mob-tapgo-icons { display: flex; gap: 8px; margin-top: 14px; }
+    .mob-tapgo-pay-badge {
+      display: flex; align-items: center; gap: 5px;
+      padding: 7px 12px;
+      background: rgba(245,236,215,0.08);
+      border: 1px solid rgba(245,236,215,0.15);
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #F5ECD7;
+    }
+
+    /* Passes */
+    .mob-pass-grid { display: flex; gap: 8px; margin-bottom: 14px; }
+    .mob-pass-card {
+      flex: 1;
+      background: var(--white);
+      border-radius: 13px;
+      padding: 14px 10px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(44,44,44,0.06);
+      border: 1px solid rgba(44,44,44,0.06);
+    }
+    .mob-pass-duration {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--terracotta);
+    }
+    .mob-pass-label { font-size: 10px; color: var(--gray); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; }
+    .mob-pass-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--anthracite);
+      margin-top: 8px;
+    }
+    .mob-pass-buy-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 12px 18px;
+      background: var(--anthracite);
+      color: #F5ECD7;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      margin-bottom: 20px;
+      letter-spacing: 0.03em;
+      transition: background 0.15s;
+    }
+    .mob-pass-buy-btn:active { background: #444; }
+
+    /* App cards */
+    .mob-app-grid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .mob-app-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 2px 10px rgba(44,44,44,0.06);
+      border: 1px solid rgba(44,44,44,0.05);
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+    .mob-app-icon {
+      width: 46px; height: 46px; flex-shrink: 0;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      background: rgba(44,44,44,0.05);
+    }
+    .mob-app-info { flex: 1; min-width: 0; }
+    .mob-app-name { font-size: 14px; font-weight: 700; color: var(--anthracite); }
+    .mob-app-desc { font-size: 11.5px; color: var(--gray); margin-top: 2px; line-height: 1.4; }
+    .mob-app-btns { display: flex; flex-direction: column; gap: 5px; flex-shrink: 0; }
+    .mob-app-dl-btn {
+      display: flex; align-items: center; gap: 5px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 10.5px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .mob-app-dl-ios { background: #1a1a1a; color: white; }
+    .mob-app-dl-android { background: #01875f; color: white; }
+    .mob-app-dl-btn:active { opacity: 0.8; }
+
     /* ─── RESTAURANT CARDS ───────────────────────────── */
     .rest-card {
       border-radius: 14px;
@@ -3680,121 +4148,575 @@
   ══════════════════════════════════════════════════ -->
   <div class="page" id="page-6">
     <div class="section-page">
-      <div class="section-header">
-        <p class="section-tag it">06 — Come Muoversi</p>
-        <p class="section-tag en">06 — Getting Around</p>
-        <p class="section-tag es">06 — Cómo Moverse</p>
-        <p class="section-tag fr">06 — Se Déplacer</p>
-        <h2 class="section-title it">La tua posizione è un privilegio.</h2>
-        <h2 class="section-title en">Your location is an advantage.</h2>
-        <h2 class="section-title es">Tu ubicación es una ventaja.</h2>
-        <h2 class="section-title fr">Votre emplacement est un privilège.</h2>
-        <div class="section-divider"></div>
+
+      <!-- ── P1 · HERO ── -->
+      <div class="mob-hero">
+        <div class="mob-hero-tag it">06 — Concierge della Mobilità</div>
+        <div class="mob-hero-tag en">06 — Mobility Concierge</div>
+        <div class="mob-hero-tag es">06 — Concierge de Movilidad</div>
+        <div class="mob-hero-tag fr">06 — Concierge Mobilité</div>
+        <div class="mob-hero-title it">Muoversi da<br>Domus Fiorelli.</div>
+        <div class="mob-hero-title en">Getting Around<br>from Domus Fiorelli.</div>
+        <div class="mob-hero-title es">Moverse desde<br>Domus Fiorelli.</div>
+        <div class="mob-hero-title fr">Se déplacer depuis<br>Domus Fiorelli.</div>
+        <div class="mob-hero-divider"></div>
+        <div class="mob-hero-body it">Domus Fiorelli gode di una posizione privilegiata, con tre hub principali tutti a poche centinaia di metri dalla casa. Da qui potrete raggiungere con facilità il centro storico, il Colosseo, il Vaticano, Trastevere, gli aeroporti e i quartieri più iconici di Roma.</div>
+        <div class="mob-hero-body en">Domus Fiorelli enjoys a privileged position, with three main transport hubs within a few hundred metres of the apartment. From here you can reach the historic centre, the Colosseum, the Vatican, Trastevere, both airports and Rome's most iconic neighbourhoods with ease.</div>
+        <div class="mob-hero-body es">Domus Fiorelli goza de una ubicación privilegiada, con tres hubs principales a pocos cientos de metros. Desde aquí podrás llegar fácilmente al centro histórico, el Coliseo, el Vaticano, Trastevere, los aeropuertos y los barrios más icónicos de Roma.</div>
+        <div class="mob-hero-body fr">Domus Fiorelli bénéficie d'une position privilégiée, avec trois hubs principaux à quelques centaines de mètres. Vous pouvez rejoindre facilement le centre historique, le Colisée, le Vatican, Trastevere, les aéroports et les quartiers les plus emblématiques de Rome.</div>
       </div>
 
-      <div class="gold-box">
-        <span class="it">🚶 <strong>Stazione Tuscolana</strong> a 270 metri — 2 minuti a piedi. Treni, metro e autobus a portata di mano.</span>
-        <span class="en">🚶 <strong>Tuscolana Station</strong> is 270 metres away — a 2-minute walk. Trains, metro and buses right there.</span>
-        <span class="es">🚶 <strong>Estación Tuscolana</strong> a 270 metros — 2 minutos a pie. Trenes, metro y autobuses al alcance de la mano.</span>
-        <span class="fr">🚶 <strong>Gare Tuscolana</strong> à 270 mètres — 2 minutes à pied. Trains, métro et bus à portée de main.</span>
+      <!-- ── P2 · THE 3 MAIN HUBS ── -->
+      <div class="mob-section-label it">I tre hub principali</div>
+      <div class="mob-section-label en">The three main hubs</div>
+      <div class="mob-section-label es">Los tres hubs principales</div>
+      <div class="mob-section-label fr">Les trois hubs principaux</div>
+
+      <div class="mob-hub-grid">
+
+        <!-- Hub 1 · Metro C Lodi -->
+        <div class="mob-hub-card">
+          <div class="mob-hub-top">
+            <div class="mob-hub-icon">🟢</div>
+            <div style="flex:1">
+              <div class="mob-hub-name">Metro C — Lodi</div>
+              <div style="font-size:11.5px;color:var(--gray);margin-top:3px" class="it">La metro più moderna di Roma</div>
+              <div style="font-size:11.5px;color:var(--gray);margin-top:3px" class="en">Rome's most modern metro line</div>
+              <div style="font-size:11.5px;color:var(--gray);margin-top:3px" class="es">La línea de metro más moderna de Roma</div>
+              <div style="font-size:11.5px;color:var(--gray);margin-top:3px" class="fr">La ligne de métro la plus moderne de Rome</div>
+            </div>
+            <div class="mob-hub-dist">600 m</div>
+          </div>
+          <div class="mob-hub-tags">
+            <span class="mob-hub-tag">Colosseo</span>
+            <span class="mob-hub-tag">Fori Imperiali</span>
+            <span class="mob-hub-tag">San Giovanni</span>
+            <span class="mob-hub-tag">Pigneto</span>
+          </div>
+          <a class="mob-hub-maps-btn" href="https://maps.google.com/?q=Metro+Lodi+Roma" target="_blank" rel="noopener noreferrer">
+            <span>📍</span>
+            <span class="it">Apri in Maps</span>
+            <span class="en">Open in Maps</span>
+            <span class="es">Abrir en Maps</span>
+            <span class="fr">Ouvrir dans Maps</span>
+          </a>
+        </div>
+
+        <!-- Hub 2 · Metro A Re di Roma -->
+        <div class="mob-hub-card">
+          <div class="mob-hub-top">
+            <div class="mob-hub-icon">🟠</div>
+            <div style="flex:1">
+              <div class="mob-hub-name">Metro A — Re di Roma</div>
+              <div style="font-size:11.5px;color:var(--gray);margin-top:3px" class="it">Centro, shopping e Vaticano</div>
+              <div style="font-size:11.5px;color:var(--gray);margin-top:3px" class="en">Centre, shopping and Vatican</div>
+              <div style="font-size:11.5px;color:var(--gray);margin-top:3px" class="es">Centro, compras y Vaticano</div>
+              <div style="font-size:11.5px;color:var(--gray);margin-top:3px" class="fr">Centre, shopping et Vatican</div>
+            </div>
+            <div class="mob-hub-dist">750 m</div>
+          </div>
+          <div class="mob-hub-tags">
+            <span class="mob-hub-tag">Spagna</span>
+            <span class="mob-hub-tag">Barberini</span>
+            <span class="mob-hub-tag">Ottaviano</span>
+            <span class="mob-hub-tag">Flaminio</span>
+          </div>
+          <a class="mob-hub-maps-btn" href="https://maps.google.com/?q=Re+di+Roma+Metro+Roma" target="_blank" rel="noopener noreferrer">
+            <span>📍</span>
+            <span class="it">Apri in Maps</span>
+            <span class="en">Open in Maps</span>
+            <span class="es">Abrir en Maps</span>
+            <span class="fr">Ouvrir dans Maps</span>
+          </a>
+        </div>
+
+        <!-- Hub 3 · Roma Tuscolana -->
+        <div class="mob-hub-card">
+          <div class="mob-hub-top">
+            <div class="mob-hub-icon">🚉</div>
+            <div style="flex:1">
+              <div class="mob-hub-name">Roma Tuscolana</div>
+              <div style="font-size:11.5px;color:var(--gray);margin-top:3px" class="it">Treni regionali e aeroporto</div>
+              <div style="font-size:11.5px;color:var(--gray);margin-top:3px" class="en">Regional trains and airport</div>
+              <div style="font-size:11.5px;color:var(--gray);margin-top:3px" class="es">Trenes regionales y aeropuerto</div>
+              <div style="font-size:11.5px;color:var(--gray);margin-top:3px" class="fr">Trains régionaux et aéroport</div>
+            </div>
+            <div class="mob-hub-dist">550 m</div>
+          </div>
+          <div class="mob-hub-tags">
+            <span class="mob-hub-tag">Fiumicino ✈</span>
+            <span class="mob-hub-tag">Trastevere</span>
+            <span class="mob-hub-tag">Ostiense</span>
+            <span class="mob-hub-tag">Testaccio</span>
+          </div>
+          <a class="mob-hub-maps-btn" href="https://maps.google.com/?q=Roma+Tuscolana+Station" target="_blank" rel="noopener noreferrer">
+            <span>📍</span>
+            <span class="it">Apri in Maps</span>
+            <span class="en">Open in Maps</span>
+            <span class="es">Abrir en Maps</span>
+            <span class="fr">Ouvrir dans Maps</span>
+          </a>
+        </div>
+
       </div>
 
-      <div class="card">
-        <div class="card-title"><span class="card-title-icon">🗺️</span><span class="it">Destinazioni Principali</span><span class="en">Key Destinations</span><span class="es">Destinos Principales</span><span class="fr">Destinations Principales</span></div>
+      <!-- ── P3 · METRO DESTINATIONS ── -->
+      <div class="mob-section-label it">Destinazioni Metro — scorri →</div>
+      <div class="mob-section-label en">Metro Destinations — swipe →</div>
+      <div class="mob-section-label es">Destinos Metro — desliza →</div>
+      <div class="mob-section-label fr">Destinations Métro — glissez →</div>
 
-        <a class="dest-row" href="https://www.google.com/maps/dir/?api=1&destination=Colosseo,+Roma&travelmode=transit" target="_blank" rel="noopener" style="position:relative">
-          <span class="dest-icon">🏟️</span>
-          <div class="dest-info">
-            <div class="dest-name" style="display:flex;align-items:center;gap:8px">Colosseo <span style="font-size:10px;background:var(--gold);color:#fff;border-radius:6px;padding:2px 7px;font-weight:700;letter-spacing:0.3px">⚡ Fastest Route</span></div>
-            <div class="dest-how it">Metro C da Lodi → Colosseo/Fori Imperiali in 3 fermate (400m a piedi)</div>
-            <div class="dest-how en">Metro C from Lodi → Colosseo/Fori Imperiali in 3 stops (400m walk)</div>
-            <div class="dest-how es">Metro C desde Lodi → Colosseo/Fori Imperiali en 3 paradas (400m a pie)</div>
-            <div class="dest-how fr">Métro C depuis Lodi → Colosseo/Fori Imperiali en 3 arrêts (400m à pied)</div>
-          </div>
-          <div class="dest-time">8–12 min</div>
-          <span class="dest-maps-arrow">↗</span>
+      <div class="mob-dest-scroll">
+
+        <!-- Spagna -->
+        <div class="mob-dest-card">
+          <span class="mob-dest-line-badge mob-dest-line-a">Metro A</span>
+          <div class="mob-dest-name">Spagna</div>
+          <div class="mob-dest-how it">Da Re di Roma</div>
+          <div class="mob-dest-how en">From Re di Roma</div>
+          <div class="mob-dest-how es">Desde Re di Roma</div>
+          <div class="mob-dest-how fr">Depuis Re di Roma</div>
+          <div class="mob-dest-for it">Via Condotti · Via del Corso · Piazza di Spagna · Trinità dei Monti · shopping di lusso</div>
+          <div class="mob-dest-for en">Via Condotti · Via del Corso · Piazza di Spagna · Trinità dei Monti · luxury shopping</div>
+          <div class="mob-dest-for es">Via Condotti · Via del Corso · Piazza di Spagna · Trinità dei Monti · compras de lujo</div>
+          <div class="mob-dest-for fr">Via Condotti · Via del Corso · Piazza di Spagna · Trinità dei Monti · shopping de luxe</div>
+          <div class="mob-dest-why it">L'area più elegante di Roma, perfetta per lo shopping e le passeggiate serali.</div>
+          <div class="mob-dest-why en">Rome's most elegant area, perfect for shopping and evening walks.</div>
+          <div class="mob-dest-why es">La zona más elegante de Roma, perfecta para compras y paseos vespertinos.</div>
+          <div class="mob-dest-why fr">Le quartier le plus élégant de Rome, idéal pour le shopping et les promenades du soir.</div>
+          <a class="mob-dest-maps-btn" href="https://maps.google.com/?q=Piazza+di+Spagna+Roma" target="_blank" rel="noopener noreferrer">📍 Maps</a>
+        </div>
+
+        <!-- Barberini -->
+        <div class="mob-dest-card">
+          <span class="mob-dest-line-badge mob-dest-line-a">Metro A</span>
+          <div class="mob-dest-name">Barberini</div>
+          <div class="mob-dest-how it">Da Re di Roma</div>
+          <div class="mob-dest-how en">From Re di Roma</div>
+          <div class="mob-dest-how es">Desde Re di Roma</div>
+          <div class="mob-dest-how fr">Depuis Re di Roma</div>
+          <div class="mob-dest-for it">Fontana di Trevi · Via Veneto · Palazzo Barberini · Villa Borghese</div>
+          <div class="mob-dest-for en">Fontana di Trevi · Via Veneto · Palazzo Barberini · Villa Borghese</div>
+          <div class="mob-dest-for es">Fontana di Trevi · Via Veneto · Palazzo Barberini · Villa Borghese</div>
+          <div class="mob-dest-for fr">Fontana di Trevi · Via Veneto · Palazzo Barberini · Villa Borghese</div>
+          <div class="mob-dest-why it">Arte, cinema e l'atmosfera della Dolce Vita.</div>
+          <div class="mob-dest-why en">Art, cinema and the atmosphere of La Dolce Vita.</div>
+          <div class="mob-dest-why es">Arte, cine y la atmósfera de La Dolce Vita.</div>
+          <div class="mob-dest-why fr">Art, cinéma et l'atmosphère de La Dolce Vita.</div>
+          <a class="mob-dest-maps-btn" href="https://maps.google.com/?q=Barberini+Roma" target="_blank" rel="noopener noreferrer">📍 Maps</a>
+        </div>
+
+        <!-- Ottaviano -->
+        <div class="mob-dest-card">
+          <span class="mob-dest-line-badge mob-dest-line-a">Metro A</span>
+          <div class="mob-dest-name">Ottaviano</div>
+          <div class="mob-dest-how it">Da Re di Roma</div>
+          <div class="mob-dest-how en">From Re di Roma</div>
+          <div class="mob-dest-how es">Desde Re di Roma</div>
+          <div class="mob-dest-how fr">Depuis Re di Roma</div>
+          <div class="mob-dest-for it">Musei Vaticani · Basilica di San Pietro · Castel Sant'Angelo</div>
+          <div class="mob-dest-for en">Vatican Museums · St. Peter's Basilica · Castel Sant'Angelo</div>
+          <div class="mob-dest-for es">Museos Vaticanos · Basílica de San Pedro · Castel Sant'Angelo</div>
+          <div class="mob-dest-for fr">Musées du Vatican · Basilique Saint-Pierre · Castel Sant'Angelo</div>
+          <div class="mob-dest-why it">Il cuore spirituale e monumentale di Roma.</div>
+          <div class="mob-dest-why en">The spiritual and monumental heart of Rome.</div>
+          <div class="mob-dest-why es">El corazón espiritual y monumental de Roma.</div>
+          <div class="mob-dest-why fr">Le cœur spirituel et monumental de Rome.</div>
+          <a class="mob-dest-maps-btn" href="https://maps.google.com/?q=Ottaviano+Roma" target="_blank" rel="noopener noreferrer">📍 Maps</a>
+        </div>
+
+        <!-- Flaminio -->
+        <div class="mob-dest-card">
+          <span class="mob-dest-line-badge mob-dest-line-a">Metro A</span>
+          <div class="mob-dest-name">Flaminio</div>
+          <div class="mob-dest-how it">Da Re di Roma</div>
+          <div class="mob-dest-how en">From Re di Roma</div>
+          <div class="mob-dest-how es">Desde Re di Roma</div>
+          <div class="mob-dest-how fr">Depuis Re di Roma</div>
+          <div class="mob-dest-for it">Piazza del Popolo · Terrazza del Pincio · Villa Borghese</div>
+          <div class="mob-dest-for en">Piazza del Popolo · Pincio terrace · Villa Borghese</div>
+          <div class="mob-dest-for es">Piazza del Popolo · Terraza del Pincio · Villa Borghese</div>
+          <div class="mob-dest-for fr">Piazza del Popolo · Terrasse du Pincio · Villa Borghese</div>
+          <div class="mob-dest-why it">Tramonti mozzafiato e una delle passeggiate più eleganti di Roma.</div>
+          <div class="mob-dest-why en">Sunset views and one of Rome's most elegant walks.</div>
+          <div class="mob-dest-why es">Vistas al atardecer y uno de los paseos más elegantes de Roma.</div>
+          <div class="mob-dest-why fr">Couchers de soleil et l'une des plus belles promenades de Rome.</div>
+          <a class="mob-dest-maps-btn" href="https://maps.google.com/?q=Flaminio+Roma" target="_blank" rel="noopener noreferrer">📍 Maps</a>
+        </div>
+
+        <!-- Colosseo -->
+        <div class="mob-dest-card">
+          <span class="mob-dest-line-badge mob-dest-line-c">Metro C</span>
+          <div class="mob-dest-name">Colosseo</div>
+          <div class="mob-dest-how it">Da Lodi — 3 fermate</div>
+          <div class="mob-dest-how en">From Lodi — 3 stops</div>
+          <div class="mob-dest-how es">Desde Lodi — 3 paradas</div>
+          <div class="mob-dest-how fr">Depuis Lodi — 3 arrêts</div>
+          <div class="mob-dest-for it">Colosseo · Fori Imperiali · Domus Aurea · Monti</div>
+          <div class="mob-dest-for en">Colosseum · Imperial Forums · Domus Aurea · Monti</div>
+          <div class="mob-dest-for es">Coliseo · Foros Imperiales · Domus Aurea · Monti</div>
+          <div class="mob-dest-for fr">Colisée · Forums Impériaux · Domus Aurea · Monti</div>
+          <div class="mob-dest-why it">Il cuore della Roma Antica.</div>
+          <div class="mob-dest-why en">The heart of Ancient Rome.</div>
+          <div class="mob-dest-why es">El corazón de la Roma Antigua.</div>
+          <div class="mob-dest-why fr">Le cœur de la Rome Antique.</div>
+          <a class="mob-dest-maps-btn" href="https://maps.google.com/?q=Colosseo+Roma" target="_blank" rel="noopener noreferrer">📍 Maps</a>
+        </div>
+
+        <!-- Pigneto -->
+        <div class="mob-dest-card">
+          <span class="mob-dest-line-badge mob-dest-line-c">Metro C</span>
+          <div class="mob-dest-name">Pigneto</div>
+          <div class="mob-dest-how it">Da Lodi — 1 fermata</div>
+          <div class="mob-dest-how en">From Lodi — 1 stop</div>
+          <div class="mob-dest-how es">Desde Lodi — 1 parada</div>
+          <div class="mob-dest-how fr">Depuis Lodi — 1 arrêt</div>
+          <div class="mob-dest-for it">Cocktail bar · Street art · Vita notturna locale · Ristoranti</div>
+          <div class="mob-dest-for en">Cocktail bars · Street art · Local nightlife · Restaurants</div>
+          <div class="mob-dest-for es">Cócteles · Street art · Vida nocturna local · Restaurantes</div>
+          <div class="mob-dest-for fr">Bars à cocktails · Street art · Vie nocturne locale · Restaurants</div>
+          <div class="mob-dest-why it">La Roma giovane, creativa e autentica.</div>
+          <div class="mob-dest-why en">Young, creative and authentic Rome.</div>
+          <div class="mob-dest-why es">La Roma joven, creativa y auténtica.</div>
+          <div class="mob-dest-why fr">La Rome jeune, créative et authentique.</div>
+          <a class="mob-dest-maps-btn" href="https://maps.google.com/?q=Pigneto+Roma" target="_blank" rel="noopener noreferrer">📍 Maps</a>
+        </div>
+
+      </div>
+
+      <!-- ── P4 · QUARTERS GUIDE ── -->
+      <div class="mob-section-label it">I quartieri da scoprire</div>
+      <div class="mob-section-label en">Rome Neighbourhoods</div>
+      <div class="mob-section-label es">Barrios para descubrir</div>
+      <div class="mob-section-label fr">Quartiers à découvrir</div>
+
+      <div class="mob-quarter-grid">
+
+        <!-- Monti -->
+        <a class="mob-quarter-card" href="https://maps.google.com/?q=Monti+Roma" target="_blank" rel="noopener noreferrer">
+          <div class="mob-quarter-emoji">🏛️</div>
+          <div class="mob-quarter-name">Monti</div>
+          <div class="mob-quarter-how it">Metro C → Colosseo</div>
+          <div class="mob-quarter-how en">Metro C → Colosseo</div>
+          <div class="mob-quarter-how es">Metro C → Colosseo</div>
+          <div class="mob-quarter-how fr">Métro C → Colosseo</div>
+          <div class="mob-quarter-why it">Atmosfera bohémien e strade bellissime.</div>
+          <div class="mob-quarter-why en">Bohemian chic atmosphere and beautiful streets.</div>
+          <div class="mob-quarter-why es">Ambiente bohemio y calles preciosas.</div>
+          <div class="mob-quarter-why fr">Atmosphère bohème chic et belles rues.</div>
+          <div class="mob-quarter-plus it">boutique · vintage · wine bar</div>
+          <div class="mob-quarter-plus en">boutiques · vintage · wine bars</div>
+          <div class="mob-quarter-plus es">boutiques · vintage · wine bars</div>
+          <div class="mob-quarter-plus fr">boutiques · vintage · bars à vin</div>
         </a>
 
-        <a class="dest-row" href="https://www.google.com/maps/dir/?api=1&destination=Piazza+San+Pietro,+Roma&travelmode=transit" target="_blank" rel="noopener">
-          <span class="dest-icon">⛪</span>
-          <div class="dest-info">
-            <div class="dest-name">Vaticano</div>
-            <div class="dest-how it">Metro A diretto (Ottaviano)</div>
-            <div class="dest-how en">Metro A direct (Ottaviano)</div>
-            <div class="dest-how es">Metro A directo (Ottaviano)</div>
-            <div class="dest-how fr">Métro A direct (Ottaviano)</div>
-          </div>
-          <div class="dest-time">25–30 min</div>
-          <span class="dest-maps-arrow">↗</span>
+        <!-- Testaccio -->
+        <a class="mob-quarter-card" href="https://maps.google.com/?q=Testaccio+Roma" target="_blank" rel="noopener noreferrer">
+          <div class="mob-quarter-emoji">🍝</div>
+          <div class="mob-quarter-name">Testaccio</div>
+          <div class="mob-quarter-how it">Treno → Ostiense</div>
+          <div class="mob-quarter-how en">Train → Ostiense</div>
+          <div class="mob-quarter-how es">Tren → Ostiense</div>
+          <div class="mob-quarter-how fr">Train → Ostiense</div>
+          <div class="mob-quarter-why it">Vera cultura gastronomica romana.</div>
+          <div class="mob-quarter-why en">True Roman food culture and nightlife.</div>
+          <div class="mob-quarter-why es">Auténtica cultura gastronómica romana.</div>
+          <div class="mob-quarter-why fr">Vraie culture gastronomique romaine.</div>
+          <div class="mob-quarter-plus it">cucina romana autentica</div>
+          <div class="mob-quarter-plus en">authentic Roman cuisine</div>
+          <div class="mob-quarter-plus es">cocina romana auténtica</div>
+          <div class="mob-quarter-plus fr">cuisine romaine authentique</div>
         </a>
 
-        <a class="dest-row" href="https://www.google.com/maps/dir/?api=1&destination=Stazione+Termini,+Roma&travelmode=transit" target="_blank" rel="noopener">
-          <span class="dest-icon">🚉</span>
-          <div class="dest-info">
-            <div class="dest-name">Termini</div>
-            <div class="dest-how it">Metro A · 4 fermate</div>
-            <div class="dest-how en">Metro A · 4 stops</div>
-            <div class="dest-how es">Metro A · 4 paradas</div>
-            <div class="dest-how fr">Métro A · 4 arrêts</div>
-          </div>
-          <div class="dest-time">8–12 min</div>
-          <span class="dest-maps-arrow">↗</span>
+        <!-- Trastevere -->
+        <a class="mob-quarter-card" href="https://maps.google.com/?q=Trastevere+Roma" target="_blank" rel="noopener noreferrer">
+          <div class="mob-quarter-emoji">🌙</div>
+          <div class="mob-quarter-name">Trastevere</div>
+          <div class="mob-quarter-how it">Treno da Tuscolana</div>
+          <div class="mob-quarter-how en">Train from Tuscolana</div>
+          <div class="mob-quarter-how es">Tren desde Tuscolana</div>
+          <div class="mob-quarter-how fr">Train depuis Tuscolana</div>
+          <div class="mob-quarter-why it">Cena, passeggiata, strade romantiche.</div>
+          <div class="mob-quarter-why en">Dinner, evening walk, charming streets.</div>
+          <div class="mob-quarter-why es">Cena, paseo, calles románticas.</div>
+          <div class="mob-quarter-why fr">Dîner, promenade, rues romantiques.</div>
+          <div class="mob-quarter-plus it">la Roma romantica</div>
+          <div class="mob-quarter-plus en">romantic Rome</div>
+          <div class="mob-quarter-plus es">la Roma romántica</div>
+          <div class="mob-quarter-plus fr">la Rome romantique</div>
         </a>
 
-        <a class="dest-row" href="https://www.google.com/maps/dir/?api=1&destination=Trastevere,+Roma&travelmode=transit" target="_blank" rel="noopener">
-          <span class="dest-icon">🌉</span>
-          <div class="dest-info">
-            <div class="dest-name">Trastevere</div>
-            <div class="dest-how it">Treno FL1/FL3 da Tuscolana</div>
-            <div class="dest-how en">Train FL1/FL3 from Tuscolana</div>
-            <div class="dest-how es">Tren FL1/FL3 desde Tuscolana</div>
-            <div class="dest-how fr">Train FL1/FL3 depuis Tuscolana</div>
-          </div>
-          <div class="dest-time">20–25 min</div>
-          <span class="dest-maps-arrow">↗</span>
+        <!-- Pigneto -->
+        <a class="mob-quarter-card" href="https://maps.google.com/?q=Pigneto+Roma" target="_blank" rel="noopener noreferrer">
+          <div class="mob-quarter-emoji">🎨</div>
+          <div class="mob-quarter-name">Pigneto</div>
+          <div class="mob-quarter-how">Metro C</div>
+          <div class="mob-quarter-why it">Cocktail, bar, atmosfera locale.</div>
+          <div class="mob-quarter-why en">Cocktails, bars and local vibe.</div>
+          <div class="mob-quarter-why es">Cócteles, bares y ambiente local.</div>
+          <div class="mob-quarter-why fr">Cocktails, bars et ambiance locale.</div>
+          <div class="mob-quarter-plus it">atmosfera creativa locale</div>
+          <div class="mob-quarter-plus en">creative local atmosphere</div>
+          <div class="mob-quarter-plus es">ambiente creativo local</div>
+          <div class="mob-quarter-plus fr">atmosphère locale créative</div>
         </a>
 
-        <a class="dest-row" href="https://www.google.com/maps/dir/?api=1&destination=Aeroporto+di+Fiumicino,+Roma&travelmode=transit" target="_blank" rel="noopener" style="background:rgba(184,150,62,0.08); border-radius:10px; border-bottom:none; margin:4px 0 0">
-          <span class="dest-icon">✈️</span>
-          <div class="dest-info">
-            <div class="dest-name" style="color:var(--gold)">Fiumicino Airport</div>
-            <div class="dest-how it">Treno FL1 da Tuscolana · ~€8</div>
-            <div class="dest-how en">Train FL1 from Tuscolana · ~€8</div>
-            <div class="dest-how es">Tren FL1 desde Tuscolana · ~€8</div>
-            <div class="dest-how fr">Train FL1 depuis Tuscolana · ~€8</div>
+      </div>
+
+      <!-- ── P5 · BUS ── -->
+      <div class="mob-section-label it">Bus & Percorsi Panoramici</div>
+      <div class="mob-section-label en">Bus & Scenic Routes</div>
+      <div class="mob-section-label es">Bus & Rutas Panorámicas</div>
+      <div class="mob-section-label fr">Bus & Parcours Panoramiques</div>
+
+      <div class="mob-bus-card">
+        <div class="mob-bus-header">
+          <div class="mob-bus-badge">85</div>
+          <div>
+            <div class="mob-bus-title it">Bus 85 — Percorso panoramico</div>
+            <div class="mob-bus-title en">Bus 85 — Scenic route</div>
+            <div class="mob-bus-title es">Bus 85 — Ruta panorámica</div>
+            <div class="mob-bus-title fr">Bus 85 — Parcours panoramique</div>
+            <div class="mob-bus-sub it">Fermata: Via Taranto</div>
+            <div class="mob-bus-sub en">Stop: Via Taranto</div>
+            <div class="mob-bus-sub es">Parada: Via Taranto</div>
+            <div class="mob-bus-sub fr">Arrêt : Via Taranto</div>
           </div>
-          <div class="dest-time" style="color:var(--gold)">41 min</div>
-          <span class="dest-maps-arrow" style="color:var(--gold)">↗</span>
+        </div>
+        <div class="mob-bus-stops">
+          <span class="mob-bus-stop-tag">San Giovanni</span>
+          <span class="mob-bus-stop-tag">Piazza Venezia</span>
+          <span class="mob-bus-stop-tag">Via del Corso</span>
+          <span class="mob-bus-stop-tag">Pantheon</span>
+          <span class="mob-bus-stop-tag">Piazza Navona</span>
+        </div>
+        <div class="mob-hub-desc it" style="margin-bottom:12px">Un percorso panoramico attraverso il cuore di Roma. Ideale per chi vuole godersi la città dal finestrino.</div>
+        <div class="mob-hub-desc en" style="margin-bottom:12px">A panoramic route through the heart of Rome. Perfect for those who want to enjoy the city from the window.</div>
+        <div class="mob-hub-desc es" style="margin-bottom:12px">Una ruta panorámica por el corazón de Roma. Ideal para disfrutar la ciudad desde la ventana.</div>
+        <div class="mob-hub-desc fr" style="margin-bottom:12px">Un parcours panoramique à travers le cœur de Rome. Idéal pour profiter de la ville depuis la fenêtre.</div>
+        <a class="mob-hub-maps-btn" href="https://maps.google.com/?q=Via+Taranto+Roma+bus+85" target="_blank" rel="noopener noreferrer">
+          <span>📍</span>
+          <span class="it">Vai alla fermata</span>
+          <span class="en">Find the stop</span>
+          <span class="es">Ir a la parada</span>
+          <span class="fr">Trouver l'arrêt</span>
         </a>
       </div>
 
-      <div class="card">
-        <div class="card-title"><span class="card-title-icon">🎫</span><span class="it">Biglietti & App</span><span class="en">Tickets & Apps</span><span class="es">Billetes & Apps</span><span class="fr">Billets & Applis</span></div>
-        <table class="data-table">
-          <tbody>
-            <tr>
-              <td><span class="it">Biglietto singolo</span><span class="en">Single ticket</span><span class="es">Billete individual</span><span class="fr">Ticket unique</span></td>
-              <td><strong>€1,50</strong><br><span style="font-size:11px; color:var(--gray)">100 min</span></td>
-            </tr>
-            <tr>
-              <td><span class="it">Pass 24 ore</span><span class="en">24h pass</span><span class="es">Pase 24 horas</span><span class="fr">Pass 24 heures</span></td>
-              <td><strong>€7</strong></td>
-            </tr>
-            <tr>
-              <td><span class="it">Pass 48 ore</span><span class="en">48h pass</span><span class="es">Pase 48 horas</span><span class="fr">Pass 48 heures</span></td>
-              <td><strong>€12,50</strong></td>
-            </tr>
-            <tr>
-              <td><span class="it">Pass 72 ore</span><span class="en">72h pass</span><span class="es">Pase 72 horas</span><span class="fr">Pass 72 heures</span></td>
-              <td><strong>€18</strong></td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="note-box it">App consigliate: <strong>Moovit</strong> (percorsi real-time) · <strong>Trenitalia</strong> (treni) · <strong>itTaxi</strong> / <strong>FREE NOW</strong> (taxi)</div>
-        <div class="note-box en">Recommended apps: <strong>Moovit</strong> (real-time routes) · <strong>Trenitalia</strong> (trains) · <strong>itTaxi</strong> / <strong>FREE NOW</strong> (taxis)</div>
-        <div class="note-box es">Apps recomendadas: <strong>Moovit</strong> (rutas en tiempo real) · <strong>Trenitalia</strong> (trenes) · <strong>itTaxi</strong> / <strong>FREE NOW</strong> (taxis)</div>
-        <div class="note-box fr">Apps recommandées : <strong>Moovit</strong> (itinéraires temps réel) · <strong>Trenitalia</strong> (trains) · <strong>itTaxi</strong> / <strong>FREE NOW</strong> (taxis)</div>
+      <!-- ── P6 · AIRPORTS ── -->
+      <div class="mob-section-label it">Aeroporti</div>
+      <div class="mob-section-label en">Airports</div>
+      <div class="mob-section-label es">Aeropuertos</div>
+      <div class="mob-section-label fr">Aéroports</div>
+
+      <div class="mob-airport-grid">
+
+        <a class="mob-airport-card" href="https://www.google.com/maps/dir/?api=1&destination=Aeroporto+di+Fiumicino,+Roma&travelmode=transit" target="_blank" rel="noopener noreferrer">
+          <div class="mob-airport-icon">✈️</div>
+          <div style="flex:1">
+            <div class="mob-airport-name">Fiumicino</div>
+            <div class="mob-airport-how it">Treno FL1 da Roma Tuscolana · ~€8</div>
+            <div class="mob-airport-how en">Train FL1 from Roma Tuscolana · ~€8</div>
+            <div class="mob-airport-how es">Tren FL1 desde Roma Tuscolana · ~€8</div>
+            <div class="mob-airport-how fr">Train FL1 depuis Roma Tuscolana · ~€8</div>
+          </div>
+          <div class="mob-airport-time">
+            41 min
+            <span class="mob-airport-time-label it">diretto</span>
+            <span class="mob-airport-time-label en">direct</span>
+            <span class="mob-airport-time-label es">directo</span>
+            <span class="mob-airport-time-label fr">direct</span>
+          </div>
+        </a>
+
+        <a class="mob-airport-card" href="https://www.google.com/maps/dir/?api=1&destination=Aeroporto+di+Ciampino,+Roma&travelmode=transit" target="_blank" rel="noopener noreferrer">
+          <div class="mob-airport-icon">🛫</div>
+          <div style="flex:1">
+            <div class="mob-airport-name">Ciampino</div>
+            <div class="mob-airport-how it">Metro A + bus 520 · oppure taxi</div>
+            <div class="mob-airport-how en">Metro A + bus 520 · or taxi</div>
+            <div class="mob-airport-how es">Metro A + bus 520 · o taxi</div>
+            <div class="mob-airport-how fr">Métro A + bus 520 · ou taxi</div>
+          </div>
+          <div class="mob-airport-time">
+            ~45 min
+            <span class="mob-airport-time-label it">transit</span>
+            <span class="mob-airport-time-label en">transit</span>
+            <span class="mob-airport-time-label es">tránsito</span>
+            <span class="mob-airport-time-label fr">transit</span>
+          </div>
+        </a>
+
       </div>
+      <div class="note-box" style="margin-bottom:20px">
+        <span class="it">✦ Entrambi gli aeroporti sono facilmente raggiungibili da Domus Fiorelli.</span>
+        <span class="en">✦ Both airports are easy to reach from Domus Fiorelli.</span>
+        <span class="es">✦ Ambos aeropuertos son fáciles de alcanzar desde Domus Fiorelli.</span>
+        <span class="fr">✦ Les deux aéroports sont facilement accessibles depuis Domus Fiorelli.</span>
+      </div>
+
+      <!-- ── P7 · TAP & GO ── -->
+      <div class="mob-tapgo-card">
+        <div class="mob-tapgo-header">
+          <div class="mob-tapgo-icon">💳</div>
+          <div>
+            <div class="mob-tapgo-title it">Metro — Tap &amp; Go</div>
+            <div class="mob-tapgo-title en">Metro — Tap &amp; Go</div>
+            <div class="mob-tapgo-title es">Metro — Tap &amp; Go</div>
+            <div class="mob-tapgo-title fr">Métro — Tap &amp; Go</div>
+            <div class="mob-tapgo-sub it">Nessun biglietto cartaceo necessario</div>
+            <div class="mob-tapgo-sub en">No paper ticket needed</div>
+            <div class="mob-tapgo-sub es">No necesitas billete físico</div>
+            <div class="mob-tapgo-sub fr">Pas de ticket papier nécessaire</div>
+          </div>
+        </div>
+        <div class="mob-tapgo-body it">Non è necessario acquistare un biglietto cartaceo per le corse singole in metro. È sufficiente avvicinare la carta contactless, Apple Pay o Google Pay ai tornelli all'entrata e all'uscita.</div>
+        <div class="mob-tapgo-body en">You do not need to buy a paper ticket for single metro rides. Simply tap your contactless card, Apple Pay or Google Pay directly at the metro gates when entering and exiting.</div>
+        <div class="mob-tapgo-body es">No necesitas comprar un billete físico para viajes individuales en metro. Simplemente acerca tu tarjeta contactless, Apple Pay o Google Pay a los torniquetes al entrar y al salir.</div>
+        <div class="mob-tapgo-body fr">Vous n'avez pas besoin d'acheter un ticket papier pour un trajet simple en métro. Approchez simplement votre carte sans contact, Apple Pay ou Google Pay aux portiques à l'entrée et à la sortie.</div>
+        <div class="mob-tapgo-note it">Il sistema calcola automaticamente la tariffa corretta.</div>
+        <div class="mob-tapgo-note en">The system automatically calculates the correct fare.</div>
+        <div class="mob-tapgo-note es">El sistema calcula automáticamente la tarifa correcta.</div>
+        <div class="mob-tapgo-note fr">Le système calcule automatiquement le tarif correct.</div>
+        <div class="mob-tapgo-icons">
+          <div class="mob-tapgo-pay-badge">💳 <span class="it">Contactless</span><span class="en">Contactless</span><span class="es">Contactless</span><span class="fr">Sans contact</span></div>
+          <div class="mob-tapgo-pay-badge"> Apple Pay</div>
+          <div class="mob-tapgo-pay-badge">🤖 Google Pay</div>
+        </div>
+      </div>
+
+      <!-- ── P8 · PASSES ── -->
+      <div class="mob-section-label it">Abbonamenti Giornalieri</div>
+      <div class="mob-section-label en">Day Passes & Multi-Day Tickets</div>
+      <div class="mob-section-label es">Abonos Diarios</div>
+      <div class="mob-section-label fr">Passes Journaliers</div>
+
+      <div class="mob-pass-grid">
+        <div class="mob-pass-card">
+          <div class="mob-pass-duration">24h</div>
+          <div class="mob-pass-label it">pass</div>
+          <div class="mob-pass-label en">pass</div>
+          <div class="mob-pass-label es">pase</div>
+          <div class="mob-pass-label fr">pass</div>
+          <div class="mob-pass-price">€7</div>
+        </div>
+        <div class="mob-pass-card">
+          <div class="mob-pass-duration">48h</div>
+          <div class="mob-pass-label it">pass</div>
+          <div class="mob-pass-label en">pass</div>
+          <div class="mob-pass-label es">pase</div>
+          <div class="mob-pass-label fr">pass</div>
+          <div class="mob-pass-price">€12,50</div>
+        </div>
+        <div class="mob-pass-card">
+          <div class="mob-pass-duration">72h</div>
+          <div class="mob-pass-label it">pass</div>
+          <div class="mob-pass-label en">pass</div>
+          <div class="mob-pass-label es">pase</div>
+          <div class="mob-pass-label fr">pass</div>
+          <div class="mob-pass-price">€18</div>
+        </div>
+      </div>
+
+      <a class="mob-pass-buy-btn" href="https://www.atac.roma.it/en/tickets-and-passes" target="_blank" rel="noopener noreferrer">
+        <span>🎫</span>
+        <span class="it">Acquista biglietti ATAC ufficiali</span>
+        <span class="en">Buy official ATAC passes</span>
+        <span class="es">Comprar abonos ATAC oficiales</span>
+        <span class="fr">Acheter les passes ATAC officiels</span>
+      </a>
+
+      <!-- ── P9 · APPS ── -->
+      <div class="mob-section-label it">App consigliate da Alessandro</div>
+      <div class="mob-section-label en">Apps Recommended by Alessandro</div>
+      <div class="mob-section-label es">Apps recomendadas por Alessandro</div>
+      <div class="mob-section-label fr">Apps recommandées par Alessandro</div>
+
+      <div class="mob-app-grid">
+
+        <!-- Google Maps -->
+        <div class="mob-app-card">
+          <div class="mob-app-icon">🗺️</div>
+          <div class="mob-app-info">
+            <div class="mob-app-name">Google Maps</div>
+            <div class="mob-app-desc it">Navigazione, trasporti e orari in tempo reale</div>
+            <div class="mob-app-desc en">Navigation, transport and real-time schedules</div>
+            <div class="mob-app-desc es">Navegación, transporte y horarios en tiempo real</div>
+            <div class="mob-app-desc fr">Navigation, transports et horaires en temps réel</div>
+          </div>
+          <div class="mob-app-btns">
+            <a class="mob-app-dl-btn mob-app-dl-ios" href="https://apps.apple.com/app/google-maps/id585027354" target="_blank" rel="noopener noreferrer"> iOS</a>
+            <a class="mob-app-dl-btn mob-app-dl-android" href="https://play.google.com/store/apps/details?id=com.google.android.apps.maps" target="_blank" rel="noopener noreferrer">🤖 Android</a>
+          </div>
+        </div>
+
+        <!-- Moovit -->
+        <div class="mob-app-card">
+          <div class="mob-app-icon">🚌</div>
+          <div class="mob-app-info">
+            <div class="mob-app-name">Moovit</div>
+            <div class="mob-app-desc it">Percorsi bus e metro in tempo reale</div>
+            <div class="mob-app-desc en">Real-time bus and metro routes</div>
+            <div class="mob-app-desc es">Rutas de bus y metro en tiempo real</div>
+            <div class="mob-app-desc fr">Itinéraires bus et métro en temps réel</div>
+          </div>
+          <div class="mob-app-btns">
+            <a class="mob-app-dl-btn mob-app-dl-ios" href="https://apps.apple.com/app/moovit-public-transport-live/id498477945" target="_blank" rel="noopener noreferrer"> iOS</a>
+            <a class="mob-app-dl-btn mob-app-dl-android" href="https://play.google.com/store/apps/details?id=com.tranzmate" target="_blank" rel="noopener noreferrer">🤖 Android</a>
+          </div>
+        </div>
+
+        <!-- Trenitalia -->
+        <div class="mob-app-card">
+          <div class="mob-app-icon">🚄</div>
+          <div class="mob-app-info">
+            <div class="mob-app-name">Trenitalia</div>
+            <div class="mob-app-desc it">Treni regionali e alta velocità</div>
+            <div class="mob-app-desc en">Regional trains and high-speed rail</div>
+            <div class="mob-app-desc es">Trenes regionales y alta velocidad</div>
+            <div class="mob-app-desc fr">Trains régionaux et grande vitesse</div>
+          </div>
+          <div class="mob-app-btns">
+            <a class="mob-app-dl-btn mob-app-dl-ios" href="https://apps.apple.com/it/app/trenitalia/id331050847" target="_blank" rel="noopener noreferrer"> iOS</a>
+            <a class="mob-app-dl-btn mob-app-dl-android" href="https://play.google.com/store/apps/details?id=com.lynxspa.prontotreno" target="_blank" rel="noopener noreferrer">🤖 Android</a>
+          </div>
+        </div>
+
+        <!-- FREE NOW -->
+        <div class="mob-app-card">
+          <div class="mob-app-icon">🚕</div>
+          <div class="mob-app-info">
+            <div class="mob-app-name">FREE NOW</div>
+            <div class="mob-app-desc it">Taxi con prezzo fisso e tracciamento</div>
+            <div class="mob-app-desc en">Taxi with fixed fare and live tracking</div>
+            <div class="mob-app-desc es">Taxi con tarifa fija y seguimiento</div>
+            <div class="mob-app-desc fr">Taxi avec tarif fixe et suivi en direct</div>
+          </div>
+          <div class="mob-app-btns">
+            <a class="mob-app-dl-btn mob-app-dl-ios" href="https://apps.apple.com/app/free-now/id357852748" target="_blank" rel="noopener noreferrer"> iOS</a>
+            <a class="mob-app-dl-btn mob-app-dl-android" href="https://play.google.com/store/apps/details?id=taxi.android.client" target="_blank" rel="noopener noreferrer">🤖 Android</a>
+          </div>
+        </div>
+
+        <!-- itTaxi -->
+        <div class="mob-app-card">
+          <div class="mob-app-icon">🟡</div>
+          <div class="mob-app-info">
+            <div class="mob-app-name">itTaxi</div>
+            <div class="mob-app-desc it">Taxi ufficiali italiani — consigliato</div>
+            <div class="mob-app-desc en">Official Italian taxis — recommended</div>
+            <div class="mob-app-desc es">Taxis oficiales italianos — recomendado</div>
+            <div class="mob-app-desc fr">Taxis officiels italiens — recommandé</div>
+          </div>
+          <div class="mob-app-btns">
+            <a class="mob-app-dl-btn mob-app-dl-ios" href="https://apps.apple.com/it/app/ittaxi/id839439967" target="_blank" rel="noopener noreferrer"> iOS</a>
+            <a class="mob-app-dl-btn mob-app-dl-android" href="https://play.google.com/store/apps/details?id=it.itaxi.driverapp" target="_blank" rel="noopener noreferrer">🤖 Android</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="height: calc(env(safe-area-inset-bottom, 0px) + 24px)"></div>
     </div>
   </div>
 
