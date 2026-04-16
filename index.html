@@ -300,6 +300,13 @@
       transition: transform 0.15s;
     }
     .cover-btn:active { transform: scale(0.97); }
+    .cover-btn-maps {
+      background: rgba(184,150,62,0.15);
+      color: var(--gold);
+      border: 1.5px solid rgba(184,150,62,0.35);
+      box-shadow: 0 4px 20px rgba(184,150,62,0.12);
+    }
+    .cover-btn-maps:active { transform: scale(0.97); }
 
     /* ─── SECTION PAGES ──────────────────────────────── */
     .section-page {
@@ -3844,6 +3851,13 @@
         <span class="es">Descubre tu hogar</span>
         <span class="fr">Découvrez votre maison</span>
       </button>
+      <a class="cover-btn cover-btn-maps" href="https://maps.google.com/?q=Piazza+di+Villa+Fiorelli+12,+Roma" target="_blank" rel="noopener noreferrer" style="margin-top:16px; display:inline-flex; align-items:center; justify-content:center; gap:8px; text-decoration:none">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span class="it">Portami alla casa</span>
+        <span class="en">Take me home</span>
+        <span class="es">Llévame a casa</span>
+        <span class="fr">Ramenez-moi ici</span>
+      </a>
     </div>
 
     <!-- ── SOUND OF ITALY ENTRY ── -->
@@ -3942,33 +3956,6 @@
             <span class="fr">Écrire à Alessandro</span>
           </a>
         </div>
-      </div>
-
-      <!-- ── PORTAMI ALLA CASA — HOME ── -->
-      <div class="portami-card">
-        <div class="portami-eyebrow it">Navigazione diretta</div>
-        <div class="portami-eyebrow en">Direct navigation</div>
-        <div class="portami-eyebrow es">Navegación directa</div>
-        <div class="portami-eyebrow fr">Navigation directe</div>
-        <div class="portami-title-row">
-          <div class="portami-pin">📍</div>
-          <div class="portami-title it">Portami alla casa</div>
-          <div class="portami-title en">Take me home</div>
-          <div class="portami-title es">Llévame a casa</div>
-          <div class="portami-title fr">Ramenez-moi à la maison</div>
-        </div>
-        <div class="portami-copy it">Se state rientrando dopo aver esplorato Roma, aprite la posizione della casa con un solo tocco.</div>
-        <div class="portami-copy en">If you're heading back after exploring Rome, open the apartment location with a single tap.</div>
-        <div class="portami-copy es">Si regresas después de explorar Roma, abre la ubicación del apartamento con un solo toque.</div>
-        <div class="portami-copy fr">Si vous rentrez après avoir exploré Rome, ouvrez l'adresse de l'appartement en un seul geste.</div>
-        <a class="portami-cta" href="https://www.google.com/maps/search/?api=1&query=Piazza+di+Villa+Fiorelli+12,+Roma" target="_blank" rel="noopener noreferrer">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-          <span class="it">Apri su Google Maps</span>
-          <span class="en">Open in Google Maps</span>
-          <span class="es">Abrir en Google Maps</span>
-          <span class="fr">Ouvrir dans Google Maps</span>
-        </a>
-        <div class="portami-address">Piazza di Villa Fiorelli 12, Roma</div>
       </div>
 
       <div class="card">
@@ -6933,12 +6920,12 @@
     <div class="pin-subtitle ja">予約時に受け取ったコードを入力してください。</div>
     <div class="pin-subtitle de">Geben Sie den Code ein, den Sie bei der Buchung erhalten haben.</div>
     <div class="pin-input-wrap">
-      <input class="pin-digit" type="text" inputmode="text" maxlength="1" id="pd0" oninput="pinInput(0)">
-      <input class="pin-digit" type="text" inputmode="text" maxlength="1" id="pd1" oninput="pinInput(1)">
-      <input class="pin-digit" type="text" inputmode="text" maxlength="1" id="pd2" oninput="pinInput(2)">
-      <input class="pin-digit" type="text" inputmode="text" maxlength="1" id="pd3" oninput="pinInput(3)">
-      <input class="pin-digit" type="text" inputmode="text" maxlength="1" id="pd4" oninput="pinInput(4)">
-      <input class="pin-digit" type="text" inputmode="text" maxlength="1" id="pd5" oninput="pinInput(5)">
+      <input class="pin-digit" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" id="pd0" oninput="pinInput(0)" autocomplete="off">
+      <input class="pin-digit" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" id="pd1" oninput="pinInput(1)" autocomplete="off">
+      <input class="pin-digit" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" id="pd2" oninput="pinInput(2)" autocomplete="off">
+      <input class="pin-digit" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" id="pd3" oninput="pinInput(3)" autocomplete="off">
+      <input class="pin-digit" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" id="pd4" oninput="pinInput(4)" autocomplete="off">
+      <input class="pin-digit" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" id="pd5" oninput="pinInput(5)" autocomplete="off">
     </div>
     <div class="pin-error" id="pin-error"></div>
     <button class="pin-submit" onclick="checkPin()">
@@ -7612,7 +7599,7 @@
   }
 
   // ── PIN CONFIG (change here to update) ──────────────────
-  const GUEST_PIN = 'DF2026';
+  const GUEST_PIN = '042026';
 
   function openQuick() {
     if (sessionStorage.getItem('df_auth') === 'ok') {
@@ -7641,6 +7628,8 @@
   function pinInput(i) {
     const el = document.getElementById('pd' + i);
     if (!el) return;
+    // Strip non-digits
+    el.value = el.value.replace(/\D/g, '');
     el.classList.remove('error');
     document.getElementById('pin-error').textContent = '';
     const val = el.value;
@@ -7658,7 +7647,7 @@
     let code = '';
     for (let i = 0; i < 6; i++) {
       const el = document.getElementById('pd' + i);
-      code += el ? el.value.toUpperCase() : '';
+      code += el ? el.value.replace(/\D/g, '') : '';
     }
     if (code === GUEST_PIN) {
       sessionStorage.setItem('df_auth', 'ok');
