@@ -1847,6 +1847,100 @@
     a.quick-card { text-decoration: none; color: inherit; transition: transform 0.15s; }
     a.quick-card:active { transform: scale(0.97); }
 
+    /* ─── PORTAMI ALLA CASA ─────────────────────────── */
+    .portami-card {
+      background: linear-gradient(145deg, #1e1c18 0%, #2a2620 100%);
+      border: 1px solid rgba(184,150,62,0.22);
+      border-radius: 20px;
+      padding: 20px 18px 18px;
+      margin: 20px 0 4px;
+      box-shadow: 0 6px 28px rgba(0,0,0,0.18);
+      position: relative;
+      overflow: hidden;
+    }
+    .portami-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 80% 0%, rgba(184,150,62,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .portami-eyebrow {
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(184,150,62,0.7);
+      margin-bottom: 10px;
+    }
+    .portami-title-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .portami-pin {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: rgba(184,150,62,0.12);
+      border: 1px solid rgba(184,150,62,0.25);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      position: relative;
+    }
+    .portami-pin::after {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border-radius: 15px;
+      border: 1.5px solid rgba(184,150,62,0.18);
+      animation: portami-pulse 2.8s ease-out infinite;
+    }
+    @keyframes portami-pulse {
+      0%   { transform: scale(0.92); opacity: 0.7; }
+      60%  { transform: scale(1.22); opacity: 0; }
+      100% { transform: scale(1.22); opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .portami-pin::after { animation: none; }
+    }
+    .portami-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #F5ECD7;
+      line-height: 1.2;
+    }
+    .portami-copy {
+      font-size: 13px;
+      line-height: 1.55;
+      color: rgba(245,236,215,0.65);
+      margin-bottom: 16px;
+    }
+    .portami-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: #1e1c18;
+      font-family: 'Raleway', sans-serif;
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 11px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.18s, transform 0.15s;
+    }
+    .portami-cta:active { transform: scale(0.97); background: #a07e32; }
+    .portami-address {
+      font-size: 11px;
+      color: rgba(184,150,62,0.5);
+      margin-top: 10px;
+      letter-spacing: 0.04em;
+    }
+
     /* ─── QUICK HELP PRIVATE HUB ─────────────────────── */
     .qh-block-label {
       font-size: 10px;
@@ -3711,6 +3805,33 @@
         </div>
       </div>
 
+      <!-- ── PORTAMI ALLA CASA — HOME ── -->
+      <div class="portami-card">
+        <div class="portami-eyebrow it">Navigazione diretta</div>
+        <div class="portami-eyebrow en">Direct navigation</div>
+        <div class="portami-eyebrow es">Navegación directa</div>
+        <div class="portami-eyebrow fr">Navigation directe</div>
+        <div class="portami-title-row">
+          <div class="portami-pin">📍</div>
+          <div class="portami-title it">Portami alla casa</div>
+          <div class="portami-title en">Take me home</div>
+          <div class="portami-title es">Llévame a casa</div>
+          <div class="portami-title fr">Ramenez-moi à la maison</div>
+        </div>
+        <div class="portami-copy it">Se state rientrando dopo aver esplorato Roma, aprite la posizione della casa con un solo tocco.</div>
+        <div class="portami-copy en">If you're heading back after exploring Rome, open the apartment location with a single tap.</div>
+        <div class="portami-copy es">Si regresas después de explorar Roma, abre la ubicación del apartamento con un solo toque.</div>
+        <div class="portami-copy fr">Si vous rentrez après avoir exploré Rome, ouvrez l'adresse de l'appartement en un seul geste.</div>
+        <a class="portami-cta" href="https://www.google.com/maps/search/?api=1&query=Piazza+di+Villa+Fiorelli+12,+Roma" target="_blank" rel="noopener noreferrer">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          <span class="it">Apri su Google Maps</span>
+          <span class="en">Open in Google Maps</span>
+          <span class="es">Abrir en Google Maps</span>
+          <span class="fr">Ouvrir dans Google Maps</span>
+        </a>
+        <div class="portami-address">Piazza di Villa Fiorelli 12, Roma</div>
+      </div>
+
       <div class="card">
         <div class="welcome-body it">
           <p>C'è un momento, arrivando a Roma, in cui la città smette di essere uno sfondo e diventa qualcosa di intimo. Noi crediamo che quel momento cominci qui, in questo appartamento.</p>
@@ -4454,6 +4575,33 @@
         <div class="mob-hero-body en">Domus Fiorelli enjoys a privileged position, with three main transport hubs within a few hundred metres of the apartment. From here you can reach the historic centre, the Colosseum, the Vatican, Trastevere, both airports and Rome's most iconic neighbourhoods with ease.</div>
         <div class="mob-hero-body es">Domus Fiorelli goza de una ubicación privilegiada, con tres hubs principales a pocos cientos de metros. Desde aquí podrás llegar fácilmente al centro histórico, el Coliseo, el Vaticano, Trastevere, los aeropuertos y los barrios más icónicos de Roma.</div>
         <div class="mob-hero-body fr">Domus Fiorelli bénéficie d'une position privilégiée, avec trois hubs principaux à quelques centaines de mètres. Vous pouvez rejoindre facilement le centre historique, le Colisée, le Vatican, Trastevere, les aéroports et les quartiers les plus emblématiques de Rome.</div>
+      </div>
+
+      <!-- ── PORTAMI ALLA CASA — MUOVERSI ── -->
+      <div class="portami-card">
+        <div class="portami-eyebrow it">Navigazione diretta</div>
+        <div class="portami-eyebrow en">Direct navigation</div>
+        <div class="portami-eyebrow es">Navegación directa</div>
+        <div class="portami-eyebrow fr">Navigation directe</div>
+        <div class="portami-title-row">
+          <div class="portami-pin">📍</div>
+          <div class="portami-title it">Portami alla casa</div>
+          <div class="portami-title en">Take me home</div>
+          <div class="portami-title es">Llévame a casa</div>
+          <div class="portami-title fr">Ramenez-moi à la maison</div>
+        </div>
+        <div class="portami-copy it">Ovunque vi troviate a Roma, tornare a Domus Fiorelli sarà semplice con navigazione diretta.</div>
+        <div class="portami-copy en">Wherever you are in Rome, getting back to Domus Fiorelli is always one tap away.</div>
+        <div class="portami-copy es">Donde quiera que estés en Roma, volver a Domus Fiorelli es fácil con navegación directa.</div>
+        <div class="portami-copy fr">Où que vous soyez à Rome, rentrer à Domus Fiorelli est toujours à portée de main.</div>
+        <a class="portami-cta" href="https://www.google.com/maps/search/?api=1&query=Piazza+di+Villa+Fiorelli+12,+Roma" target="_blank" rel="noopener noreferrer">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          <span class="it">Apri navigazione</span>
+          <span class="en">Open navigation</span>
+          <span class="es">Abrir navegación</span>
+          <span class="fr">Ouvrir la navigation</span>
+        </a>
+        <div class="portami-address">Piazza di Villa Fiorelli 12, Roma</div>
       </div>
 
       <!-- ── P2 · THE 3 MAIN HUBS ── -->
@@ -6839,25 +6987,6 @@
         <div style="font-size:11px;color:rgba(255,255,255,0.7);margin-top:2px">+39 349 351 1305</div>
       </div>
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
-    <a class="quick-card terra full" href="tel:112" style="margin-top:8px">
-      <span class="quick-card-icon">🚨</span>
-      <div class="quick-card-label it">Emergenza — 112</div>
-      <div class="quick-card-label en">Emergency — 112</div>
-      <div class="quick-card-label es">Emergencia — 112</div>
-      <div class="quick-card-label fr">Urgence — 112</div>
-      <div class="quick-card-label ru">Экстренная — 112</div>
-      <div class="quick-card-label ar">طوارئ — 112</div>
-      <div class="quick-card-label ja">緊急 — 112</div>
-      <div class="quick-card-label de">Notruf — 112</div>
-      <div class="quick-card-sub it">Numero Unico Europeo</div>
-      <div class="quick-card-sub en">European emergency number</div>
-      <div class="quick-card-sub es">Número europeo único</div>
-      <div class="quick-card-sub fr">Numéro unique européen</div>
-      <div class="quick-card-sub ru">Единый номер Европы</div>
-      <div class="quick-card-sub ar">الرقم الأوروبي الموحد</div>
-      <div class="quick-card-sub ja">欧州共通緊急番号</div>
-      <div class="quick-card-sub de">Europäische Notrufnummer</div>
     </a>
     </div><!-- /qh-hub-wrapper -->
 
