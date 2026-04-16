@@ -1847,6 +1847,145 @@
     a.quick-card { text-decoration: none; color: inherit; transition: transform 0.15s; }
     a.quick-card:active { transform: scale(0.97); }
 
+    /* ─── SAILY eSIM CARD ───────────────────────────── */
+    .saily-card {
+      background: linear-gradient(150deg, #111827 0%, #1a2235 100%);
+      border: 1px solid rgba(99,179,237,0.18);
+      border-radius: 20px;
+      padding: 20px 18px 18px;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 28px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .saily-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 90% 0%, rgba(99,179,237,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .saily-top-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .saily-signal-icon {
+      font-size: 22px;
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: rgba(99,179,237,0.1);
+      border: 1px solid rgba(99,179,237,0.2);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .saily-eyebrow {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(99,179,237,0.7);
+      margin-bottom: 4px;
+    }
+    .saily-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #EFF6FF;
+      line-height: 1.25;
+    }
+    .saily-copy {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: rgba(239,246,255,0.6);
+      margin-bottom: 14px;
+    }
+    .saily-uses {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .saily-chip {
+      font-size: 11px;
+      font-weight: 600;
+      background: rgba(99,179,237,0.1);
+      border: 1px solid rgba(99,179,237,0.18);
+      color: rgba(239,246,255,0.75);
+      border-radius: 20px;
+      padding: 4px 10px;
+    }
+    .saily-provider-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-top: 1px solid rgba(99,179,237,0.1);
+      border-bottom: 1px solid rgba(99,179,237,0.1);
+      margin-bottom: 14px;
+    }
+    .saily-provider-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: #63B3ED;
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+    }
+    .saily-host-note {
+      font-size: 11.5px;
+      color: rgba(239,246,255,0.5);
+      line-height: 1.45;
+    }
+    .saily-discount-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: rgba(184,150,62,0.08);
+      border: 1px solid rgba(184,150,62,0.2);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 16px;
+    }
+    .saily-discount-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .saily-discount-label {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(184,150,62,0.8);
+      margin-bottom: 3px;
+    }
+    .saily-discount-copy {
+      font-size: 12.5px;
+      color: rgba(245,236,215,0.75);
+      line-height: 1.5;
+    }
+    .saily-code {
+      font-family: 'Courier New', monospace;
+      font-size: 13.5px;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+    }
+    .saily-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 13px 18px;
+      background: #63B3ED;
+      color: #0f172a;
+      font-family: 'Raleway', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      border-radius: 11px;
+      text-decoration: none;
+      transition: background 0.18s, transform 0.15s;
+    }
+    .saily-cta:active { transform: scale(0.97); background: #4da3e0; }
+
     /* ─── PORTAMI ALLA CASA ─────────────────────────── */
     .portami-card {
       background: linear-gradient(145deg, #1e1c18 0%, #2a2620 100%);
@@ -5148,6 +5287,65 @@
 
       </div>
 
+      <!-- ── eSIM · STAY CONNECTED ── -->
+      <div class="mob-section-label it">Connettività internazionale</div>
+      <div class="mob-section-label en">International connectivity</div>
+      <div class="mob-section-label es">Conectividad internacional</div>
+      <div class="mob-section-label fr">Connectivité internationale</div>
+
+      <div class="saily-card">
+        <div class="saily-top-row">
+          <div class="saily-signal-icon">📶</div>
+          <div>
+            <div class="saily-eyebrow">eSIM · Stay Connected in Rome</div>
+            <div class="saily-title it">eSIM dati per viaggiare senza pensieri</div>
+            <div class="saily-title en">Data eSIM for worry-free travel</div>
+            <div class="saily-title es">eSIM de datos para viajar sin preocupaciones</div>
+            <div class="saily-title fr">eSIM données pour voyager sans souci</div>
+          </div>
+        </div>
+        <div class="saily-copy it">Se arrivate da fuori Italia o da fuori UE, vi consigliamo di installare una eSIM prima del viaggio — internet immediato appena atterrati, senza SIM fisiche o costi di roaming.</div>
+        <div class="saily-copy en">If you're arriving from outside Italy or the EU, we recommend installing an eSIM before your trip — instant internet the moment you land, no physical SIM or roaming charges.</div>
+        <div class="saily-copy es">Si llegas desde fuera de Italia o de la UE, te recomendamos instalar una eSIM antes del viaje — internet inmediato nada más aterrizar, sin SIM físicas ni cargos de roaming.</div>
+        <div class="saily-copy fr">Si vous arrivez hors d'Italie ou de l'UE, nous vous conseillons d'installer une eSIM avant le voyage — internet immédiat dès l'atterrissage, sans carte SIM ni frais d'itinérance.</div>
+
+        <div class="saily-uses">
+          <span class="saily-chip">🗺️ Google Maps</span>
+          <span class="saily-chip">🚕 Taxi &amp; transfer</span>
+          <span class="saily-chip">💬 WhatsApp</span>
+          <span class="saily-chip">📱 <span class="it">Guida Domus Fiorelli</span><span class="en">Domus Fiorelli guide</span><span class="es">Guía Domus Fiorelli</span><span class="fr">Guide Domus Fiorelli</span></span>
+          <span class="saily-chip">🚌 <span class="it">App trasporti</span><span class="en">Transit apps</span><span class="es">Apps transporte</span><span class="fr">Apps transports</span></span>
+        </div>
+
+        <div class="saily-provider-row">
+          <div class="saily-provider-logo">Saily</div>
+          <div class="saily-host-note it">Consigliato personalmente da Alessandro per semplicità e affidabilità.</div>
+          <div class="saily-host-note en">Personally recommended by Alessandro for its simplicity and reliability.</div>
+          <div class="saily-host-note es">Recomendado personalmente por Alessandro por su simplicidad y fiabilidad.</div>
+          <div class="saily-host-note fr">Recommandé personnellement par Alessandro pour sa simplicité et sa fiabilité.</div>
+        </div>
+
+        <div class="saily-discount-box">
+          <div class="saily-discount-icon">🎁</div>
+          <div>
+            <div class="saily-discount-label it">Host tip</div>
+            <div class="saily-discount-label en">Host tip</div>
+            <div class="saily-discount-label es">Consejo del anfitrión</div>
+            <div class="saily-discount-label fr">Conseil de l'hôte</div>
+            <div class="saily-discount-copy it">Usa il codice <strong class="saily-code">PAOLOO4430</strong> per ricevere $5 di sconto</div>
+            <div class="saily-discount-copy en">Use code <strong class="saily-code">PAOLOO4430</strong> to get $5 off</div>
+            <div class="saily-discount-copy es">Usa el código <strong class="saily-code">PAOLOO4430</strong> para obtener $5 de descuento</div>
+            <div class="saily-discount-copy fr">Utilisez le code <strong class="saily-code">PAOLOO4430</strong> pour obtenir 5 $ de réduction</div>
+          </div>
+        </div>
+
+        <a class="saily-cta" href="https://saily.onelink.me/ymzx/referrals" target="_blank" rel="noopener noreferrer">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+          <span>Install Saily</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+
       <div style="height: calc(env(safe-area-inset-bottom, 0px) + 24px)"></div>
     </div>
   </div>
@@ -5741,16 +5939,6 @@
           <span class="ar">⭐ اترك تقييماً على Google</span>
           <span class="ja">⭐ Googleでレビューを書く</span>
           <span class="de">⭐ Google-Bewertung schreiben</span>
-        </a>
-        <a class="review-btn" href="https://www.airbnb.com/users/show/reviews" target="_blank" rel="noopener" style="background:var(--anthracite); margin-top:0">
-          <span class="it">🏡 Recensisci su Airbnb</span>
-          <span class="en">🏡 Review on Airbnb</span>
-          <span class="es">🏡 Reseñar en Airbnb</span>
-          <span class="fr">🏡 Avis sur Airbnb</span>
-          <span class="ru">🏡 Отзыв на Airbnb</span>
-          <span class="ar">🏡 تقييم على Airbnb</span>
-          <span class="ja">🏡 Airbnbでレビュー</span>
-          <span class="de">🏡 Bewertung auf Airbnb</span>
         </a>
       </div>
 
@@ -6990,65 +7178,7 @@
     </a>
     </div><!-- /qh-hub-wrapper -->
 
-    <div style="height:16px"></div>
-
-    <!-- Julia AI Concierge -->
-    <div style="padding: 0 14px 32px;">
-      <div class="julia-card">
-        <div class="julia-card-eyebrow">Julia · AI Roma</div>
-        <div class="julia-card-title">Julia</div>
-        <div class="julia-card-sub it">L'assistente AI ufficiale del Comune di Roma. Per esplorare la città in tempo reale — consigli, itinerari, trasporti, eventi.</div>
-        <div class="julia-card-sub en">Rome's official AI assistant. Explore the city in real time — recommendations, itineraries, transport, events.</div>
-        <div class="julia-card-sub es">El asistente IA oficial de Roma. Explora la ciudad en tiempo real — recomendaciones, itinerarios, transporte, eventos.</div>
-        <div class="julia-card-sub fr">L'assistant IA officiel de Rome. Explorez la ville en temps réel — recommandations, itinéraires, transports, événements.</div>
-        <div class="julia-uses">
-          <span class="julia-use-chip it">🍽 Ristoranti vicini</span>
-          <span class="julia-use-chip en">🍽 Restaurants nearby</span>
-          <span class="julia-use-chip es">🍽 Restaurantes cercanos</span>
-          <span class="julia-use-chip fr">🍽 Restaurants proches</span>
-          <span class="julia-use-chip it">🚇 Trasporti</span>
-          <span class="julia-use-chip en">🚇 Transport</span>
-          <span class="julia-use-chip es">🚇 Transporte</span>
-          <span class="julia-use-chip fr">🚇 Transports</span>
-          <span class="julia-use-chip it">🎭 Eventi</span>
-          <span class="julia-use-chip en">🎭 Events</span>
-          <span class="julia-use-chip es">🎭 Eventos</span>
-          <span class="julia-use-chip fr">🎭 Événements</span>
-          <span class="julia-use-chip it">👨‍👩‍👧 Famiglie</span>
-          <span class="julia-use-chip en">👨‍👩‍👧 Families</span>
-          <span class="julia-use-chip es">👨‍👩‍👧 Familias</span>
-          <span class="julia-use-chip fr">👨‍👩‍👧 Familles</span>
-          <span class="julia-use-chip it">🗺 Itinerari</span>
-          <span class="julia-use-chip en">🗺 Itineraries</span>
-          <span class="julia-use-chip es">🗺 Itinerarios</span>
-          <span class="julia-use-chip fr">🗺 Itinéraires</span>
-        </div>
-        <div id="julia-embed-wrap" style="border-radius:12px;overflow:hidden;margin-top:4px;background:#0d1117;min-height:420px;position:relative;">
-          <iframe
-            id="julia-iframe"
-            src="https://julia.comune.roma.it"
-            style="width:100%;height:420px;border:none;border-radius:12px;display:block;"
-            allow="microphone"
-            title="Julia — Rome AI Concierge"
-            onload="juliaLoaded(this)"
-            onerror="juliaFailed()">
-          </iframe>
-          <div id="julia-fallback" style="display:none;padding:16px 0 4px;">
-            <a class="julia-btn" href="https://julia.comune.roma.it" target="_blank" rel="noopener">
-              <span>✨</span>
-              <span class="it">Apri Julia</span>
-              <span class="en">Open Julia</span>
-              <span class="es">Abrir Julia</span>
-              <span class="fr">Ouvrir Julia</span>
-              <span class="ru">Открыть Джулию</span>
-              <span class="ar">فتح جوليا</span>
-              <span class="ja">Juliaを開く</span>
-              <span class="de">Julia öffnen</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div style="height: calc(env(safe-area-inset-bottom, 0px) + 24px)"></div>
 
   </div>
 </div>
