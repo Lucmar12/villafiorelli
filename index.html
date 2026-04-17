@@ -1854,6 +1854,80 @@
     a.quick-card { text-decoration: none; color: inherit; transition: transform 0.15s; }
     a.quick-card:active { transform: scale(0.97); }
 
+    /* ─── APPLIANCE CARDS ──────────────────────────── */
+    .appl-card {
+      background: var(--white);
+      border-radius: 18px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 10px rgba(44,44,44,0.07);
+      overflow: hidden;
+    }
+    .appl-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 16px 12px;
+    }
+    .appl-icon {
+      font-size: 20px;
+      width: 42px; height: 42px; flex-shrink: 0;
+      background: var(--beige);
+      border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .appl-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--anthracite);
+    }
+    .appl-divider { height: 1px; background: var(--light-gray); margin: 0 16px; }
+    .appl-body {
+      padding: 12px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .appl-block { display: flex; flex-direction: column; gap: 6px; }
+    .appl-label {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .appl-label.how { color: var(--gold); }
+    .appl-label.warn { color: var(--terracotta); }
+    .appl-label.tip-lbl { color: rgba(99,179,237,0.85); }
+    .appl-steps, .appl-warns {
+      list-style: none; padding: 0; margin: 0;
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .appl-steps li {
+      font-size: 13px; color: var(--anthracite);
+      padding-left: 18px; position: relative; line-height: 1.45;
+    }
+    .appl-steps li::before {
+      content: '→'; position: absolute; left: 0;
+      color: var(--gold); font-size: 11px; top: 1px;
+    }
+    .appl-warns li {
+      font-size: 12.5px; color: var(--terracotta);
+      padding-left: 18px; position: relative; line-height: 1.45;
+    }
+    .appl-warns li::before {
+      content: '!'; position: absolute; left: 2px;
+      font-weight: 800; font-size: 11px; top: 1px;
+    }
+    .appl-tip {
+      background: rgba(184,150,62,0.07);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 8px 12px;
+      font-size: 12.5px;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
     /* ─── SAILY eSIM CARD ───────────────────────────── */
     .saily-card {
       background: linear-gradient(150deg, #111827 0%, #1a2235 100%);
@@ -4265,99 +4339,374 @@
         <div class="soi-entry-card-arrow">›</div>
       </div>
 
-      <div class="card">
-        <div class="card-title"><span class="card-title-icon">🔥</span><span class="it">Piano a Induzione</span><span class="en">Induction Hob</span><span class="es">Placa de Inducción</span><span class="fr">Plaque à Induction</span></div>
-        <ul class="step-list it">
-          <li>Posiziona la pentola (usa solo quelle in dotazione)</li>
-          <li>Premi <strong>ON/OFF</strong> per accendere</li>
-          <li>Seleziona la zona con il tasto corrispondente</li>
-          <li>Regola la potenza con <strong>+</strong> e <strong>–</strong> (da 1 a 9)</li>
-          <li>Per spegnere: tieni premuto <strong>ON/OFF</strong> per 2 secondi</li>
-        </ul>
-        <ul class="step-list en">
-          <li>Place the pot on the ring (use only the provided cookware)</li>
-          <li>Press <strong>ON/OFF</strong> to switch on</li>
-          <li>Select the zone with the corresponding button</li>
-          <li>Adjust power with <strong>+</strong> and <strong>–</strong> (levels 1–9)</li>
-          <li>To switch off: hold <strong>ON/OFF</strong> for 2 seconds</li>
-        </ul>
-        <ul class="step-list es">
-          <li>Coloca la olla (usa solo las ollas proporcionadas)</li>
-          <li>Pulsa <strong>ON/OFF</strong> para encender</li>
-          <li>Selecciona la zona con el botón correspondiente</li>
-          <li>Ajusta la potencia con <strong>+</strong> y <strong>–</strong> (del 1 al 9)</li>
-          <li>Para apagar: mantén pulsado <strong>ON/OFF</strong> 2 segundos</li>
-        </ul>
-        <ul class="step-list fr">
-          <li>Posez la casserole (utilisez uniquement les ustensiles fournis)</li>
-          <li>Appuyez sur <strong>ON/OFF</strong> pour allumer</li>
-          <li>Sélectionnez la zone avec le bouton correspondant</li>
-          <li>Réglez la puissance avec <strong>+</strong> et <strong>–</strong> (de 1 à 9)</li>
-          <li>Pour éteindre : maintenez <strong>ON/OFF</strong> appuyé 2 secondes</li>
-        </ul>
+      <!-- ── APPLIANCE SECTION LABEL ── -->
+      <div class="section-header" style="margin-bottom:16px">
+        <p class="section-tag it">Elettrodomestici · Guida rapida</p>
+        <p class="section-tag en">Appliances · Quick guide</p>
+        <p class="section-tag es">Electrodomésticos · Guía rápida</p>
+        <p class="section-tag fr">Appareils · Guide rapide</p>
       </div>
 
-      <div class="card">
-        <div class="card-title"><span class="card-title-icon">☕</span><span class="it">Macchina del Caffè</span><span class="en">Espresso Machine</span><span class="es">Máquina de Café</span><span class="fr">Machine à Café</span></div>
-        <div class="card-text it">
-          <p>In Italia il caffè è un rito, non una bevanda. La macchina è <strong>[modello]</strong>.</p>
-          <p><strong>Nespresso / capsula:</strong> inserisci la capsula → chiudi → premi espresso → attendi 30 secondi. Le capsule di scorta sono in dispensa.</p>
-          <p><strong>Macchina a leva:</strong> scalda 10 min (icona verde) → inserisci portafiltro → premi singolo o doppio espresso → goditi i 25–30 secondi di estrazione.</p>
+      <!-- ── 1. NESPRESSO ── -->
+      <div class="appl-card">
+        <div class="appl-header">
+          <div class="appl-icon">☕</div>
+          <div class="appl-title it">Nespresso</div>
+          <div class="appl-title en">Nespresso</div>
+          <div class="appl-title es">Nespresso</div>
+          <div class="appl-title fr">Nespresso</div>
         </div>
-        <div class="card-text en">
-          <p>In Italy, coffee is a ritual, not a drink. The machine is a <strong>[model]</strong>.</p>
-          <p><strong>Nespresso / capsule:</strong> insert capsule → close → press espresso → wait 30 seconds. Spare capsules are in the pantry.</p>
-          <p><strong>Lever machine:</strong> warm up 10 min (green icon) → insert portafilter → press single or double espresso → enjoy the 25–30 second extraction.</p>
-        </div>
-        <div class="card-text es">
-          <p>En Italia, el café es un ritual, no una bebida. La máquina es <strong>[modelo]</strong>.</p>
-          <p><strong>Nespresso / cápsula:</strong> inserta la cápsula → cierra → pulsa espresso → espera 30 segundos. Las cápsulas de repuesto están en la despensa.</p>
-          <p><strong>Máquina de palanca:</strong> calienta 10 min (icono verde) → inserta el portafiltro → pulsa espresso simple o doble → disfruta de los 25–30 segundos de extracción.</p>
-        </div>
-        <div class="card-text fr">
-          <p>En Italie, le café est un rituel, pas simplement une boisson. La machine est un <strong>[modèle]</strong>.</p>
-          <p><strong>Nespresso / capsule :</strong> insérez la capsule → fermez → appuyez sur espresso → attendez 30 secondes. Les capsules de rechange sont dans le garde-manger.</p>
-          <p><strong>Machine à levier :</strong> chauffez 10 min (icône verte) → insérez le porte-filtre → appuyez sur simple ou double espresso → savourez les 25–30 secondes d'extraction.</p>
+        <div class="appl-divider"></div>
+        <div class="appl-body">
+          <div class="appl-block">
+            <div class="appl-label how it">Come si usa</div>
+            <div class="appl-label how en">How to use</div>
+            <div class="appl-label how es">Cómo usarlo</div>
+            <div class="appl-label how fr">Comment utiliser</div>
+            <ul class="appl-steps">
+              <li><span class="it">Inserisci la capsula</span><span class="en">Insert the capsule</span><span class="es">Inserta la cápsula</span><span class="fr">Insérez la capsule</span></li>
+              <li><span class="it">Chiudi e premi il tasto</span><span class="en">Close and press the button</span><span class="es">Cierra y pulsa el botón</span><span class="fr">Fermez et appuyez sur le bouton</span></li>
+              <li><span class="it">Il caffè è pronto</span><span class="en">Coffee is ready</span><span class="es">El café está listo</span><span class="fr">Le café est prêt</span></li>
+            </ul>
+          </div>
+          <div class="appl-block">
+            <div class="appl-label warn it">Attenzione</div>
+            <div class="appl-label warn en">Attention</div>
+            <div class="appl-label warn es">Atención</div>
+            <div class="appl-label warn fr">Attention</div>
+            <ul class="appl-warns">
+              <li><span class="it">Non forzare la leva</span><span class="en">Do not force the lever</span><span class="es">No fuerces la palanca</span><span class="fr">Ne pas forcer le levier</span></li>
+              <li><span class="it">Svuota il cassettino delle capsule usate</span><span class="en">Empty the used capsule tray</span><span class="es">Vacía el cajón de cápsulas usadas</span><span class="fr">Videz le bac à capsules usagées</span></li>
+            </ul>
+          </div>
+          <div class="appl-tip">
+            <span class="it">💡 Fai scorrere acqua senza capsula per un caffè più caldo</span>
+            <span class="en">💡 Run water once without a capsule for a hotter coffee</span>
+            <span class="es">💡 Haz pasar agua sin cápsula para un café más caliente</span>
+            <span class="fr">💡 Faites couler de l'eau sans capsule pour un café plus chaud</span>
+          </div>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-title"><span class="card-title-icon">🫧</span><span class="it">Lavatrice</span><span class="en">Washing Machine</span><span class="es">Lavadora</span><span class="fr">Machine à laver</span></div>
-        <table class="data-table" style="margin-bottom:10px">
-          <thead>
-            <tr>
-              <th><span class="it">Programma</span><span class="en">Programme</span><span class="es">Programa</span><span class="fr">Programme</span></th>
-              <th><span class="it">Durata</span><span class="en">Time</span><span class="es">Duración</span><span class="fr">Durée</span></th>
-              <th><span class="it">Uso</span><span class="en">Use</span><span class="es">Uso</span><span class="fr">Usage</span></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="it">Rapido 30°</span><span class="en">Quick 30°</span><span class="es">Rápido 30°</span><span class="fr">Rapide 30°</span></td>
-              <td><strong>30 min</strong></td>
-              <td><span class="it">Capi usati poco</span><span class="en">Lightly worn</span><span class="es">Ropa poco usada</span><span class="fr">Peu porté</span></td>
-            </tr>
-            <tr>
-              <td><span class="it">Cotone 40°</span><span class="en">Cotton 40°</span><span class="es">Algodón 40°</span><span class="fr">Coton 40°</span></td>
-              <td><strong>1h 45min</strong></td>
-              <td><span class="it">Uso quotidiano</span><span class="en">Everyday</span><span class="es">Uso diario</span><span class="fr">Quotidien</span></td>
-            </tr>
-            <tr>
-              <td><span class="it">Sintetici 40°</span><span class="en">Synthetics 40°</span><span class="es">Sintéticos 40°</span><span class="fr">Synthétiques 40°</span></td>
-              <td><strong>1h 15min</strong></td>
-              <td><span class="it">Sportivi</span><span class="en">Sportswear</span><span class="es">Ropa deportiva</span><span class="fr">Vêtements de sport</span></td>
-            </tr>
-            <tr>
-              <td><span class="it">Delicati 30°</span><span class="en">Delicates 30°</span><span class="es">Delicados 30°</span><span class="fr">Délicats 30°</span></td>
-              <td><strong>55 min</strong></td>
-              <td><span class="it">Seta, lana</span><span class="en">Silk, wool</span><span class="es">Seda, lana</span><span class="fr">Soie, laine</span></td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="note-box it">Detersivo sotto il lavello. Versalo nella vaschetta centrale. Non superare il livello MAX.</div>
-        <div class="note-box en">Detergent is under the sink. Pour into the central compartment. Do not exceed MAX.</div>
-        <div class="note-box es">El detergente está debajo del fregadero. Viértelo en el compartimento central. No superar el nivel MAX.</div>
-        <div class="note-box fr">La lessive est sous l'évier. Versez-la dans le compartiment central. Ne pas dépasser le niveau MAX.</div>
+      <!-- ── 2. GAS STOVE ── -->
+      <div class="appl-card">
+        <div class="appl-header">
+          <div class="appl-icon">🔥</div>
+          <div class="appl-title it">Cucina a gas</div>
+          <div class="appl-title en">Gas stove</div>
+          <div class="appl-title es">Cocina de gas</div>
+          <div class="appl-title fr">Cuisinière à gaz</div>
+        </div>
+        <div class="appl-divider"></div>
+        <div class="appl-body">
+          <div class="appl-block">
+            <div class="appl-label how it">Come si usa</div>
+            <div class="appl-label how en">How to use</div>
+            <div class="appl-label how es">Cómo usarlo</div>
+            <div class="appl-label how fr">Comment utiliser</div>
+            <ul class="appl-steps">
+              <li><span class="it">Premi e gira la manopola</span><span class="en">Press and turn the knob</span><span class="es">Presiona y gira el mando</span><span class="fr">Appuyez et tournez le bouton</span></li>
+              <li><span class="it">La fiamma si accende automaticamente</span><span class="en">The flame ignites automatically</span><span class="es">La llama se enciende automáticamente</span><span class="fr">La flamme s'allume automatiquement</span></li>
+            </ul>
+          </div>
+          <div class="appl-block">
+            <div class="appl-label warn it">Attenzione</div>
+            <div class="appl-label warn en">Attention</div>
+            <div class="appl-label warn es">Atención</div>
+            <div class="appl-label warn fr">Attention</div>
+            <ul class="appl-warns">
+              <li><span class="it">Verifica sempre che la fiamma sia accesa</span><span class="en">Always check the flame is on</span><span class="es">Verifica siempre que la llama esté encendida</span><span class="fr">Vérifiez toujours que la flamme est allumée</span></li>
+              <li><span class="it">Spegni completamente dopo ogni utilizzo</span><span class="en">Turn off completely after every use</span><span class="es">Apaga completamente tras cada uso</span><span class="fr">Éteignez complètement après chaque utilisation</span></li>
+            </ul>
+          </div>
+          <div class="appl-tip">
+            <span class="it">💡 Usa la fiamma piccola per la moka</span>
+            <span class="en">💡 Use small flame for the moka pot</span>
+            <span class="es">💡 Usa llama pequeña para la moka</span>
+            <span class="fr">💡 Utilisez une petite flamme pour la cafetière moka</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 3. WASHING MACHINE ── -->
+      <div class="appl-card">
+        <div class="appl-header">
+          <div class="appl-icon">🫧</div>
+          <div class="appl-title it">Lavatrice</div>
+          <div class="appl-title en">Washing machine</div>
+          <div class="appl-title es">Lavadora</div>
+          <div class="appl-title fr">Machine à laver</div>
+        </div>
+        <div class="appl-divider"></div>
+        <div class="appl-body">
+          <div class="appl-block">
+            <div class="appl-label how it">Come si usa</div>
+            <div class="appl-label how en">How to use</div>
+            <div class="appl-label how es">Cómo usarlo</div>
+            <div class="appl-label how fr">Comment utiliser</div>
+            <ul class="appl-steps">
+              <li><span class="it">Aggiungi il detersivo (sotto il lavello)</span><span class="en">Add detergent (under the sink)</span><span class="es">Añade detergente (bajo el fregadero)</span><span class="fr">Ajoutez la lessive (sous l'évier)</span></li>
+              <li><span class="it">Seleziona il programma</span><span class="en">Select the programme</span><span class="es">Selecciona el programa</span><span class="fr">Sélectionnez le programme</span></li>
+              <li><span class="it">Premi start</span><span class="en">Press start</span><span class="es">Pulsa start</span><span class="fr">Appuyez sur démarrer</span></li>
+            </ul>
+          </div>
+          <div class="appl-block">
+            <div class="appl-label warn it">Attenzione</div>
+            <div class="appl-label warn en">Attention</div>
+            <div class="appl-label warn es">Atención</div>
+            <div class="appl-label warn fr">Attention</div>
+            <ul class="appl-warns">
+              <li><span class="it">Non sovraccaricare</span><span class="en">Do not overload</span><span class="es">No sobrecargar</span><span class="fr">Ne pas surcharger</span></li>
+              <li><span class="it">Non usare troppo detersivo</span><span class="en">Do not use too much detergent</span><span class="es">No usar demasiado detergente</span><span class="fr">Ne pas utiliser trop de lessive</span></li>
+            </ul>
+          </div>
+          <div class="appl-tip">
+            <span class="it">💡 Il programma "30 min" è ideale per un lavaggio rapido</span>
+            <span class="en">💡 The "30 min" programme is ideal for a quick wash</span>
+            <span class="es">💡 El programa "30 min" es ideal para un lavado rápido</span>
+            <span class="fr">💡 Le programme "30 min" est idéal pour un lavage rapide</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 4. SMART TV ── -->
+      <div class="appl-card">
+        <div class="appl-header">
+          <div class="appl-icon">📺</div>
+          <div class="appl-title it">Smart TV</div>
+          <div class="appl-title en">Smart TV</div>
+          <div class="appl-title es">Smart TV</div>
+          <div class="appl-title fr">Smart TV</div>
+        </div>
+        <div class="appl-divider"></div>
+        <div class="appl-body">
+          <div class="appl-block">
+            <div class="appl-label how it">Come si usa</div>
+            <div class="appl-label how en">How to use</div>
+            <div class="appl-label how es">Cómo usarlo</div>
+            <div class="appl-label how fr">Comment utiliser</div>
+            <ul class="appl-steps">
+              <li><span class="it">Accendi con il telecomando</span><span class="en">Turn on with the remote</span><span class="es">Enciende con el mando</span><span class="fr">Allumez avec la télécommande</span></li>
+              <li><span class="it">Apri Netflix, YouTube o altre app</span><span class="en">Open Netflix, YouTube or other apps</span><span class="es">Abre Netflix, YouTube u otras apps</span><span class="fr">Ouvrez Netflix, YouTube ou d'autres applis</span></li>
+            </ul>
+          </div>
+          <div class="appl-block">
+            <div class="appl-label warn it">Attenzione</div>
+            <div class="appl-label warn en">Attention</div>
+            <div class="appl-label warn es">Atención</div>
+            <div class="appl-label warn fr">Attention</div>
+            <ul class="appl-warns">
+              <li><span class="it">Non modificare le impostazioni di sistema</span><span class="en">Do not change system settings</span><span class="es">No cambies la configuración del sistema</span><span class="fr">Ne modifiez pas les paramètres système</span></li>
+            </ul>
+          </div>
+          <div class="appl-tip">
+            <span class="it">💡 Esci dai tuoi account prima del check-out</span>
+            <span class="en">💡 Log out from your accounts before check-out</span>
+            <span class="es">💡 Cierra sesión en tus cuentas antes del check-out</span>
+            <span class="fr">💡 Déconnectez-vous de vos comptes avant de partir</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 5. DYSON V8 ── -->
+      <div class="appl-card">
+        <div class="appl-header">
+          <div class="appl-icon">🌀</div>
+          <div class="appl-title it">Dyson V8</div>
+          <div class="appl-title en">Dyson V8</div>
+          <div class="appl-title es">Dyson V8</div>
+          <div class="appl-title fr">Dyson V8</div>
+        </div>
+        <div class="appl-divider"></div>
+        <div class="appl-body">
+          <div class="appl-block">
+            <div class="appl-label how it">Come si usa</div>
+            <div class="appl-label how en">How to use</div>
+            <div class="appl-label how es">Cómo usarlo</div>
+            <div class="appl-label how fr">Comment utiliser</div>
+            <ul class="appl-steps">
+              <li><span class="it">Tieni premuto il grilletto</span><span class="en">Hold down the trigger</span><span class="es">Mantén pulsado el gatillo</span><span class="fr">Maintenez la gâchette enfoncée</span></li>
+              <li><span class="it">Aspira normalmente</span><span class="en">Vacuum normally</span><span class="es">Aspira con normalidad</span><span class="fr">Aspirez normalement</span></li>
+            </ul>
+          </div>
+          <div class="appl-block">
+            <div class="appl-label warn it">Attenzione</div>
+            <div class="appl-label warn en">Attention</div>
+            <div class="appl-label warn es">Atención</div>
+            <div class="appl-label warn fr">Attention</div>
+            <ul class="appl-warns">
+              <li><span class="it">Non aspirare liquidi</span><span class="en">Do not vacuum liquids</span><span class="es">No aspires líquidos</span><span class="fr">Ne pas aspirer de liquides</span></li>
+              <li><span class="it">Svuota il contenitore quando è pieno</span><span class="en">Empty the bin when full</span><span class="es">Vacía el depósito cuando esté lleno</span><span class="fr">Videz le bac quand il est plein</span></li>
+            </ul>
+          </div>
+          <div class="appl-tip">
+            <span class="it">💡 Usa MAX solo per lo sporco più resistente</span>
+            <span class="en">💡 Use MAX mode only for stubborn dirt</span>
+            <span class="es">💡 Usa MAX solo para suciedad resistente</span>
+            <span class="fr">💡 Utilisez MAX uniquement pour les salissures tenaces</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 6. TOASTER ── -->
+      <div class="appl-card">
+        <div class="appl-header">
+          <div class="appl-icon">🍞</div>
+          <div class="appl-title it">Tostapane</div>
+          <div class="appl-title en">Toaster</div>
+          <div class="appl-title es">Tostadora</div>
+          <div class="appl-title fr">Grille-pain</div>
+        </div>
+        <div class="appl-divider"></div>
+        <div class="appl-body">
+          <div class="appl-block">
+            <div class="appl-label how it">Come si usa</div>
+            <div class="appl-label how en">How to use</div>
+            <div class="appl-label how es">Cómo usarlo</div>
+            <div class="appl-label how fr">Comment utiliser</div>
+            <ul class="appl-steps">
+              <li><span class="it">Inserisci il pane</span><span class="en">Insert the bread</span><span class="es">Inserta el pan</span><span class="fr">Insérez le pain</span></li>
+              <li><span class="it">Seleziona il livello di doratura</span><span class="en">Select the browning level</span><span class="es">Selecciona el nivel de tostado</span><span class="fr">Choisissez le niveau de dorure</span></li>
+              <li><span class="it">Abbassa la leva e attendi</span><span class="en">Push down the lever and wait</span><span class="es">Baja la palanca y espera</span><span class="fr">Abaissez le levier et attendez</span></li>
+            </ul>
+          </div>
+          <div class="appl-block">
+            <div class="appl-label warn it">Attenzione</div>
+            <div class="appl-label warn en">Attention</div>
+            <div class="appl-label warn es">Atención</div>
+            <div class="appl-label warn fr">Attention</div>
+            <ul class="appl-warns">
+              <li><span class="it">Non inserire oggetti metallici</span><span class="en">Do not insert metal objects</span><span class="es">No insertes objetos metálicos</span><span class="fr">Ne pas insérer d'objets métalliques</span></li>
+              <li><span class="it">Non usare alimenti troppo grandi</span><span class="en">Do not use oversized food</span><span class="es">No uses alimentos demasiado grandes</span><span class="fr">Ne pas utiliser d'aliments trop grands</span></li>
+            </ul>
+          </div>
+          <div class="appl-tip">
+            <span class="it">💡 Il livello 2–3 è quello ideale</span>
+            <span class="en">💡 Level 2–3 is ideal</span>
+            <span class="es">💡 El nivel 2–3 es el ideal</span>
+            <span class="fr">💡 Le niveau 2–3 est idéal</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 7. MILK FROTHER ── -->
+      <div class="appl-card">
+        <div class="appl-header">
+          <div class="appl-icon">🥛</div>
+          <div class="appl-title it">Montalatte</div>
+          <div class="appl-title en">Milk frother</div>
+          <div class="appl-title es">Espumador de leche</div>
+          <div class="appl-title fr">Mousseur à lait</div>
+        </div>
+        <div class="appl-divider"></div>
+        <div class="appl-body">
+          <div class="appl-block">
+            <div class="appl-label how it">Come si usa</div>
+            <div class="appl-label how en">How to use</div>
+            <div class="appl-label how es">Cómo usarlo</div>
+            <div class="appl-label how fr">Comment utiliser</div>
+            <ul class="appl-steps">
+              <li><span class="it">Aggiungi il latte fino al livello indicato</span><span class="en">Add milk up to the marked level</span><span class="es">Añade leche hasta el nivel indicado</span><span class="fr">Ajoutez du lait jusqu'au niveau indiqué</span></li>
+              <li><span class="it">Premi start</span><span class="en">Press start</span><span class="es">Pulsa start</span><span class="fr">Appuyez sur démarrer</span></li>
+            </ul>
+          </div>
+          <div class="appl-block">
+            <div class="appl-label warn it">Attenzione</div>
+            <div class="appl-label warn en">Attention</div>
+            <div class="appl-label warn es">Atención</div>
+            <div class="appl-label warn fr">Attention</div>
+            <ul class="appl-warns">
+              <li><span class="it">Non superare il livello MAX</span><span class="en">Do not exceed the MAX level</span><span class="es">No superes el nivel MAX</span><span class="fr">Ne pas dépasser le niveau MAX</span></li>
+            </ul>
+          </div>
+          <div class="appl-tip">
+            <span class="it">💡 Risultato migliore con latte freddo</span>
+            <span class="en">💡 Best result with cold milk</span>
+            <span class="es">💡 Mejor resultado con leche fría</span>
+            <span class="fr">💡 Meilleur résultat avec du lait froid</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 8. JUICE EXTRACTOR ── -->
+      <div class="appl-card">
+        <div class="appl-header">
+          <div class="appl-icon">🍊</div>
+          <div class="appl-title it">Estrattore di succo</div>
+          <div class="appl-title en">Juice extractor</div>
+          <div class="appl-title es">Extractor de zumo</div>
+          <div class="appl-title fr">Extracteur de jus</div>
+        </div>
+        <div class="appl-divider"></div>
+        <div class="appl-body">
+          <div class="appl-block">
+            <div class="appl-label how it">Come si usa</div>
+            <div class="appl-label how en">How to use</div>
+            <div class="appl-label how es">Cómo usarlo</div>
+            <div class="appl-label how fr">Comment utiliser</div>
+            <ul class="appl-steps">
+              <li><span class="it">Taglia la frutta a pezzi</span><span class="en">Cut the fruit into pieces</span><span class="es">Corta la fruta en trozos</span><span class="fr">Coupez les fruits en morceaux</span></li>
+              <li><span class="it">Accendi e inserisci lentamente</span><span class="en">Turn on and insert slowly</span><span class="es">Enciende e inserta lentamente</span><span class="fr">Allumez et insérez lentement</span></li>
+            </ul>
+          </div>
+          <div class="appl-block">
+            <div class="appl-label warn it">Attenzione</div>
+            <div class="appl-label warn en">Attention</div>
+            <div class="appl-label warn es">Atención</div>
+            <div class="appl-label warn fr">Attention</div>
+            <ul class="appl-warns">
+              <li><span class="it">Non inserire semi duri</span><span class="en">No hard seeds</span><span class="es">No insertes semillas duras</span><span class="fr">Pas de graines dures</span></li>
+              <li><span class="it">Non forzare</span><span class="en">Do not force</span><span class="es">No forzar</span><span class="fr">Ne pas forcer</span></li>
+            </ul>
+          </div>
+          <div class="appl-tip">
+            <span class="it">💡 Pulisci subito dopo l'uso</span>
+            <span class="en">💡 Clean immediately after use</span>
+            <span class="es">💡 Limpia inmediatamente después del uso</span>
+            <span class="fr">💡 Nettoyez immédiatement après utilisation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 9. IRON ── -->
+      <div class="appl-card">
+        <div class="appl-header">
+          <div class="appl-icon">👔</div>
+          <div class="appl-title it">Ferro da stiro</div>
+          <div class="appl-title en">Iron</div>
+          <div class="appl-title es">Plancha</div>
+          <div class="appl-title fr">Fer à repasser</div>
+        </div>
+        <div class="appl-divider"></div>
+        <div class="appl-body">
+          <div class="appl-block">
+            <div class="appl-label how it">Come si usa</div>
+            <div class="appl-label how en">How to use</div>
+            <div class="appl-label how es">Cómo usarlo</div>
+            <div class="appl-label how fr">Comment utiliser</div>
+            <ul class="appl-steps">
+              <li><span class="it">Riempi d'acqua il serbatoio</span><span class="en">Fill the water tank</span><span class="es">Llena el depósito de agua</span><span class="fr">Remplissez le réservoir d'eau</span></li>
+              <li><span class="it">Accendi e attendi che si scaldi</span><span class="en">Turn on and wait for it to heat up</span><span class="es">Enciende y espera que se caliente</span><span class="fr">Allumez et attendez qu'il chauffe</span></li>
+              <li><span class="it">Stira normalmente</span><span class="en">Iron normally</span><span class="es">Plancha con normalidad</span><span class="fr">Repassez normalement</span></li>
+            </ul>
+          </div>
+          <div class="appl-block">
+            <div class="appl-label warn it">Attenzione</div>
+            <div class="appl-label warn en">Attention</div>
+            <div class="appl-label warn es">Atención</div>
+            <div class="appl-label warn fr">Attention</div>
+            <ul class="appl-warns">
+              <li><span class="it">Non lasciarlo incustodito acceso</span><span class="en">Do not leave unattended while on</span><span class="es">No lo dejes encendido sin vigilar</span><span class="fr">Ne pas laisser sans surveillance quand il est allumé</span></li>
+              <li><span class="it">Non appoggiarlo su superfici non adatte</span><span class="en">Do not place on unsafe surfaces</span><span class="es">No lo apoyes en superficies inadecuadas</span><span class="fr">Ne pas poser sur des surfaces inadaptées</span></li>
+            </ul>
+          </div>
+          <div class="appl-tip">
+            <span class="it">💡 Usa il vapore per i vestiti appesi</span>
+            <span class="en">💡 Use steam for hanging clothes</span>
+            <span class="es">💡 Usa el vapor para ropa colgada</span>
+            <span class="fr">💡 Utilisez la vapeur pour les vêtements suspendus</span>
+          </div>
+        </div>
       </div>
 
       <div class="card">
