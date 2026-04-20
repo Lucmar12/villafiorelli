@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="robots" content="noindex, nofollow">
   <meta name="googlebot" content="noindex, nofollow">
+  <!-- Force no-cache for Safari iOS and all browsers -->
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <!-- Build version stamp (updated on every deploy) -->
+  <meta name="app-version" content="20260420-1">
   <!-- PWA / App meta -->
   <meta name="application-name" content="Domus Fiorelli">
   <meta name="theme-color" content="#111111">
@@ -8702,18 +8708,25 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js', { scope: '/' })
       .then(reg => {
-        /* Check for updates silently */
         reg.addEventListener('updatefound', () => {
           const nw = reg.installing;
-          if (nw) nw.addEventListener('statechange', () => {
-            if (nw.state === 'installed' && navigator.serviceWorker.controller) {
-              /* New version available — skip for now, activate on next open */
-              nw.postMessage({ type: 'SKIP_WAITING' });
+          if (!nw) return;
+          nw.addEventListener('statechange', () => {
+            /* New SW activated → reload immediately so users get fresh content */
+            if (nw.state === 'activated') {
+              window.location.reload();
             }
           });
         });
+        /* Also check for update immediately on every page load */
+        reg.update().catch(() => {});
       })
-      .catch(() => { /* SW unavailable — app still works online */ });
+      .catch(() => {});
+  });
+
+  /* If a new SW takes control mid-session → reload */
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    window.location.reload();
   });
 }
 </script>

@@ -1,16 +1,15 @@
 /* ============================================================
-   Domus Fiorelli — Service Worker
-   PWA offline caching + future push notification ready
+   Domus Fiorelli — Service Worker v2
+   Strategy: network-first for HTML (always fresh),
+             cache-first for static assets (fast).
    ============================================================ */
 
-const CACHE_VERSION = 'df-v1';
+const CACHE_VERSION = 'df-v2';
 const STATIC_CACHE  = `${CACHE_VERSION}-static`;
 const DYNAMIC_CACHE = `${CACHE_VERSION}-dynamic`;
 
-/* ── Assets to pre-cache on install ─────────────────────── */
+/* ── Assets to pre-cache on install (images/icons only) ─── */
 const PRECACHE_ASSETS = [
-  '/',
-  '/index.html',
   '/manifest.json',
   '/icon-192.png',
   '/icon-512.png',
@@ -18,10 +17,10 @@ const PRECACHE_ASSETS = [
   '/logo.png',
   '/alessandro.jpg',
   '/marshall.jpg',
-  /* Google Fonts — cached on first fetch via dynamic cache */
+  '/wifi-domusfiorelli.jpg',
 ];
 
-/* ── Install: pre-cache static shell ────────────────────── */
+/* ── Install: pre-cache static assets ───────────────────── */
 self.addEventListener('install', event => {
   self.skipWaiting();
   event.waitUntil(
@@ -29,7 +28,7 @@ self.addEventListener('install', event => {
   );
 });
 
-/* ── Activate: remove old caches ────────────────────────── */
+/* ── Activate: remove ALL old df-* caches ───────────────── */
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -42,35 +41,45 @@ self.addEventListener('activate', event => {
   );
 });
 
-/* ── Fetch: cache-first for static, network-first for API ── */
+/* ── Fetch ───────────────────────────────────────────────── */
 self.addEventListener('fetch', event => {
   const { request } = event;
   const url = new URL(request.url);
 
-  /* Skip non-GET and cross-origin requests (except fonts) */
   if (request.method !== 'GET') return;
 
-  /* Google Fonts: cache-first */
+  /* Google Fonts: cache-first (rarely change) */
   if (url.origin === 'https://fonts.googleapis.com' ||
       url.origin === 'https://fonts.gstatic.com') {
     event.respondWith(cacheFirst(request, DYNAMIC_CACHE));
     return;
   }
 
-  /* Same origin: cache-first with network fallback */
+  /* Same origin: HTML → network-first; assets → cache-first */
   if (url.origin === self.location.origin) {
-    event.respondWith(cacheFirst(request, STATIC_CACHE));
+    const isHTML = request.mode === 'navigate' ||
+                   request.destination === 'document' ||
+                   url.pathname === '/' ||
+                   url.pathname.endsWith('.html');
+
+    if (isHTML) {
+      event.respondWith(networkFirst(request, STATIC_CACHE));
+    } else {
+      event.respondWith(cacheFirst(request, STATIC_CACHE));
+    }
     return;
   }
 
-  /* External (Maps links, Spotify embeds etc.): network-first */
-  event.respondWith(networkFirst(request));
+  /* External (Maps, WA links, etc.): network-only */
+  event.respondWith(fetch(request).catch(() =>
+    new Response('Offline', { status: 503 })
+  ));
 });
 
 /* ── Strategies ─────────────────────────────────────────── */
-async function cacheFirst(request, cacheName) {
-  const cached = await caches.match(request);
-  if (cached) return cached;
+
+/* Network-first: try network, update cache, fall back to cache offline */
+async function networkFirst(request, cacheName) {
   try {
     const response = await fetch(request);
     if (response.ok) {
@@ -79,20 +88,34 @@ async function cacheFirst(request, cacheName) {
     }
     return response;
   } catch {
-    /* Offline fallback — return cached index for navigation */
-    if (request.mode === 'navigate') {
-      return caches.match('/index.html');
-    }
+    const cached = await caches.match(request);
+    if (cached) return cached;
+    if (request.mode === 'navigate') return caches.match('/index.html');
     return new Response('Offline', { status: 503 });
   }
 }
 
-async function networkFirst(request) {
+/* Cache-first: return cached immediately, refresh in background */
+async function cacheFirst(request, cacheName) {
+  const cached = await caches.match(request);
+  if (cached) {
+    /* Background refresh so next visit is up-to-date */
+    fetch(request).then(response => {
+      if (response.ok) {
+        caches.open(cacheName).then(cache => cache.put(request, response));
+      }
+    }).catch(() => {});
+    return cached;
+  }
   try {
-    return await fetch(request);
+    const response = await fetch(request);
+    if (response.ok) {
+      const cache = await caches.open(cacheName);
+      cache.put(request, response.clone());
+    }
+    return response;
   } catch {
-    const cached = await caches.match(request);
-    return cached || new Response('Offline', { status: 503 });
+    return new Response('Offline', { status: 503 });
   }
 }
 
@@ -109,8 +132,6 @@ self.addEventListener('push', event => {
     icon: '/icon-192.png',
     badge: '/icon-72.png',
     data: { url: data.url || '/' },
-    // Notification types for future use:
-    // tag: 'checkin-reminder' | 'welcome' | 'checkout-reminder' | 'review-reminder'
   };
   event.waitUntil(self.registration.showNotification(title, options));
 });
