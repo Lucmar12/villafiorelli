@@ -4399,6 +4399,43 @@
         <div class="soi-entry-card-arrow">›</div>
       </div>
 
+      <!-- ── WI-FI ── -->
+      <div class="card" style="border:1.5px solid var(--gold);background:linear-gradient(135deg,#fdf8ee 0%,#fdf4e0 100%);margin-bottom:20px">
+        <div class="card-title">
+          <span class="card-title-icon">📶</span>
+          <span class="it">Wi-Fi · Rete di casa</span>
+          <span class="en">Wi-Fi · Home Network</span>
+          <span class="es">Wi-Fi · Red del hogar</span>
+          <span class="fr">Wi-Fi · Réseau domicile</span>
+          <span class="zh">Wi-Fi · 家庭网络</span>
+        </div>
+        <div style="padding-bottom:12px;border-bottom:1px solid rgba(184,150,62,0.18);margin-bottom:12px">
+          <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(44,44,44,0.4);margin-bottom:4px">
+            <span class="it">Nome rete</span><span class="en">Network name</span><span class="es">Nombre de red</span><span class="fr">Nom du réseau</span><span class="zh">网络名称</span>
+          </div>
+          <div id="wifi-ssid" style="font-size:14px;font-weight:600;color:var(--anthracite)">Vodafone-E44822855</div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:14px;border-bottom:1px solid rgba(184,150,62,0.18)">
+          <div>
+            <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(44,44,44,0.4);margin-bottom:4px">Password</div>
+            <div id="wifi-password" style="font-size:16px;font-weight:700;color:var(--gold);letter-spacing:0.06em;font-family:'Courier New',monospace">LkTdXpC7EGAFpC9e</div>
+          </div>
+          <button class="qh-copy-btn" onclick="copyQH('wifi-password',this)" aria-label="Copia password">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+        <div style="text-align:center;padding-top:14px">
+          <img src="wifi-domusfiorelli.jpg" alt="Wi-Fi QR Code" style="width:160px;height:160px;object-fit:contain;border-radius:12px;display:block;margin:0 auto 8px">
+          <div style="font-size:11px;color:rgba(44,44,44,0.45)">
+            <span class="it">Inquadra per connetterti automaticamente</span>
+            <span class="en">Scan to connect automatically</span>
+            <span class="es">Escanea para conectarte</span>
+            <span class="fr">Scannez pour vous connecter</span>
+            <span class="zh">扫描自动连接网络</span>
+          </div>
+        </div>
+      </div>
+
       <!-- ── APPLIANCE SECTION LABEL ── -->
       <div class="section-header" style="margin-bottom:16px">
         <p class="section-tag it">Elettrodomestici · Guida rapida</p>
@@ -4452,10 +4489,14 @@
       <div class="appl-card">
         <div class="appl-header">
           <div class="appl-icon">🔥</div>
-          <div class="appl-title it">Cucina a gas</div>
-          <div class="appl-title en">Gas stove</div>
-          <div class="appl-title es">Cocina de gas</div>
-          <div class="appl-title fr">Cuisinière à gaz</div>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <div class="appl-title it">Piano cottura gas</div>
+            <div class="appl-title en">Gas hob</div>
+            <div class="appl-title es">Cocina de gas</div>
+            <div class="appl-title fr">Plaque gaz</div>
+            <div class="appl-title zh">燃气灶</div>
+            <div style="font-size:10px;color:rgba(44,44,44,0.45);font-weight:600;letter-spacing:0.05em">Hotpoint Ariston</div>
+          </div>
         </div>
         <div class="appl-divider"></div>
         <div class="appl-body">
@@ -4464,9 +4505,10 @@
             <div class="appl-label how en">How to use</div>
             <div class="appl-label how es">Cómo usarlo</div>
             <div class="appl-label how fr">Comment utiliser</div>
+            <div class="appl-label how zh">使用方法</div>
             <ul class="appl-steps">
-              <li><span class="it">Premi e gira la manopola</span><span class="en">Press and turn the knob</span><span class="es">Presiona y gira el mando</span><span class="fr">Appuyez et tournez le bouton</span></li>
-              <li><span class="it">La fiamma si accende automaticamente</span><span class="en">The flame ignites automatically</span><span class="es">La llama se enciende automáticamente</span><span class="fr">La flamme s'allume automatiquement</span></li>
+              <li><span class="it">Ruota la manopola in senso antiorario e tieni premuto</span><span class="en">Turn knob counter-clockwise and hold</span><span class="es">Gira el mando en sentido antihorario y mantén pulsado</span><span class="fr">Tournez le bouton dans le sens antihoraire et maintenez</span><span class="zh">逆时针旋转并按住旋钮</span></li>
+              <li><span class="it">La fiamma si accende automaticamente — rilascia dopo 3–5 sec</span><span class="en">Flame ignites automatically — release after 3–5 sec</span><span class="es">La llama se enciende automáticamente — suelta tras 3–5 seg</span><span class="fr">La flamme s'allume automatiquement — relâchez après 3–5 sec</span><span class="zh">自动点火，3–5秒后松开</span></li>
             </ul>
           </div>
           <div class="appl-block">
@@ -4474,9 +4516,11 @@
             <div class="appl-label warn en">Attention</div>
             <div class="appl-label warn es">Atención</div>
             <div class="appl-label warn fr">Attention</div>
+            <div class="appl-label warn zh">注意</div>
             <ul class="appl-warns">
-              <li><span class="it">Verifica sempre che la fiamma sia accesa</span><span class="en">Always check the flame is on</span><span class="es">Verifica siempre que la llama esté encendida</span><span class="fr">Vérifiez toujours que la flamme est allumée</span></li>
-              <li><span class="it">Spegni completamente dopo ogni utilizzo</span><span class="en">Turn off completely after every use</span><span class="es">Apaga completamente tras cada uso</span><span class="fr">Éteignez complètement après chaque utilisation</span></li>
+              <li><span class="it">Apri sempre una finestra durante l'uso</span><span class="en">Always open a window when in use</span><span class="es">Abre siempre una ventana durante el uso</span><span class="fr">Ouvrez toujours une fenêtre pendant l'utilisation</span><span class="zh">使用时始终开窗通风</span></li>
+              <li><span class="it">Verifica sempre che la fiamma sia accesa</span><span class="en">Always check the flame is lit</span><span class="es">Verifica siempre que la llama esté encendida</span><span class="fr">Vérifiez toujours que la flamme est allumée</span><span class="zh">始终确认火焰已点燃</span></li>
+              <li><span class="it">Spegni completamente dopo ogni utilizzo</span><span class="en">Turn off completely after every use</span><span class="es">Apaga completamente tras cada uso</span><span class="fr">Éteignez complètement après chaque utilisation</span><span class="zh">每次用后完全关闭</span></li>
             </ul>
           </div>
           <div class="appl-tip">
@@ -4765,6 +4809,120 @@
             <span class="en">💡 Use steam for hanging clothes</span>
             <span class="es">💡 Usa el vapor para ropa colgada</span>
             <span class="fr">💡 Utilisez la vapeur pour les vêtements suspendus</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 10. LAVASTOVIGLIE ── -->
+      <div class="appl-card">
+        <div class="appl-header">
+          <div class="appl-icon">🫧</div>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <div class="appl-title it">Lavastoviglie</div>
+            <div class="appl-title en">Dishwasher</div>
+            <div class="appl-title es">Lavavajillas</div>
+            <div class="appl-title fr">Lave-vaisselle</div>
+            <div class="appl-title zh">洗碗机</div>
+            <div style="font-size:10px;color:rgba(44,44,44,0.45);font-weight:600;letter-spacing:0.05em">Smeg</div>
+          </div>
+        </div>
+        <div class="appl-divider"></div>
+        <div class="appl-body">
+          <div class="appl-block">
+            <div class="appl-label how it">Come si usa</div>
+            <div class="appl-label how en">How to use</div>
+            <div class="appl-label how es">Cómo usarlo</div>
+            <div class="appl-label how fr">Comment utiliser</div>
+            <div class="appl-label how zh">使用方法</div>
+            <ul class="appl-steps">
+              <li><span class="it">Carica i piatti e aggiungi la pastiglia nel vano apposito</span><span class="en">Load dishes and add tablet to the compartment</span><span class="es">Carga los platos y añade la pastilla en el compartimento</span><span class="fr">Chargez la vaisselle et ajoutez la tablette dans le compartiment</span><span class="zh">放入餐具，将洗碗块放入专用格</span></li>
+              <li><span class="it">Seleziona il programma ECO o Intensivo e premi Start</span><span class="en">Select ECO or Intensive programme and press Start</span><span class="es">Selecciona el programa ECO o Intensivo y pulsa Start</span><span class="fr">Sélectionnez ECO ou Intensif et appuyez sur Start</span><span class="zh">选择ECO或强力程序，按开始键</span></li>
+            </ul>
+          </div>
+          <div class="appl-block">
+            <div class="appl-label warn it">Attenzione</div>
+            <div class="appl-label warn en">Attention</div>
+            <div class="appl-label warn es">Atención</div>
+            <div class="appl-label warn fr">Attention</div>
+            <div class="appl-label warn zh">注意</div>
+            <ul class="appl-warns">
+              <li><span class="it">Non lavare padelle antiaderenti o oggetti di legno</span><span class="en">Do not wash non-stick pans or wooden items</span><span class="es">No lavar sartenes antiadherentes ni utensilios de madera</span><span class="fr">Ne pas laver les poêles antiadhésives ni les ustensiles en bois</span><span class="zh">不可清洗不粘锅或木质物品</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 11. FORNO ── -->
+      <div class="appl-card">
+        <div class="appl-header">
+          <div class="appl-icon">🥘</div>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <div class="appl-title it">Forno</div>
+            <div class="appl-title en">Oven</div>
+            <div class="appl-title es">Horno</div>
+            <div class="appl-title fr">Four</div>
+            <div class="appl-title zh">烤箱</div>
+            <div style="font-size:10px;color:rgba(44,44,44,0.45);font-weight:600;letter-spacing:0.05em">Whirlpool</div>
+          </div>
+        </div>
+        <div class="appl-divider"></div>
+        <div class="appl-body">
+          <div class="appl-block">
+            <div class="appl-label how it">Come si usa</div>
+            <div class="appl-label how en">How to use</div>
+            <div class="appl-label how es">Cómo usarlo</div>
+            <div class="appl-label how fr">Comment utiliser</div>
+            <div class="appl-label how zh">使用方法</div>
+            <ul class="appl-steps">
+              <li><span class="it">Seleziona la funzione (statico, ventilato, grill) e imposta la temperatura</span><span class="en">Select the function (static, fan, grill) and set temperature</span><span class="es">Selecciona la función (estático, ventilado, grill) y la temperatura</span><span class="fr">Sélectionnez la fonction (statique, ventilé, grill) et la température</span><span class="zh">选择功能（静态/热风/烧烤）并设定温度</span></li>
+              <li><span class="it">Preriscalda 10 min prima di infornare</span><span class="en">Preheat for 10 min before use</span><span class="es">Precalienta 10 min antes de hornear</span><span class="fr">Préchauffez 10 min avant d'enfourner</span><span class="zh">放入食物前预热10分钟</span></li>
+            </ul>
+          </div>
+          <div class="appl-tip">
+            <span class="it">💡 Usa la modalità ventilata per cotture più uniformi e veloci</span>
+            <span class="en">💡 Use fan mode for even, faster cooking results</span>
+            <span class="es">💡 Usa el modo ventilado para una cocción uniforme y rápida</span>
+            <span class="fr">💡 Utilisez le mode ventilé pour une cuisson rapide et uniforme</span>
+            <span class="zh">💡 使用热风模式可使烹饪更均匀快速</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 12. MICROONDE ── -->
+      <div class="appl-card">
+        <div class="appl-header">
+          <div class="appl-icon">📡</div>
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <div class="appl-title it">Microonde</div>
+            <div class="appl-title en">Microwave</div>
+            <div class="appl-title es">Microondas</div>
+            <div class="appl-title fr">Micro-ondes</div>
+            <div class="appl-title zh">微波炉</div>
+            <div style="font-size:10px;color:rgba(44,44,44,0.45);font-weight:600;letter-spacing:0.05em">Whirlpool</div>
+          </div>
+        </div>
+        <div class="appl-divider"></div>
+        <div class="appl-body">
+          <div class="appl-block">
+            <div class="appl-label how it">Come si usa</div>
+            <div class="appl-label how en">How to use</div>
+            <div class="appl-label how es">Cómo usarlo</div>
+            <div class="appl-label how fr">Comment utiliser</div>
+            <div class="appl-label how zh">使用方法</div>
+            <ul class="appl-steps">
+              <li><span class="it">Inserisci il cibo, imposta il tempo e la potenza, premi Start</span><span class="en">Place food inside, set time and power, press Start</span><span class="es">Introduce la comida, ajusta tiempo y potencia, pulsa Start</span><span class="fr">Placez les aliments, réglez le temps et la puissance, appuyez sur Start</span><span class="zh">放入食物，设定时间和功率，按开始键</span></li>
+              <li><span class="it">Per scaldare velocemente usa 800W</span><span class="en">Use 800W for quick reheating</span><span class="es">Usa 800W para calentar rápido</span><span class="fr">Utilisez 800W pour réchauffer rapidement</span><span class="zh">快速加热选800W</span></li>
+            </ul>
+          </div>
+          <div class="appl-block">
+            <div class="appl-label warn it">Attenzione</div>
+            <div class="appl-label warn en">Attention</div>
+            <div class="appl-label warn es">Atención</div>
+            <div class="appl-label warn fr">Attention</div>
+            <div class="appl-label warn zh">注意</div>
+            <ul class="appl-warns">
+              <li><span class="it">Non inserire mai metallo, alluminio o contenitori chiusi ermeticamente</span><span class="en">Never put metal, aluminium foil, or sealed containers inside</span><span class="es">Nunca introducir metal, aluminio ni recipientes herméticamente cerrados</span><span class="fr">Ne jamais mettre de métal, d'aluminium ou de récipients hermétiques</span><span class="zh">切勿放入金属、铝箔或密封容器</span></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -7466,41 +7624,6 @@
       <button class="quick-close" onclick="closeQuick()" aria-label="Chiudi / Close">✕</button>
     </div>
     <div style="padding: 0 14px">
-    <!-- ── BLOCK 1 · WI-FI ACCESS ── -->
-    <div class="qh-block-label it">📶 Wi-Fi Access</div>
-    <div class="qh-block-label en">📶 Wi-Fi Access</div>
-    <div class="qh-block-label es">📶 Wi-Fi Access</div>
-    <div class="qh-block-label fr">📶 Wi-Fi Access</div>
-    <div class="qh-wifi-card">
-      <div class="qh-wifi-row">
-        <div>
-          <div class="qh-wifi-field-label it">Nome rete</div>
-          <div class="qh-wifi-field-label en">Network name</div>
-          <div class="qh-wifi-field-label es">Nombre de red</div>
-          <div class="qh-wifi-field-label fr">Nom du réseau</div>
-          <div class="qh-wifi-value" id="wifi-ssid">Vodafone-E44822855</div>
-        </div>
-      </div>
-      <div class="qh-wifi-divider"></div>
-      <div class="qh-wifi-row">
-        <div>
-          <div class="qh-wifi-field-label">Password</div>
-          <div class="qh-wifi-value qh-wifi-password" id="wifi-password">LkTdXpC7EGAFpC9e</div>
-        </div>
-        <button class="qh-copy-btn" onclick="copyQH('wifi-password',this)" aria-label="Copia password">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        </button>
-      </div>
-      <div class="qh-wifi-qr" style="text-align:center;padding:12px 0 4px">
-        <img src="wifi-domusfiorelli.jpg" alt="Wi-Fi QR Code" style="width:140px;height:140px;object-fit:contain;border-radius:8px;display:block;margin:0 auto 8px">
-        <div class="qh-wifi-qr-label it" style="font-size:11px;color:rgba(255,255,255,0.55)">Inquadra per connetterti automaticamente</div>
-        <div class="qh-wifi-qr-label en" style="font-size:11px;color:rgba(255,255,255,0.55)">Scan to connect automatically</div>
-        <div class="qh-wifi-qr-label es" style="font-size:11px;color:rgba(255,255,255,0.55)">Escanea para conectarte</div>
-        <div class="qh-wifi-qr-label fr" style="font-size:11px;color:rgba(255,255,255,0.55)">Scannez pour vous connecter</div>
-        <div class="zh" style="font-size:11px;color:rgba(255,255,255,0.55)">扫描自动连接网络</div>
-      </div>
-    </div>
-
     <!-- ── BLOCK 2 · HOME OPERATIONS ── -->
     <div class="qh-block-label it">🏠 Operazioni Casa</div>
     <div class="qh-block-label en">🏠 Home Operations</div>
@@ -7633,177 +7756,6 @@
       </div>
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
-    <!-- ── BLOCK 5 · ELETTRODOMESTICI ── -->
-    <div class="qh-block-label it" style="margin-top:24px">🍳 Elettrodomestici</div>
-    <div class="qh-block-label en" style="margin-top:24px">🍳 Appliances</div>
-    <div class="qh-block-label es" style="margin-top:24px">🍳 Electrodomésticos</div>
-    <div class="qh-block-label fr" style="margin-top:24px">🍳 Appareils Ménagers</div>
-    <div class="zh" style="font-size:11px;font-weight:700;letter-spacing:0.1em;color:rgba(255,255,255,0.45);text-transform:uppercase;padding:8px 0 4px;margin-top:24px">🍳 家用电器</div>
-
-    <!-- Lavastoviglie Smeg -->
-    <div class="appl-card">
-      <div class="appl-header">
-        <div class="appl-icon">🫧</div>
-        <div class="appl-title-wrap">
-          <div class="appl-name it">Lavastoviglie</div>
-          <div class="appl-name en">Dishwasher</div>
-          <div class="appl-name es">Lavavajillas</div>
-          <div class="appl-name fr">Lave-vaisselle</div>
-          <div class="appl-name zh">洗碗机</div>
-          <div class="appl-brand">Smeg</div>
-        </div>
-      </div>
-      <div class="appl-body">
-        <div class="appl-how">
-          <div class="appl-how-label it">COME SI USA</div>
-          <div class="appl-how-label en">HOW TO USE</div>
-          <div class="appl-how-label es">CÓMO USAR</div>
-          <div class="appl-how-label fr">MODE D'EMPLOI</div>
-          <div class="appl-how-label zh">使用方法</div>
-          <div class="appl-how-text it">Carica i piatti, aggiungi pastiglie nel vano apposito, seleziona programma ECO o Intensivo, premi Start.</div>
-          <div class="appl-how-text en">Load dishes, add tablet to the compartment, select ECO or Intensive programme, press Start.</div>
-          <div class="appl-how-text es">Carga los platos, añade la pastilla, selecciona ECO o Intensivo, pulsa Start.</div>
-          <div class="appl-how-text fr">Chargez la vaisselle, ajoutez la tablette, sélectionnez ECO ou Intensif, appuyez sur Start.</div>
-          <div class="appl-how-text zh">放入餐具，加入洗碗块，选择ECO或强力程序，按开始键。</div>
-        </div>
-        <div class="appl-warn">
-          <div class="appl-warn-label it">ATTENZIONE</div>
-          <div class="appl-warn-label en">ATTENTION</div>
-          <div class="appl-warn-label es">ATENCIÓN</div>
-          <div class="appl-warn-label fr">ATTENTION</div>
-          <div class="appl-warn-label zh">注意</div>
-          <div class="appl-warn-text it">Non lavare padelle antiaderenti o oggetti di legno.</div>
-          <div class="appl-warn-text en">Do not wash non-stick pans or wooden items.</div>
-          <div class="appl-warn-text es">No lavar sartenes antiadherentes ni utensilios de madera.</div>
-          <div class="appl-warn-text fr">Ne pas laver les poêles antiadhésives ni les ustensiles en bois.</div>
-          <div class="appl-warn-text zh">不可清洗不粘锅或木质物品。</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Piano cottura gas -->
-    <div class="appl-card">
-      <div class="appl-header">
-        <div class="appl-icon">🔥</div>
-        <div class="appl-title-wrap">
-          <div class="appl-name it">Piano Cottura Gas</div>
-          <div class="appl-name en">Gas Hob</div>
-          <div class="appl-name es">Cocina de Gas</div>
-          <div class="appl-name fr">Plaque Gaz</div>
-          <div class="appl-name zh">燃气灶</div>
-          <div class="appl-brand">Hotpoint Ariston</div>
-        </div>
-      </div>
-      <div class="appl-body">
-        <div class="appl-how">
-          <div class="appl-how-label it">COME SI USA</div>
-          <div class="appl-how-label en">HOW TO USE</div>
-          <div class="appl-how-label es">CÓMO USAR</div>
-          <div class="appl-how-label fr">MODE D'EMPLOI</div>
-          <div class="appl-how-label zh">使用方法</div>
-          <div class="appl-how-text it">Ruota la manopola in senso antiorario, tieni premuto e accendi con l'accenditore integrato. Rilascia dopo 3–5 sec.</div>
-          <div class="appl-how-text en">Turn knob counter-clockwise, hold and ignite with the built-in lighter. Release after 3–5 sec.</div>
-          <div class="appl-how-text es">Gira la perilla en sentido antihorario, mantén pulsado e ignite. Suelta tras 3–5 seg.</div>
-          <div class="appl-how-text fr">Tournez le bouton dans le sens antihoraire, maintenez et allumez. Relâchez après 3–5 sec.</div>
-          <div class="appl-how-text zh">逆时针旋转旋钮，按住并用内置点火器点火，3–5秒后松开。</div>
-        </div>
-        <div class="appl-warn">
-          <div class="appl-warn-label it">ATTENZIONE</div>
-          <div class="appl-warn-label en">ATTENTION</div>
-          <div class="appl-warn-label es">ATENCIÓN</div>
-          <div class="appl-warn-label fr">ATTENTION</div>
-          <div class="appl-warn-label zh">注意</div>
-          <div class="appl-warn-text it">Aprire sempre una finestra durante l'uso. Chiudere il gas dopo ogni utilizzo.</div>
-          <div class="appl-warn-text en">Always open a window when in use. Close the gas valve after each use.</div>
-          <div class="appl-warn-text es">Abrir siempre una ventana. Cerrar el gas tras cada uso.</div>
-          <div class="appl-warn-text fr">Toujours ouvrir une fenêtre. Fermer le gaz après chaque utilisation.</div>
-          <div class="appl-warn-text zh">使用时始终开窗通风，每次用后关闭燃气阀。</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Forno Whirlpool -->
-    <div class="appl-card">
-      <div class="appl-header">
-        <div class="appl-icon">🥘</div>
-        <div class="appl-title-wrap">
-          <div class="appl-name it">Forno</div>
-          <div class="appl-name en">Oven</div>
-          <div class="appl-name es">Horno</div>
-          <div class="appl-name fr">Four</div>
-          <div class="appl-name zh">烤箱</div>
-          <div class="appl-brand">Whirlpool</div>
-        </div>
-      </div>
-      <div class="appl-body">
-        <div class="appl-how">
-          <div class="appl-how-label it">COME SI USA</div>
-          <div class="appl-how-label en">HOW TO USE</div>
-          <div class="appl-how-label es">CÓMO USAR</div>
-          <div class="appl-how-label fr">MODE D'EMPLOI</div>
-          <div class="appl-how-label zh">使用方法</div>
-          <div class="appl-how-text it">Seleziona la funzione (statico, ventilato, grill) e imposta la temperatura. Preriscalda 10 min prima di infornare.</div>
-          <div class="appl-how-text en">Select the function (static, fan, grill) and set temperature. Preheat for 10 min before use.</div>
-          <div class="appl-how-text es">Selecciona función (estático, ventilado, grill) y temperatura. Precalienta 10 min.</div>
-          <div class="appl-how-text fr">Sélectionnez la fonction (statique, ventilé, grill) et la température. Préchauffez 10 min.</div>
-          <div class="appl-how-text zh">选择功能（静态/热风/烧烤），设定温度，使用前预热10分钟。</div>
-        </div>
-        <div class="appl-tip">
-          <div class="appl-tip-label it">SMART TIP</div>
-          <div class="appl-tip-label en">SMART TIP</div>
-          <div class="appl-tip-label es">CONSEJO</div>
-          <div class="appl-tip-label fr">ASTUCE</div>
-          <div class="appl-tip-label zh">小贴士</div>
-          <div class="appl-tip-text it">Usa la modalità ventilata per cotture uniformi e più veloci.</div>
-          <div class="appl-tip-text en">Use fan mode for even, faster cooking results.</div>
-          <div class="appl-tip-text es">Usa el modo ventilado para una cocción uniforme y rápida.</div>
-          <div class="appl-tip-text fr">Utilisez le mode ventilé pour une cuisson rapide et uniforme.</div>
-          <div class="appl-tip-text zh">使用热风模式可使烹饪更均匀快速。</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Microonde Whirlpool -->
-    <div class="appl-card">
-      <div class="appl-header">
-        <div class="appl-icon">📡</div>
-        <div class="appl-title-wrap">
-          <div class="appl-name it">Microonde</div>
-          <div class="appl-name en">Microwave</div>
-          <div class="appl-name es">Microondas</div>
-          <div class="appl-name fr">Micro-ondes</div>
-          <div class="appl-name zh">微波炉</div>
-          <div class="appl-brand">Whirlpool</div>
-        </div>
-      </div>
-      <div class="appl-body">
-        <div class="appl-how">
-          <div class="appl-how-label it">COME SI USA</div>
-          <div class="appl-how-label en">HOW TO USE</div>
-          <div class="appl-how-label es">CÓMO USAR</div>
-          <div class="appl-how-label fr">MODE D'EMPLOI</div>
-          <div class="appl-how-label zh">使用方法</div>
-          <div class="appl-how-text it">Inserisci il cibo, imposta il tempo e la potenza, premi Start. Per scaldare velocemente usa 800W.</div>
-          <div class="appl-how-text en">Place food inside, set time and power, press Start. Use 800W for quick reheating.</div>
-          <div class="appl-how-text es">Introduce la comida, ajusta tiempo y potencia, pulsa Start. Usa 800W para calentar rápido.</div>
-          <div class="appl-how-text fr">Placez les aliments, réglez le temps et la puissance, appuyez sur Start. 800W pour réchauffer rapidement.</div>
-          <div class="appl-how-text zh">放入食物，设定时间和功率，按开始键。快速加热选800W。</div>
-        </div>
-        <div class="appl-warn">
-          <div class="appl-warn-label it">ATTENZIONE</div>
-          <div class="appl-warn-label en">ATTENTION</div>
-          <div class="appl-warn-label es">ATENCIÓN</div>
-          <div class="appl-warn-label fr">ATTENTION</div>
-          <div class="appl-warn-label zh">注意</div>
-          <div class="appl-warn-text it">Non inserire mai metallo, alluminio o contenitori chiusi ermeticamente.</div>
-          <div class="appl-warn-text en">Never put metal, aluminium foil, or sealed containers inside.</div>
-          <div class="appl-warn-text es">Nunca introducir metal, aluminio ni recipientes cerrados herméticamente.</div>
-          <div class="appl-warn-text fr">Ne jamais mettre de métal, d'aluminium ou de récipients hermétiques.</div>
-          <div class="appl-warn-text zh">切勿放入金属、铝箔或密封容器。</div>
-        </div>
-      </div>
-    </div>
-
     </div><!-- /qh-hub-wrapper -->
 
     <div style="height: calc(env(safe-area-inset-bottom, 0px) + 24px)"></div>
