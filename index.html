@@ -4405,41 +4405,27 @@
         <div class="soi-entry-card-arrow">›</div>
       </div>
 
-      <!-- ── WI-FI ── -->
-      <div class="card" style="border:1.5px solid var(--gold);background:linear-gradient(135deg,#fdf8ee 0%,#fdf4e0 100%);margin-bottom:20px">
+      <!-- ── WI-FI · PLACEHOLDER ── -->
+      <div class="card" style="margin-bottom:20px">
         <div class="card-title">
           <span class="card-title-icon">📶</span>
-          <span class="it">Wi-Fi · Rete di casa</span>
-          <span class="en">Wi-Fi · Home Network</span>
-          <span class="es">Wi-Fi · Red del hogar</span>
-          <span class="fr">Wi-Fi · Réseau domicile</span>
-          <span class="zh">Wi-Fi · 家庭网络</span>
+          <span>Wi-Fi</span>
         </div>
-        <div style="padding-bottom:12px;border-bottom:1px solid rgba(184,150,62,0.18);margin-bottom:12px">
-          <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(44,44,44,0.4);margin-bottom:4px">
-            <span class="it">Nome rete</span><span class="en">Network name</span><span class="es">Nombre de red</span><span class="fr">Nom du réseau</span><span class="zh">网络名称</span>
-          </div>
-          <div id="wifi-ssid" style="font-size:14px;font-weight:600;color:var(--anthracite)">Vodafone-E44822855</div>
+        <div style="font-size:13px;color:var(--gray);line-height:1.55;margin-bottom:14px">
+          <span class="it">Le credenziali Wi-Fi sono disponibili nell'area riservata.</span>
+          <span class="en">Wi-Fi credentials are available in the private area.</span>
+          <span class="es">Las credenciales Wi-Fi están disponibles en el área privada.</span>
+          <span class="fr">Les identifiants Wi-Fi sont disponibles dans l'espace privé.</span>
+          <span class="zh">Wi-Fi凭据可在私人区域中找到。</span>
         </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:14px;border-bottom:1px solid rgba(184,150,62,0.18)">
-          <div>
-            <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(44,44,44,0.4);margin-bottom:4px">Password</div>
-            <div id="wifi-password" style="font-size:16px;font-weight:700;color:var(--gold);letter-spacing:0.06em;font-family:'Courier New',monospace">LkTdXpC7EGAFpC9e</div>
-          </div>
-          <button class="qh-copy-btn" onclick="copyQH('wifi-password',this)" aria-label="Copia password">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-          </button>
-        </div>
-        <div style="text-align:center;padding-top:14px">
-          <img src="wifi-domusfiorelli.jpg" alt="Wi-Fi QR Code" style="width:160px;height:160px;object-fit:contain;border-radius:12px;display:block;margin:0 auto 8px">
-          <div style="font-size:11px;color:rgba(44,44,44,0.45)">
-            <span class="it">Inquadra per connetterti automaticamente</span>
-            <span class="en">Scan to connect automatically</span>
-            <span class="es">Escanea para conectarte</span>
-            <span class="fr">Scannez pour vous connecter</span>
-            <span class="zh">扫描自动连接网络</span>
-          </div>
-        </div>
+        <button onclick="openQuick()" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--anthracite);color:var(--white);border:none;border-radius:12px;padding:13px 18px;font-family:'Raleway',sans-serif;font-size:13px;font-weight:700;cursor:pointer;letter-spacing:0.04em;transition:opacity 0.15s" ontouchstart="">
+          <span>🔐</span>
+          <span class="it">Accedi all'area riservata</span>
+          <span class="en">Access private area</span>
+          <span class="es">Acceder al área privada</span>
+          <span class="fr">Accéder à l'espace privé</span>
+          <span class="zh">进入私人区域</span>
+        </button>
       </div>
 
       <!-- ── APPLIANCE SECTION LABEL ── -->
@@ -7630,6 +7616,72 @@
       <button class="quick-close" onclick="closeQuick()" aria-label="Chiudi / Close">✕</button>
     </div>
     <div style="padding: 0 14px">
+    <!-- ── BLOCK 1 · WI-FI ── -->
+    <div class="qh-block-label it">📶 Wi-Fi</div>
+    <div class="qh-block-label en">📶 Wi-Fi</div>
+    <div class="qh-block-label es">📶 Wi-Fi</div>
+    <div class="qh-block-label fr">📶 Wi-Fi</div>
+    <div class="qh-wifi-card">
+      <div class="qh-wifi-row">
+        <div>
+          <div class="qh-wifi-field-label it">Nome rete</div>
+          <div class="qh-wifi-field-label en">Network name</div>
+          <div class="qh-wifi-field-label es">Nombre de red</div>
+          <div class="qh-wifi-field-label fr">Nom du réseau</div>
+          <div class="qh-wifi-value" id="wifi-ssid">Vodafone-E44822855</div>
+        </div>
+      </div>
+      <div class="qh-wifi-divider"></div>
+      <div class="qh-wifi-row">
+        <div>
+          <div class="qh-wifi-field-label">Password</div>
+          <div class="qh-wifi-value qh-wifi-password" id="wifi-password">LkTdXpC7EGAFpC9e</div>
+        </div>
+        <button class="qh-copy-btn" onclick="copyQH('wifi-password',this)" aria-label="Copia password">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        </button>
+      </div>
+      <div class="qh-wifi-divider"></div>
+      <!-- Istruzioni connessione -->
+      <div style="padding:10px 0 6px">
+        <div class="qh-wifi-field-label it" style="margin-bottom:6px">Come connettersi</div>
+        <div class="qh-wifi-field-label en" style="margin-bottom:6px">How to connect</div>
+        <div class="qh-wifi-field-label es" style="margin-bottom:6px">Cómo conectarse</div>
+        <div class="qh-wifi-field-label fr" style="margin-bottom:6px">Comment se connecter</div>
+        <ol style="margin:0;padding-left:16px;display:flex;flex-direction:column;gap:4px">
+          <li style="font-size:12px;color:rgba(253,250,244,0.75);line-height:1.4">
+            <span class="it">Apri le Impostazioni Wi-Fi</span>
+            <span class="en">Open Wi-Fi Settings</span>
+            <span class="es">Abre Ajustes Wi-Fi</span>
+            <span class="fr">Ouvrez les paramètres Wi-Fi</span>
+          </li>
+          <li style="font-size:12px;color:rgba(253,250,244,0.75);line-height:1.4">
+            <span class="it">Seleziona la rete indicata sopra</span>
+            <span class="en">Select the network shown above</span>
+            <span class="es">Selecciona la red indicada</span>
+            <span class="fr">Sélectionnez le réseau indiqué</span>
+          </li>
+          <li style="font-size:12px;color:rgba(253,250,244,0.75);line-height:1.4">
+            <span class="it">Inserisci la password e connettiti</span>
+            <span class="en">Enter the password and connect</span>
+            <span class="es">Introduce la contraseña y conéctate</span>
+            <span class="fr">Entrez le mot de passe et connectez-vous</span>
+          </li>
+        </ol>
+      </div>
+      <!-- QR code -->
+      <div class="qh-wifi-qr" style="text-align:center;padding:12px 0 4px">
+        <img src="wifi-domusfiorelli.jpg" alt="Wi-Fi QR Code" style="width:140px;height:140px;object-fit:contain;border-radius:8px;display:block;margin:0 auto 8px">
+        <div style="font-size:11px;color:rgba(255,255,255,0.5)">
+          <span class="it">Scansiona il QR code per connetterti automaticamente</span>
+          <span class="en">Scan to connect automatically</span>
+          <span class="es">Escanea para conectarte automáticamente</span>
+          <span class="fr">Scannez pour vous connecter automatiquement</span>
+          <span class="zh">扫描自动连接网络</span>
+        </div>
+      </div>
+    </div>
+
     <!-- ── BLOCK 2 · HOME OPERATIONS ── -->
     <div class="qh-block-label it">🏠 Operazioni Casa</div>
     <div class="qh-block-label en">🏠 Home Operations</div>
