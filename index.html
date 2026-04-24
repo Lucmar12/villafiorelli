@@ -3571,25 +3571,6 @@
     }
     .exp-carousel::-webkit-scrollbar { display: none; }
     .carousel-wrap { position: relative; }
-    .carousel-arrows {
-      display: flex;
-      justify-content: flex-end;
-      gap: 8px;
-      margin-top: 8px;
-      padding-right: 4px;
-    }
-    .carousel-arrow {
-      background: var(--white);
-      border: 1px solid var(--light-gray);
-      border-radius: 50%;
-      width: 34px; height: 34px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background 0.15s, transform 0.15s;
-      color: var(--anthracite);
-    }
-    .carousel-arrow:active { background: var(--beige-mid); transform: scale(0.93); }
 
     /* ─── EXPERIENCE CARD ────────────────────────────── */
     .exp-card {
@@ -3812,7 +3793,6 @@
       max-width: 100%;
       scroll-snap-align: none;
     }
-    #page-13 .carousel-arrows { display: none; }
 
     /* ─── SPOTIFY MOOD CARDS ────────────────────────── */
     .spotify-card {
@@ -8835,38 +8815,11 @@
   }
   window.addEventListener('hashchange', handleHash);
 
-  // ── CAROUSEL ARROWS ──────────────────────────────────
-  function initCarouselArrows() {
-    document.querySelectorAll('.exp-carousel').forEach((carousel, idx) => {
-      const wrap = document.createElement('div');
-      wrap.className = 'carousel-arrows';
-      wrap.setAttribute('data-no-swipe', '');
-      const btnPrev = document.createElement('button');
-      btnPrev.className = 'carousel-arrow';
-      btnPrev.setAttribute('aria-label', 'Previous');
-      btnPrev.innerHTML = '←';
-      const btnNext = document.createElement('button');
-      btnNext.className = 'carousel-arrow';
-      btnNext.setAttribute('aria-label', 'Next');
-      btnNext.innerHTML = '→';
-      const cardWidth = () => {
-        const first = carousel.querySelector('.exp-card');
-        return first ? first.offsetWidth + 12 : 240;
-      };
-      btnPrev.addEventListener('click', e => { e.stopPropagation(); carousel.scrollBy({ left: -cardWidth(), behavior: 'smooth' }); });
-      btnNext.addEventListener('click', e => { e.stopPropagation(); carousel.scrollBy({ left: cardWidth(), behavior: 'smooth' }); });
-      wrap.appendChild(btnPrev);
-      wrap.appendChild(btnNext);
-      carousel.after(wrap);
-    });
-  }
-
   // ── INIT ─────────────────────────────────────────────
   handleHash();
   setLang(detectLang());
   injectFooters();
   updateUI();
-  initCarouselArrows();
 
   // Show cookie banner once (if no prior choice)
   (function initCookieBanner() {
