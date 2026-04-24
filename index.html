@@ -1934,6 +1934,89 @@
       line-height: 1.5;
     }
 
+    /* ─── NFC SMART HOME SECTION ────────────────────── */
+    .nfc-section {
+      margin: 0 0 20px;
+      padding: 20px 18px 22px;
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: 0 2px 10px rgba(44,44,44,0.07);
+    }
+    .nfc-eyebrow {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 6px;
+    }
+    .nfc-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 600;
+      color: var(--anthracite); margin-bottom: 8px; line-height: 1.2;
+    }
+    .nfc-subtitle {
+      font-size: 13px; color: var(--gray);
+      line-height: 1.55; margin-bottom: 16px;
+    }
+    .nfc-phone-hint {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--anthracite);
+      border-radius: 12px; padding: 11px 14px; margin-bottom: 16px;
+    }
+    .nfc-phone-hint-text {
+      font-size: 12.5px; font-weight: 700;
+      color: var(--white); letter-spacing: 0.02em; line-height: 1.3;
+    }
+    .nfc-phone-hint-text span { color: var(--gold); }
+    .nfc-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    }
+    .nfc-item {
+      background: var(--beige); border-radius: 14px;
+      padding: 14px 12px; display: flex; flex-direction: column; gap: 5px;
+    }
+    .nfc-item-icon {
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--white); border-radius: 9px; margin-bottom: 4px;
+      color: var(--anthracite);
+    }
+    .nfc-item-label {
+      font-size: 13px; font-weight: 700; color: var(--anthracite);
+    }
+    .nfc-item-desc {
+      font-size: 11.5px; color: var(--gray); line-height: 1.4;
+    }
+    .amor-block {
+      margin-top: 10px;
+      background: linear-gradient(135deg, #fdf4f0 0%, #fdf0ea 100%);
+      border: 1px solid rgba(184,100,70,0.12);
+      border-radius: 18px; padding: 18px 16px;
+    }
+    .amor-eyebrow {
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(180,80,50,0.65); margin-bottom: 6px;
+    }
+    .amor-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px; font-weight: 600; font-style: italic;
+      color: var(--anthracite); margin-bottom: 9px; line-height: 1.3;
+    }
+    .amor-desc {
+      font-size: 12.5px; color: var(--gray);
+      line-height: 1.6; margin-bottom: 12px;
+    }
+    .amor-tag {
+      display: inline-block; font-size: 12px; font-weight: 700;
+      color: rgba(180,80,50,0.9);
+      background: rgba(180,80,50,0.09);
+      border-radius: 6px; padding: 4px 10px;
+      margin-bottom: 12px; letter-spacing: 0.02em; line-height: 1.5;
+    }
+    .amor-nfc-hint {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 11.5px; color: var(--gray); line-height: 1.45;
+    }
+
     /* ─── SAILY eSIM CARD ───────────────────────────── */
     .saily-card {
       background: linear-gradient(150deg, #111827 0%, #1a2235 100%);
@@ -4095,6 +4178,121 @@
             <span class="es">Escribe a Alessandro</span>
             <span class="fr">Écrire à Alessandro</span>
           </a>
+        </div>
+      </div>
+
+      <!-- ── SMART HOME / NFC ── -->
+      <div class="nfc-section">
+        <div class="nfc-eyebrow it">Smart home · Tap &amp; Go</div>
+        <div class="nfc-eyebrow en">Smart home · Tap &amp; Go</div>
+        <div class="nfc-eyebrow es">Smart home · Tap &amp; Go</div>
+        <div class="nfc-eyebrow fr">Smart home · Tap &amp; Go</div>
+
+        <div class="nfc-title it">La casa è smart.</div>
+        <div class="nfc-title en">The home is smart.</div>
+        <div class="nfc-title es">La casa es inteligente.</div>
+        <div class="nfc-title fr">L'appartement est smart.</div>
+
+        <div class="nfc-subtitle it">Nella casa troverai dei piccoli bottoni bianchi: ti basta avvicinare il telefono per accedere subito ai servizi.</div>
+        <div class="nfc-subtitle en">Around the home you'll find small white buttons: simply hold your phone close to instantly access services.</div>
+        <div class="nfc-subtitle es">En la casa encontrarás pequeños botones blancos: acerca tu teléfono para acceder a los servicios al instante.</div>
+        <div class="nfc-subtitle fr">Dans l'appartement vous trouverez de petits boutons blancs : approchez simplement votre téléphone pour accéder aux services.</div>
+
+        <!-- Highlighted action hint -->
+        <div class="nfc-phone-hint">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Phone -->
+            <rect x="5" y="3" width="11" height="18" rx="2.5" stroke="rgba(253,250,244,0.7)" stroke-width="1.5"/>
+            <line x1="5" y1="17" x2="16" y2="17" stroke="rgba(253,250,244,0.7)" stroke-width="1.5"/>
+            <circle cx="10.5" cy="19.5" r="0.8" fill="rgba(253,250,244,0.7)"/>
+            <!-- NFC waves -->
+            <path d="M19 11 Q21.5 11 21.5 14 Q21.5 17 19 17" stroke="rgba(184,150,62,0.9)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            <path d="M19 8.5 Q24 8.5 24 14 Q24 19.5 19 19.5" stroke="rgba(184,150,62,0.55)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+            <!-- Button dot -->
+            <circle cx="22" cy="14" r="2.5" fill="rgba(184,150,62,0.25)" stroke="var(--gold)" stroke-width="1.2"/>
+          </svg>
+          <div class="nfc-phone-hint-text it">Ti basta <span>avvicinare il telefono</span> al bottone</div>
+          <div class="nfc-phone-hint-text en">Simply <span>hold your phone</span> near the button</div>
+          <div class="nfc-phone-hint-text es">Solo <span>acerca tu teléfono</span> al botón</div>
+          <div class="nfc-phone-hint-text fr">Approchez <span>votre téléphone</span> du bouton</div>
+        </div>
+
+        <!-- 4-item grid -->
+        <div class="nfc-grid">
+          <div class="nfc-item">
+            <div class="nfc-item-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg>
+            </div>
+            <div class="nfc-item-label">Wi-Fi</div>
+            <div class="nfc-item-desc it">Connessione immediata alla rete</div>
+            <div class="nfc-item-desc en">Instant network connection</div>
+            <div class="nfc-item-desc es">Conexión inmediata a la red</div>
+            <div class="nfc-item-desc fr">Connexion immédiate au réseau</div>
+          </div>
+          <div class="nfc-item">
+            <div class="nfc-item-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <div class="nfc-item-label it">Guida</div>
+            <div class="nfc-item-label en">Guide</div>
+            <div class="nfc-item-label es">Guía</div>
+            <div class="nfc-item-label fr">Guide</div>
+            <div class="nfc-item-desc it">Apri subito la guida digitale</div>
+            <div class="nfc-item-desc en">Open the digital guide instantly</div>
+            <div class="nfc-item-desc es">Abre la guía digital al instante</div>
+            <div class="nfc-item-desc fr">Ouvrez le guide numérique</div>
+          </div>
+          <div class="nfc-item">
+            <div class="nfc-item-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </div>
+            <div class="nfc-item-label">Host</div>
+            <div class="nfc-item-desc it">Contatta direttamente Alessandro</div>
+            <div class="nfc-item-desc en">Contact Alessandro directly</div>
+            <div class="nfc-item-desc es">Contacta directamente a Alessandro</div>
+            <div class="nfc-item-desc fr">Contactez Alessandro directement</div>
+          </div>
+          <div class="nfc-item">
+            <div class="nfc-item-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="nfc-item-label it">Recensione</div>
+            <div class="nfc-item-label en">Review</div>
+            <div class="nfc-item-label es">Reseña</div>
+            <div class="nfc-item-label fr">Avis</div>
+            <div class="nfc-item-desc it">Lascia la tua recensione in pochi secondi</div>
+            <div class="nfc-item-desc en">Leave your review in seconds</div>
+            <div class="nfc-item-desc es">Deja tu reseña en segundos</div>
+            <div class="nfc-item-desc fr">Laissez votre avis en quelques secondes</div>
+          </div>
+        </div>
+
+        <!-- Amor block -->
+        <div class="amor-block">
+          <div class="amor-eyebrow it">Esperienza · Amor Roma</div>
+          <div class="amor-eyebrow en">Experience · Amor Roma</div>
+          <div class="amor-eyebrow es">Experiencia · Amor Roma</div>
+          <div class="amor-eyebrow fr">Expérience · Amor Roma</div>
+
+          <div class="amor-title it">Il tuo momento a Roma.</div>
+          <div class="amor-title en">Your Roman moment.</div>
+          <div class="amor-title es">Tu momento en Roma.</div>
+          <div class="amor-title fr">Votre moment à Rome.</div>
+
+          <div class="amor-desc it">Nella casa troverai l'angolo "Amor", la scritta Roma al contrario: il punto perfetto per una foto speciale durante il tuo soggiorno.</div>
+          <div class="amor-desc en">In the apartment you'll find the "Amor" corner — Roma spelled backwards — the perfect spot for a special photo during your stay.</div>
+          <div class="amor-desc es">En la casa encontrarás el rincón "Amor", Roma al revés: el lugar perfecto para una foto especial durante tu estancia.</div>
+          <div class="amor-desc fr">Dans l'appartement vous trouverez le coin "Amor" — Roma à l'envers : le lieu idéal pour une photo spéciale pendant votre séjour.</div>
+
+          <div class="amor-tag">@domusfiorelli.roma · #AmorRoma</div>
+
+          <div class="amor-nfc-hint">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(180,80,50,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+            <span class="it">Troverai un bottone dedicato vicino all'angolo per aprire direttamente Instagram</span>
+            <span class="en">A dedicated button near the corner opens Instagram directly</span>
+            <span class="es">Un botón dedicado cerca del rincón abre Instagram directamente</span>
+            <span class="fr">Un bouton dédié près du coin ouvre Instagram directement</span>
+          </div>
         </div>
       </div>
 
