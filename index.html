@@ -1985,36 +1985,74 @@
     .nfc-item-desc {
       font-size: 11.5px; color: var(--gray); line-height: 1.4;
     }
-    .amor-block {
-      margin-top: 10px;
-      background: linear-gradient(135deg, #fdf4f0 0%, #fdf0ea 100%);
-      border: 1px solid rgba(184,100,70,0.12);
-      border-radius: 18px; padding: 18px 16px;
+    /* ─── AMOR PREMIUM SECTION ─────────────────────── */
+    .amor-section {
+      margin: 0 0 20px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 22px rgba(44,44,44,0.13);
+      animation: fadeUp 0.55s ease both;
     }
-    .amor-eyebrow {
+    .amor-hero-wrap {
+      position: relative;
+      height: 270px;
+      overflow: hidden;
+    }
+    .amor-hero-img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 35%;
+      display: block;
+    }
+    .amor-hero-fade {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 72%;
+      background: linear-gradient(to top, rgba(18,12,9,0.88) 0%, rgba(18,12,9,0.35) 55%, transparent 100%);
+    }
+    .amor-hero-text {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 0 20px 20px;
+    }
+    .amor-hero-eyebrow {
       font-size: 9px; font-weight: 700;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: rgba(180,80,50,0.65); margin-bottom: 6px;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,255,255,0.6); margin-bottom: 5px;
     }
-    .amor-title {
+    .amor-hero-title {
       font-family: 'Playfair Display', serif;
-      font-size: 17px; font-weight: 600; font-style: italic;
-      color: var(--anthracite); margin-bottom: 9px; line-height: 1.3;
+      font-size: 23px; font-weight: 600; font-style: italic;
+      color: #fff; line-height: 1.2;
     }
-    .amor-desc {
-      font-size: 12.5px; color: var(--gray);
-      line-height: 1.6; margin-bottom: 12px;
+    .amor-section-body {
+      background: #fff;
+      padding: 18px 18px 20px;
     }
-    .amor-tag {
-      display: inline-block; font-size: 12px; font-weight: 700;
+    .amor-subtitle {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.17em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 10px;
+    }
+    .amor-body-desc {
+      font-size: 13px; color: var(--gray);
+      line-height: 1.65; margin-bottom: 14px;
+    }
+    .amor-social-tag {
+      display: inline-block; font-size: 11.5px; font-weight: 700;
       color: rgba(180,80,50,0.9);
-      background: rgba(180,80,50,0.09);
+      background: rgba(180,80,50,0.08);
       border-radius: 6px; padding: 4px 10px;
-      margin-bottom: 12px; letter-spacing: 0.02em; line-height: 1.5;
+      margin-bottom: 16px; letter-spacing: 0.02em;
     }
-    .amor-nfc-hint {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 11.5px; color: var(--gray); line-height: 1.45;
+    .amor-ig-btn {
+      display: block;
+      background: linear-gradient(135deg, #c0633a 0%, #a3522e 100%);
+      color: #fff; text-decoration: none;
+      font-size: 12.5px; font-weight: 700;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      border-radius: 12px; padding: 13px 18px;
+      text-align: center;
+      box-shadow: 0 3px 14px rgba(180,80,50,0.28);
     }
 
     /* ─── SAILY eSIM CARD ───────────────────────────── */
@@ -4267,32 +4305,40 @@
           </div>
         </div>
 
-        <!-- Amor block -->
-        <div class="amor-block">
-          <div class="amor-eyebrow it">Esperienza · Amor Roma</div>
-          <div class="amor-eyebrow en">Experience · Amor Roma</div>
-          <div class="amor-eyebrow es">Experiencia · Amor Roma</div>
-          <div class="amor-eyebrow fr">Expérience · Amor Roma</div>
+      </div>
 
-          <div class="amor-title it">Il tuo momento a Roma.</div>
-          <div class="amor-title en">Your Roman moment.</div>
-          <div class="amor-title es">Tu momento en Roma.</div>
-          <div class="amor-title fr">Votre moment à Rome.</div>
-
-          <div class="amor-desc it">Nella casa troverai l'angolo "Amor", la scritta Roma al contrario: il punto perfetto per una foto speciale durante il tuo soggiorno.</div>
-          <div class="amor-desc en">In the apartment you'll find the "Amor" corner — Roma spelled backwards — the perfect spot for a special photo during your stay.</div>
-          <div class="amor-desc es">En la casa encontrarás el rincón "Amor", Roma al revés: el lugar perfecto para una foto especial durante tu estancia.</div>
-          <div class="amor-desc fr">Dans l'appartement vous trouverez le coin "Amor" — Roma à l'envers : le lieu idéal pour une photo spéciale pendant votre séjour.</div>
-
-          <div class="amor-tag">@domusfiorelli.roma · #AmorRoma</div>
-
-          <div class="amor-nfc-hint">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(180,80,50,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-            <span class="it">Troverai un bottone dedicato vicino all'angolo per aprire direttamente Instagram</span>
-            <span class="en">A dedicated button near the corner opens Instagram directly</span>
-            <span class="es">Un botón dedicado cerca del rincón abre Instagram directamente</span>
-            <span class="fr">Un bouton dédié près du coin ouvre Instagram directement</span>
+      <!-- Amor premium section -->
+      <div class="amor-section">
+        <div class="amor-hero-wrap">
+          <img src="amor.jpeg" class="amor-hero-img" alt="Amor — Domus Fiorelli">
+          <div class="amor-hero-fade"></div>
+          <div class="amor-hero-text">
+            <div class="amor-hero-eyebrow it">Esperienza · Amor Roma</div>
+            <div class="amor-hero-eyebrow en">Experience · Amor Roma</div>
+            <div class="amor-hero-eyebrow es">Experiencia · Amor Roma</div>
+            <div class="amor-hero-eyebrow fr">Expérience · Amor Roma</div>
+            <div class="amor-hero-title it">Il tuo momento a Roma.</div>
+            <div class="amor-hero-title en">Your Roman moment.</div>
+            <div class="amor-hero-title es">Tu momento en Roma.</div>
+            <div class="amor-hero-title fr">Votre moment à Rome.</div>
           </div>
+        </div>
+        <div class="amor-section-body">
+          <div class="amor-subtitle it">L'angolo Amor</div>
+          <div class="amor-subtitle en">The Amor Corner</div>
+          <div class="amor-subtitle es">El rincón Amor</div>
+          <div class="amor-subtitle fr">Le coin Amor</div>
+          <div class="amor-body-desc it">Nella casa troverai l'angolo "Amor" — Roma scritta al contrario. Il punto perfetto per una foto speciale durante il tuo soggiorno.</div>
+          <div class="amor-body-desc en">In the apartment you'll find the "Amor" corner — Roma spelled backwards. The perfect spot for a special photo during your stay.</div>
+          <div class="amor-body-desc es">En la casa encontrarás el rincón "Amor" — Roma al revés. El lugar perfecto para una foto especial durante tu estancia.</div>
+          <div class="amor-body-desc fr">Dans l'appartement vous trouverez le coin "Amor" — Roma à l'envers. Le lieu idéal pour une photo spéciale pendant votre séjour.</div>
+          <div class="amor-social-tag">@domusfiorelli.roma · #AmorRoma</div>
+          <a href="https://www.instagram.com/domusfiorelli.roma" target="_blank" rel="noopener" class="amor-ig-btn">
+            <span class="it">Apri Instagram</span>
+            <span class="en">Open Instagram</span>
+            <span class="es">Abrir Instagram</span>
+            <span class="fr">Ouvrir Instagram</span>
+          </a>
         </div>
       </div>
 
